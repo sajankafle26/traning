@@ -1,7 +1,12 @@
 import About from '@/components/About'
-import React from 'react'
+import { Metadata } from 'next';
+import React from 'react';
 
-function page() {
+export const metadata: Metadata = {
+  title: 'About Us',
+  description: 'Learn more about Sangalo Tech, the leading IT training institute in Nepal.',
+};
+function AboutPage() {
   return (
    <>
    <section className="bg-gray-100 py-12">
@@ -15,4 +20,4 @@ function page() {
   )
 }
 
-export default page
+export default AboutPage

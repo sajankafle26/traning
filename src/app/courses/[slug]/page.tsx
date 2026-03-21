@@ -36,10 +36,10 @@ export async function generateMetadata({ params }: { params: { slug: string } | 
   }
 
   return {
-    title: `${course.title} | Sangalo Tech`,
+    title: course.title,
     description: course.description,
     openGraph: {
-      title: `${course.title} | Sangalo Tech`,
+      title: course.title,
       description: course.description,
       images: [`/courses/${course.image || 'default.png'}`],
     },

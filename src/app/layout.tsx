@@ -18,12 +18,18 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sangalotech.com.np"),
-  title: "Top IT Institutes & Job‑Ready Programs in Nepal | Sangalo Tech",
+  title: {
+    default: "Top IT Institutes & Job‑Ready Programs in Nepal | Sangalo Tech",
+    template: "%s | Sangalo Tech",
+  },
   description: "Sangalo Tech offers premier IT training in Nepal, specializing in UI UX Design, Full‑stack development, MERN Stack, and more. Join our job-ready programs today.",
   keywords: ["IT Institute Nepal", "Web Development Training Nepal", "UI UX Design Course Nepal", "MERN Stack Course Nepal", "Sangalo Tech", "Job Ready Programs"],
   authors: [{ name: "Sangalo Tech" }],
   openGraph: {
-    title: "Top IT Institutes & Job‑Ready Programs in Nepal | Sangalo Tech",
+    title: {
+      default: "Top IT Institutes & Job‑Ready Programs in Nepal | Sangalo Tech",
+      template: "%s | Sangalo Tech",
+    },
     description: "Sangalo Tech offers premier IT training in Nepal, specializing in UI UX Design, Full‑stack development, MERN Stack, and more.",
     url: "https://sangalotech.com.np",
     siteName: "Sangalo Tech",
@@ -40,7 +46,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Top IT Institutes & Job‑Ready Programs in Nepal | Sangalo Tech",
+    title: {
+      default: "Top IT Institutes & Job‑Ready Programs in Nepal | Sangalo Tech",
+      template: "%s | Sangalo Tech",
+    },
     description: "Sangalo Tech offers premier IT training in Nepal, specializing in UI UX Design, Full‑stack development, MERN Stack, and more.",
     images: ["/og-image.png"],
   },
