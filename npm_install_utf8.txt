@@ -1,0 +1,137 @@
+﻿node.exe : npm warn 
+ERESOLVE overriding 
+peer dependency
+At line:1 char:1
++ & "C:\Program Files\
+nodejs/node.exe" "C:\U
+sers\sajan\AppData\Roa
+ming\ ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (npm warn E   
+ RESOL...peer depe    
+ndency:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+npm warn While 
+resolving: 
+@auth/core@0.41.1
+npm warn Found: 
+nodemailer@8.0.2
+npm warn node_modules/
+nodemailer
+npm warn   
+nodemailer@"^8.0.2" 
+from the root project
+npm warn
+npm warn Could not 
+resolve dependency:
+npm warn peerOptional 
+nodemailer@"^7.0.7" 
+from @auth/core@0.41.1
+npm warn node_modules/
+@auth/core
+npm warn   
+@auth/core@"0.41.1" 
+from @auth/mongodb-ada
+pter@3.11.1
+npm warn   node_module
+s/@auth/mongodb-adapte
+r
+npm warn
+npm warn Conflicting 
+peer dependency: 
+nodemailer@7.0.13
+npm warn node_modules/
+nodemailer
+npm warn   
+peerOptional 
+nodemailer@"^7.0.7" 
+from @auth/core@0.41.1
+npm warn   node_module
+s/@auth/core
+npm warn     
+@auth/core@"0.41.1" 
+from @auth/mongodb-ada
+pter@3.11.1
+npm warn     node_modu
+les/@auth/mongodb-adap
+ter
+npm error code 
+ERESOLVE
+npm error ERESOLVE 
+could not resolve
+npm error
+npm error While 
+resolving: next-auth@5
+.0.0-beta.30
+npm error Found: 
+nodemailer@8.0.2
+npm error node_modules
+/nodemailer
+npm error   
+nodemailer@"^8.0.2" 
+from the root project
+npm error
+npm error Could not 
+resolve dependency:
+npm error 
+peerOptional 
+nodemailer@"^7.0.7" 
+from next-auth@5.0.0-b
+eta.30
+npm error 
+node_modules/next-auth
+npm error   next-auth@
+"^5.0.0-beta.30" from 
+the root project
+npm error
+npm error Conflicting 
+peer dependency: 
+nodemailer@7.0.13
+npm error node_modules
+/nodemailer
+npm error   
+peerOptional 
+nodemailer@"^7.0.7" 
+from next-auth@5.0.0-b
+eta.30
+npm error   
+node_modules/next-auth
+npm error     next-aut
+h@"^5.0.0-beta.30" 
+from the root project
+npm error
+npm error Fix the 
+upstream dependency 
+conflict, or retry
+npm error this 
+command with --force 
+or --legacy-peer-deps
+npm error to accept 
+an incorrect (and 
+potentially broken) 
+dependency resolution.
+npm error
+npm error
+npm error For a full 
+report see:
+npm error C:\Users\saj
+an\AppData\Local\npm-c
+ache\_logs\2026-03-21T
+14_35_32_977Z-eresolve
+-report.txt
+npm error A complete 
+log of this run can 
+be found in: C:\Users\
+sajan\AppData\Local\np
+m-cache\_logs\2026-03-
+21T14_35_32_977Z-debug
+-0.log

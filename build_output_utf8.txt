@@ -1,0 +1,88 @@
+﻿--- NEXT CONFIG LOADED ---
+node.exe : ΓÜá 
+Warning: Next.js 
+inferred your 
+workspace root, but 
+it may not be correct.
+At line:1 char:1
++ & "C:\Program Files\
+nodejs/node.exe" "C:\U
+sers\sajan\AppData\Roa
+ming\ ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (ΓÜá Warnin   
+ g: Ne...not be co    
+rrect.:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+ We detected multiple 
+lockfiles and 
+selected the 
+directory of C:\Users\
+sajan\package-lock.jso
+n as the root 
+directory.
+ To silence this 
+warning, set 
+`turbopack.root` in 
+your Next.js config, 
+or consider removing 
+one of the lockfiles 
+if it's not needed.
+   See https://nextjs.
+org/docs/app/api-refer
+ence/config/next-confi
+g-js/turbopack#root-di
+rectory for more 
+information.
+ Detected additional 
+lockfiles: 
+   * C:\Users\sajan\On
+eDrive\Desktop\st\pack
+age-lock.json
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local, .env
+
+  Creating an optimized production build ...
+--- NEXT CONFIG LOADED ---
+Γ£ô Compiled successfully in 57s
+  Running TypeScript ...
+Failed to compile.
+
+.next/dev/types/routes
+.d.ts:137:2
+Type error: 
+Declaration or 
+statement expected.
+
+[0m [90m 135 |[39m 
+  }
+ [90m 136 |[39m }
+[31m[1m>[22m[39m[
+90m 137 |[39m  }
+ [90m     |[39m  
+[31m[1m^[22m[39m
+ [90m 138 |[39m   [
+32m"/api/auth/signup"
+[39m[33m:[39m {}
+ [90m 139 |[39m   [
+32m"/api/blogs"[39m[
+33m:[39m {}
+ [90m 140 |[39m   [
+32m"/api/blogs/[id]"[
+39m[33m:[39m { [32m
+"id"[39m[33m:[39m 
+string[33m;[39m 
+}[0m
+Next.js build worker 
+exited with code: 1 
+and signal: null
