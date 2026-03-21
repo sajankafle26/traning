@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Providers } from "@/components/Providers";
 import StyledJsxRegistry from "@/components/StyledJsxRegistry";
-
+import { GoogleAnalytics } from '@next/third-parties/google'
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -81,6 +81,7 @@ export default function RootLayout({
           </Providers>
         </StyledJsxRegistry>
       </body>
+      <GoogleAnalytics gaId="G-33K8458JSC" />
     </html>
   );
 }
