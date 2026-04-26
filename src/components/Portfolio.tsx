@@ -291,7 +291,7 @@ const Portfolio = () => {
             <div className="absolute bottom-0 right-0 w-[800px] h-[600px] bg-cyan-600/5 blur-[150px] pointer-events-none rounded-full" />
             
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="text-center mb-24 max-w-3xl mx-auto">
+                <div className="text-center mb-16 max-w-3xl mx-auto">
                     <span className="text-indigo-400 font-semibold tracking-widest uppercase text-sm mb-4 block">Our Work</span>
                     <h2 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400 mb-8 tracking-tight">
                         Featured Projects
@@ -300,7 +300,9 @@ const Portfolio = () => {
                         Explore our latest digital creations. We combine cutting-edge technology with world-class design to build scalable, premium solutions.
                     </p>
                 </div>
+            </div>
 
+            <div className="w-full px-4 sm:px-6 relative z-10">
                 {projects.length === 0 ? (
                     <div className="text-center py-20 bg-white/[0.02] border border-white/[0.05] rounded-3xl backdrop-blur-sm max-w-2xl mx-auto">
                         <p className="text-slate-400 text-lg">No projects added yet.</p>
@@ -309,93 +311,67 @@ const Portfolio = () => {
                         </Link>
                     </div>
                 ) : (
-                    <Swiper
-                        modules={[Autoplay, Pagination]}
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        breakpoints={{
-                            640: { slidesPerView: 1 },
-                            768: { slidesPerView: 2 },
-                            1024: { slidesPerView: 3 },
-                        }}
-                        autoplay={{ delay: 3000, disableOnInteraction: false }}
-                        loop={true}
-                        pagination={{ clickable: true, dynamicBullets: true }}
-                        className="pb-16"
-                    >
-                    {projects.map((project) => (
-                        <SwiperSlide key={project._id} className="pb-4">
-                        <div 
-                            className="group flex flex-col bg-white/[0.02] border border-white/[0.05] rounded-[2rem] overflow-hidden hover:border-indigo-500/30 hover:bg-white/[0.04] transition-all duration-700 hover:-translate-y-3 hover:shadow-[0_20px_40px_-15px_rgba(99,102,241,0.2)] relative h-full"
-                        >
-                            <div className="h-64 sm:h-72 w-full relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#05090f] via-transparent to-transparent z-10 opacity-90 group-hover:opacity-70 transition-opacity duration-700" />
-                                <img
-                                    src={project.image || `https://i.pravatar.cc/600?u=${project.title}`}
-                                    alt={project.title}
-                                    className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
-                                />
-                                {project.category && (
-                                    <div className="absolute top-6 left-6 z-20">
-                                        <span className="bg-black/40 backdrop-blur-md text-white/90 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-widest uppercase border border-white/10 shadow-lg">
-                                            {project.category}
-                                        </span>
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className="p-8 flex flex-col flex-1 relative z-20 -mt-10">
-                                <div className="bg-[#05090f]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col flex-1 shadow-2xl">
-                                    <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-cyan-400 transition-all duration-500 line-clamp-2">
-                                        {project.title}
-                                    </h3>
-                                    
-                                    <div className="flex items-center justify-between mt-auto pt-6 border-t border-white/[0.05]">
-                                        {project.tags ? (
-                                            <div className="flex flex-wrap gap-2 text-xs">
-                                                {(() => {
-                                                    const tagsArray = typeof project.tags === 'string' 
-                                                        ? project.tags.split(',').map(t => t.trim()).filter(Boolean)
-                                                        : Array.isArray(project.tags) ? project.tags : [];
-                                                    
-                                                    return (
-                                                        <>
-                                                            {tagsArray.slice(0, 2).map((tag, i) => (
-                                                                <span key={i} className="text-slate-300 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full font-medium">
-                                                                    {tag}
-                                                                </span>
-                                                            ))}
-                                                            {tagsArray.length > 2 && (
-                                                                <span className="text-indigo-300 bg-indigo-500/10 border border-indigo-500/20 px-3 py-1.5 rounded-full font-medium">
-                                                                    +{tagsArray.length - 2}
-                                                                </span>
-                                                            )}
-                                                        </>
-                                                    );
-                                                })()}
-                                            </div>
-                                        ) : (
-                                            <div />
-                                        )}
+                    <>
+                        {/* Mobile and Tablet Slider */}
+                        <div className="block lg:hidden">
+                            <Swiper
+                                modules={[Autoplay, Pagination]}
+                                spaceBetween={24}
+                                slidesPerView={1}
+                                breakpoints={{
+                                    500: { slidesPerView: 2 },
+                                    768: { slidesPerView: 3 },
+                                }}
+                                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                                loop={true}
+                                pagination={{ clickable: true, dynamicBullets: true }}
+                                className="pb-16 px-2"
+                            >
+                            {projects.map((project) => (
+                                <SwiperSlide key={project._id} className="pb-8">
+                                    <div className="group flex flex-col items-center justify-center relative h-64 sm:h-80 w-full">
+                                        <img
+                                            src={project.image || `https://i.pravatar.cc/600?u=${project.title}`}
+                                            alt={project.title}
+                                            className="w-full h-full object-contain transition-all duration-700 ease-out group-hover:scale-105 group-hover:-translate-y-3 drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)] z-10"
+                                        />
                                         
-                                        {project.link && (
-                                            <Link 
-                                                href={project.link}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="ml-4 flex-shrink-0 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-indigo-600 hover:text-white hover:border-indigo-500 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg"
-                                                aria-label="View Project"
-                                            >
-                                                <FaExternalLinkAlt size={13} />
-                                            </Link>
-                                        )}
+                                        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 z-20 w-11/12 sm:w-3/4 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                                            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-2.5 text-center shadow-[0_8px_30px_rgba(0,0,0,0.5)] bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-cyan-500/10">
+                                                <h3 className="text-sm font-medium text-white/90 truncate">
+                                                    {project.title}
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            ))}
+                            </Swiper>
+                        </div>
+
+                        {/* Desktop 5-Column Grid */}
+                        <div className="hidden lg:grid lg:grid-cols-5 gap-8 px-2">
+                            {projects.map((project) => (
+                                <div key={project._id} className="pb-8">
+                                    <div className="group flex flex-col items-center justify-center relative h-64 w-full">
+                                        <img
+                                            src={project.image || `https://i.pravatar.cc/600?u=${project.title}`}
+                                            alt={project.title}
+                                            className="w-full h-full object-contain transition-all duration-700 ease-out group-hover:scale-105 group-hover:-translate-y-3 drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)] z-10"
+                                        />
+                                        
+                                        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 z-20 w-11/12 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                                            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-2.5 text-center shadow-[0_8px_30px_rgba(0,0,0,0.5)] bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-cyan-500/10">
+                                                <h3 className="text-sm font-medium text-white/90 truncate">
+                                                    {project.title}
+                                                </h3>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            ))}
                         </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+                    </>
                 )}
             </div>
         </section>
