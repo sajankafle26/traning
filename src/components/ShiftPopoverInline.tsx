@@ -129,9 +129,10 @@ export default function ShiftPopoverInline({
         role="dialog"
         aria-modal="false"
         className={[
-          'absolute z-[100] w-[min(92vw,360px)] rounded-2xl border border-slate-200 bg-white shadow-2xl',
-          'transition transform',
+          'absolute z-[100] w-[min(92vw,360px)] rounded-2xl border border-white/20 bg-slate-900/80 backdrop-blur-xl shadow-[0_24px_60px_rgba(0,0,0,0.4)]',
+          'transition transform duration-300',
           pos,
+          'max-lg:hidden',
           open ? 'opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-95',
         ].join(' ')}
       >
@@ -139,7 +140,7 @@ export default function ShiftPopoverInline({
         {withCaret && (
           <span
             className={[
-              'absolute h-3 w-3 bg-white border border-slate-200 rotate-45',
+              'absolute h-3 w-3 bg-slate-900/90 border border-white/20 rotate-45 hidden md:block backdrop-blur-xl',
               caretPlacement,
               caretSide,
               side.includes('top') ? 'border-t-0 border-l-0' : 'border-b-0 border-r-0',
@@ -147,60 +148,61 @@ export default function ShiftPopoverInline({
           />
         )}
 
-        <div className="p-4">
-          <div className="px-1 pb-2 text-xs font-semibold uppercase tracking-widest text-slate-500">
+        <div className="p-5">
+          <div className="flex items-center gap-2 px-1 pb-3 text-xs font-bold uppercase tracking-widest text-indigo-300">
+            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
             Internship Shifts
           </div>
 
-          <ul className="divide-y divide-slate-200">
+          <ul className="space-y-2">
             {items.map((it) => {
               const selected = (internalSelectedId ?? selectedId) === it.id;
               return (
-                <li key={it.id} className="py-2.5">
+                <li key={it.id}>
                   <button
                     type="button"
                     onClick={() => handleSelect(it)}
                     className={[
-                      'w-full text-left rounded-xl px-2.5 py-2 transition',
+                      'w-full text-left rounded-xl px-3 py-2.5 transition-all duration-200 border',
                       selected
-                        ? 'bg-slate-900/5 ring-1 ring-slate-300'
-                        : 'hover:bg-slate-100/80',
+                        ? 'bg-white/10 border-indigo-500/50 shadow-inner'
+                        : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20',
                     ].join(' ')}
                   >
                     <div className="flex items-center gap-3">
                       <span
                         className={[
-                          'inline-flex h-2.5 w-2.5 rounded-full',
-                          selected ? 'bg-slate-900' : 'bg-slate-400',
+                          'inline-flex h-2 w-2 rounded-full transition-colors',
+                          selected ? 'bg-indigo-400 shadow-[0_0_8px_rgba(129,140,248,0.8)]' : 'bg-slate-600',
                         ].join(' ')}
                       />
-                      <div className="flex flex-row gap-4 items-center">
-                        <span className="font-semibold text-slate-900">{it.title}</span>
+                      <div className="flex flex-col gap-0.5">
+                        <span className="font-bold text-white text-sm">{it.title}</span>
                         {it.time && (
-                          <span className="text-sm text-slate-500">{it.time}</span>
+                          <span className="text-[11px] font-medium text-slate-300">{it.time}</span>
                         )}
                       </div>
                     </div>
 
                     {it.notes?.length ? (
-                      <ul className="mt-2 pl-6 space-y-1">
+                      <ul className="mt-2.5 pl-5 space-y-1">
                         {it.notes.map((n, i) => (
                           <li
                             key={i}
-                            className="text-sm text-slate-600 flex items-start gap-2"
+                            className="text-[11px] text-slate-400 flex items-start gap-1.5 leading-tight"
                           >
                             <svg
                               viewBox="0 0 24 24"
-                              width="16"
-                              height="16"
-                              className="mt-0.5"
+                              width="12"
+                              height="12"
+                              className="mt-[2px] text-indigo-400 shrink-0"
                               fill="none"
                               aria-hidden="true"
                             >
                               <path
                                 d="M5 13l4 4L19 7"
                                 stroke="currentColor"
-                                strokeWidth="2"
+                                strokeWidth="3"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                               />
@@ -216,16 +218,16 @@ export default function ShiftPopoverInline({
             })}
           </ul>
 
-          <div className="mt-3 flex justify-end">
+          <div className="mt-4 flex justify-end px-1">
             <button
               type="button"
               onClick={() => {
                 setOpen(false);
                 onOpenChange?.(false);
               }}
-              className="text-sm font-semibold text-slate-700 hover:text-slate-900"
+              className="text-xs font-bold tracking-wide text-slate-400 hover:text-white transition-colors"
             >
-              Close
+              CLOSE
             </button>
           </div>
         </div>

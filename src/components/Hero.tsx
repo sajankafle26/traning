@@ -81,9 +81,9 @@ const Hero = ({ initialCourses = [], onCourseSelect }: HeroProps) => {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       style={{ '--mx': `${mousePos.x}%`, '--my': `${mousePos.y}%` } as React.CSSProperties}
-      className="relative pt-2 pb-20 md:pt-8 md:pb-2 px-6 overflow-hidden border-b border-white/10">
+      className="relative pt-2 pb-20 md:pt-8 md:pb-2 px-6 border-b border-white/10">
       {/* Premium Background Background */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
+      <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
         <div className="absolute inset-0" style={{ backgroundColor: '#004381' }}></div>
         <div className="absolute inset-0 opacity-60">
           <div className="absolute inset-0 bg-[radial-gradient(900px_500px_at_5%_10%,rgba(255,255,255,0.07),transparent_60%),radial-gradient(800px_480px_at_95%_120%,rgba(255,255,255,0.06),transparent_60%)]"></div>
@@ -99,7 +99,7 @@ const Hero = ({ initialCourses = [], onCourseSelect }: HeroProps) => {
         ></div>
       </div>
 
-      <div className="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-8 lg:gap-16 relative z-10 items-center">
+      <div className="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-8 lg:gap-16 relative items-center">
         {/* LEFT: TEXT */}
         <div className="lg:col-span-7 space-y-8 lg:space-y-12 text-center lg:text-left pt-10 lg:pt-0">
           {/* Top badge + Title + Subhead */}
@@ -171,7 +171,7 @@ const Hero = ({ initialCourses = [], onCourseSelect }: HeroProps) => {
                       {
                         id: 'evening',
                         title: 'Evening Shift',
-                        time: '10:00 PM – 3:00 PM',
+                        time: '10:00 AM – 3:00 PM',
                         notes: ['Suitable for Student After Day collage ', 'Hybrid option'],
                       },
                       {
@@ -184,7 +184,7 @@ const Hero = ({ initialCourses = [], onCourseSelect }: HeroProps) => {
                     side="top-right"
                   >
                     {/* Make the Internship chip look clickable */}
-                    <li className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-2.5 py-1.5 lg:px-3 lg:py-2 shadow-sm hover:bg-slate-50 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900/30">
+                    <li className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-2.5 py-1.5 lg:px-3 lg:py-2 shadow-sm lg:hover:bg-slate-50 lg:cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900/30">
                       <span className="inline-flex h-1.5 w-1.5 rounded-full bg-slate-900" />
                       <span className="text-xs lg:text-sm font-bold text-slate-900">Internship</span>
                       <span className="text-[9px] lg:text-[11px] text-slate-500">• 2 mo</span>
@@ -192,7 +192,7 @@ const Hero = ({ initialCourses = [], onCourseSelect }: HeroProps) => {
                         width="12"
                         height="12"
                         viewBox="0 0 24 24"
-                        className="ml-1 text-slate-500"
+                        className="ml-1 text-slate-500 hidden lg:block"
                         fill="none"
                         aria-hidden="true"
                       >
@@ -209,6 +209,43 @@ const Hero = ({ initialCourses = [], onCourseSelect }: HeroProps) => {
                 );
               })}
             </ul>
+            
+            {/* Mobile Internship Details Div */}
+            <div className="lg:hidden mt-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-5 text-left animate-in fade-in slide-in-from-top-4 duration-500">
+              <h4 className="text-white font-bold mb-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-indigo-400"></span>
+                Internship Shifts & Details
+              </h4>
+              <div className="grid gap-4">
+                {[
+                  {
+                    title: 'Morning Shift',
+                    time: '6:00 AM – 10:00 AM',
+                    notes: 'Hybrid option',
+                  },
+                  {
+                    title: 'Evening Shift',
+                    time: '10:00 AM – 3:00 PM',
+                    notes: 'Hybrid option',
+                  },
+                  {
+                    title: 'Night Shift',
+                    time: '3:00 PM – 8:00 PM',
+                    notes: 'Online/Hybrid option',
+                  },
+                ].map((s, idx) => (
+                  <div key={idx} className="bg-white/5 rounded-xl p-3 border border-white/10">
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-indigo-300 text-xs font-bold uppercase tracking-wider">{s.title}</span>
+                      <span className="text-white/60 text-[10px]">{s.time}</span>
+                    </div>
+                    <p className="text-slate-300 text-[11px] leading-relaxed">
+                      {s.notes}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* TRUST ROW with ShiftAccordion on the RIGHT (requested) */}
@@ -240,7 +277,7 @@ const Hero = ({ initialCourses = [], onCourseSelect }: HeroProps) => {
         </div>
 
         {/* RIGHT: SWIPER */}
-        <div className="lg:col-span-5 relative lg:block hidden">
+        <div className="lg:col-span-5 relative block mt-8 lg:mt-0">
           <Swiper
             modules={[Autoplay, EffectCards, Pagination]}
             effect="cards"

@@ -301,7 +301,7 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
     >
       {/* Top Bar */}
       <div
-        className={`bg-[#004a61] text-white text-[11px] font-medium transition-all duration-300 overflow-hidden ${isScrolled ? 'h-0' : 'h-10'
+        className={`bg-[#306095] text-white text-[11px] font-medium transition-all duration-300 overflow-hidden ${isScrolled ? 'h-0' : 'h-10'
           }`}
       >
         <div className="max-w-[1400px] mx-auto flex justify-between items-center h-full px-6">
