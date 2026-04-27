@@ -170,13 +170,13 @@ const Hero = ({ initialCourses = [], onCourseSelect }: HeroProps) => {
                       },
                       {
                         id: 'evening',
-                        title: 'Evening Shift',
+                        title: 'Day Shift',
                         time: '10:00 AM – 3:00 PM',
                         notes: ['Suitable for Student After Day collage ', 'Hybrid option'],
                       },
                       {
                         id: 'night',
-                        title: 'Night Shift',
+                        title: 'Evening Shift',
                         time: '3:00 PM – 8:00 PM',
                         notes: ['Suitable for Student After Day collage ', 'Online/Hybrid option'],
                       },
@@ -224,12 +224,12 @@ const Hero = ({ initialCourses = [], onCourseSelect }: HeroProps) => {
                     notes: 'Hybrid option',
                   },
                   {
-                    title: 'Evening Shift',
+                    title: 'Day Shift',
                     time: '10:00 AM – 3:00 PM',
                     notes: 'Hybrid option',
                   },
                   {
-                    title: 'Night Shift',
+                    title: 'Evening Shift',
                     time: '3:00 PM – 8:00 PM',
                     notes: 'Online/Hybrid option',
                   },
@@ -277,7 +277,7 @@ const Hero = ({ initialCourses = [], onCourseSelect }: HeroProps) => {
         </div>
 
         {/* RIGHT: SWIPER */}
-        <div className="lg:col-span-5 relative block mt-8 lg:mt-0">
+        <div className="lg:col-span-5 relative md:block mt-8 lg:mt-0 hidden ">
           <Swiper
             modules={[Autoplay, EffectCards, Pagination]}
             effect="cards"
