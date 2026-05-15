@@ -61,7 +61,7 @@ const About = () => {
               <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-[0.9] tracking-tighter">
                 Best IT training  
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00548B] via-[#00548B]/80 to-slate-900">
-                   institute in Nepal.
+                    institute in Nepal.
                 </span>
               </h2>
 

@@ -15,15 +15,19 @@ import VideoMarketplace from '@/components/VideoMarketplace'
 import WhyJoin from '@/components/WhyJoin'
 import Portfolio from '@/components/Portfolio'
 
+import GSAPShowcase from '@/components/GSAPShowcase'
+
 function page() {
   return (
     <>
       <Hero />
       <UpcomingBatches />
       <Programs />
+     
       <About />
 
-      <WhyJoin />
+      {/* <WhyJoin /> */}
+       <GSAPShowcase />
       <VideoMarketplace />
       {/* <InternshipHub /> */}
       <SuccessGallery />

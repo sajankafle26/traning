@@ -277,7 +277,11 @@ const Hero = ({ initialCourses = [], onCourseSelect }: HeroProps) => {
         </div>
 
         {/* RIGHT: SWIPER */}
+<<<<<<< HEAD
         <div className="lg:col-span-5 relative md:block mt-8 lg:mt-0 hidden ">
+=======
+        <div className="lg:col-span-5 relative hidden lg:block mt-8 lg:mt-0">
+>>>>>>> 4c93959 (first gsap)
           <Swiper
             modules={[Autoplay, EffectCards, Pagination]}
             effect="cards"

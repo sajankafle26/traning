@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { FaExternalLinkAlt } from "react-icons/fa";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { FaArrowRight, FaChevronRight, FaChevronLeft } from "react-icons/fa";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface PortfolioItem {
     _id: string;
@@ -14,12 +14,15 @@ interface PortfolioItem {
     image: string;
     link?: string;
     category?: string;
-    tags?: string | string[];
+    tags?: string[];
 }
 
 const Portfolio = () => {
     const [projects, setProjects] = useState<PortfolioItem[]>([]);
     const [loading, setLoading] = useState(true);
+    const sectionRef = useRef<HTMLElement>(null);
+    const triggerRef = useRef<HTMLDivElement>(null);
+    const horizontalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -28,9 +31,11 @@ const Portfolio = () => {
                 if (res.ok) {
                     const data = await res.json();
                     if (data && data.length > 0) {
-                        setProjects(data);
+                        setProjects(data.map((p: any) => ({
+                            ...p,
+                            tags: Array.isArray(p.tags) ? p.tags : (p.tags?.split(',') || [])
+                        })));
                     } else {
-                        // Fallback to default projects based on user data
                         setProjects([
                             {
                                 _id: '1',
@@ -38,7 +43,7 @@ const Portfolio = () => {
                                 description: 'A comprehensive educational and visa consultancy website for students aiming to study in Australia.',
                                 image: '/portfolio/global-touch-india.png',
                                 category: 'Consultancy',
-                                tags: 'Web Design, React, Next.js',
+                                tags: ['Web Design', 'React', 'Next.js'],
                                 link: 'https://myglobaltouch.in'
                             },
                             {
@@ -47,7 +52,7 @@ const Portfolio = () => {
                                 description: 'Construction and architectural firm website showcasing their services, projects, and offering a platform to contact for dream home construction.',
                                 image: '/portfolio/ramro-sathi.png',
                                 category: 'Construction',
-                                tags: 'Web Development, UI/UX',
+                                tags: ['Web Development', 'UI/UX'],
                                 link: '#'
                             },
                             {
@@ -56,7 +61,7 @@ const Portfolio = () => {
                                 description: 'Educational consultancy website focusing on information technology study abroad programs and visa services.',
                                 image: '/portfolio/global-touch-education.png',
                                 category: 'Education',
-                                tags: 'Web Design, Consultation',
+                                tags: ['Web Design', 'Consultation'],
                                 link: 'https://myglobaltouch.com.au'
                             },
                             {
@@ -65,7 +70,7 @@ const Portfolio = () => {
                                 description: 'A dynamic news portal and video streaming website offering the latest updates, live TV, and video highlights.',
                                 image: '/portfolio/micro-tv-hd.png',
                                 category: 'News Portal',
-                                tags: 'Media, Streaming, Web App',
+                                tags: ['Media', 'Streaming', 'Web App'],
                                 link: '#'
                             },
                             {
@@ -74,7 +79,7 @@ const Portfolio = () => {
                                 description: 'A microfinance institutional website providing financial services, notices, and reports for women empowerment in rural areas.',
                                 image: '/portfolio/mahila-laghubitta.png',
                                 category: 'Finance',
-                                tags: 'Institution, Web Portal',
+                                tags: ['Institution', 'Web Portal'],
                                 link: '#'
                             },
                             {
@@ -83,7 +88,7 @@ const Portfolio = () => {
                                 description: 'A prominent Nepali news and media portal delivering the latest updates, features, and national news coverage.',
                                 image: '/portfolio/rupantaran-post.png',
                                 category: 'News Portal',
-                                tags: 'News, Media, Web App',
+                                tags: ['News', 'Media', 'Web App'],
                                 link: '#'
                             },
                             {
@@ -92,7 +97,7 @@ const Portfolio = () => {
                                 description: 'The official website for the Nepal Regional Committee of Narcotics Anonymous, providing resources, meetings, and regional information.',
                                 image: '/portfolio/na-fellowship.png',
                                 category: 'Organization',
-                                tags: 'Non-profit, Web Portal, Community',
+                                tags: ['Non-profit', 'Web Portal', 'Community'],
                                 link: '#'
                             },
                             {
@@ -101,7 +106,7 @@ const Portfolio = () => {
                                 description: 'A dedicated sports performance website offering athlete development, strength & conditioning, and performance testing services.',
                                 image: '/portfolio/sports-performance.png',
                                 category: 'Fitness / Sports',
-                                tags: 'Sports, Fitness, Web Portal',
+                                tags: ['Sports', 'Fitness', 'Web Portal'],
                                 link: '#'
                             },
                             {
@@ -110,7 +115,7 @@ const Portfolio = () => {
                                 description: 'A comprehensive financial and banking news portal delivering the latest updates on the economy, stock market, and banking sector.',
                                 image: '/portfolio/banking-khabar.png',
                                 category: 'News Portal',
-                                tags: 'Finance, News, Media',
+                                tags: ['Finance', 'News', 'Media'],
                                 link: '#'
                             },
                             {
@@ -119,7 +124,7 @@ const Portfolio = () => {
                                 description: 'A professional recruitment agency website showcasing over 10 years of experience in overseas manpower placement and services.',
                                 image: '/portfolio/emerald-isle.png',
                                 category: 'Recruitment',
-                                tags: 'HR, Recruitment, Corporate',
+                                tags: ['HR', 'Recruitment', 'Corporate'],
                                 link: '#'
                             },
                             {
@@ -128,7 +133,7 @@ const Portfolio = () => {
                                 description: 'A human resource and management consultancy platform connecting top talent with global opportunities, primarily based in Dubai.',
                                 image: '/portfolio/career-point.png',
                                 category: 'Consultancy',
-                                tags: 'HR, Consultancy, Global',
+                                tags: ['HR', 'Consultancy', 'Global'],
                                 link: '#'
                             },
                             {
@@ -137,7 +142,7 @@ const Portfolio = () => {
                                 description: 'The official portal for a leading cooperative providing savings, loans, and financial services to empower local communities.',
                                 image: '/portfolio/sun-saving.png',
                                 category: 'Finance',
-                                tags: 'Cooperative, Finance, Web App',
+                                tags: ['Cooperative', 'Finance', 'Web App'],
                                 link: '#'
                             },
                             {
@@ -146,7 +151,7 @@ const Portfolio = () => {
                                 description: 'A premium equestrian centre website featuring events, results, leagues, and livery services for horse enthusiasts.',
                                 image: '/portfolio/ballavartyn.png',
                                 category: 'Sports / Leisure',
-                                tags: 'Equestian, Sports, Web Portal',
+                                tags: ['Equestian', 'Sports', 'Web Portal'],
                                 link: '#'
                             },
                             {
@@ -155,7 +160,7 @@ const Portfolio = () => {
                                 description: 'The official website for Patron Nepal, a non-governmental organization focused on volunteerism, peace, and sustainable development.',
                                 image: '/portfolio/patron-nepal.png',
                                 category: 'NGO / Charity',
-                                tags: 'NGO, Charity, Community',
+                                tags: ['NGO', 'Charity', 'Community'],
                                 link: '#'
                             },
                             {
@@ -164,7 +169,7 @@ const Portfolio = () => {
                                 description: 'A specialized automotive dealership website offering pre-owned vehicles, finance options, and vehicle sourcing services.',
                                 image: '/portfolio/franklins-limited.png',
                                 category: 'Automotive',
-                                tags: 'Automotive, Dealership, Web Portal',
+                                tags: ['Automotive', 'Dealership', 'Web Portal'],
                                 link: '#'
                             },
                             {
@@ -173,7 +178,7 @@ const Portfolio = () => {
                                 description: 'A local Manx company website specializing in stonemasonry, stone supplies, hiring services, and consultancy.',
                                 image: '/portfolio/stonecraft.png',
                                 category: 'Construction / Stonemasonry',
-                                tags: 'Construction, Corporate',
+                                tags: ['Construction', 'Corporate'],
                                 link: '#'
                             },
                             {
@@ -182,7 +187,7 @@ const Portfolio = () => {
                                 description: 'A modern publishing platform offering an exciting business model and publishing services for Christian authors.',
                                 image: '/portfolio/discern-products.png',
                                 category: 'Publishing',
-                                tags: 'Publishing, Authors, E-commerce',
+                                tags: ['Publishing', 'Authors', 'E-commerce'],
                                 link: '#'
                             },
                             {
@@ -191,7 +196,7 @@ const Portfolio = () => {
                                 description: 'A comprehensive news portal dedicated to microfinance, banking updates, and economic news in Nepal.',
                                 image: '/portfolio/laghuvitta-news.png',
                                 category: 'News Portal',
-                                tags: 'News, Finance, Web Portal',
+                                tags: ['News', 'Finance', 'Web Portal'],
                                 link: '#'
                             },
                             {
@@ -200,7 +205,7 @@ const Portfolio = () => {
                                 description: 'A dedicated travel and tourism platform offering treks, tours, and comprehensive travel guides for exploring Nepal.',
                                 image: '/portfolio/nepal-wanders.png',
                                 category: 'Travel / Tourism',
-                                tags: 'Tourism, Travel, Web Design',
+                                tags: ['Tourism', 'Travel', 'Web Design'],
                                 link: '#'
                             },
                             {
@@ -209,7 +214,7 @@ const Portfolio = () => {
                                 description: 'An authoritative news hub covering the latest economic, financial, and political updates, delivering in-depth reports and insights.',
                                 image: '/portfolio/himal-hub.png',
                                 category: 'News Portal',
-                                tags: 'Media, News, Web App',
+                                tags: ['Media', 'News', 'Web App'],
                                 link: '#'
                             },
                             {
@@ -218,7 +223,7 @@ const Portfolio = () => {
                                 description: 'A dynamic business news platform providing timely updates on markets, banking, and commercial sectors.',
                                 image: '/portfolio/business-sansar.png',
                                 category: 'News / Business',
-                                tags: 'Business, News, Corporate',
+                                tags: ['Business', 'News', 'Corporate'],
                                 link: '#'
                             },
                             {
@@ -227,7 +232,7 @@ const Portfolio = () => {
                                 description: 'A professional educational consultancy website offering study abroad services, preparation classes, and expert consultations.',
                                 image: '/portfolio/aaronic-international.png',
                                 category: 'Education / Consultancy',
-                                tags: 'Education, Consultancy, Web Portal',
+                                tags: ['Education', 'Consultancy', 'Web Portal'],
                                 link: '#'
                             },
                             {
@@ -236,7 +241,7 @@ const Portfolio = () => {
                                 description: 'A non-profit organization dedicated to empowering and supporting survivors of domestic and gender-based violence.',
                                 image: '/portfolio/cedaw.png',
                                 category: 'NGO / Charity',
-                                tags: 'NGO, Charity, Support',
+                                tags: ['NGO', 'Charity', 'Support'],
                                 link: '#'
                             },
                             {
@@ -245,7 +250,7 @@ const Portfolio = () => {
                                 description: 'An industry-focused news and media platform providing updates, interviews, and economic news related to Nepal\'s industrial sector.',
                                 image: '/portfolio/industry-mission.png',
                                 category: 'News / Industry',
-                                tags: 'Industry, News, Media',
+                                tags: ['Industry', 'News', 'Media'],
                                 link: '#'
                             },
                             {
@@ -254,14 +259,14 @@ const Portfolio = () => {
                                 description: 'An event-driven media organization addressing economic issues, brain drain, and promoting financial literacy and entrepreneurship.',
                                 image: '/portfolio/media-international.png',
                                 category: 'Media / Event',
-                                tags: 'Media, Corporate, Events',
+                                tags: ['Media', 'Corporate', 'Events'],
                                 link: '#'
                             }
                         ]);
                     }
                 }
             } catch (error) {
-                console.error("Error fetching portfolio projects:", error);
+                console.error("Error fetching projects:", error);
             } finally {
                 setLoading(false);
             }
@@ -269,110 +274,159 @@ const Portfolio = () => {
         fetchProjects();
     }, []);
 
-    if (loading) {
-        return (
-            <section className="py-20 bg-[#0a1118]">
-                <div className="container mx-auto px-4">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Our Portfolio</h2>
-                    </div>
-                    <div className="flex justify-center items-center h-64">
-                        <div className="w-16 h-16 border-4 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin"></div>
-                    </div>
-                </div>
-            </section>
-        );
-    }
+    useEffect(() => {
+        if (!loading && projects.length > 0 && horizontalRef.current) {
+            const totalWidth = horizontalRef.current.scrollWidth;
+            const viewportWidth = window.innerWidth;
+            const scrollDist = totalWidth - viewportWidth;
+
+            const pin = gsap.to(horizontalRef.current, {
+                x: -scrollDist,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: triggerRef.current,
+                    pin: true,
+                    start: "top top",
+                    end: () => `+=${scrollDist}`,
+                    scrub: 1,
+                    invalidateOnRefresh: true,
+                    onUpdate: (self) => {
+                        gsap.to(".portfolio-progress", {
+                            width: `${self.progress * 100}%`,
+                            duration: 0.1,
+                            ease: "none",
+                        });
+                    },
+                },
+            });
+
+            // Parallax on card images
+            const images = horizontalRef.current.querySelectorAll(".project-image");
+            images.forEach((img) => {
+                gsap.to(img, {
+                    x: 50,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: img,
+                        containerAnimation: pin,
+                        start: "left right",
+                        end: "right left",
+                        scrub: true,
+                    },
+                });
+            });
+
+            return () => {
+                pin.kill();
+            };
+        }
+    }, [loading, projects]);
+
+    if (loading) return null;
 
     return (
-        <section className="py-32 bg-[#05090f] relative overflow-hidden" id="portfolio">
-            {/* Premium Background Effects */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-indigo-600/10 blur-[150px] pointer-events-none rounded-full" />
-            <div className="absolute bottom-0 right-0 w-[800px] h-[600px] bg-cyan-600/5 blur-[150px] pointer-events-none rounded-full" />
-            
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="text-center mb-16 max-w-3xl mx-auto">
-                    <span className="text-indigo-400 font-semibold tracking-widest uppercase text-sm mb-4 block">Our Work</span>
-                    <h2 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400 mb-8 tracking-tight">
-                        Featured Projects
+        <section 
+            ref={sectionRef} 
+            className="bg-[#050505] overflow-hidden" 
+            id="portfolio"
+        >
+            <div ref={triggerRef} className="h-screen relative flex items-center">
+                {/* Background Large Text */}
+                <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full flex justify-center pointer-events-none opacity-[0.02]">
+                    <h2 className="text-[35vw] font-black uppercase tracking-tighter whitespace-nowrap text-white">
+                        PORTFOLIO
                     </h2>
-                    <p className="text-slate-400 text-lg md:text-xl leading-relaxed font-light">
-                        Explore our latest digital creations. We combine cutting-edge technology with world-class design to build scalable, premium solutions.
-                    </p>
                 </div>
-            </div>
 
-            <div className="w-full px-4 sm:px-6 relative z-10">
-                {projects.length === 0 ? (
-                    <div className="text-center py-20 bg-white/[0.02] border border-white/[0.05] rounded-3xl backdrop-blur-sm max-w-2xl mx-auto">
-                        <p className="text-slate-400 text-lg">No projects added yet.</p>
-                        <Link href="/adminpanel/portfolio" className="inline-block mt-6 text-indigo-400 hover:text-indigo-300 font-medium px-6 py-3 rounded-full bg-indigo-500/10 hover:bg-indigo-500/20 transition-colors">
-                            Add a project in the Admin Panel
-                        </Link>
-                    </div>
-                ) : (
-                    <>
-                        {/* Mobile and Tablet Slider */}
-                        <div className="block lg:hidden">
-                            <Swiper
-                                modules={[Autoplay, Pagination]}
-                                spaceBetween={24}
-                                slidesPerView={1}
-                                breakpoints={{
-                                    500: { slidesPerView: 2 },
-                                    768: { slidesPerView: 3 },
-                                }}
-                                autoplay={{ delay: 3000, disableOnInteraction: false }}
-                                loop={true}
-                                pagination={{ clickable: true, dynamicBullets: true }}
-                                className="pb-16 px-2"
-                            >
-                            {projects.map((project) => (
-                                <SwiperSlide key={project._id} className="pb-8">
-                                    <div className="group flex flex-col items-center justify-center relative h-64 sm:h-80 w-full">
-                                        <img
-                                            src={project.image || `https://i.pravatar.cc/600?u=${project.title}`}
-                                            alt={project.title}
-                                            className="w-full h-full object-contain transition-all duration-700 ease-out group-hover:scale-105 group-hover:-translate-y-3 drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)] z-10"
-                                        />
-                                        
-                                        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 z-20 w-11/12 sm:w-3/4 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                                            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-2.5 text-center shadow-[0_8px_30px_rgba(0,0,0,0.5)] bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-cyan-500/10">
-                                                <h3 className="text-sm font-medium text-white/90 truncate">
-                                                    {project.title}
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                            ))}
-                            </Swiper>
+                {/* Horizontal Scroll Container */}
+                <div 
+                    ref={horizontalRef} 
+                    className="flex flex-nowrap h-full items-center px-[10vw] gap-[5vw]"
+                >
+                    {/* Header Card */}
+                    <div className="flex-shrink-0 w-[40vw] h-[60vh] flex flex-col justify-center space-y-8">
+                        <span className="text-indigo-500 font-black uppercase tracking-[0.4em] text-xs">Featured Projects</span>
+                        <h2 className="text-6xl md:text-8xl font-black text-white leading-tight tracking-tighter">
+                            Engineering <br />
+                            <span className="text-transparent" style={{ WebkitTextStroke: "1px white" }}>Solutions.</span>
+                        </h2>
+                        <p className="text-slate-500 text-xl font-light max-w-sm">
+                            Scroll to explore our latest digital transformations and high-impact case studies.
+                        </p>
+                        <div className="flex items-center gap-4 text-white/40 text-sm font-bold uppercase tracking-widest">
+                            <span>Scroll Down</span>
+                            <div className="w-12 h-[1px] bg-white/20" />
+                            <FaChevronRight className="animate-pulse" />
                         </div>
+                    </div>
 
-                        {/* Desktop 5-Column Grid */}
-                        <div className="hidden lg:grid lg:grid-cols-5 gap-8 px-2">
-                            {projects.map((project) => (
-                                <div key={project._id} className="pb-8">
-                                    <div className="group flex flex-col items-center justify-center relative h-64 w-full">
-                                        <img
-                                            src={project.image || `https://i.pravatar.cc/600?u=${project.title}`}
-                                            alt={project.title}
-                                            className="w-full h-full object-contain transition-all duration-700 ease-out group-hover:scale-105 group-hover:-translate-y-3 drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)] z-10"
-                                        />
-                                        
-                                        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 z-20 w-11/12 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                                            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-2.5 text-center shadow-[0_8px_30px_rgba(0,0,0,0.5)] bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-cyan-500/10">
-                                                <h3 className="text-sm font-medium text-white/90 truncate">
-                                                    {project.title}
-                                                </h3>
-                                            </div>
-                                        </div>
+                    {/* Project Cards */}
+                    {projects.map((project, index) => (
+                        <div 
+                            key={project._id}
+                            className="flex-shrink-0 w-[80vw] md:w-[65vw] h-[70vh] group relative rounded-[3rem] overflow-hidden bg-[#111] border border-white/5"
+                        >
+                            <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
+                            
+                            {/* Project Info */}
+                            <div className="absolute bottom-0 left-0 w-full z-20 p-12 md:p-20 flex flex-col md:flex-row justify-between items-end gap-10">
+                                <div className="space-y-6 max-w-2xl">
+                                    <div className="flex items-center gap-4">
+                                        <span className="text-4xl font-black text-white/10 italic">0{index + 1}</span>
+                                        <div className="h-[2px] w-12 bg-indigo-500" />
+                                        <span className="text-indigo-400 font-bold uppercase tracking-widest text-xs">{project.category}</span>
+                                    </div>
+                                    <h3 className="text-4xl md:text-7xl font-black text-white tracking-tighter">
+                                        {project.title}
+                                    </h3>
+                                    <p className="text-slate-400 text-lg md:text-xl font-light leading-relaxed">
+                                        {project.description}
+                                    </p>
+                                    <div className="flex flex-wrap gap-3">
+                                        {project.tags?.map((tag, i) => (
+                                            <span key={i} className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-white/60">
+                                                {tag}
+                                            </span>
+                                        ))}
                                     </div>
                                 </div>
-                            ))}
+                                
+                                <Link 
+                                    href={project.link || "#"}
+                                    className="group/btn relative w-24 h-24 rounded-full bg-white flex items-center justify-center text-3xl text-black hover:scale-110 transition-transform duration-500 shadow-2xl"
+                                >
+                                    <FaArrowRight className="group-hover:rotate-[-45deg] transition-transform duration-500" />
+                                </Link>
+                            </div>
+
+                            {/* Background Image */}
+                            <img 
+                                src={project.image || `https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600&sig=${index}`}
+                                alt={project.title}
+                                className="project-image absolute inset-0 w-[120%] h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-1000 ease-out"
+                            />
                         </div>
-                    </>
-                )}
+                    ))}
+
+                    {/* Footer Card */}
+                    <div className="flex-shrink-0 w-[50vw] h-[60vh] flex flex-col justify-center items-center text-center space-y-10">
+                        <div className="w-24 h-24 rounded-full border border-white/10 flex items-center justify-center text-3xl text-white hover:bg-white hover:text-black transition-all cursor-pointer">
+                            <FaArrowRight className="rotate-[-45deg]" />
+                        </div>
+                        <h2 className="text-5xl font-black text-white uppercase tracking-tighter">
+                            Ready to build <br />
+                            <span className="text-indigo-500">Something New?</span>
+                        </h2>
+                        <button className="px-10 py-5 bg-white text-black font-black uppercase tracking-widest text-sm rounded-2xl hover:scale-105 transition-transform">
+                            Start a Project
+                        </button>
+                    </div>
+                </div>
+
+                {/* Progress Indicator */}
+                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[80vw] h-[2px] bg-white/5 overflow-hidden rounded-full">
+                    <div className="portfolio-progress h-full bg-indigo-500 w-0" />
+                </div>
             </div>
         </section>
     );
