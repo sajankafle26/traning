@@ -40,9 +40,11 @@ const Login = ({ onLoginSuccess, onBack }: LoginProps) => {
       <div className="max-w-md w-full mx-6 relative z-10">
         <div className="bg-slate-900/40 backdrop-blur-3xl border border-slate-800 rounded-[3rem] p-10 shadow-3xl">
           <div className="text-center space-y-4 mb-10">
-            <div className="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic shadow-2xl shadow-indigo-600/30 mx-auto mb-6 transform hover:rotate-6 transition-transform">
-              ST
-            </div>
+            <img
+              src="/logo.png"
+              alt="Sangalo Tech"
+              className="h-14 w-auto object-contain brightness-0 invert mx-auto mb-6"
+            />
             <h1 className="text-3xl font-black text-white tracking-tight">Sangalo Access</h1>
             <p className="text-slate-400 font-medium">Log in to your specialized dashboard</p>
           </div>

@@ -105,9 +105,10 @@ export default function ServicesPage() {
                           {service.title}
                         </h3>
 
-                        <p className="text-slate-400 font-medium leading-relaxed mb-8 group-hover:text-slate-300 transition-colors duration-300">
-                          {service.description}
-                        </p>
+                        <div 
+                          className="text-slate-400 font-medium leading-relaxed mb-8 group-hover:text-slate-300 transition-colors duration-300 text-sm [&_p]:mb-2 [&_p:last-child]:mb-0"
+                          dangerouslySetInnerHTML={{ __html: service.description }}
+                        />
 
                         <div className="flex items-center gap-2 text-blue-500 font-bold group-hover:gap-4 transition-all duration-300">
                           <span>Explore More</span>

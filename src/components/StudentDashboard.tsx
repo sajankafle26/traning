@@ -50,7 +50,7 @@ const StudentDashboard = ({ user, onLogout, onNavigate }: StudentDashboardProps)
       {/* Sidebar */}
       <aside className="w-72 bg-slate-950 border-r border-slate-800 flex flex-col">
         <div className="p-8 flex items-center gap-4">
-          <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black italic">ST</div>
+          <img src="/logo.png" alt="Sangalo Tech" className="h-10 w-auto object-contain brightness-0 invert" />
           <span className="text-white font-black uppercase text-sm tracking-widest">Student Hub</span>
         </div>
         

@@ -53,21 +53,7 @@ const Footer = () => {
   // ------------------------------------------------
 
   const FooterLogo = () => (
-    <div className="flex items-center gap-3">
-      <div className="bg-white w-10 h-10 flex items-center justify-center rounded-sm shrink-0">
-        <span className="text-[#00548B] font-serif text-2xl font-bold italic tracking-tighter">
-          ST
-        </span>
-      </div>
-      <div className="flex flex-col justify-center border-b-[1px] border-white/50 pb-0.5">
-        <h2 className="text-white text-lg font-bold tracking-widest leading-none font-serif">
-          SANGALO TECH
-        </h2>
-        <p className="text-white text-[6px] font-bold tracking-[0.2em] leading-none mt-1">
-          WE PUT THE FUTURE IN YOUR HANDS
-        </p>
-      </div>
-    </div>
+     <></>
   );
 
   return (

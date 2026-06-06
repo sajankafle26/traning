@@ -175,38 +175,15 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
 
   const Logo = ({ dark = false }: LogoProps) => (
     <div
-      className="flex items-center gap-3 group cursor-pointer"
+      className="flex items-center cursor-pointer"
       onClick={() => handleLinkClick('/')}
       aria-label="Go to home"
     >
-      <div
-        className={`${dark ? 'bg-white' : 'bg-[#00548B]'
-          } w-12 h-12 flex items-center justify-center rounded-lg shrink-0 shadow-lg group-hover:rotate-6 transition-transform duration-300`}
-      >
-        <span
-          className={`${dark ? 'text-[#00548B]' : 'text-white'
-            } font-serif text-3xl font-bold italic tracking-tighter`}
-        >
-          ST
-        </span>
-      </div>
-      <div
-        className={`flex flex-col justify-center border-b-[2px] ${dark ? 'border-white/40' : 'border-[#00548B]/30'
-          } pb-0.5`}
-      >
-        <h1
-          className={`${dark ? 'text-white' : 'text-[#00548B]'
-            } text-xl md:text-2xl font-black tracking-tight leading-none`}
-        >
-          SANGALO <span className="font-light">TECH</span>
-        </h1>
-        <p
-          className={`${dark ? 'text-white/70' : 'text-[#00548B]/80'
-            } text-[8px] font-bold tracking-[0.25em] mt-1`}
-        >
-          WE PUT THE FUTURE IN YOUR HANDS
-        </p>
-      </div>
+      <img
+        src="/logo.png"
+        alt="Sangalo Tech"
+        className={`h-12 md:h-14 w-auto object-contain ${dark ? 'brightness-0 invert' : ''}`}
+      />
     </div>
   );
 
@@ -297,7 +274,7 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
   return (
     <header
       ref={navRef}
-      className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-lg py-2' : 'bg-white'}`}
+      className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white backdrop-blur-md shadow-lg py-2' : 'bg-white'}`}
     >
       {/* Top Bar */}
       <div
@@ -577,7 +554,7 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
             </Link>
           )}
           <button
-            className="lg:hidden w-10 h-10 flex items-center justify-center bg-slate-100 rounded-full"
+            className="lg:hidden w-10 h-10 flex items-center justify-center bg-[#00548B] text-white rounded-full shadow-lg shadow-blue-900/20 hover:shadow-xl hover:scale-105 transition-all"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}

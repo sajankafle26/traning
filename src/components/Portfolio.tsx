@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { FaArrowRight, FaChevronRight, FaChevronLeft } from "react-icons/fa";
+import { FaArrowRight, FaChevronRight, FaChevronLeft, FaChevronDown } from "react-icons/fa";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -274,50 +274,76 @@ const Portfolio = () => {
         fetchProjects();
     }, []);
 
+    const handleSkip = () => {
+        document.getElementById("testimonials")?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    const [showSkip, setShowSkip] = useState(false);
+
+
     useEffect(() => {
         if (!loading && projects.length > 0 && horizontalRef.current) {
-            const totalWidth = horizontalRef.current.scrollWidth;
-            const viewportWidth = window.innerWidth;
-            const scrollDist = totalWidth - viewportWidth;
+            let mm = gsap.matchMedia();
 
-            const pin = gsap.to(horizontalRef.current, {
-                x: -scrollDist,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: triggerRef.current,
-                    pin: true,
-                    start: "top top",
-                    end: () => `+=${scrollDist}`,
-                    scrub: 1,
-                    invalidateOnRefresh: true,
-                    onUpdate: (self) => {
-                        gsap.to(".portfolio-progress", {
-                            width: `${self.progress * 100}%`,
-                            duration: 0.1,
-                            ease: "none",
-                        });
-                    },
-                },
+            mm.add("(max-width: 767px)", () => {
+                const st = ScrollTrigger.create({
+                    trigger: sectionRef.current,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    onToggle: (self) => setShowSkip(self.isActive),
+                });
+                return () => st.kill();
             });
 
-            // Parallax on card images
-            const images = horizontalRef.current.querySelectorAll(".project-image");
-            images.forEach((img) => {
-                gsap.to(img, {
-                    x: 50,
+            mm.add("(min-width: 768px)", () => {
+                const totalWidth = horizontalRef.current!.scrollWidth;
+                const viewportWidth = window.innerWidth;
+                const scrollDist = totalWidth - viewportWidth;
+
+                const pin = gsap.to(horizontalRef.current, {
+                    x: -scrollDist,
                     ease: "none",
                     scrollTrigger: {
-                        trigger: img,
-                        containerAnimation: pin,
-                        start: "left right",
-                        end: "right left",
-                        scrub: true,
+                        trigger: triggerRef.current,
+                        pin: true,
+                        start: "top top",
+                        end: () => `+=${scrollDist}`,
+                        scrub: 1,
+                        invalidateOnRefresh: true,
+                        onToggle: (self) => setShowSkip(self.isActive),
+                        onUpdate: (self) => {
+                            gsap.to(".portfolio-progress", {
+                                width: `${self.progress * 100}%`,
+                                duration: 0.1,
+                                ease: "none",
+                            });
+                        },
                     },
                 });
+
+                // Parallax on card images
+                const images = horizontalRef.current!.querySelectorAll(".project-image");
+                images.forEach((img) => {
+                    gsap.to(img, {
+                        x: 50,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: img,
+                            containerAnimation: pin,
+                            start: "left right",
+                            end: "right left",
+                            scrub: true,
+                        },
+                    });
+                });
+
+                return () => {
+                    pin.kill();
+                };
             });
 
             return () => {
-                pin.kill();
+                mm.revert();
             };
         }
     }, [loading, projects]);
@@ -325,14 +351,24 @@ const Portfolio = () => {
     if (loading) return null;
 
     return (
+        <>
+            <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 md:bottom-10 z-[100] transition-all duration-500 ${showSkip ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
+                <button
+                    onClick={handleSkip}
+                    className="flex items-center gap-2 px-5 py-3 rounded-full bg-black/60 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500 hover:text-white transition-all text-[10px] font-black uppercase tracking-[0.2em] shadow-lg backdrop-blur-md group cursor-pointer"
+                >
+                    <span>Skip Section</span>
+                    <FaChevronDown className="animate-bounce group-hover:translate-y-0.5 transition-transform" />
+                </button>
+            </div>
         <section 
             ref={sectionRef} 
             className="bg-[#050505] overflow-hidden" 
             id="portfolio"
         >
-            <div ref={triggerRef} className="h-screen relative flex items-center">
+            <div ref={triggerRef} className="min-h-screen md:h-screen relative flex flex-col md:flex-row items-center py-20 md:py-0">
                 {/* Background Large Text */}
-                <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full flex justify-center pointer-events-none opacity-[0.02]">
+                <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full flex justify-center pointer-events-none opacity-[0.02] hidden md:flex">
                     <h2 className="text-[35vw] font-black uppercase tracking-tighter whitespace-nowrap text-white">
                         PORTFOLIO
                     </h2>
@@ -341,22 +377,24 @@ const Portfolio = () => {
                 {/* Horizontal Scroll Container */}
                 <div 
                     ref={horizontalRef} 
-                    className="flex flex-nowrap h-full items-center px-[10vw] gap-[5vw]"
+                    className="flex flex-col md:flex-row flex-nowrap w-full md:w-auto h-auto md:h-full items-center px-6 md:px-[10vw] gap-16 md:gap-[5vw] py-10 md:py-0"
                 >
                     {/* Header Card */}
-                    <div className="flex-shrink-0 w-[40vw] h-[60vh] flex flex-col justify-center space-y-8">
+                    <div className="flex-shrink-0 w-full md:w-[40vw] h-auto md:h-[60vh] flex flex-col justify-center space-y-6 md:space-y-8">
                         <span className="text-indigo-500 font-black uppercase tracking-[0.4em] text-xs">Featured Projects</span>
-                        <h2 className="text-6xl md:text-8xl font-black text-white leading-tight tracking-tighter">
-                            Engineering <br />
+                        <h2 className="text-5xl md:text-8xl font-black text-white leading-[0.95] md:leading-tight tracking-tighter">
+                            Engineering <br className="hidden md:block" />
                             <span className="text-transparent" style={{ WebkitTextStroke: "1px white" }}>Solutions.</span>
                         </h2>
-                        <p className="text-slate-500 text-xl font-light max-w-sm">
+                        <p className="text-slate-400 font-medium text-lg md:text-xl font-light max-w-sm">
                             Scroll to explore our latest digital transformations and high-impact case studies.
                         </p>
-                        <div className="flex items-center gap-4 text-white/40 text-sm font-bold uppercase tracking-widest">
-                            <span>Scroll Down</span>
-                            <div className="w-12 h-[1px] bg-white/20" />
-                            <FaChevronRight className="animate-pulse" />
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-4">
+                            <div className="flex items-center gap-4 text-white/40 text-xs font-bold uppercase tracking-widest">
+                                <span>Scroll Down</span>
+                                <div className="w-12 h-[1px] bg-white/20" />
+                                <FaChevronRight className="animate-pulse" />
+                            </div>
                         </div>
                     </div>
 
@@ -364,27 +402,29 @@ const Portfolio = () => {
                     {projects.map((project, index) => (
                         <div 
                             key={project._id}
-                            className="flex-shrink-0 w-[80vw] md:w-[65vw] h-[70vh] group relative rounded-[3rem] overflow-hidden bg-[#111] border border-white/5"
+                            className="flex-shrink-0 w-full md:w-[65vw] h-[55vh] md:h-[70vh] group relative rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-[#111] border border-white/5"
                         >
-                            <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
+                            <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-transparent to-transparent opacity-85" />
                             
                             {/* Project Info */}
-                            <div className="absolute bottom-0 left-0 w-full z-20 p-12 md:p-20 flex flex-col md:flex-row justify-between items-end gap-10">
-                                <div className="space-y-6 max-w-2xl">
+                            <div className="absolute bottom-0 left-0 w-full z-20 p-6 md:p-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-10">
+                                <div className="space-y-4 md:space-y-6 max-w-2xl">
                                     <div className="flex items-center gap-4">
-                                        <span className="text-4xl font-black text-white/10 italic">0{index + 1}</span>
-                                        <div className="h-[2px] w-12 bg-indigo-500" />
-                                        <span className="text-indigo-400 font-bold uppercase tracking-widest text-xs">{project.category}</span>
+                                        <span className="text-2xl md:text-4xl font-black text-white/10 italic">
+                                            {index + 1 < 10 ? `0${index + 1}` : index + 1}
+                                        </span>
+                                        <div className="h-[2px] w-8 md:w-12 bg-indigo-500" />
+                                        <span className="text-indigo-400 font-bold uppercase tracking-widest text-[10px] md:text-xs">{project.category}</span>
                                     </div>
-                                    <h3 className="text-4xl md:text-7xl font-black text-white tracking-tighter">
+                                    <h3 className="text-2xl md:text-7xl font-black text-white tracking-tighter leading-none">
                                         {project.title}
                                     </h3>
-                                    <p className="text-slate-400 text-lg md:text-xl font-light leading-relaxed">
+                                    <p className="text-slate-400 text-sm md:text-xl font-light leading-relaxed line-clamp-3 md:line-clamp-none">
                                         {project.description}
                                     </p>
-                                    <div className="flex flex-wrap gap-3">
+                                    <div className="flex flex-wrap gap-2 md:gap-3">
                                         {project.tags?.map((tag, i) => (
-                                            <span key={i} className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-white/60">
+                                            <span key={i} className="px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-white/5 border border-white/10 text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-white/60">
                                                 {tag}
                                             </span>
                                         ))}
@@ -393,7 +433,7 @@ const Portfolio = () => {
                                 
                                 <Link 
                                     href={project.link || "#"}
-                                    className="group/btn relative w-24 h-24 rounded-full bg-white flex items-center justify-center text-3xl text-black hover:scale-110 transition-transform duration-500 shadow-2xl"
+                                    className="group/btn relative w-14 h-14 md:w-24 md:h-24 rounded-full bg-white flex items-center justify-center text-xl md:text-3xl text-black hover:scale-110 transition-transform duration-500 shadow-2xl shrink-0 self-end md:self-auto"
                                 >
                                     <FaArrowRight className="group-hover:rotate-[-45deg] transition-transform duration-500" />
                                 </Link>
@@ -403,32 +443,33 @@ const Portfolio = () => {
                             <img 
                                 src={project.image || `https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600&sig=${index}`}
                                 alt={project.title}
-                                className="project-image absolute inset-0 w-[120%] h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-1000 ease-out"
+                                className="project-image absolute inset-0 w-[120%] h-full object-cover grayscale opacity-30 group-hover:grayscale-0 group-hover:opacity-50 transition-all duration-1000 ease-out"
                             />
                         </div>
                     ))}
 
                     {/* Footer Card */}
-                    <div className="flex-shrink-0 w-[50vw] h-[60vh] flex flex-col justify-center items-center text-center space-y-10">
-                        <div className="w-24 h-24 rounded-full border border-white/10 flex items-center justify-center text-3xl text-white hover:bg-white hover:text-black transition-all cursor-pointer">
+                    <div className="flex-shrink-0 w-full md:w-[50vw] h-auto md:h-[60vh] flex flex-col justify-center items-center text-center space-y-6 md:space-y-10 py-10 md:py-0">
+                        <div className="w-16 h-16 md:w-24 md:h-24 rounded-full border border-white/10 flex items-center justify-center text-2xl md:text-3xl text-white hover:bg-white hover:text-black transition-all cursor-pointer">
                             <FaArrowRight className="rotate-[-45deg]" />
                         </div>
-                        <h2 className="text-5xl font-black text-white uppercase tracking-tighter">
+                        <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter">
                             Ready to build <br />
                             <span className="text-indigo-500">Something New?</span>
                         </h2>
-                        <button className="px-10 py-5 bg-white text-black font-black uppercase tracking-widest text-sm rounded-2xl hover:scale-105 transition-transform">
+                        <button className="px-8 py-4 md:px-10 md:py-5 bg-white text-black font-black uppercase tracking-widest text-xs md:text-sm rounded-2xl hover:scale-105 transition-transform">
                             Start a Project
                         </button>
                     </div>
                 </div>
 
                 {/* Progress Indicator */}
-                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[80vw] h-[2px] bg-white/5 overflow-hidden rounded-full">
+                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[80vw] h-[2px] bg-white/5 overflow-hidden rounded-full hidden md:block">
                     <div className="portfolio-progress h-full bg-indigo-500 w-0" />
                 </div>
             </div>
         </section>
+        </>
     );
 };
 
