@@ -57,6 +57,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 const sourceSans = Source_Sans_3({
