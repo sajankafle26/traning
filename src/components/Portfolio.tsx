@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { FaArrowRight, FaChevronRight, FaChevronLeft, FaChevronDown } from "react-icons/fa";
+import { FaArrowRight, FaChevronRight, FaChevronLeft, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -274,7 +274,11 @@ const Portfolio = () => {
         fetchProjects();
     }, []);
 
-    const handleSkip = () => {
+    const handleSkipUp = () => {
+        document.getElementById("products")?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    const handleSkipDown = () => {
         document.getElementById("testimonials")?.scrollIntoView({ behavior: "smooth" });
     };
 
@@ -353,13 +357,22 @@ const Portfolio = () => {
     return (
         <>
             <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 md:bottom-10 z-[100] transition-all duration-500 ${showSkip ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
-                <button
-                    onClick={handleSkip}
-                    className="flex items-center gap-2 px-5 py-3 rounded-full bg-black/60 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500 hover:text-white transition-all text-[10px] font-black uppercase tracking-[0.2em] shadow-lg backdrop-blur-md group cursor-pointer"
-                >
-                    <span>Skip Section</span>
-                    <FaChevronDown className="animate-bounce group-hover:translate-y-0.5 transition-transform" />
-                </button>
+                <div className="flex gap-4">
+                    <button
+                        onClick={handleSkipUp}
+                        className="flex items-center gap-2 px-5 py-3 rounded-full bg-black/60 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500 hover:text-white transition-all text-[10px] font-black uppercase tracking-[0.2em] shadow-lg backdrop-blur-md group cursor-pointer"
+                    >
+                        <FaChevronUp className="animate-bounce group-hover:-translate-y-0.5 transition-transform" />
+                        <span>Skip Up</span>
+                    </button>
+                    <button
+                        onClick={handleSkipDown}
+                        className="flex items-center gap-2 px-5 py-3 rounded-full bg-black/60 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500 hover:text-white transition-all text-[10px] font-black uppercase tracking-[0.2em] shadow-lg backdrop-blur-md group cursor-pointer"
+                    >
+                        <span>Skip Down</span>
+                        <FaChevronDown className="animate-bounce group-hover:translate-y-0.5 transition-transform" />
+                    </button>
+                </div>
             </div>
         <section 
             ref={sectionRef} 
