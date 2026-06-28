@@ -3,20 +3,15 @@ import { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'About Us',
-  description: 'Learn more about Sangalo Tech, the leading IT training institute in Nepal.',
+  title: 'About Us | Sangalo Tech - Web Development & IT Training',
+  description: 'Sangalo Tech Pvt. Ltd. - Web development company and IT training institute in Lokenthali, Bhaktapur, Nepal. MERN Stack, React, Laravel, WordPress training with guaranteed hiring.',
 };
+
 function AboutPage() {
   return (
-   <>
-   <section className="bg-gray-100 py-12">
-   <About/>
-   <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-[1.1] tracking-tight">
-  Leading IT Training <br />
-  <span className="text-sangalo-900">Institute in Nepal</span>
-</h2>
-    </section>
-   </>
+    <main className="min-h-screen">
+      <About />
+    </main>
   )
 }
 

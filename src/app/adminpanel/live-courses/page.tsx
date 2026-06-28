@@ -20,26 +20,26 @@ const LiveCoursesAdmin = () => {
                 { name: "curriculum", label: "Curriculum Modules (JSON Array)", type: "json" },
             ]}
             renderItem={(item, onDelete, onEdit) => (
-                <div key={item._id} className="bg-slate-900/40 border border-slate-800 rounded-[2rem] p-6 relative group">
+                <div key={item._id} className="bg-white border border-slate-200 rounded-[2rem] p-6 relative group">
                     <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button onClick={() => onEdit(item)} className="text-indigo-400 font-bold text-xs uppercase">Edit</button>
-                        <button onClick={() => onDelete(item._id)} className="text-red-500 font-bold text-xs uppercase">Delete</button>
+                        <button onClick={() => onEdit(item)} className="text-indigo-600 font-bold text-xs uppercase">Edit</button>
+                        <button onClick={() => onDelete(item._id)} className="text-red-600 font-bold text-xs uppercase">Delete</button>
                     </div>
                     {item.image ? (
                         <img src={item.image} className="w-full aspect-video object-cover rounded-2xl mb-4" />
                     ) : (
-                        <div className="w-full aspect-video bg-slate-800 rounded-2xl mb-4 flex items-center justify-center">
-                            <span className="text-slate-500 text-xs font-bold uppercase">No Thumbnail</span>
+                        <div className="w-full aspect-video bg-slate-100 rounded-2xl mb-4 flex items-center justify-center">
+                            <span className="text-slate-400 text-xs font-bold uppercase">No Thumbnail</span>
                         </div>
                     )}
-                    <h3 className="text-white font-bold text-lg mb-2">{item.title}</h3>
-                    <div className="flex justify-between items-center text-xs text-slate-400">
+                    <h3 className="text-slate-900 font-bold text-lg mb-2">{item.title}</h3>
+                    <div className="flex justify-between items-center text-xs text-slate-500">
                         <span>{item.category}</span>
                         <div className="flex items-center gap-2">
                             {item.originalPrice && item.originalPrice > item.price && (
                                 <span className="line-through text-[10px] opacity-50">Rs. {item.originalPrice}</span>
                             )}
-                            <span className="text-indigo-400 font-bold">Rs. {item.price}</span>
+                            <span className="text-indigo-600 font-bold">Rs. {item.price}</span>
                         </div>
                     </div>
                 </div>

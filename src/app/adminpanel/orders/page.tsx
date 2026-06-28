@@ -18,9 +18,9 @@ const OrdersAdmin = () => {
             ]}
             renderItem={(item, onDelete, onEdit) => {
                 const statusColors = {
-                    completed: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-                    pending: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-                    failed: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+                    completed: "bg-green-50 text-green-600 border-green-200",
+                    pending: "bg-amber-50 text-amber-600 border-amber-200",
+                    failed: "bg-red-50 text-red-600 border-red-200",
                 };
                 const status = (item.status || "pending") as keyof typeof statusColors;
 
@@ -36,15 +36,15 @@ const OrdersAdmin = () => {
                 };
 
                 return (
-                    <div className="bg-slate-900/40 border border-slate-800 rounded-3xl p-6 hover:border-slate-700 transition-all">
+                    <div className="bg-white border border-slate-200 rounded-3xl p-6 hover:border-slate-300 transition-all">
                         <div className="flex justify-between items-start mb-4">
                             <div className="flex items-center gap-3">
-                                <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl">
+                                <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl">
                                     <FaFileInvoiceDollar />
                                 </div>
                                 <div className="">
-                                    <h3 className="text-white font-black text-base">{item.courseTitle || "Multi-item Order"}</h3>
-                                    <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest">{new Date(item.createdAt).toLocaleDateString()} • {item.paymentMethod}</p>
+                                    <h3 className="text-slate-900 font-black text-base">{item.courseTitle || "Multi-item Order"}</h3>
+                                    <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">{new Date(item.createdAt).toLocaleDateString()} • {item.paymentMethod}</p>
                                 </div>
                             </div>
                             <div className="flex flex-col items-end gap-2">
@@ -61,14 +61,14 @@ const OrdersAdmin = () => {
                                 )}
                             </div>
                         </div>
-                        <div className="flex items-center justify-between pt-4 border-t border-slate-800/50">
+                        <div className="flex items-center justify-between pt-4 border-t border-slate-100">
                             <div>
-                                <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1 text-left">Transaction ID</p>
-                                <p className="text-white font-mono text-xs">{item.transactionId || "N/A"}</p>
+                                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 text-left">Transaction ID</p>
+                                <p className="text-slate-900 font-mono text-xs">{item.transactionId || "N/A"}</p>
                             </div>
                             <div className="text-right">
-                                <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1 text-right">Amount</p>
-                                <p className="text-xl font-black text-emerald-400">Rs. {item.amount?.toLocaleString()}</p>
+                                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 text-right">Amount</p>
+                                <p className="text-xl font-black text-green-600">Rs. {item.amount?.toLocaleString()}</p>
                             </div>
                         </div>
                     </div>

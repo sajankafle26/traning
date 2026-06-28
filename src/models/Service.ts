@@ -4,7 +4,8 @@ const ServiceSchema = new mongoose.Schema({
     title: { type: String, required: true },
     slug: { type: String, unique: true },
     description: String,
-    icon: String, // FA icon class
+    icon: String,
+    image: String,
 }, { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } });
 
 ServiceSchema.pre('save', function () {

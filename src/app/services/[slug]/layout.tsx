@@ -1,30 +1,17 @@
 import { Metadata } from 'next';
-import { apiService } from '@/services/apiService';
-import { SERVICES } from '@/constants';
 
-export async function generateMetadata({ params }: { params: { slug: string } | Promise<{ slug: string }> }): Promise<Metadata> {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    const title = slug
+        .replace(/-/g, ' ')
+        .replace(/\b\w/g, c => c.toUpperCase());
 
-  let service;
-  try {
-    service = await apiService.getServiceBySlug(slug);
-  } catch (error) {
-    service = SERVICES.find(s => s.slug === slug);
-  }
-
-  if (!service) {
     return {
-      title: 'Service Not Found',
+        title: `${title} | Sangalo Tech`,
+        description: `Professional ${title} services by Sangalo Tech Pvt. Ltd. in Nepal.`,
     };
-  }
-
-  return {
-    title: service.title,
-    description: service.description,
-  };
 }
 
-export default function ServiceDetailLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+export default function ServiceSlugLayout({ children }: { children: React.ReactNode }) {
+    return <>{children}</>;
 }

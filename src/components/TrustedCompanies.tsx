@@ -13,18 +13,21 @@ interface PortfolioItem {
 }
 
 const fallbackCompanies: PortfolioItem[] = [
-  { _id: '1', title: 'Global Touch India', image: '/portfolio/global-touch-india.png', category: 'Consultancy' },
-  { _id: '2', title: 'Ramro Sathi', image: '/portfolio/ramro-sathi.png', category: 'Construction' },
-  { _id: '3', title: 'Micro TV HD', image: '/portfolio/micro-tv-hd.png', category: 'News Portal' },
-  { _id: '4', title: 'Mahila Laghubitta', image: '/portfolio/mahila-laghubitta.png', category: 'Finance' },
-  { _id: '5', title: 'Rupantaran Post', image: '/portfolio/rupantaran-post.png', category: 'News Portal' },
-  { _id: '6', title: 'NA Fellowship', image: '/portfolio/na-fellowship.png', category: 'Organization' },
-  { _id: '7', title: 'Banking Khabar', image: '/portfolio/banking-khabar.png', category: 'News Portal' },
-  { _id: '8', title: 'Emerald Isle Nepal', image: '/portfolio/emerald-isle.png', category: 'Recruitment' },
-  { _id: '9', title: 'Career Point', image: '/portfolio/career-point.png', category: 'Consultancy' },
-  { _id: '10', title: 'Nepal Wanders', image: '/portfolio/nepal-wanders.png', category: 'Travel' },
-  { _id: '11', title: 'Business Sansar', image: '/portfolio/business-sansar.png', category: 'News' },
-  { _id: '12', title: 'Himal Hub', image: '/portfolio/himal-hub.png', category: 'News Portal' },
+  { _id: '1', title: 'Banking Khabar', image: '/trusted/banking-logo.jpg', category: 'News Portal' },
+  { _id: '2', title: 'BG Khabar', image: '/trusted/bgkhabar.png', category: 'News Portal' },
+  { _id: '3', title: 'Business Sansar', image: '/trusted/businesssasakor.png', category: 'News' },
+  { _id: '4', title: 'Career Point', image: '/trusted/Career Point.webp', category: 'Consultancy' },
+  { _id: '5', title: 'Himal Hub', image: '/trusted/himalhub.png', category: 'News Portal' },
+  { _id: '6', title: 'Nepal Honey Hub', image: '/trusted/honeyhub.jpg', category: 'E-Commerce' },
+  { _id: '7', title: 'Laghukta News', image: '/trusted/lagubittya.jpg', category: 'Finance' },
+  { _id: '8', title: 'Mahila Laghubitta', image: '/trusted/mahila.png', category: 'Finance' },
+  { _id: '9', title: 'Micro TV HD', image: '/trusted/microtv.jpg', category: 'News Portal' },
+  { _id: '10', title: 'NA Fellowship', image: '/trusted/nanepal.png', category: 'Organization' },
+  { _id: '11', title: 'Nepal Wanders', image: '/trusted/nepalwanders.png', category: 'Travel' },
+  { _id: '12', title: 'Sports Performance', image: '/trusted/spsiom.gif', category: 'Sports' },
+  { _id: '13', title: 'Avion HR Management', image: '/trusted/avionhrm.jpg', category: 'HR' },
+  { _id: '14', title: 'Industry News Nepal', image: '/trusted/industrynewsnepal.jpg', category: 'News Portal' },
+  { _id: '15', title: 'Media International', image: '/trusted/mediainternational.jpg', category: 'Media' },
 ];
 
 const TrustedCompanies = () => {
@@ -39,7 +42,7 @@ const TrustedCompanies = () => {
         if (res.ok) {
           const data = await res.json();
           if (data && data.length > 0) {
-            setCompanies(data.slice(0, 12).map((p: any) => ({
+            setCompanies(data.slice(0, 15).map((p: any) => ({
               _id: p._id,
               title: p.title,
               image: p.image,
@@ -69,18 +72,18 @@ const TrustedCompanies = () => {
   };
 
   return (
-    <section className="py-16 md:py-20 bg-white border-b border-slate-100">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-[#f8fbff] via-white to-white">
       <div className="max-w-[1400px] mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-sangalo-50 px-4 py-2 rounded-full border border-sangalo-100 mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-sangalo-900"></span>
-            <span className="text-[10px] font-black text-sangalo-700 uppercase tracking-[0.2em]">Our Partners</span>
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-[#00548B]/10 text-[#00548B] px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-[#00548B]/20 mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00548B] shadow-[0_0_8px_#00548B]" />
+            Our Partners
           </div>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Trusted by <span className="text-[#004381]">Top-Rated Companies</span>
+          <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-[0.95]">
+            Trusted by <span className="text-[#00548B]">Top-Rated Companies</span>
           </h2>
-          <p className="mt-4 text-slate-500 font-medium max-w-xl mx-auto">
+          <p className="mt-5 text-slate-500 font-medium text-lg max-w-xl mx-auto leading-relaxed">
             We collaborate with industry leaders to deliver world-class IT solutions and training
           </p>
         </div>
@@ -88,8 +91,8 @@ const TrustedCompanies = () => {
         {/* Logo Slider */}
         <div className="relative">
           {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-r from-[#f8fbff] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-l from-[#f8fbff] to-transparent z-10 pointer-events-none" />
 
           <Swiper
             modules={[Autoplay, FreeMode]}
@@ -103,50 +106,46 @@ const TrustedCompanies = () => {
             speed={3000}
             loop={true}
             slidesPerView={2}
-            spaceBetween={30}
+            spaceBetween={20}
             breakpoints={{
-              640: { slidesPerView: 3, spaceBetween: 40 },
-              768: { slidesPerView: 4, spaceBetween: 50 },
-              1024: { slidesPerView: 5, spaceBetween: 60 },
+              640: { slidesPerView: 3, spaceBetween: 24 },
+              768: { slidesPerView: 4, spaceBetween: 28 },
+              1024: { slidesPerView: 5, spaceBetween: 32 },
             }}
-            className="trustedSwiper"
+            className="trustedSwiper pb-4"
           >
             {[...companies, ...companies].map((company, i) => (
               <SwiperSlide key={i}>
                 <div
-                  className="relative flex items-center justify-center h-24 px-6 cursor-pointer group"
+                  className="relative cursor-pointer group"
                   onMouseEnter={() => handleMouseEnter(i)}
                   onMouseLeave={handleMouseLeave}
                 >
-                  {/* Company Image/Logo */}
-                  <div className="relative w-full h-full flex items-center justify-center">
-                    <img
-                      src={company.image}
-                      alt={company.title}
-                      className="max-h-16 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.onerror = null;
-                        target.style.display = 'none';
-                        const parent = target.parentElement;
-                        if (parent && !parent.querySelector('.fallback-text')) {
-                          const span = document.createElement('span');
-                          span.className = 'fallback-text text-lg font-black text-sangalo-300 group-hover:text-sangalo-900 transition-colors duration-300';
-                          span.textContent = company.title;
-                          parent.appendChild(span);
-                        }
-                      }}
-                    />
-                    
-                    {/* Hover Tooltip */}
-                    <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 transition-all duration-300 pointer-events-none z-20">
-                      <div className="bg-sangalo-900 text-white px-4 py-2 rounded-lg shadow-xl whitespace-nowrap">
-                        <span className="text-xs font-bold">{company.title}</span>
-                        {company.category && (
-                          <span className="block text-[9px] text-sangalo-300 font-medium">{company.category}</span>
-                        )}
-                      </div>
-                      <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-sangalo-900 rotate-45"></div>
+                  {/* Card */}
+                  <div className="bg-white rounded-2xl border border-slate-100 shadow-md shadow-slate-200/60 hover:shadow-xl hover:shadow-[#00548B]/10 hover:border-[#00548B]/20 hover:-translate-y-1 transition-all duration-500 p-4">
+                    <div className="flex items-center justify-center h-20 bg-slate-50 rounded-xl border border-slate-100/80">
+                      <img
+                        src={company.image}
+                        alt={company.title}
+                        className="max-h-14 w-auto max-w-[80%] object-contain grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.onerror = null;
+                          target.style.display = 'none';
+                          const parent = target.parentElement;
+                          if (parent && !parent.querySelector('.fallback-text')) {
+                            const span = document.createElement('span');
+                            span.className = 'fallback-text text-sm font-black text-slate-300 group-hover:text-[#00548B] transition-colors duration-300 text-center leading-tight';
+                            span.textContent = company.title;
+                            parent.appendChild(span);
+                          }
+                        }}
+                      />
+                    </div>
+
+                    {/* Company Name Below */}
+                    <div className="mt-3 text-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
+                      <span className="text-[10px] font-bold text-[#00548B] uppercase tracking-widest">{company.title}</span>
                     </div>
                   </div>
                 </div>
@@ -156,17 +155,17 @@ const TrustedCompanies = () => {
         </div>
 
         {/* Stats Row */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
             { value: '100+', label: 'Projects Delivered', icon: '🎯' },
             { value: '50+', label: 'Happy Clients', icon: '😊' },
             { value: '15+', label: 'Years Experience', icon: '📅' },
             { value: '24/7', label: 'Support Available', icon: '🛟' },
           ].map((stat, i) => (
-            <div key={i} className="text-center p-6 rounded-2xl bg-sangalo-50 border border-sangalo-100 hover:bg-sangalo-900 hover:text-white group transition-all duration-300 cursor-default">
-              <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">{stat.icon}</div>
-              <div className="text-3xl md:text-4xl font-extrabold text-sangalo-900 group-hover:text-white transition-colors duration-300">{stat.value}</div>
-              <div className="text-xs font-bold text-sangalo-600 group-hover:text-white/70 uppercase tracking-widest mt-2 transition-colors duration-300">{stat.label}</div>
+            <div key={i} className="text-center p-8 rounded-2xl bg-white border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:shadow-[#00548B]/10 hover:border-[#00548B]/20 hover:-translate-y-1 group transition-all duration-500 cursor-default">
+              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{stat.icon}</div>
+              <div className="text-3xl md:text-4xl font-black text-slate-900 group-hover:text-[#00548B] transition-colors duration-300">{stat.value}</div>
+              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-3 group-hover:text-[#00548B]/60 transition-colors duration-300">{stat.label}</div>
             </div>
           ))}
         </div>

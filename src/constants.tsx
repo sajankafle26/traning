@@ -41,13 +41,29 @@ export const TESTIMONIALS: Testimonial[] = [
     quote: 'The IoT course was a game-changer. Building real hardware projects and connecting them to the cloud gave me the confidence to start my own startup.',
     image: 'https://i.pravatar.cc/150?u=bibek',
     placement: 'IoT Developer at Robotics Association'
-  }
+  },
+  {
+    id: 't4',
+    name: 'Nisha Adhikari',
+    course: 'UI/UX Design Training',
+    quote: 'From wireframes to dev-ready handoffs, the process was industry-aligned. My portfolio finally clicked for recruiters. Got placed within 2 weeks!',
+    image: 'https://i.pravatar.cc/150?u=nisha',
+    placement: 'UI/UX Designer at Fusemachine'
+  },
+  {
+    id: 't5',
+    name: 'Rajan Tamang',
+    course: 'React & Next JS',
+    quote: 'The React & Next.js course was incredibly thorough. Real projects, real code reviews, and the instructor knew exactly what industry expects from juniors.',
+    image: 'https://i.pravatar.cc/150?u=rajan',
+    placement: 'Frontend Developer at Webpoint'
+  },
 ];
 
 export const VIDEO_COURSES: VideoCourse[] = [
   {
     id: 'vc1',
-    title: 'Modern React & Next.js Masterclass 2025',
+    title: 'Modern React & Next.js Masterclass 2026',
     category: 'Web Development',
     instructor: 'Sanjay Sangalo',
     thumbnail: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800',
@@ -166,42 +182,48 @@ export const SERVICES: ServiceItem[] = [
     title: 'Web App Development',
     slug: 'web-app-development',
     description: 'Bespoke enterprise solutions built with MERN & Next.js. We focus on scalability, security, and performance.',
-    icon: 'fa-solid fa-laptop-code'
+    icon: 'fa-solid fa-laptop-code',
+    image: '/services/web-development.jpg'
   },
   {
     id: 's2',
     title: 'Mobile Apps',
     slug: 'mobile-app-development',
     description: 'Native & Cross-platform apps for iOS and Android using React Native and Flutter for seamless experiences.',
-    icon: 'fa-solid fa-mobile-screen-button'
+    icon: 'fa-solid fa-mobile-screen-button',
+    image: '/services/mobile-apps.jpg'
   },
   {
     id: 's3',
     title: 'SEO & Marketing',
     slug: 'seo-and-performance-optimization',
     description: 'Data-driven strategies to scale your digital presence. Boost your rankings and reach your target audience effectively.',
-    icon: 'fa-solid fa-chart-line'
+    icon: 'fa-solid fa-chart-line',
+    image: '/services/seo-marketing.jpg'
   },
   {
     id: 's4',
     title: 'UI/UX & Prototyping',
     slug: 'ui-ux-design-and-prototyping',
     description: 'User-centric designs that convert visitors into customers. We create intuitive interfaces and engaging prototypes.',
-    icon: 'fa-solid fa-pen-nib'
+    icon: 'fa-solid fa-pen-nib',
+    image: '/services/ui-ux.jpg'
   },
   {
     id: 's5',
     title: 'E‑Commerce Solutions',
     slug: 'e-commerce-development',
     description: 'End-to-end e-commerce platforms with secure payment gateways and smooth checkout experiences.',
-    icon: 'fa-solid fa-shopping-cart'
+    icon: 'fa-solid fa-shopping-cart',
+    image: '/services/ecommerce.jpg'
   },
   {
     id: 's6',
     title: 'Cloud & DevOps',
     slug: 'cloud-and-devops-services',
     description: 'Streamline your development lifecycle with automated deployments and reliable cloud infrastructure.',
-    icon: 'fa-solid fa-cloud'
+    icon: 'fa-solid fa-cloud',
+    image: '/services/cloud-devops.jpg'
   }
 ];
 
@@ -210,7 +232,7 @@ export const UPCOMING_BATCHES: UpcomingBatch[] = [
     id: 'b1',
     courseId: '4',
     courseTitle: 'MERN Stack',
-    startDate: 'April 15, 2025',
+    startDate: 'July 7, 2026',
     time: '7:00 AM - 9:00 AM',
     status: 'Enrolling',
     seatsLeft: 4
@@ -219,7 +241,7 @@ export const UPCOMING_BATCHES: UpcomingBatch[] = [
     id: 'b2',
     courseId: '3',
     courseTitle: 'React & Next JS',
-    startDate: 'April 18, 2025',
+    startDate: 'July 10, 2026',
     time: '4:00 PM - 6:00 PM',
     status: 'Enrolling',
     seatsLeft: 7
@@ -228,7 +250,7 @@ export const UPCOMING_BATCHES: UpcomingBatch[] = [
     id: 'b3',
     courseId: '7',
     courseTitle: 'Job‑Ready Program',
-    startDate: 'May 02, 2025',
+    startDate: 'July 14, 2026',
     time: '11:00 AM - 1:00 PM',
     status: 'Enrolling',
     seatsLeft: 12
@@ -2205,6 +2227,126 @@ export const COURSES: Course[] = [
       bio: "PhD in Mechatronics; passionate about the next generation of engineers.",
     },
   },
+  {
+    id: "PY-DJ-101",
+    title: "Web Development with Python & Django",
+    slug: slugify("Web Development with Python & Django"),
+    category: "js",
+    description:
+      "Master backend web development with Python and Django. Build scalable web applications, REST APIs, authentication systems, and deploy to production.",
+    price: 15000,
+    duration: "2 Hours per day",
+    image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&q=80&w=800",
+    module: "Module I",
+    curriculum: [
+      {
+        id: "py-intro",
+        title: "Python Fundamentals",
+        objectives: ["Master Python basics and OOP", "Understand virtual environments and pip"],
+        keyTopics: ["Variables, Data Types, Control Flow", "Functions, Classes, Modules", "File Handling & Error Handling"],
+        activities: ["Build a CLI application"],
+        deliverables: ["Python fundamentals project"],
+        tools: ["VS Code", "Python 3.x"],
+        duration: "2 weeks",
+      },
+      {
+        id: "django-basics",
+        title: "Django Framework Basics",
+        objectives: ["Build web apps with Django", "Understand MVC/MVT architecture"],
+        keyTopics: ["Django Installation & Project Setup", "Models, Views, Templates (MVT)", "URL Routing & Forms"],
+        activities: ["Build a blog application"],
+        deliverables: ["Working Django blog"],
+        tools: ["Django", "SQLite", "HTML/CSS"],
+        duration: "3 weeks",
+      },
+      {
+        id: "django-advanced",
+        title: "Advanced Django & REST APIs",
+        objectives: ["Build RESTful APIs", "Implement authentication and permissions"],
+        keyTopics: ["Django REST Framework", "Authentication (JWT, Token)", "Serializers, ViewSets, Routers"],
+        activities: ["Build a REST API for a mobile app"],
+        deliverables: ["Full REST API with documentation"],
+        tools: ["DRF", "Postman", "JWT"],
+        duration: "3 weeks",
+      },
+      {
+        id: "django-deploy",
+        title: "Deployment & Production",
+        objectives: ["Deploy Django apps to production", "Set up CI/CD pipelines"],
+        keyTopics: ["Gunicorn & Nginx", "Docker Basics", "AWS/DigitalOcean Deployment"],
+        activities: ["Deploy a complete project"],
+        deliverables: ["Live production application"],
+        tools: ["Docker", "Nginx", "AWS"],
+        duration: "2 weeks",
+      },
+    ],
+    instructor: {
+      name: "Er Sajan Kafle",
+      title: "Senior Python Developer",
+      avatar: "https://i.pravatar.cc/150?u=sajandj",
+      bio: "Full-stack developer with extensive experience in Python/Django ecosystem.",
+    },
+  },
+  {
+    id: "PY-DS-101",
+    title: "Python with Data Science, ML & AI Training",
+    slug: slugify("Python with Data Science, ML & AI Training"),
+    category: "js",
+    description:
+      "Comprehensive training in Data Science, Machine Learning, and Artificial Intelligence using Python. Master pandas, NumPy, scikit-learn, TensorFlow, and build real-world AI projects.",
+    price: 18000,
+    duration: "2.5 Hours per day",
+    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&q=80&w=800",
+    module: "Module I",
+    curriculum: [
+      {
+        id: "ds-python",
+        title: "Python for Data Science",
+        objectives: ["Master Python libraries for data analysis", "Handle and manipulate datasets"],
+        keyTopics: ["NumPy Arrays & Operations", "Pandas DataFrames", "Data Cleaning & Transformation"],
+        activities: ["Analyze a real-world dataset"],
+        deliverables: ["Data analysis report"],
+        tools: ["Jupyter Notebook", "NumPy", "Pandas"],
+        duration: "3 weeks",
+      },
+      {
+        id: "ds-visualization",
+        title: "Data Visualization & EDA",
+        objectives: ["Create compelling visualizations", "Perform Exploratory Data Analysis"],
+        keyTopics: ["Matplotlib & Seaborn", "Plotly Interactive Charts", "Statistical EDA Techniques"],
+        activities: ["Build an EDA dashboard"],
+        deliverables: ["Interactive visualization report"],
+        tools: ["Matplotlib", "Seaborn", "Plotly"],
+        duration: "2 weeks",
+      },
+      {
+        id: "ml-fundamentals",
+        title: "Machine Learning Fundamentals",
+        objectives: ["Understand ML algorithms", "Build and evaluate ML models"],
+        keyTopics: ["Supervised Learning (Regression, Classification)", "Unsupervised Learning (Clustering, PCA)", "Model Evaluation & Hyperparameter Tuning"],
+        activities: ["Build a prediction model"],
+        deliverables: ["Trained ML model with evaluation metrics"],
+        tools: ["scikit-learn", "XGBoost", "Google Colab"],
+        duration: "4 weeks",
+      },
+      {
+        id: "dl-ai",
+        title: "Deep Learning & AI Applications",
+        objectives: ["Build neural networks", "Deploy AI models"],
+        keyTopics: ["Neural Networks & TensorFlow", "CNNs for Image Recognition", "NLP Basics & Transformers", "ChatGPT & LLM Concepts"],
+        activities: ["Build an image classifier and chatbot"],
+        deliverables: ["Deep learning project portfolio"],
+        tools: ["TensorFlow", "Keras", "Hugging Face"],
+        duration: "4 weeks",
+      },
+    ],
+    instructor: {
+      name: "Er Sajan Kafle",
+      title: "AI & Data Science Instructor",
+      avatar: "https://i.pravatar.cc/150?u=sajandata",
+      bio: "Passionate about making AI and Data Science accessible to everyone through hands-on training.",
+    },
+  },
 ];
 
 
@@ -2240,7 +2382,7 @@ export const BLOGS = [
     title: "Observability for MERN: Logs, Metrics, and Traces that Matter",
     image:
       "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1600&auto=format&fit=crop",
-    date: "Nov 30, 2025",
+    date: "Jun 15, 2026",
     excerpt:
       "Going beyond console logs—discover how Node.js apps benefit from structured logging, OpenTelemetry traces, MongoDB performance insights, and user-centric Real User Monitoring (RUM).",
     "link": "https://blog.devgenius.io/observability-for-mern-logs-metrics-and-traces-that-matter-1234567890ab"
@@ -2250,9 +2392,9 @@ export const BLOGS = [
     title: "Inclusive Web Design: Practical A11y Wins for Real Users",
     image:
       "https://images.unsplash.com/photo-1498050108023-3f4f38b88c1f?q=80&w=1600&auto=format&fit=crop",
-    date: "Oct 18, 2025",
+    date: "May 22, 2026",
     excerpt:
-      "Color contrast, focus states, and semantic landmarks aren’t optional. Here’s a practical checklist that improves accessibility scores and, more importantly, real human experience.",
+      "Color contrast, focus states, and semantic landmarks aren't optional. Here's a practical checklist that improves accessibility scores and, more importantly, real human experience.",
     "link": "https://blog.devgenius.io/inclusive-web-design-practical-a11y-wins-for-real-users-abcdef123456"
   },
   {
@@ -2260,7 +2402,7 @@ export const BLOGS = [
     title: "Choosing a Data Layer on MERN: REST, GraphQL, or tRPC?",
     image:
       "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop",
-    date: "Sep 05, 2025",
+    date: "Apr 10, 2026",
     excerpt:
       "The right API layer depends on your product shape. Compare REST simplicity, GraphQL flexibility, and end-to-end type safety with tRPC for fast-moving teams and large codebases.",
     "link": "https://blog.devgenius.io/choosing-a-data-layer-on-mern-rest-graphql-or-trpc-7890abcdef12"

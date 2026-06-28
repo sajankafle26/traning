@@ -1,6 +1,7 @@
 import About from '@/components/About'
 import Blog from '@/components/Blog'
 import ContactForm from '@/components/ContactForm'
+import Gallery from '@/components/Gallery'
 import Hero from '@/components/Hero'
 import InternshipHub from '@/components/InternshipHub'
 import Products from '@/components/Products'
@@ -37,6 +38,7 @@ function page() {
       {/* <TechStack /> */}
       {/* <Products /> */}
       <Portfolio />
+      <Gallery />
       <Testimonials />
       <Blog />
       <ContactForm />

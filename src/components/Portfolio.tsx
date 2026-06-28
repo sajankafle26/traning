@@ -108,7 +108,7 @@ const Portfolio = () => {
                     {categories.slice(0, 8).map((cat) => (
                         <button
                             key={cat}
-                            onClick={() => setActiveFilter(cat)}
+                            onClick={() => setActiveFilter(cat || "")}
                             className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all duration-300 ${
                                 activeFilter === cat
                                     ? "bg-sangalo-900 text-white shadow-lg shadow-sangalo-900/20"

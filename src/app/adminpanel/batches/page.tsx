@@ -39,24 +39,24 @@ const BatchesAdmin = () => {
                 { name: "seatsLeft", label: "Seats Left", type: "number" },
             ]}
             renderItem={(item, onDelete, onEdit) => (
-                <div key={item._id} className="bg-slate-900/40 border border-slate-800 rounded-[2rem] p-6 relative group">
+                <div key={item._id} className="bg-white border border-slate-200 rounded-[2rem] p-6 relative group">
                     <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button onClick={() => onEdit(item)} className="text-indigo-400 font-bold text-xs uppercase">Edit</button>
-                        <button onClick={() => onDelete(item._id)} className="text-red-500 font-bold text-xs uppercase">Delete</button>
+                        <button onClick={() => onEdit(item)} className="text-indigo-600 font-bold text-xs uppercase">Edit</button>
+                        <button onClick={() => onDelete(item._id)} className="text-red-600 font-bold text-xs uppercase">Delete</button>
                     </div>
                     <div className="flex justify-between items-start mb-4">
                         <Link
                             href={`/courses/${slugify(item.courseTitle)}`}
                             target="_blank"
-                            className="text-white font-bold text-lg hover:text-indigo-400 transition-colors"
+                            className="text-slate-900 font-bold text-lg hover:text-indigo-600 transition-colors"
                         >
                             {item.courseTitle}
                         </Link>
-                        <span className="bg-blue-500/10 text-blue-400 px-2 py-1 rounded text-[10px] uppercase font-black">{item.status}</span>
+                        <span className="bg-blue-500/10 text-blue-600 px-2 py-1 rounded text-[10px] uppercase font-black">{item.status}</span>
                     </div>
-                    <p className="text-slate-400 text-sm">Starts: {item.startDate}</p>
-                    <p className="text-slate-400 text-sm">Time: {item.time}</p>
-                    <p className="text-indigo-400 text-xs font-bold mt-2">{item.seatsLeft} Seats Left</p>
+                    <p className="text-slate-500 text-sm">Starts: {item.startDate}</p>
+                    <p className="text-slate-500 text-sm">Time: {item.time}</p>
+                    <p className="text-indigo-600 text-xs font-bold mt-2">{item.seatsLeft} Seats Left</p>
                 </div>
             )}
         />

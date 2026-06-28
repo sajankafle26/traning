@@ -60,22 +60,22 @@ const AdminCertificates = () => {
 
     return (
         <div className="space-y-12">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-800 pb-8">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-200 pb-8">
                 <div className="space-y-1">
-                    <h1 className="text-3xl font-black text-white tracking-tight">Certification Center</h1>
+                    <h1 className="text-3xl font-black text-slate-900 tracking-tight">Certification Center</h1>
                     <p className="text-slate-500 text-sm font-medium">Manage issued certificates and design the template details.</p>
                 </div>
 
-                <div className="flex bg-slate-900/50 p-1.5 rounded-2xl border border-slate-800 self-start md:self-auto">
+                <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 self-start md:self-auto">
                     <button
                         onClick={() => setActiveTab('list')}
-                        className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'list' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20' : 'text-slate-400 hover:text-white'}`}
+                        className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'list' ? 'bg-[#00548B] text-white shadow-lg shadow-[#00548B]/20' : 'text-slate-500 hover:text-slate-900'}`}
                     >
                         <FaAward /> Issued
                     </button>
                     <button
                         onClick={() => setActiveTab('design')}
-                        className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'design' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20' : 'text-slate-400 hover:text-white'}`}
+                        className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'design' ? 'bg-[#00548B] text-white shadow-lg shadow-[#00548B]/20' : 'text-slate-500 hover:text-slate-900'}`}
                     >
                         <FaGear /> Design
                     </button>
@@ -85,41 +85,41 @@ const AdminCertificates = () => {
             {activeTab === 'list' ? (
                 <div className="space-y-6">
                     {certificates.length === 0 ? (
-                        <div className="bg-slate-900/40 border border-slate-800 border-dashed rounded-[3rem] p-20 text-center">
-                            <FaAward className="text-5xl text-slate-800 mx-auto mb-6" />
+                        <div className="bg-white border border-slate-200 border-dashed rounded-[3rem] p-20 text-center">
+                            <FaAward className="text-5xl text-slate-300 mx-auto mb-6" />
                             <p className="text-slate-500 font-bold text-sm uppercase tracking-widest">No certificates issued yet</p>
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 gap-4">
                             {certificates.map((cert: any) => (
-                                <div key={cert._id} className="bg-slate-900/40 border border-slate-800 rounded-[2rem] p-6 hover:border-slate-700 transition-all group flex items-center justify-between">
+                                <div key={cert._id} className="bg-white border border-slate-200 rounded-[2rem] p-6 hover:border-slate-300 transition-all group flex items-center justify-between">
                                     <div className="flex items-center gap-6">
-                                        <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white text-xl">
+                                        <div className="w-12 h-12 bg-[#00548B] rounded-xl flex items-center justify-center text-white text-xl">
                                             <FaAward />
                                         </div>
                                         <div>
-                                            <h3 className="text-white font-bold">{cert.userName}</h3>
+                                            <h3 className="text-slate-900 font-bold">{cert.userName}</h3>
                                             <p className="text-slate-500 text-xs font-medium">{cert.courseTitle}</p>
                                         </div>
                                     </div>
 
                                     <div className="flex items-center gap-8">
                                         <div className="text-right hidden sm:block">
-                                            <p className="text-[10px] font-black text-slate-600 uppercase tracking-widest leading-none mb-1">ID</p>
-                                            <p className="text-xs font-bold text-white font-mono">{cert.certificateNumber}</p>
+                                            <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest leading-none mb-1">ID</p>
+                                            <p className="text-xs font-bold text-slate-900 font-mono">{cert.certificateNumber}</p>
                                         </div>
                                         <div className="text-right hidden sm:block">
-                                            <p className="text-[10px] font-black text-slate-600 uppercase tracking-widest leading-none mb-1">Date</p>
-                                            <p className="text-xs font-bold text-white">{new Date(cert.issueDate).toLocaleDateString()}</p>
+                                            <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest leading-none mb-1">Date</p>
+                                            <p className="text-xs font-bold text-slate-900">{new Date(cert.issueDate).toLocaleDateString()}</p>
                                         </div>
                                         <div className="flex gap-2">
                                             <button
                                                 onClick={() => setSelectedCert(cert)}
-                                                className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:bg-white/10 hover:text-white transition-all"
+                                                className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-all"
                                             >
                                                 <FaEye />
                                             </button>
-                                            <button className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-rose-400 hover:bg-rose-500/10 transition-all">
+                                            <button className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-rose-600 hover:bg-rose-50 transition-all">
                                                 <FaTrash />
                                             </button>
                                         </div>
@@ -131,45 +131,45 @@ const AdminCertificates = () => {
                 </div>
             ) : (
                 <div className="grid lg:grid-cols-2 gap-12 animate-in fade-in duration-500">
-                    <form onSubmit={handleSaveSettings} className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-10 space-y-8 h-fit">
+                    <form onSubmit={handleSaveSettings} className="bg-white border border-slate-200 rounded-[3rem] p-10 space-y-8 h-fit">
                         <div className="space-y-4">
-                            <h2 className="text-xl font-bold text-white">Template Configuration</h2>
+                            <h2 className="text-xl font-bold text-slate-900">Template Configuration</h2>
                             <p className="text-slate-500 text-sm">Update the placeholder names used in the certificate footer.</p>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Director Name</label>
+                                <label className="text-xs font-semibold text-slate-500 ml-1">Director Name</label>
                                 <input
                                     type="text"
-                                    className="w-full bg-slate-800 border border-slate-700 rounded-2xl py-4 px-6 text-white text-sm focus:outline-none focus:border-indigo-500"
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B]"
                                     value={settings.directorName}
                                     onChange={(e) => setSettings({ ...settings, directorName: e.target.value })}
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Instructor Name</label>
+                                <label className="text-xs font-semibold text-slate-500 ml-1">Instructor Name</label>
                                 <input
                                     type="text"
-                                    className="w-full bg-slate-800 border border-slate-700 rounded-2xl py-4 px-6 text-white text-sm focus:outline-none focus:border-indigo-500"
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B]"
                                     value={settings.instructorName}
                                     onChange={(e) => setSettings({ ...settings, instructorName: e.target.value })}
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Organization</label>
+                                <label className="text-xs font-semibold text-slate-500 ml-1">Organization</label>
                                 <input
                                     type="text"
-                                    className="w-full bg-slate-800 border border-slate-700 rounded-2xl py-4 px-6 text-white text-sm focus:outline-none focus:border-indigo-500"
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B]"
                                     value={settings.organizationName}
                                     onChange={(e) => setSettings({ ...settings, organizationName: e.target.value })}
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Academic Subtext</label>
+                                <label className="text-xs font-semibold text-slate-500 ml-1">Academic Subtext</label>
                                 <input
                                     type="text"
-                                    className="w-full bg-slate-800 border border-slate-700 rounded-2xl py-4 px-6 text-white text-sm focus:outline-none focus:border-indigo-500"
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B]"
                                     value={settings.academicCouncil}
                                     onChange={(e) => setSettings({ ...settings, academicCouncil: e.target.value })}
                                 />
@@ -179,7 +179,7 @@ const AdminCertificates = () => {
                         <button
                             type="submit"
                             disabled={isSaving}
-                            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-4 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-xl shadow-indigo-600/20 transition-all flex items-center justify-center gap-3"
+                            className="w-full bg-[#00548B] hover:bg-[#004381] text-white py-4 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-xl shadow-[#00548B]/20 transition-all flex items-center justify-center gap-3"
                         >
                             {isSaving ? "Saving..." : <><FaCircleCheck /> Save Settings</>}
                         </button>
@@ -187,9 +187,9 @@ const AdminCertificates = () => {
 
                     <div className="space-y-6">
                         <div className="flex items-center justify-between px-2">
-                            <h2 className="text-sm font-black text-white uppercase tracking-widest">Live Preview</h2>
+                            <h2 className="text-sm font-black text-slate-900 uppercase tracking-widest">Live Preview</h2>
                         </div>
-                        <div className="bg-slate-950/50 border border-slate-800 rounded-[3rem] p-1 scale-[0.85] origin-top border-dashed">
+                        <div className="bg-slate-100 border border-slate-200 rounded-[3rem] p-1 scale-[0.85] origin-top border-dashed">
                             <CertificateTemplate cert={{
                                 userName: "Student Name",
                                 courseTitle: "Professional Training Course",
@@ -204,7 +204,7 @@ const AdminCertificates = () => {
             {/* Preview Modal */}
             {selectedCert && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-sm" onClick={() => setSelectedCert(null)} />
+                    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setSelectedCert(null)} />
                     <div className="relative z-10 w-full max-w-5xl bg-white rounded-[2.5rem] overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300">
                         <div className="absolute top-6 right-6 z-20">
                             <button

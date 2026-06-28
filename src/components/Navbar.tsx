@@ -283,14 +283,9 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
       >
         <div className="max-w-[1400px] mx-auto flex justify-between items-center h-full px-6">
           <div className="flex gap-6 items-center text-[14px]">
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 bg-red-400 rounded-full animate-ping" />
-              <span className="text-blue-100 ">Limited Seats Available</span>
-            </span>
-
             <a
               href={`tel:${siteSettings?.phone?.split('/')[0]?.trim() || '9851228383'}`}
-              className="hidden sm:flex items-center text-[14px] gap-1.5 hover:text-blue-200 transition no-underline"
+              className="flex items-center text-[14px] gap-1.5 hover:text-blue-200 transition no-underline"
             >
               <FaPhone /> {siteSettings?.phone?.split('/')[0]?.trim() || '9851228383'}
             </a>
@@ -347,7 +342,7 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
                     Development
                   </div>
                   <ul className="space-y-1.5">
-                    {liveCourses.slice(0, 4).map((course) => {
+                    {liveCourses.filter((_, i) => i % 2 === 0).slice(0, 5).map((course) => {
                       const Icon = getCourseIcon(course.category);
                       return (
                         <li key={course.id}>
@@ -381,10 +376,10 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
 
                 <div>
                   <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">
-                    Design & Specialization
+                    Design & More
                   </div>
                   <ul className="space-y-1.5">
-                    {liveCourses.slice(4, 8).map((course) => {
+                    {liveCourses.filter((_, i) => i % 2 === 1).slice(0, 5).map((course) => {
                       const Icon = getCourseIcon(course.category);
                       return (
                         <li key={course.id}>
@@ -415,6 +410,15 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
                     ))}
                   </ul>
                 </div>
+              </div>
+              <div className="mt-4 pt-4 border-t border-slate-100">
+                <Link
+                  href="/courses"
+                  onClick={() => handleLinkClick('/courses')}
+                  className="flex items-center justify-center gap-2 text-sm font-bold text-[#00548B] hover:underline no-underline"
+                >
+                  View All Courses <FaIcons6.FaArrowUpRightFromSquare className="text-xs" />
+                </Link>
               </div>
             </DesktopDropdownShell>
           </div>
@@ -501,16 +505,9 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
           {/* Upcoming */}
           <Link href="/upcoming" className="group relative hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-sm flex items-center gap-2">
             <span>Upcoming Classes</span>
-            {upcomingBatches.some(b => b.status === 'Enrolling' || b.status === 'Started') ? (
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-            ) : (
-              <span className="absolute -top-3 -right-6 bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow-lg shadow-red-500/20">
-                HOT
-              </span>
-            )}
+            <span className="absolute -top-3 -right-6 bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow-lg shadow-red-500/30 animate-pulse">
+              HOT
+            </span>
           </Link>
         </div>
 
@@ -691,13 +688,12 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
               onClick={() => handleLinkClick('/upcoming')}
               className="flex items-center justify-between text-xl font-bold text-slate-800 no-underline"
             >
-              <span>Upcoming Batches</span>
-              {upcomingBatches.some(b => b.status === 'Enrolling' || b.status === 'Started') && (
-                <span className="relative flex h-3 w-3 mr-4">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+              <span className="flex items-center gap-3">
+                Upcoming Batches
+                <span className="bg-red-500 text-white text-[9px] font-black px-2.5 py-0.5 rounded-full shadow-lg shadow-red-500/30 animate-pulse">
+                  HOT
                 </span>
-              )}
+              </span>
             </Link>
           </div>
 

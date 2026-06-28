@@ -198,40 +198,40 @@ const PaymentInitiateModal = ({ fee, onClose, onSuccess }: { fee: any; onClose: 
     };
 
     return (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[70] flex items-center justify-center p-4">
-            <div className="bg-slate-900 border border-slate-800 rounded-[2rem] w-full max-w-md">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[70] flex items-center justify-center p-4">
+            <div className="bg-white border border-slate-200 rounded-2xl w-full max-w-md shadow-xl">
                 <div className="p-8">
                     <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-xl font-black text-white">Initiate Payment</h2>
-                        <button onClick={onClose} className="w-10 h-10 rounded-xl bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center"><FaTimes /></button>
+                        <h2 className="text-xl font-black text-slate-900">Initiate Payment</h2>
+                        <button onClick={onClose} className="w-10 h-10 rounded-xl bg-slate-100 text-slate-500 hover:text-slate-900 flex items-center justify-center"><FaTimes /></button>
                     </div>
 
                     {/* Fee Summary */}
-                    <div className="bg-slate-800/60 rounded-2xl p-5 mb-6 border border-slate-700">
+                    <div className="bg-slate-50 rounded-2xl p-5 mb-6 border border-slate-200">
                         <div className="flex items-center gap-4 mb-4">
-                            <div className="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl font-black">
+                            <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl font-black">
                                 {(fee.student?.name || "S")[0]}
                             </div>
                             <div>
-                                <p className="text-white font-black">{fee.student?.name || "Unknown"}</p>
-                                <p className="text-slate-400 text-xs">{fee.student?.rollNo || fee.student?.email}</p>
+                                <p className="text-slate-900 font-black">{fee.student?.name || "Unknown"}</p>
+                                <p className="text-slate-500 text-xs">{fee.student?.rollNo || fee.student?.email}</p>
                             </div>
                         </div>
-                        <div className="flex justify-between items-center border-t border-slate-700 pt-4">
+                        <div className="flex justify-between items-center border-t border-slate-200 pt-4">
                             <div>
-                                <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">{fee.feeType} Fee {fee.month ? `· ${fee.month}` : ""}</p>
+                                <p className="text-slate-500 text-xs font-semibold">{fee.feeType} Fee {fee.month ? `· ${fee.month}` : ""}</p>
                             </div>
-                            <p className="text-2xl font-black text-emerald-400">Rs. {fee.amount?.toLocaleString()}</p>
+                            <p className="text-2xl font-black text-emerald-600">Rs. {fee.amount?.toLocaleString()}</p>
                         </div>
                     </div>
 
                     {/* Payment Method */}
                     <div className="mb-5">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-3">Payment Method</label>
+                        <label className="text-xs font-semibold text-slate-500 block mb-3">Payment Method</label>
                         <div className="grid grid-cols-3 gap-2">
                             {PAYMENT_METHODS.map(m => (
                                 <button key={m} type="button" onClick={() => setMethod(m)}
-                                    className={`py-3 px-2 rounded-xl text-[11px] font-black transition-all text-center ${method === m ? "bg-indigo-600 text-white ring-2 ring-indigo-500/50" : "bg-slate-800 text-slate-400 hover:bg-slate-700"}`}>
+                                    className={`py-3 px-2 rounded-xl text-[11px] font-black transition-all text-center ${method === m ? "bg-[#00548B] text-white ring-2 ring-[#00548B]/30" : "bg-slate-100 text-slate-500 hover:bg-slate-200"}`}>
                                     {m}
                                 </button>
                             ))}
@@ -240,20 +240,20 @@ const PaymentInitiateModal = ({ fee, onClose, onSuccess }: { fee: any; onClose: 
 
                     {/* Paid Date */}
                     <div className="mb-5">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-2">Payment Date</label>
+                        <label className="text-xs font-semibold text-slate-500 block mb-2">Payment Date</label>
                         <input type="date" value={paidDate} onChange={e => setPaidDate(e.target.value)}
-                            className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500" />
+                            className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B]" />
                     </div>
 
                     {/* Remarks */}
                     <div className="mb-6">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-2">Remarks (optional)</label>
+                        <label className="text-xs font-semibold text-slate-500 block mb-2">Remarks (optional)</label>
                         <input type="text" placeholder="e.g. Receipt No. 12345" value={remarks} onChange={e => setRemarks(e.target.value)}
-                            className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500" />
+                            className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B]" />
                     </div>
 
                     <div className="flex gap-3">
-                        <button onClick={onClose} className="flex-1 py-3.5 rounded-xl border border-slate-700 text-slate-400 font-black text-sm hover:bg-slate-800 transition-all">Cancel</button>
+                        <button onClick={onClose} className="flex-1 py-3.5 rounded-xl border border-slate-200 text-slate-600 font-black text-sm hover:bg-slate-50 transition-all">Cancel</button>
                         <button onClick={handleConfirm} disabled={saving}
                             className="flex-1 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-sm transition-all disabled:opacity-60 flex items-center justify-center gap-2">
                             {saving ? <><FaSpinner className="animate-spin" /> Processing...</> : <><FaCheckCircle /> Confirm Paid</>}
@@ -350,9 +350,9 @@ const FeesPage = () => {
     const totalPaid = fees.filter(f => f.status === "Paid").reduce((s, f) => s + (f.amount || 0), 0);
     const totalUnpaid = fees.filter(f => f.status === "Unpaid").reduce((s, f) => s + (f.amount || 0), 0);
     const statusColor = (s: string) =>
-        s === "Paid" ? "text-green-400 bg-green-500/10 border-green-500/20"
-            : s === "Partial" ? "text-amber-400 bg-amber-500/10 border-amber-500/20"
-                : "text-rose-400 bg-rose-500/10 border-rose-500/20";
+        s === "Paid" ? "text-green-700 bg-green-50 border-green-200"
+            : s === "Partial" ? "text-amber-700 bg-amber-50 border-amber-200"
+                : "text-rose-700 bg-rose-50 border-rose-200";
 
     // Filtered students for dropdown
     const matchedStudents = students.filter(s =>
@@ -374,47 +374,47 @@ const FeesPage = () => {
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl font-black text-white">Fee Management</h1>
-                    <p className="text-slate-400 text-sm mt-1">{fees.length} fee records</p>
+                    <h1 className="text-2xl font-black text-slate-900">Fee Management</h1>
+                    <p className="text-slate-500 text-sm mt-1">{fees.length} fee records</p>
                 </div>
                 <button onClick={() => { setShowForm(true); setEditId(null); setForm(emptyForm); setStudentQuery(""); }}
-                    className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl font-black text-sm transition-all shadow-lg">
+                    className="flex items-center gap-2 bg-[#00548B] hover:bg-[#004381] text-white px-5 py-2.5 rounded-xl font-black text-sm transition-all shadow-lg">
                     <FaPlus /> Add Fee Record
                 </button>
             </div>
 
             {/* Summary */}
             <div className="grid sm:grid-cols-3 gap-4">
-                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-5 flex items-center gap-4">
-                    <FaMoneyBillWave className="text-2xl text-emerald-400" />
-                    <div><p className="text-[10px] font-black uppercase tracking-widest text-emerald-400/70">Collected</p><p className="text-xl font-black text-emerald-400">Rs. {totalPaid.toLocaleString()}</p></div>
+                <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 flex items-center gap-4">
+                    <FaMoneyBillWave className="text-2xl text-emerald-600" />
+                    <div><p className="text-xs font-semibold text-emerald-600/70">Collected</p><p className="text-xl font-black text-emerald-600">Rs. {totalPaid.toLocaleString()}</p></div>
                 </div>
-                <div className="bg-rose-500/10 border border-rose-500/20 rounded-2xl p-5 flex items-center gap-4">
-                    <FaMoneyBillWave className="text-2xl text-rose-400" />
-                    <div><p className="text-[10px] font-black uppercase tracking-widest text-rose-400/70">Pending</p><p className="text-xl font-black text-rose-400">Rs. {totalUnpaid.toLocaleString()}</p></div>
+                <div className="bg-rose-50 border border-rose-200 rounded-2xl p-5 flex items-center gap-4">
+                    <FaMoneyBillWave className="text-2xl text-rose-600" />
+                    <div><p className="text-xs font-semibold text-rose-600/70">Pending</p><p className="text-xl font-black text-rose-600">Rs. {totalUnpaid.toLocaleString()}</p></div>
                 </div>
-                <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-2xl p-5 flex items-center gap-4">
-                    <FaMoneyBillWave className="text-2xl text-indigo-400" />
-                    <div><p className="text-[10px] font-black uppercase tracking-widest text-indigo-400/70">Total</p><p className="text-xl font-black text-indigo-400">Rs. {(totalPaid + totalUnpaid).toLocaleString()}</p></div>
+                <div className="bg-indigo-50 border border-indigo-200 rounded-2xl p-5 flex items-center gap-4">
+                    <FaMoneyBillWave className="text-2xl text-indigo-600" />
+                    <div><p className="text-xs font-semibold text-indigo-600/70">Total</p><p className="text-xl font-black text-indigo-600">Rs. {(totalPaid + totalUnpaid).toLocaleString()}</p></div>
                 </div>
             </div>
 
             {/* Filters */}
             <div className="flex flex-col sm:flex-row gap-3">
                 <div className="relative flex-1">
-                    <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
+                    <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                     <input type="text" placeholder="Search by student name, roll no or fee type..." value={search} onChange={e => setSearch(e.target.value)}
-                        className="w-full bg-slate-900/40 border border-slate-800 rounded-xl pl-11 pr-4 py-3 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-indigo-500" />
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-11 pr-4 py-3 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B]" />
                 </div>
-                <div className="flex bg-slate-900/40 border border-slate-800 rounded-xl p-1">
+                <div className="flex bg-white border border-slate-200 rounded-xl p-1">
                     {["All", ...STATUSES].map(s => (
                         <button key={s} onClick={() => setFilterStatus(s)}
-                            className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${filterStatus === s ? "bg-indigo-600 text-white" : "text-slate-400 hover:text-white"}`}>{s}</button>
+                            className={`px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-widest transition-all ${filterStatus === s ? "bg-[#00548B] text-white" : "text-slate-500 hover:text-slate-900"}`}>{s}</button>
                     ))}
                 </div>
-                <div className="flex bg-slate-900/40 border border-slate-800 rounded-xl p-1">
+                <div className="flex bg-white border border-slate-200 rounded-xl p-1">
                     <select value={filterGroup} onChange={e => setFilterGroup(e.target.value)}
-                        className="bg-transparent text-xs font-black uppercase tracking-widest text-slate-400 focus:outline-none px-4 py-2 cursor-pointer">
+                        className="bg-transparent text-xs font-semibold uppercase tracking-widest text-slate-500 focus:outline-none px-4 py-2 cursor-pointer">
                         <option value="All">All Groups</option>
                         {groups.map(g => <option key={g._id} value={g._id}>{g.name}</option>)}
                     </select>
@@ -423,33 +423,33 @@ const FeesPage = () => {
 
             {/* Table */}
             {loading ? (
-                <div className="space-y-3">{[...Array(5)].map((_, i) => <div key={i} className="h-16 bg-slate-900/40 rounded-xl animate-pulse" />)}</div>
+                <div className="space-y-3">{[...Array(5)].map((_, i) => <div key={i} className="h-16 bg-slate-100 rounded-xl animate-pulse" />)}</div>
             ) : filteredFees.length === 0 ? (
-                <div className="bg-slate-900/40 border border-slate-800 rounded-[2rem] py-24 text-center">
-                    <FaMoneyBillWave className="text-5xl text-slate-700 mx-auto mb-4" />
-                    <p className="text-slate-400 font-bold">No fee records found</p>
+                <div className="bg-white border border-slate-200 rounded-2xl py-24 text-center">
+                    <FaMoneyBillWave className="text-5xl text-slate-300 mx-auto mb-4" />
+                    <p className="text-slate-500 font-bold">No fee records found</p>
                 </div>
             ) : (
-                <div className="bg-slate-900/40 border border-slate-800 rounded-[2rem] overflow-hidden">
+                <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
                     <table className="w-full">
-                        <thead className="border-b border-slate-800">
+                        <thead className="border-b border-slate-200">
                             <tr>
-                                <th className="px-6 py-4 text-left text-[10px] font-black uppercase tracking-widest text-slate-500">Student</th>
-                                <th className="px-6 py-4 text-left text-[10px] font-black uppercase tracking-widest text-slate-500 hidden md:table-cell">Type</th>
-                                <th className="px-6 py-4 text-left text-[10px] font-black uppercase tracking-widest text-slate-500">Amount</th>
-                                <th className="px-6 py-4 text-left text-[10px] font-black uppercase tracking-widest text-slate-500 hidden lg:table-cell">Due</th>
-                                <th className="px-6 py-4 text-left text-[10px] font-black uppercase tracking-widest text-slate-500">Status</th>
-                                <th className="px-6 py-4 text-right text-[10px] font-black uppercase tracking-widest text-slate-500">Actions</th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500">Student</th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 hidden md:table-cell">Type</th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500">Amount</th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 hidden lg:table-cell">Due</th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500">Status</th>
+                                <th className="px-6 py-4 text-right text-xs font-semibold text-slate-500">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-800">
+                        <tbody className="divide-y divide-slate-100">
                             {filteredFees.map((f: any) => (
-                                <tr key={f._id} className="hover:bg-white/5 transition-colors group">
+                                <tr key={f._id} className="hover:bg-slate-50 transition-colors group">
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-black text-xs">{(f.student?.name || "S")[0]}</div>
+                                            <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-black text-xs">{(f.student?.name || "S")[0]}</div>
                                             <div>
-                                                <p className="text-white font-bold text-sm">{f.student?.name || "Unknown"}</p>
+                                                <p className="text-slate-900 font-bold text-sm">{f.student?.name || "Unknown"}</p>
                                                 <p className="text-slate-500 text-[10px]">
                                                     {f.student?.rollNo || ""} {f.month ? `· ${f.month}` : ""}
                                                     {f.student?.group?.name && ` • ${f.student.group.name}`}
@@ -457,26 +457,26 @@ const FeesPage = () => {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4 text-slate-400 text-sm hidden md:table-cell">{f.feeType}</td>
-                                    <td className="px-6 py-4 text-white font-black text-sm">Rs. {f.amount?.toLocaleString()}</td>
-                                    <td className="px-6 py-4 text-slate-400 text-xs hidden lg:table-cell">{f.dueDate ? new Date(f.dueDate).toLocaleDateString() : "—"}</td>
+                                    <td className="px-6 py-4 text-slate-500 text-sm hidden md:table-cell">{f.feeType}</td>
+                                    <td className="px-6 py-4 text-slate-900 font-black text-sm">Rs. {f.amount?.toLocaleString()}</td>
+                                    <td className="px-6 py-4 text-slate-500 text-xs hidden lg:table-cell">{f.dueDate ? new Date(f.dueDate).toLocaleDateString() : "—"}</td>
                                     <td className="px-6 py-4">
                                         <span className={`text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border ${statusColor(f.status)}`}>{f.status}</span>
                                     </td>
                                     <td className="px-6 py-4 text-right">
                                         <div className="flex justify-end gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
                                             {/* Print Invoice */}
-                                            <button onClick={() => openInvoice(f)} className="p-2 rounded-lg bg-purple-500/10 text-purple-400 hover:bg-purple-500/20 transition-colors" title="Print Invoice">
+                                            <button onClick={() => openInvoice(f)} className="p-2 rounded-lg bg-purple-50 text-purple-600 hover:bg-purple-100 transition-colors" title="Print Invoice">
                                                 <FaPrint />
                                             </button>
                                             {/* Initiate Payment */}
                                             {f.status !== "Paid" && (
-                                                <button onClick={() => openPayment(f)} className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 transition-colors" title="Initiate Payment">
+                                                <button onClick={() => openPayment(f)} className="p-2 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors" title="Initiate Payment">
                                                     <FaCheckCircle />
                                                 </button>
                                             )}
-                                            <button onClick={() => handleEdit(f)} className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 transition-colors"><FaEdit /></button>
-                                            <button onClick={() => handleDelete(f._id)} className="p-2 rounded-lg bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 transition-colors"><FaTrash /></button>
+                                            <button onClick={() => handleEdit(f)} className="p-2 rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition-colors"><FaEdit /></button>
+                                            <button onClick={() => handleDelete(f._id)} className="p-2 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 transition-colors"><FaTrash /></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -488,21 +488,21 @@ const FeesPage = () => {
 
             {/* Add/Edit Modal */}
             {showForm && (
-                <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                    <div className="bg-slate-900 border border-slate-800 rounded-[2rem] w-full max-w-lg max-h-[90vh] overflow-y-auto">
+                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                    <div className="bg-white border border-slate-200 rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-xl">
                         <div className="p-8">
                             <div className="flex items-center justify-between mb-8">
-                                <h2 className="text-xl font-black text-white">{editId ? "Edit Fee Record" : "Add Fee Record"}</h2>
+                                <h2 className="text-xl font-black text-slate-900">{editId ? "Edit Fee Record" : "Add Fee Record"}</h2>
                                 <button onClick={() => { setShowForm(false); setEditId(null); setStudentQuery(""); }}
-                                    className="w-10 h-10 rounded-xl bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center"><FaTimes /></button>
+                                    className="w-10 h-10 rounded-xl bg-slate-100 text-slate-500 hover:text-slate-900 flex items-center justify-center"><FaTimes /></button>
                             </div>
                             <form onSubmit={handleSubmit} className="space-y-5">
 
                                 {/* Student Search */}
                                 <div className="relative">
-                                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-2">Student</label>
+                                    <label className="text-xs font-semibold text-slate-500 block mb-2">Student</label>
                                     <div className="relative">
-                                        <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm" />
+                                        <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm" />
                                         <input
                                             type="text"
                                             required
@@ -510,43 +510,43 @@ const FeesPage = () => {
                                             value={studentQuery}
                                             onChange={e => { setStudentQuery(e.target.value); setStudentDropdown(true); setForm(p => ({ ...p, student: "", studentObj: null })); }}
                                             onFocus={() => setStudentDropdown(true)}
-                                            className="w-full bg-slate-800 border border-slate-700 rounded-xl pl-10 pr-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500 placeholder-slate-500"
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B] placeholder-slate-400"
                                         />
                                         {/* Hidden validation trick */}
                                         <input type="text" required readOnly value={form.student} className="sr-only" tabIndex={-1} />
                                     </div>
                                     {/* Dropdown */}
                                     {studentDropdown && studentQuery && (
-                                        <div className="absolute left-0 right-0 top-full mt-1 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl z-10 max-h-52 overflow-y-auto">
+                                        <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-xl shadow-lg z-10 max-h-52 overflow-y-auto">
                                             {matchedStudents.length === 0 ? (
                                                 <div className="px-4 py-3 text-slate-500 text-sm font-bold">No students found</div>
                                             ) : matchedStudents.map(s => (
                                                 <button key={s._id} type="button" onMouseDown={() => selectStudent(s)}
-                                                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-700 transition-colors text-left">
-                                                    <div className="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xs font-black flex-shrink-0">{s.name?.[0]}</div>
+                                                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-50 transition-colors text-left">
+                                                    <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-xs font-black flex-shrink-0">{s.name?.[0]}</div>
                                                     <div>
-                                                        <p className="text-white text-sm font-bold">{s.name}</p>
-                                                        <p className="text-slate-400 text-[10px]">{s.rollNo ? `Roll: ${s.rollNo} · ` : ""}{s.email}</p>
+                                                        <p className="text-slate-900 text-sm font-bold">{s.name}</p>
+                                                        <p className="text-slate-500 text-[10px]">{s.rollNo ? `Roll: ${s.rollNo} · ` : ""}{s.email}</p>
                                                     </div>
-                                                    <span className={`ml-auto text-[9px] font-black px-2 py-0.5 rounded-full ${s.status === "Active" ? "text-green-400 bg-green-500/10" : "text-slate-400 bg-slate-700"}`}>{s.status}</span>
+                                                    <span className={`ml-auto text-[9px] font-black px-2 py-0.5 rounded-full ${s.status === "Active" ? "text-green-700 bg-green-50" : "text-slate-500 bg-slate-100"}`}>{s.status}</span>
                                                 </button>
                                             ))}
                                         </div>
                                     )}
                                     {/* Selected student pill */}
                                     {form.studentObj && (
-                                        <div className="mt-2 flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-xl px-3 py-2">
-                                            <FaCheckCircle className="text-indigo-400 text-xs" />
-                                            <span className="text-indigo-300 text-xs font-bold">{form.studentObj.name}</span>
+                                        <div className="mt-2 flex items-center gap-2 bg-[#00548B]/10 border border-[#00548B]/20 rounded-xl px-3 py-2">
+                                            <FaCheckCircle className="text-[#00548B] text-xs" />
+                                            <span className="text-[#00548B] text-xs font-bold">{form.studentObj.name}</span>
                                             {form.studentObj.rollNo && <span className="text-slate-500 text-[10px]">· Roll {form.studentObj.rollNo}</span>}
                                             <button type="button" onClick={() => { setForm(p => ({ ...p, student: "", studentObj: null })); setStudentQuery(""); }}
-                                                className="ml-auto text-slate-500 hover:text-rose-400"><FaTimes className="text-xs" /></button>
+                                                className="ml-auto text-slate-500 hover:text-rose-600"><FaTimes className="text-xs" /></button>
                                         </div>
                                     )}
                                     {form.student && !studentDropdown && (
                                         <p
                                             onClick={() => setStudentDropdown(true)}
-                                            className="mt-1 text-[10px] text-slate-500 cursor-pointer hover:text-slate-300"
+                                            className="mt-1 text-[10px] text-slate-500 cursor-pointer hover:text-slate-900"
                                         >
                                             Click to change student
                                         </p>
@@ -555,50 +555,50 @@ const FeesPage = () => {
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
-                                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-2">Amount (NPR)</label>
+                                        <label className="text-xs font-semibold text-slate-500 block mb-2">Amount (NPR)</label>
                                         <input type="number" required value={form.amount} onChange={e => setForm(p => ({ ...p, amount: e.target.value }))}
-                                            className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500" />
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B]" />
                                     </div>
                                     <div>
-                                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-2">Fee Type</label>
-                                        <select value={form.feeType} onChange={e => setForm(p => ({ ...p, feeType: e.target.value }))} className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500">
+                                        <label className="text-xs font-semibold text-slate-500 block mb-2">Fee Type</label>
+                                        <select value={form.feeType} onChange={e => setForm(p => ({ ...p, feeType: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B]">
                                             {FEE_TYPES.map(t => <option key={t}>{t}</option>)}
                                         </select>
                                     </div>
                                     <div>
-                                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-2">Status</label>
-                                        <select value={form.status} onChange={e => setForm(p => ({ ...p, status: e.target.value }))} className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500">
+                                        <label className="text-xs font-semibold text-slate-500 block mb-2">Status</label>
+                                        <select value={form.status} onChange={e => setForm(p => ({ ...p, status: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B]">
                                             {STATUSES.map(s => <option key={s}>{s}</option>)}
                                         </select>
                                     </div>
                                     <div>
-                                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-2">Month</label>
+                                        <label className="text-xs font-semibold text-slate-500 block mb-2">Month</label>
                                         <input type="text" placeholder="e.g. January 2024" value={form.month} onChange={e => setForm(p => ({ ...p, month: e.target.value }))}
-                                            className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500" />
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B]" />
                                     </div>
                                     <div>
-                                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-2">Due Date</label>
+                                        <label className="text-xs font-semibold text-slate-500 block mb-2">Due Date</label>
                                         <input type="date" value={form.dueDate} onChange={e => setForm(p => ({ ...p, dueDate: e.target.value }))}
-                                            className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500" />
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B]" />
                                     </div>
                                     <div>
-                                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-2">Paid Date</label>
+                                        <label className="text-xs font-semibold text-slate-500 block mb-2">Paid Date</label>
                                         <input type="date" value={form.paidDate} onChange={e => setForm(p => ({ ...p, paidDate: e.target.value }))}
-                                            className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500" />
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B]" />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-2">Remarks</label>
+                                    <label className="text-xs font-semibold text-slate-500 block mb-2">Remarks</label>
                                     <input type="text" value={form.remarks} onChange={e => setForm(p => ({ ...p, remarks: e.target.value }))}
-                                        className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500" />
+                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B]" />
                                 </div>
 
                                 <div className="flex gap-3 pt-2">
                                     <button type="button" onClick={() => { setShowForm(false); setEditId(null); setStudentQuery(""); }}
-                                        className="flex-1 py-3 rounded-xl border border-slate-700 text-slate-400 font-black text-sm hover:bg-slate-800 transition-all">Cancel</button>
+                                        className="flex-1 py-3 rounded-xl border border-slate-200 text-slate-600 font-black text-sm hover:bg-slate-50 transition-all">Cancel</button>
                                     <button type="submit" disabled={saving || !form.student}
-                                        className="flex-1 py-3 rounded-xl bg-indigo-600 text-white font-black text-sm hover:bg-indigo-500 transition-all disabled:opacity-60">
+                                        className="flex-1 py-3 rounded-xl bg-[#00548B] text-white font-black text-sm hover:bg-[#004381] transition-all disabled:opacity-60">
                                         {saving ? "Saving..." : editId ? "Save Changes" : "Add Record"}
                                     </button>
                                 </div>

@@ -153,29 +153,29 @@ const Footer = () => {
           </h3>
           <ul className="space-y-3 text-blue-100/75">
             <li>
-              <a href="#about" className="hover:text-white transition">
+              <Link href="/about" className="hover:text-white transition">
                 About Sangalo Tech
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#internships" className="hover:text-white transition">
+              <Link href="/internships" className="hover:text-white transition">
                 Internship Hub
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#videos" className="hover:text-white transition">
+              <Link href="/video-courses" className="hover:text-white transition">
                 Video Marketplace
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#products" className="hover:text-white transition">
+              <Link href="/portfolio" className="hover:text-white transition">
                 Our Portfolio
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#contact" className="hover:text-white transition">
+              <Link href="/contact" className="hover:text-white transition">
                 Contact Us
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -187,29 +187,29 @@ const Footer = () => {
           </h3>
           <ul className="space-y-3 text-blue-100/75">
             <li>
-              <a href="/courses/full-stack-mern-development" className="hover:text-white transition">
+              <Link href="/courses/full-stack-mern-development" className="hover:text-white transition">
                 MERN Stack Mastery
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/courses/digital-marketing-mastery" className="hover:text-white transition">
+              <Link href="/courses/digital-marketing-mastery" className="hover:text-white transition">
                 Digital Marketing Pro
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/courses/full-stack-laravel-development" className="hover:text-white transition">
+              <Link href="/courses/full-stack-laravel-development" className="hover:text-white transition">
                 PHP Laravel Development
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/courses/wordpress-theme-and-plugin-development" className="hover:text-white transition">
+              <Link href="/courses/wordpress-theme-and-plugin-development" className="hover:text-white transition">
                 WordPress Customization
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/courses/ui-ux-design-training" className="hover:text-white transition">
+              <Link href="/courses/ui-ux-design-training" className="hover:text-white transition">
                 UI/UX Design Course
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -282,7 +282,7 @@ const Footer = () => {
 
       {/* Footer tail */}
       <div className="relative z-10 max-w-[1200px] mx-auto pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-blue-100/60">
-        <p>© 2025 Sangalo Tech Pvt. Ltd. All rights reserved.</p>
+        <p>© 2026 Sangalo Tech Pvt. Ltd. All rights reserved.</p>
         <div className="flex gap-6">
           <Link href="/terms" className="hover:text-white transition-colors duration-300">
             Terms & Conditions
@@ -305,8 +305,8 @@ const Footer = () => {
           <div className="m-3 rounded-2xl bg-white/90 text-[#00548B] shadow-2xl shadow-black/20 border border-white/50 backdrop-blur supports-[backdrop-filter]:bg-white/90">
             <ul className="grid grid-cols-3">
               <li>
-                <a
-                  href="#programs"
+                <Link
+                  href="/courses"
                   className="flex flex-col items-center justify-center gap-1 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 rounded-2xl"
                   aria-label="Go to Training"
                 >
@@ -314,7 +314,7 @@ const Footer = () => {
                   <span className="text-[11px] font-extrabold tracking-wider uppercase">
                     Training
                   </span>
-                </a>
+                </Link>
               </li>
               <li>
                 <Link
@@ -329,8 +329,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a
-                  href="#products"
+                <Link
+                  href="/products"
                   className="flex flex-col items-center justify-center gap-1 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 rounded-2xl"
                   aria-label="Go to Products"
                 >
@@ -338,7 +338,7 @@ const Footer = () => {
                   <span className="text-[11px] font-extrabold tracking-wider uppercase">
                     Products
                   </span>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

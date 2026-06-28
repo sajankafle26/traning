@@ -1,12 +1,39 @@
 'use client';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa6';
-import ShiftPopoverInline from './ShiftPopoverInline';
 import Link from 'next/link';
+
+const DEFAULT_HERO = {
+  badge: 'About Us',
+  title: 'Web Development Company',
+  subtitle: 'And IT Training Institute in Nepal.',
+  description: 'Sangalo Tech Pvt. Ltd. is a prominent web design, software development, and IT training institute located in Lokenthali, Bhaktapur, Nepal.',
+  image: '/about/office.jpg',
+  services: [
+    { icon: '💻', title: 'Software Development', desc: 'Custom Solutions' },
+    { icon: '🎓', title: 'IT Academy', desc: 'Real-World Skills' },
+    { icon: '💼', title: 'Job Placement', desc: '100% Bridge' },
+    { icon: '🚀', title: 'Industrial Learning', desc: 'Active Mentors' },
+  ],
+  ctaPrimary: 'Explore Courses',
+  ctaPrimaryLink: '/courses',
+  ctaSecondary: 'Learn More',
+  ctaSecondaryLink: '/about',
+};
 
 const Hero = () => {
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+  const [hero, setHero] = useState(DEFAULT_HERO);
   const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    fetch('/api/page-content')
+      .then(r => r.json())
+      .then(data => {
+        if (data?.hero) setHero({ ...DEFAULT_HERO, ...data.hero });
+      })
+      .catch(() => {});
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!sectionRef.current) return;
@@ -51,7 +78,7 @@ const Hero = () => {
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-sangalo-900" />
               </span>
               <span className="text-xs font-extrabold tracking-widest uppercase text-sangalo-900">
-                About Us
+                {hero.badge}
               </span>
               <svg className="w-4 h-4 text-sangalo-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -59,80 +86,63 @@ const Hero = () => {
             </div>
 
             <h1 className="text-4xl md:text-3xl lg:text-4xl font-extrabold leading-[1.1] lg:leading-[1.25] tracking-tight text-white">
-                Web Development Company
+                {hero.title}
               <span className="block bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-200 to-indigo-300">
-              And  IT Training  Institute in Nepal.
-              </span>
-              <span className="block text-3xl md:text-3xl lg:text-3xl mt-2 text-slate-300">
-               
+              {hero.subtitle}
               </span>
             </h1>
 
             <p className="text-base md:text-lg lg:text-xl text-slate-300 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              <span className="text-white font-bold">Sangalo Tech Pvt. Ltd.</span> is a prominent web design, software development, and IT training institute located in{' '}
-              <span className="text-white font-bold">Lokenthali, Bhaktapur, Nepal</span>.
+              {hero.description}
             </p>
           </div>
 
           {/* Services Grid */}
           <div className="grid grid-cols-2 gap-3">
-            {[
-              { icon: '💻', title: 'Software Development', desc: 'Custom Solutions' },
-              { icon: '🎓', title: 'IT Academy', desc: 'Real-World Skills' },
-              { icon: '💼', title: 'Job Placement', desc: '100% Bridge' },
-              { icon: '🚀', title: 'Industrial Learning', desc: 'Active Mentors' },
-            ].map((service, i) => (
+            {hero.services.map((service, i) => (
               <div key={i} className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 hover:bg-white/15 transition-all duration-300 cursor-default group">
-               
+                <div className="text-2xl mb-2">{service.icon}</div>
                 <div className="text-sm font-extrabold text-white">{service.title}</div>
                 <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">{service.desc}</div>
               </div>
             ))}
           </div>
 
-         
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
             <Link
-              href="/courses"
+              href={hero.ctaPrimaryLink}
               className="inline-flex items-center gap-2 bg-white text-sangalo-900 px-8 py-4 rounded-2xl font-extrabold hover:bg-slate-100 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5"
             >
-              Explore Courses
+              {hero.ctaPrimary}
               <FaArrowRight className="text-sm" />
             </Link>
             <Link
-              href="/about"
+              href={hero.ctaSecondaryLink}
               className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-white px-8 py-4 rounded-2xl font-extrabold border border-white/20 hover:bg-white/20 transition-all"
             >
-              Learn More
+              {hero.ctaSecondary}
             </Link>
           </div>
-
-          
         </div>
 
         {/* RIGHT: SINGLE IMAGE */}
         <div className="relative hidden lg:block mt-8 lg:mt-0">
-          {/* Background Decorative Elements */}
           <div className="absolute -top-10 -right-10 w-72 h-72 bg-white/5 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-indigo-500/10 rounded-full blur-3xl"></div>
 
-          {/* Main Image Card */}
           <div className="relative group">
-            {/* Rotating Background Block */}
             <div className="absolute inset-6 bg-white/10 rounded-[3rem] rotate-3 group-hover:rotate-6 transition-transform duration-700"></div>
             <div className="absolute inset-6 bg-white/5 rounded-[3rem] -rotate-2 group-hover:-rotate-4 transition-transform duration-700"></div>
 
             <div className="relative z-10 rounded-[2.5rem] overflow-hidden border border-white/20 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)]">
               <img
-                src="/about/office.jpg"
+                src={hero.image}
                 alt="Sangalo Tech Office"
                 className="w-full h-[520px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#004381]/80 via-[#004381]/20 to-transparent"></div>
 
-              {/* Bottom Content Overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-8">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse"></div>
@@ -142,18 +152,12 @@ const Hero = () => {
                 <p className="text-white/70 text-sm font-medium">Where ideas turn into reality</p>
               </div>
 
-              {/* Top Right Live Badge */}
               <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2 shadow-lg">
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
                 <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest">Training Lab</span>
               </div>
             </div>
           </div>
-
-          
-
-          {/* Floating Location Badge */}
-          
         </div>
       </div>
     </section>

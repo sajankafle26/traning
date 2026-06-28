@@ -15,19 +15,19 @@ const TestimonialsAdmin = () => {
                 { name: "placement", label: "Placement", type: "text" },
             ]}
             renderItem={(item, onDelete, onEdit) => (
-                <div key={item._id} className="bg-slate-900/40 border border-slate-800 rounded-[2rem] p-6 relative group">
+                <div key={item._id} className="bg-white border border-slate-200 rounded-[2rem] p-6 relative group">
                     <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button onClick={() => onEdit(item)} className="text-indigo-400 font-bold text-xs">Edit</button>
-                        <button onClick={() => onDelete(item._id)} className="text-red-500 font-bold text-xs">Delete</button>
+                        <button onClick={() => onEdit(item)} className="text-indigo-600 font-bold text-xs">Edit</button>
+                        <button onClick={() => onDelete(item._id)} className="text-red-600 font-bold text-xs">Delete</button>
                     </div>
                     <div className="flex items-center gap-4 mb-4">
                         <img src={item.image} className="w-12 h-12 rounded-full object-cover" />
                         <div>
-                            <h3 className="text-white font-bold">{item.name}</h3>
-                            <p className="text-slate-500 text-xs">{item.course}</p>
+                            <h3 className="text-slate-900 font-bold">{item.name}</h3>
+                            <p className="text-slate-400 text-xs">{item.course}</p>
                         </div>
                     </div>
-                    <p className="text-slate-300 text-sm italic">"{item.quote}"</p>
+                    <p className="text-slate-600 text-sm italic">"{item.quote}"</p>
                 </div>
             )}
         />

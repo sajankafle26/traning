@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Source_Sans_3, Ubuntu } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { Providers } from "@/components/Providers";
 import StyledJsxRegistry from "@/components/StyledJsxRegistry";
 import { GoogleAnalytics } from '@next/third-parties/google'
+import ClientLayout from "@/components/ClientLayout";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://sangalotech.com.np"),
   title: {
-    default: "Top IT Institutes & Job‑Ready Programs in Nepal | Sangalo Tech",
+    default: "Best Web Development Company & IT Training Institute in Nepal.",
     template: "%s | Sangalo Tech",
   },
   description: "Sangalo Tech offers premier IT training in Nepal, specializing in UI UX Design, Full‑stack development, MERN Stack, and more. Join our job-ready programs today.",
@@ -87,9 +87,7 @@ export default function RootLayout({
       <body className={`${sourceSans.variable} ${ubuntu.variable} ${geistSans.variable} ${geistMono.variable}`} >
         <StyledJsxRegistry>
           <Providers>
-            <Navbar />
-            {children}
-            <Footer />
+            <ClientLayout>{children}</ClientLayout>
           </Providers>
         </StyledJsxRegistry>
       </body>

@@ -41,30 +41,30 @@ const EnrollmentsAdmin = () => {
                 { name: "status", label: "Status", type: "select", options: ["Pending", "Contacted", "Confirmed", "Cancelled"] },
             ]}
             renderItem={(item, onDelete, onEdit) => (
-                <div key={item._id} className="bg-slate-900/40 border border-slate-800 rounded-[2rem] p-6 relative group">
+                <div key={item._id} className="bg-white border border-slate-200 rounded-[2rem] p-6 relative group">
                     <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button onClick={() => handleAddStudent(item)} className="text-emerald-400 font-black text-[10px] uppercase border border-emerald-500/30 px-2 py-1 rounded bg-emerald-500/10 hover:bg-emerald-500/20 mr-2">Add to Institute</button>
-                        <button onClick={() => onEdit(item)} className="text-indigo-400 font-bold text-xs uppercase mt-0.5">Edit</button>
-                        <button onClick={() => onDelete(item._id)} className="text-red-500 font-bold text-xs uppercase mt-0.5">Delete</button>
+                        <button onClick={() => handleAddStudent(item)} className="text-emerald-600 font-black text-[10px] uppercase border border-emerald-200 px-2 py-1 rounded bg-emerald-50 hover:bg-emerald-100 mr-2">Add to Institute</button>
+                        <button onClick={() => onEdit(item)} className="text-indigo-600 font-bold text-xs uppercase mt-0.5">Edit</button>
+                        <button onClick={() => onDelete(item._id)} className="text-red-600 font-bold text-xs uppercase mt-0.5">Delete</button>
                     </div>
                     <div className="mb-4 pr-32">
-                        <h3 className="text-white font-bold text-lg">{item.name}</h3>
-                        <p className="text-indigo-400 text-sm font-bold">{item.courseTitle}</p>
+                        <h3 className="text-slate-900 font-bold text-lg">{item.name}</h3>
+                        <p className="text-indigo-600 text-sm font-bold">{item.courseTitle}</p>
                     </div>
                     <div className="grid grid-cols-2 gap-x-4 gap-y-1 mb-4">
-                        <p className="text-slate-400 text-[11px]"><span className="text-slate-600">Email:</span> {item.email}</p>
-                        <p className="text-slate-400 text-[11px]"><span className="text-slate-600">Phone:</span> {item.phone}</p>
-                        <p className="text-slate-400 text-[11px]"><span className="text-slate-600">Address:</span> {item.address}</p>
-                        <p className="text-slate-400 text-[11px]"><span className="text-slate-600">Shift:</span> {item.shift}</p>
-                        <p className="text-slate-400 text-[11px] font-bold"><span className="text-slate-600 font-normal">Method:</span> <span className="uppercase text-indigo-300">{item.paymentMethod}</span></p>
-                        {item.parentName && <p className="text-slate-400 text-[11px] col-span-2"><span className="text-slate-600">Guardian:</span> {item.parentName} ({item.parentPhone})</p>}
+                        <p className="text-slate-500 text-[11px]"><span className="text-slate-600">Email:</span> {item.email}</p>
+                        <p className="text-slate-500 text-[11px]"><span className="text-slate-600">Phone:</span> {item.phone}</p>
+                        <p className="text-slate-500 text-[11px]"><span className="text-slate-600">Address:</span> {item.address}</p>
+                        <p className="text-slate-500 text-[11px]"><span className="text-slate-600">Shift:</span> {item.shift}</p>
+                        <p className="text-slate-500 text-[11px] font-bold"><span className="text-slate-600 font-normal">Method:</span> <span className="uppercase text-indigo-600">{item.paymentMethod}</span></p>
+                        {item.parentName && <p className="text-slate-500 text-[11px] col-span-2"><span className="text-slate-600">Guardian:</span> {item.parentName} ({item.parentPhone})</p>}
                     </div>
-                    <div className="pt-4 border-t border-slate-800 flex justify-between items-center">
-                        <span className="text-[10px] text-slate-500">{new Date(item.createdAt).toLocaleDateString()}</span>
-                        <span className={`text-[10px] font-black uppercase px-2 py-1 rounded ${item.status === 'Confirmed' ? 'bg-green-500/10 text-green-400' :
-                            item.status === 'Pending' ? 'bg-orange-500/10 text-orange-400' :
-                                item.status === 'Cancelled' ? 'bg-red-500/10 text-red-400' :
-                                    'bg-blue-500/10 text-blue-400'
+                    <div className="pt-4 border-t border-slate-100 flex justify-between items-center">
+                        <span className="text-[10px] text-slate-400">{new Date(item.createdAt).toLocaleDateString()}</span>
+                        <span className={`text-[10px] font-black uppercase px-2 py-1 rounded ${item.status === 'Confirmed' ? 'bg-green-500/10 text-green-600' :
+                            item.status === 'Pending' ? 'bg-orange-500/10 text-orange-600' :
+                                item.status === 'Cancelled' ? 'bg-red-500/10 text-red-600' :
+                                    'bg-blue-500/10 text-blue-600'
                             }`}>
                             {item.status}
                         </span>
