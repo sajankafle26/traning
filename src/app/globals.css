@@ -191,3 +191,56 @@ h6 {
   /* slate-900 */
   transform: scale(1.2);
 }
+
+/* Courses Swiper Styles */
+.coursesSwiper .swiper-button-next,
+.coursesSwiper .swiper-button-prev {
+  color: white;
+  background: linear-gradient(135deg, #004381 0%, #00548B 100%);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 67, 129, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.coursesSwiper .swiper-button-next:hover,
+.coursesSwiper .swiper-button-prev:hover {
+  background: linear-gradient(135deg, #00548B 0%, #004381 100%);
+  transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(0, 67, 129, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.coursesSwiper .swiper-button-next::after,
+.coursesSwiper .swiper-button-prev::after {
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.coursesSwiper .swiper-button-next {
+  right: 20px;
+}
+
+.coursesSwiper .swiper-button-prev {
+  left: 20px;
+}
+
+.coursesSwiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #d9eaff;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.coursesSwiper .swiper-pagination-bullet-active {
+  background: #004381;
+  width: 30px;
+  border-radius: 5px;
+}
+
+.coursesSwiper .swiper-pagination {
+  bottom: -10px !important;
+}

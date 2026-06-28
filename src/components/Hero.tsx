@@ -1,23 +1,10 @@
 'use client';
-import React, { useState, useRef, useEffect } from 'react';
-import { Course } from '@/types';
+import React, { useState, useRef } from 'react';
 import { FaArrowRight } from 'react-icons/fa6';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectCards, Pagination } from 'swiper/modules';
-
-import 'swiper/css';
-import 'swiper/css/effect-cards';
-import 'swiper/css/pagination';
 import ShiftPopoverInline from './ShiftPopoverInline';
-import { slugify } from '@/utils/slug';
 import Link from 'next/link';
 
-interface HeroProps {
-  initialCourses?: Course[];
-  onCourseSelect?: (course: Course) => void;
-}
-
-const Hero = ({ initialCourses = [], onCourseSelect }: HeroProps) => {
+const Hero = () => {
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -29,60 +16,13 @@ const Hero = ({ initialCourses = [], onCourseSelect }: HeroProps) => {
     setMousePos({ x, y });
   };
 
-  const [courses, setCourses] = useState<any[]>([]);
-
-  useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const data = await import("@/services/apiService").then(m => m.apiService.getCourses());
-        const formatted = data.map(c => ({
-          title: c.title,
-          duration: c.duration,
-          price: `Rs. ${c.price.toLocaleString()}`,
-          slug: c.slug,
-          desc: c.description,
-          img: c.image || 'https://broadwayinfosys.com/uploads/card/1770120336_69237.png'
-        }));
-        setCourses(formatted.length ? formatted : [
-          {
-            title: 'UI/UX Design',
-            duration: '1 Month',
-            price: 'Rs. 8,000',
-            slug: slugify('UI/UX Design Training'),
-            desc: 'Learn user interface and user experience design principles for web and mobile apps.',
-            img: 'ui-ux.png',
-          },
-          {
-            title: 'Web Design',
-            duration: '1 Month',
-            price: 'Rs. 8,000',
-            slug: slugify('Web Design Training'),
-            desc: 'Master HTML, CSS, and modern web design tools to create stunning websites.',
-            img: 'web-design-training.png',
-          },
-          {
-            title: 'MERN Stack',
-            duration: '2 Months',
-            price: 'Rs. 16,000',
-            slug: slugify('MERN Stack Training'),
-            desc: 'Learn full-stack web development with React, Node.js, and MongoDB.',
-            img: 'mern.jpg',
-          },
-        ]);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchCourses();
-  }, []);
-
   return (
     <section
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       style={{ '--mx': `${mousePos.x}%`, '--my': `${mousePos.y}%` } as React.CSSProperties}
-      className="relative pt-2 pb-20 md:pt-8 md:pb-2 px-6 border-b border-white/10">
-      {/* Premium Background Background */}
+      className="relative pt-16 pb-20 md:pt-24 md:pb-28 px-6 border-b border-white/10">
+      {/* Premium Background */}
       <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
         <div className="absolute inset-0" style={{ backgroundColor: '#004381' }}></div>
         <div className="absolute inset-0 opacity-60">
@@ -99,245 +39,121 @@ const Hero = ({ initialCourses = [], onCourseSelect }: HeroProps) => {
         ></div>
       </div>
 
-      <div className="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-8 lg:gap-16 relative items-center">
+      <div className="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 relative items-center">
         {/* LEFT: TEXT */}
-        <div className="lg:col-span-7 space-y-8 lg:space-y-12 text-center lg:text-left pt-10 lg:pt-0">
+        <div className="space-y-8 lg:space-y-10 text-center lg:text-left pt-10 lg:pt-0">
           {/* Top badge + Title + Subhead */}
           <div className="space-y-6">
-            <div
-              className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md  px-5 py-2.5 rounded-full border border-white shadow-lg mx-auto lg:mx-0"
-            >
+            {/* Animated Badge */}
+            <div className="inline-flex items-center gap-3 bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full border border-white shadow-lg mx-auto lg:mx-0 hover:shadow-xl transition-shadow duration-300">
               <span className="relative flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sangalo-900 opacity-75" />
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-sangalo-900" />
               </span>
               <span className="text-xs font-extrabold tracking-widest uppercase text-sangalo-900">
-                Admission Open 2026
+                About Us
               </span>
+              <svg className="w-4 h-4 text-sangalo-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </div>
 
-            <h1
-              className="text-4xl md:text-5xl lg:text-6xl  font-extrabold leading-[1.1] lg:leading-[0.95] tracking-tight text-white"
-            >
-              Job‑Ready Program
-              <span
-                className="block lg:inline bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-indigo-300 lg:ps-4"
-              >
-                Internship Granted.
+            <h1 className="text-4xl md:text-3xl lg:text-4xl font-extrabold leading-[1.1] lg:leading-[1.25] tracking-tight text-white">
+                Web Development Company
+              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-200 to-indigo-300">
+              And  IT Training  Institute in Nepal.
+              </span>
+              <span className="block text-3xl md:text-3xl lg:text-3xl mt-2 text-slate-300">
+               
               </span>
             </h1>
 
-            <p className="text-base md:text-xl lg:text-xl text-slate-300 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              Our home‑based office model significantly reduces operational overhead,
-              allowing us to offer industry‑grade training at a more affordable fee.
+            <p className="text-base md:text-lg lg:text-xl text-slate-300 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              <span className="text-white font-bold">Sangalo Tech Pvt. Ltd.</span> is a prominent web design, software development, and IT training institute located in{' '}
+              <span className="text-white font-bold">Lokenthali, Bhaktapur, Nepal</span>.
             </p>
           </div>
 
-          {/* Modules & Duration */}
-          <div className="space-y-4">
-           
-
-            <ul className="flex flex-wrap gap-2 justify-center lg:justify-start">
-              {[
-                { title: 'UI/UX', duration: '1 month' },
-                { title: 'Web Design', duration: '1 month' },
-                { title: 'MERN', duration: '2 month' },
-                { title: 'Internship', duration: '2 mo' },
-              ].map((m, i) => {
-                const chip = (
-                  <li
-                    key={i}
-                    className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 lg:px-3 lg:py-2 shadow-sm"
-                  >
-                    <span className="inline-flex h-1.5 w-1.5 rounded-full bg-slate-900" />
-                    <span className="text-xs lg:text-sm font-bold text-slate-900">{m.title}</span>
-                    <span className="text-[9px] lg:text-[11px] text-slate-500">• {m.duration}</span>
-                  </li>
-                );
-
-                if (m.title !== 'Internship') return chip;
-
-                // Wrap only the Internship chip with the popover
-                return (
-                  <ShiftPopoverInline
-                    key={i}
-                    items={[
-                      {
-                        id: 'morning',
-                        title: 'Morning Shift',
-                        time: '6:00 AM – 10:00 AM',
-                        notes: ['Suitable for Student before collage ', 'Hybrid option'],
-                      },
-                      {
-                        id: 'evening',
-                        title: 'Day Shift',
-                        time: '10:00 AM – 3:00 PM',
-                        notes: ['Suitable for Student After Day collage ', 'Hybrid option'],
-                      },
-                      {
-                        id: 'night',
-                        title: 'Evening Shift',
-                        time: '3:00 PM – 8:00 PM',
-                        notes: ['Suitable for Student After Day collage ', 'Online/Hybrid option'],
-                      },
-                    ]}
-                    side="top-right"
-                  >
-                    {/* Make the Internship chip look clickable */}
-                    <li className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-2.5 py-1.5 lg:px-3 lg:py-2 shadow-sm lg:hover:bg-slate-50 lg:cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900/30">
-                      <span className="inline-flex h-1.5 w-1.5 rounded-full bg-slate-900" />
-                      <span className="text-xs lg:text-sm font-bold text-slate-900">Internship</span>
-                      <span className="text-[9px] lg:text-[11px] text-slate-500">• 2 mo</span>
-                      <svg
-                        width="12"
-                        height="12"
-                        viewBox="0 0 24 24"
-                        className="ml-1 text-slate-500 hidden lg:block"
-                        fill="none"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M6 9l6 6 6-6"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </li>
-                  </ShiftPopoverInline>
-                );
-              })}
-            </ul>
-            
-            {/* Mobile Internship Details Div */}
-            <div className="lg:hidden mt-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-5 text-left animate-in fade-in slide-in-from-top-4 duration-500">
-              <h4 className="text-white font-bold mb-4 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-indigo-400"></span>
-                Internship Shifts & Details
-              </h4>
-              <div className="grid gap-4">
-                {[
-                  {
-                    title: 'Morning Shift',
-                    time: '6:00 AM – 10:00 AM',
-                    notes: 'Hybrid option',
-                  },
-                  {
-                    title: 'Day Shift',
-                    time: '10:00 AM – 3:00 PM',
-                    notes: 'Hybrid option',
-                  },
-                  {
-                    title: 'Evening Shift',
-                    time: '3:00 PM – 8:00 PM',
-                    notes: 'Online/Hybrid option',
-                  },
-                ].map((s, idx) => (
-                  <div key={idx} className="bg-white/5 rounded-xl p-3 border border-white/10">
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="text-indigo-300 text-xs font-bold uppercase tracking-wider">{s.title}</span>
-                      <span className="text-white/60 text-[10px]">{s.time}</span>
-                    </div>
-                    <p className="text-slate-300 text-[11px] leading-relaxed">
-                      {s.notes}
-                    </p>
-                  </div>
-                ))}
+          {/* Services Grid */}
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { icon: '💻', title: 'Software Development', desc: 'Custom Solutions' },
+              { icon: '🎓', title: 'IT Academy', desc: 'Real-World Skills' },
+              { icon: '💼', title: 'Job Placement', desc: '100% Bridge' },
+              { icon: '🚀', title: 'Industrial Learning', desc: 'Active Mentors' },
+            ].map((service, i) => (
+              <div key={i} className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 hover:bg-white/15 transition-all duration-300 cursor-default group">
+               
+                <div className="text-sm font-extrabold text-white">{service.title}</div>
+                <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">{service.desc}</div>
               </div>
-            </div>
+            ))}
           </div>
 
-          {/* TRUST ROW with ShiftAccordion on the RIGHT (requested) */}
-          <div className="pt-8 lg:pt-10 border-t border-slate-200/50">
-            <div className="flex flex-col sm:flex-row sm:items-start gap-6 lg:gap-8">
-              {/* Left: Avatars + text */}
-              <div className="flex items-center gap-4 lg:gap-6 flex-1 justify-center lg:justify-start">
-                <div className="flex -space-x-3 lg:-space-x-4">
-                  {[1, 2, 3, 4].map((i) => (
-                    <img
-                      key={i}
-                      src={`https://i.pravatar.cc/100?u=grad-${i}`}
-                      className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-4 border-white shadow-lg"
-                      alt=""
-                    />
-                  ))}
-                  <div
-                    className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-slate-900 text-white  flex items-center justify-center text-[8px] lg:text-[10px] font-black border-4 border-white shadow-lg"
-                  >
-                    +5k
-                  </div>
-                </div>
-                <p className="text-[12px] lg:text-sm font-bold text-slate-400 text-left">
-                  Trusted by <span className="text-white">5k+ Students</span> across Nepal
-                </p>
-              </div>
-            </div>
+         
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+            <Link
+              href="/courses"
+              className="inline-flex items-center gap-2 bg-white text-sangalo-900 px-8 py-4 rounded-2xl font-extrabold hover:bg-slate-100 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5"
+            >
+              Explore Courses
+              <FaArrowRight className="text-sm" />
+            </Link>
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-white px-8 py-4 rounded-2xl font-extrabold border border-white/20 hover:bg-white/20 transition-all"
+            >
+              Learn More
+            </Link>
           </div>
+
+          
         </div>
 
-        {/* RIGHT: SWIPER */}
-        <div className="lg:col-span-5 relative hidden lg:block mt-8 lg:mt-0">
-          <Swiper
-            modules={[Autoplay, EffectCards, Pagination]}
-            effect="cards"
-            grabCursor
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
-            pagination={{ clickable: true }}
-            className="heroSwiper my-4 lg:my-6 w-full max-w-[340px] md:max-w-[420px] mx-auto overflow-visible shadow-2xl shadow-sangalo-900/10"
-          >
-            {courses.map((course, i) => (
-              <SwiperSlide key={i}>
-                <div
-                  className="bg-white rounded-[2rem] p-5 border border-slate-200  shadow-[0_12px_30px_rgba(15,23,42,0.06)] flex flex-col cursor-pointer group transition-all duration-400 ease-out hover:-translate-y-1.5 hover:shadow-[0_24px_60px_rgba(15,23,42,0.10)]"
-                >
-                  <div className="relative h-64 rounded-3xl overflow-hidden mb-6">
-                    <img
-                      src={course.img}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                      alt={course.title}
-                      onError={(e) => {
-                        // Fallback to placeholder if image fails to load
-                        const target = e.target as HTMLImageElement;
-                        target.onerror = null; // Prevent infinite loop
-                        target.src = 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
-                        console.error(`Failed to load image for course: ${course.title}`, course.img);
-                      }}
-                      loading="lazy"
-                    />
-                    <div
-                      className="absolute top-4 right-4 bg-white/90 backdrop-blur  px-3 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase text-slate-900 ring-1 ring-slate-200"
-                    >
-                      {course.duration}
-                    </div>
-                  </div>
-                  <Link href={`/courses/${course.slug}`} className="flex flex-col flex-1">
-                    <h3 className="text-[22px] leading-7 font-extrabold text-slate-900 mb-2">
-                      {course.title}
-                    </h3>
-                    <div
-                      className="text-sm text-slate-500 font-medium mb-8 line-clamp-2"
-                      dangerouslySetInnerHTML={{ __html: course.desc }}
-                    />
+        {/* RIGHT: SINGLE IMAGE */}
+        <div className="relative hidden lg:block mt-8 lg:mt-0">
+          {/* Background Decorative Elements */}
+          <div className="absolute -top-10 -right-10 w-72 h-72 bg-white/5 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-indigo-500/10 rounded-full blur-3xl"></div>
 
-                    <div className="mt-auto flex items-center justify-between">
-                      <div className="flex flex-col">
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Fee Starting From</span>
-                        <span className="text-2xl font-extrabold text-slate-900">
-                          {course.price}
-                        </span>
-                      </div>
-                      <div
-                        className="w-11 h-11 rounded-2xl flex items-center justify-center  bg-slate-50 text-slate-900 ring-1 ring-slate-200 transition-all duration-300   group-hover:bg-slate-900 group-hover:text-white group-hover:ring-slate-900/0"
-                      >
-                        <FaArrowRight />
-                      </div>
-                    </div>
-                  </Link>
+          {/* Main Image Card */}
+          <div className="relative group">
+            {/* Rotating Background Block */}
+            <div className="absolute inset-6 bg-white/10 rounded-[3rem] rotate-3 group-hover:rotate-6 transition-transform duration-700"></div>
+            <div className="absolute inset-6 bg-white/5 rounded-[3rem] -rotate-2 group-hover:-rotate-4 transition-transform duration-700"></div>
+
+            <div className="relative z-10 rounded-[2.5rem] overflow-hidden border border-white/20 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)]">
+              <img
+                src="/about/office.jpg"
+                alt="Sangalo Tech Office"
+                className="w-full h-[520px] object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#004381]/80 via-[#004381]/20 to-transparent"></div>
+
+              {/* Bottom Content Overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse"></div>
+                  <span className="text-white/80 text-xs font-bold uppercase tracking-widest">Working Now</span>
                 </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                <h3 className="text-white text-2xl font-extrabold mb-2">Our Development Hub</h3>
+                <p className="text-white/70 text-sm font-medium">Where ideas turn into reality</p>
+              </div>
+
+              {/* Top Right Live Badge */}
+              <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2 shadow-lg">
+                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest">Training Lab</span>
+              </div>
+            </div>
+          </div>
+
+          
+
+          {/* Floating Location Badge */}
+          
         </div>
       </div>
     </section>

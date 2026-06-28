@@ -10,6 +10,7 @@ import SuccessGallery from '@/components/SuccessGallery'
 import TechStack from '@/components/TechStack'
 import Testimonials from '@/components/Testimonials'
 import TrustedBy from '@/components/TrustedBy'
+import TrustedCompanies from '@/components/TrustedCompanies'
 import UpcomingBatches from '@/components/UpcomingBatches'
 import VideoMarketplace from '@/components/VideoMarketplace'
 import WhyJoin from '@/components/WhyJoin'
@@ -21,18 +22,20 @@ function page() {
   return (
     <>
       <Hero />
-      <UpcomingBatches />
+      <TrustedCompanies />
+      
       <Programs />
      
-      <About />
+      {/* <About /> */}
 
       {/* <WhyJoin /> */}
-       <GSAPShowcase />
-      <VideoMarketplace />
+       {/* <GSAPShowcase /> */}
+      {/* <VideoMarketplace /> */}
       {/* <InternshipHub /> */}
+      <UpcomingBatches />
       <SuccessGallery />
       {/* <TechStack /> */}
-      <Products />
+      {/* <Products /> */}
       <Portfolio />
       <Testimonials />
       <Blog />

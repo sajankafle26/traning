@@ -187,6 +187,7 @@ export interface ServiceItem {
   slug: string;
   description: string;
   icon: string;
+  image?: string;
 }
 
 export interface TechStackItem {
