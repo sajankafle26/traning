@@ -4,9 +4,10 @@ import Link from 'next/link';
 import { SERVICES } from '@/constants';
 import { apiService } from '@/services/apiService';
 import { ServiceItem } from '@/types';
+import FAQSection from '@/components/FAQSection';
 import {
   FaArrowRight, FaRocket, FaLaptopCode, FaMobileAlt, FaChartLine, FaPenNib,
-  FaShoppingCart, FaCloud, FaCode, FaSearch, FaCog
+  FaShoppingCart, FaCloud, FaCode, FaSearch, FaCog, FaCheckCircle, FaHandshake, FaCogs
 } from 'react-icons/fa';
 
 const iconComponents: Record<string, any> = {
@@ -33,6 +34,29 @@ const PROCESS_STEPS = [
   { icon: FaCog, number: '03', title: 'Deploy & Support', description: 'Seamless deployment with ongoing maintenance, updates, and 24/7 technical support.' },
 ];
 
+const SERVICE_FAQS = [
+  {
+    question: "What web development services does Sangalo Tech offer?",
+    answer: "Sangalo Tech offers comprehensive web development services including custom web application development (React, Next.js, Node.js), mobile app development (React Native, Flutter), e-commerce solutions, UI/UX design, SEO & digital marketing, and cloud & DevOps services. We serve businesses across Nepal and internationally.",
+  },
+  {
+    question: "How much does web development cost in Nepal?",
+    answer: "Web development costs in Nepal vary based on project complexity. At Sangalo Tech, basic websites start from Rs. 25,000, while custom web applications range from Rs. 100,000 to Rs. 500,000+. E-commerce platforms and enterprise solutions are quoted based on specific requirements. Contact us for a free consultation and custom quote.",
+  },
+  {
+    question: "Does Sangalo Tech provide ongoing support after project delivery?",
+    answer: "Yes, we provide 24/7 technical support and maintenance after project delivery. Our support packages include bug fixes, security updates, performance optimization, feature enhancements, and server monitoring. We offer flexible monthly and annual support plans.",
+  },
+  {
+    question: "What technologies does Sangalo Tech use for web development?",
+    answer: "We use modern, industry-standard technologies including React, Next.js, Node.js, TypeScript, MongoDB, Python, Django, Laravel, WordPress, React Native, Flutter, AWS, Docker, and Tailwind CSS. We choose the best technology stack based on your project requirements.",
+  },
+  {
+    question: "How long does it take to develop a website?",
+    answer: "Project timelines depend on complexity. A basic business website takes 2-4 weeks, a custom web application takes 2-4 months, and an enterprise solution takes 4-8 months. We follow agile methodology with regular milestone updates so you always know the progress.",
+  },
+];
+
 export default function ServicesPage() {
   const [services, setServices] = useState<ServiceItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -51,8 +75,27 @@ export default function ServicesPage() {
     fetchServices();
   }, []);
 
+  const serviceListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Web Development & IT Solutions by Sangalo Tech Nepal",
+    description: "Professional web development, mobile app, UI/UX, SEO, e-commerce, and cloud DevOps services by Sangalo Tech Pvt. Ltd. in Nepal.",
+    numberOfItems: services.length,
+    itemListElement: services.map((service, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `https://sangalotech.com.np/services/${service.slug}`,
+      name: service.title,
+    })),
+  };
+
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceListJsonLd) }}
+      />
+
       {/* Hero Section */}
       <section className="relative py-24 md:py-32 px-6 overflow-hidden" style={{ backgroundColor: '#00548B' }}>
         <div className="absolute inset-0 opacity-30">
@@ -65,19 +108,43 @@ export default function ServicesPage() {
         <div className="max-w-[1400px] mx-auto relative z-10 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-white px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest border border-white/15 mb-8">
             <FaRocket className="text-xs" />
-            Our Services
+            Web Development & IT Solutions
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[0.9] max-w-5xl mx-auto">
-            Web Development
+            Professional
             <span className="block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-200 to-indigo-200">
-              & IT Solutions
+              Web Development Services
             </span>
           </h1>
           <p className="mt-8 text-white/70 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            From concept to deployment, we provide end-to-end digital solutions tailored to your business needs.
+            From concept to deployment, we provide end-to-end digital solutions
+            tailored to your business needs in Nepal and beyond.
           </p>
+
+          {/* Quick Stats */}
+          <div className="flex flex-wrap justify-center gap-6 mt-12">
+            {[
+              { icon: FaCheckCircle, text: "100+ Projects Delivered" },
+              { icon: FaHandshake, text: "50+ Happy Clients" },
+              { icon: FaCogs, text: "6+ Core Services" },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-2 text-white/80 text-sm font-medium">
+                <item.icon className="text-white/60" />
+                {item.text}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
+
+      {/* Breadcrumb Bar */}
+      <div className="bg-slate-50 border-b border-slate-100 px-6 py-3">
+        <div className="max-w-[1400px] mx-auto flex items-center gap-2 text-sm text-slate-500">
+          <Link href="/" className="hover:text-[#00548B] transition-colors no-underline text-slate-500">Home</Link>
+          <span>/</span>
+          <span className="text-slate-900 font-semibold">Services</span>
+        </div>
+      </div>
 
       {/* Services Grid */}
       <section className="py-24 px-6 bg-white">
@@ -90,7 +157,7 @@ export default function ServicesPage() {
               Our <span className="text-[#00548B]">Services</span>
             </h2>
             <p className="text-slate-500 max-w-2xl mx-auto">
-              We blend cutting-edge technology with visionary design to build digital products that inspire and deliver results.
+              We blend cutting-edge technology with visionary design to build digital products that inspire and deliver results for businesses in Nepal.
             </p>
           </div>
 
@@ -111,13 +178,14 @@ export default function ServicesPage() {
                     href={`/services/${service.slug}`}
                     className="group block"
                   >
-                    <div className="relative h-full rounded-3xl bg-white border border-slate-100 overflow-hidden hover:shadow-2xl hover:border-[#00548B]/20 transition-all duration-500">
+                    <article className="relative h-full rounded-3xl bg-white border border-slate-100 overflow-hidden hover:shadow-2xl hover:border-[#00548B]/20 transition-all duration-500">
                       {/* Image */}
                       <div className="relative aspect-[16/10] overflow-hidden">
                         <img
                           src={image}
-                          alt={service.title}
+                          alt={`${service.title} by Sangalo Tech Nepal`}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
@@ -149,7 +217,7 @@ export default function ServicesPage() {
                           <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
                         </div>
                       </div>
-                    </div>
+                    </article>
                   </Link>
                 );
               })}
@@ -217,6 +285,13 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <FAQSection
+        title="Frequently Asked Questions"
+        subtitle="Get answers to common questions about our web development services"
+        faqs={SERVICE_FAQS}
+      />
+
       {/* CTA Section */}
       <section className="py-24 px-6" style={{ backgroundColor: '#00548B' }}>
         <div className="max-w-[1400px] mx-auto text-center relative z-10">
@@ -225,9 +300,10 @@ export default function ServicesPage() {
           </h2>
           <p className="text-white/70 text-lg max-w-xl mx-auto mb-10">
             Let&apos;s turn your ambitious ideas into reality with our premium digital solutions.
+            Get a free consultation today.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/#contact" className="inline-flex items-center gap-3 bg-white text-[#00548B] px-10 py-5 rounded-2xl font-bold text-sm hover:shadow-2xl hover:-translate-y-1 transition-all no-underline">
+            <Link href="/contact" className="inline-flex items-center gap-3 bg-white text-[#00548B] px-10 py-5 rounded-2xl font-bold text-sm hover:shadow-2xl hover:-translate-y-1 transition-all no-underline">
               Start Your Project <FaArrowRight />
             </Link>
             <Link href="/courses" className="inline-flex items-center gap-3 border-2 border-white/30 text-white px-10 py-5 rounded-2xl font-bold text-sm hover:bg-white/10 transition-all no-underline">

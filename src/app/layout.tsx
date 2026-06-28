@@ -5,6 +5,7 @@ import { Providers } from "@/components/Providers";
 import StyledJsxRegistry from "@/components/StyledJsxRegistry";
 import { GoogleAnalytics } from '@next/third-parties/google'
 import ClientLayout from "@/components/ClientLayout";
+import JsonLd, { ORGANIZATION_JSONLD, WEBSITE_JSONLD, LOCAL_BUSINESS_JSONLD } from "@/components/JsonLd";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,18 +20,26 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://sangalotech.com.np"),
   title: {
-    default: "Best Web Development Company & IT Training Institute in Nepal.",
+    default: "Sangalo Tech | Best Web Development Company & IT Training Institute in Nepal",
     template: "%s | Sangalo Tech",
   },
-  description: "Sangalo Tech offers premier IT training in Nepal, specializing in UI UX Design, Full‑stack development, MERN Stack, and more. Join our job-ready programs today.",
-  keywords: ["IT Institute Nepal", "Web Development Training Nepal", "UI UX Design Course Nepal", "MERN Stack Course Nepal", "Sangalo Tech", "Job Ready Programs"],
-  authors: [{ name: "Sangalo Tech" }],
+  description: "Sangalo Tech Pvt. Ltd. is Nepal's leading web development company and IT training institute. We offer MERN Stack, React, Next.js, Python Django, UI/UX Design, and Digital Marketing courses. Also providing professional web development, mobile apps, SEO, and cloud DevOps services.",
+  keywords: [
+    "IT institute Nepal", "web development company Nepal", "IT training Nepal", "MERN Stack course Nepal",
+    "React Next.js training Nepal", "UI UX design course Nepal", "digital marketing course Nepal",
+    "Python Django training Nepal", "web development services Nepal", "mobile app development Nepal",
+    "SEO services Nepal", "best IT institute Bhaktapur", "coding bootcamp Nepal", "job ready IT programs Nepal",
+    "Sangalo Tech", "Sajan Kafle"
+  ],
+  authors: [{ name: "Sangalo Tech Pvt. Ltd.", url: "https://sangalotech.com.np" }],
+  creator: "Sangalo Tech Pvt. Ltd.",
+  publisher: "Sangalo Tech Pvt. Ltd.",
   openGraph: {
     title: {
-      default: "Top IT Institutes & Job‑Ready Programs in Nepal | Sangalo Tech",
+      default: "Sangalo Tech | Web Development & IT Training in Nepal",
       template: "%s | Sangalo Tech",
     },
-    description: "Sangalo Tech offers premier IT training in Nepal, specializing in UI UX Design, Full‑stack development, MERN Stack, and more.",
+    description: "Nepal's leading web development company and IT training institute. Professional courses in MERN Stack, React, UI/UX, Digital Marketing and web development services.",
     url: "https://sangalotech.com.np",
     siteName: "Sangalo Tech",
     images: [
@@ -38,7 +47,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Sangalo Tech - Top IT Institute in Nepal",
+        alt: "Sangalo Tech - Best Web Development Company & IT Training Institute in Nepal",
       },
     ],
     locale: "en_US",
@@ -46,19 +55,26 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: {
-      default: "Top IT Institutes & Job‑Ready Programs in Nepal | Sangalo Tech",
-      template: "%s | Sangalo Tech",
-    },
-    description: "Sangalo Tech offers premier IT training in Nepal, specializing in UI UX Design, Full‑stack development, MERN Stack, and more.",
+    title: "Sangalo Tech | Web Development & IT Training in Nepal",
+    description: "Nepal's leading web development company and IT training institute. MERN Stack, React, UI/UX courses and professional web services.",
     images: ["/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   icons: {
     icon: "/logo.png",
+  },
+  alternates: {
+    canonical: "https://sangalotech.com.np",
   },
 };
 
@@ -85,6 +101,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
 
       <body className={`${sourceSans.variable} ${ubuntu.variable} ${geistSans.variable} ${geistMono.variable}`} >
+        <JsonLd data={ORGANIZATION_JSONLD} />
+        <JsonLd data={WEBSITE_JSONLD} />
+        <JsonLd data={LOCAL_BUSINESS_JSONLD} />
         <StyledJsxRegistry>
           <Providers>
             <ClientLayout>{children}</ClientLayout>

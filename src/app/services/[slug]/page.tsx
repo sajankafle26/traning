@@ -4,10 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { apiService } from '@/services/apiService';
 import { ServiceItem } from '@/types';
+import FAQSection from '@/components/FAQSection';
 import {
   FaArrowLeft, FaEnvelope, FaPhone, FaRocket, FaCheckCircle,
   FaLaptopCode, FaMobileAlt, FaChartLine, FaPenNib, FaShoppingCart, FaCloud,
-  FaCog, FaCode, FaSearch, FaHandshake
+  FaCog, FaCode, FaSearch, FaHandshake, FaHome, FaChevronRight
 } from 'react-icons/fa';
 import Link from 'next/link';
 
@@ -28,6 +29,37 @@ const SERVICE_IMAGES: Record<string, string> = {
   'e-commerce-development': 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=1200',
   'cloud-and-devops-services': 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200',
 };
+
+const SERVICE_FAQS: Record<string, Array<{ question: string; answer: string }>> = {
+  'web-app-development': [
+    { question: "How long does it take to build a custom web application?", answer: "Depending on complexity, a custom web application takes 2-4 months from discovery to deployment. We follow agile methodology with 2-week sprints so you can see progress regularly." },
+    { question: "What tech stack do you use for web development?", answer: "We primarily use React, Next.js, Node.js, TypeScript, and MongoDB for modern web applications. We also work with Python/Django, Laravel, and WordPress based on project requirements." },
+    { question: "Do you provide maintenance after launch?", answer: "Yes, we offer ongoing maintenance packages including bug fixes, security patches, performance optimization, and feature enhancements. We have 24/7 support available." },
+  ],
+  'mobile-app-development': [
+    { question: "Should I choose React Native or Flutter?", answer: "Both are excellent cross-platform frameworks. React Native is better if your team knows React, while Flutter offers superior UI consistency. We'll recommend the best fit during our consultation." },
+    { question: "How much does mobile app development cost in Nepal?", answer: "Mobile app development costs in Nepal range from Rs. 150,000 to Rs. 500,000+ depending on features and complexity. Contact us for a free detailed estimate." },
+  ],
+  'seo-and-marketing': [
+    { question: "How long does SEO take to show results?", answer: "SEO is a long-term strategy. You can expect initial improvements in 2-3 months, with significant results in 6-12 months. We focus on sustainable, white-hat techniques." },
+    { question: "Do you manage Google Ads and social media?", answer: "Yes, we manage Google Ads (PPC), Facebook/Instagram ads, and social media marketing campaigns. We create data-driven strategies to maximize your ROI." },
+  ],
+};
+
+const ALL_SERVICE_FAQS = [
+  {
+    question: "What web development services does Sangalo Tech offer?",
+    answer: "Sangalo Tech offers custom web application development, mobile app development, SEO & digital marketing, UI/UX design, e-commerce solutions, and cloud & DevOps services. We serve businesses in Nepal and internationally.",
+  },
+  {
+    question: "How much do web development services cost in Nepal?",
+    answer: "Costs vary by project scope. Basic websites start from Rs. 25,000, custom web apps from Rs. 100,000, and enterprise solutions from Rs. 300,000+. Contact us for a free consultation and custom quote.",
+  },
+  {
+    question: "Does Sangalo Tech provide ongoing support?",
+    answer: "Yes, we provide 24/7 technical support, maintenance, security updates, and feature enhancements. We offer flexible monthly and annual support plans.",
+  },
+];
 
 export default function ServiceDetailPage() {
   const params = useParams();
@@ -86,16 +118,39 @@ export default function ServiceDetailPage() {
 
   const Icon = iconComponents[service.icon || ''] || FaRocket;
   const image = service.image || SERVICE_IMAGES[service.slug] || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200';
+  const faqs = SERVICE_FAQS[slug] || ALL_SERVICE_FAQS;
+
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.description,
+    provider: {
+      "@type": "Organization",
+      name: "Sangalo Tech Pvt. Ltd.",
+      url: "https://sangalotech.com.np",
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "Nepal",
+    },
+    url: `https://sangalotech.com.np/services/${slug}`,
+  };
 
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
             src={image}
-            alt={service.title}
+            alt={`${service.title} by Sangalo Tech Nepal`}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#00548B]/95 via-[#00548B]/85 to-[#00548B]/70" />
@@ -107,13 +162,18 @@ export default function ServiceDetailPage() {
         </div>
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 pt-32 pb-20">
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-12 transition-all font-bold uppercase tracking-[0.15em] text-xs group no-underline"
-          >
-            <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-            Back to Services
-          </Link>
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-2 text-sm mb-12" aria-label="Breadcrumb">
+            <Link href="/" className="flex items-center gap-1 text-white/60 hover:text-white transition-colors no-underline">
+              <FaHome className="text-xs" /> Home
+            </Link>
+            <FaChevronRight className="text-[8px] text-white/40" />
+            <Link href="/services" className="text-white/60 hover:text-white transition-colors no-underline">
+              Services
+            </Link>
+            <FaChevronRight className="text-[8px] text-white/40" />
+            <span className="text-white font-medium">{service.title}</span>
+          </nav>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -125,7 +185,7 @@ export default function ServiceDetailPage() {
                 {service.title}
               </h1>
               <p className="text-lg text-white/80 font-medium leading-relaxed max-w-xl">
-                Elevating your digital presence with world-class {service.title.toLowerCase()} tailored to your unique needs.
+                Elevating your digital presence with world-class {service.title.toLowerCase()} tailored to your unique needs in Nepal.
               </p>
             </div>
 
@@ -161,7 +221,7 @@ export default function ServiceDetailPage() {
 
             {/* Why Choose Us */}
             <div className="bg-gradient-to-br from-[#f8fbff] to-white p-10 rounded-[2.5rem] border border-slate-100 space-y-8">
-              <h3 className="text-2xl font-black text-slate-900 tracking-tight">Why Choose Us?</h3>
+              <h3 className="text-2xl font-black text-slate-900 tracking-tight">Why Choose Sangalo Tech?</h3>
               <div className="grid md:grid-cols-2 gap-6">
                 {[
                   { icon: FaCode, title: "Clean Architecture", desc: "Scalable, maintainable code built for long-term success." },
@@ -202,6 +262,9 @@ export default function ServiceDetailPage() {
                 ))}
               </div>
             </div>
+
+            {/* FAQ */}
+            <FAQSection faqs={faqs} />
           </div>
 
           {/* Right: CTA Sidebar */}
@@ -241,7 +304,7 @@ export default function ServiceDetailPage() {
                   </div>
 
                   <Link
-                    href="/#contact"
+                    href="/contact"
                     className="w-full bg-white text-[#00548B] py-4 rounded-2xl font-bold text-center text-sm hover:shadow-xl hover:-translate-y-1 transition-all block no-underline"
                   >
                     Start Your Project
