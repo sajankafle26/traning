@@ -2,8 +2,17 @@
 User-agent: *
 Allow: /
 
+# Disallow admin & private routes
+Disallow: /adminpanel/
+Disallow: /dashboard/
+Disallow: /student-dashboard/
+Disallow: /studentlogin/
+Disallow: /api/
+Disallow: /checkout
+Disallow: /cart
+
 # Host
-Host: https://www.sangalotech.com
+Host: https://sangalotech.com.np
 
 # Sitemaps
-Sitemap: https://www.sangalotech.com/sitemap.xml
+Sitemap: https://sangalotech.com.np/sitemap.xml
