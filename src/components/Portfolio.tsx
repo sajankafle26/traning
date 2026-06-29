@@ -62,7 +62,7 @@ const Portfolio = () => {
 
   const categories = ["all", ...new Set(projects.map(p => p.category).filter(Boolean))];
   const filteredProjects = activeFilter === "all" ? projects : projects.filter(p => p.category === activeFilter);
-  const displayedProjects = filteredProjects.slice(0, 9);
+  const displayedProjects = filteredProjects;
 
   return (
     <section id="portfolio" className="py-32 px-6 relative overflow-hidden bg-gradient-to-b from-[#f8fbff] via-white to-white">
@@ -77,15 +77,12 @@ const Portfolio = () => {
               Our Portfolio
             </div>
             <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-[0.95]">
-              Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-sangalo-900 to-sangalo-600">Projects</span>
+              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-sangalo-900 to-sangalo-600">Portfolio</span>
             </h2>
             <p className="text-slate-500 font-medium text-lg md:text-xl leading-relaxed">
               Explore our latest digital transformations and high-impact solutions for global clients
             </p>
           </div>
-          <Link href="/portfolio" className="inline-flex items-center gap-3 bg-sangalo-900 text-white px-8 py-4 rounded-2xl font-black text-[11px] uppercase tracking-widest hover:bg-sangalo-800 transition-all shadow-xl shadow-sangalo-900/20">
-            View All Projects <FaArrowRight className="text-sm" />
-          </Link>
         </div>
 
         {/* Filters */}
@@ -199,12 +196,6 @@ const Portfolio = () => {
           </div>
         )}
 
-        {/* CTA */}
-        <div className="text-center pt-8">
-          <Link href="/portfolio" className="inline-flex items-center gap-3 bg-sangalo-900 text-white px-10 py-5 rounded-2xl font-black text-[11px] uppercase tracking-widest hover:bg-sangalo-800 transition-all shadow-xl shadow-sangalo-900/20 hover:shadow-2xl hover:-translate-y-1">
-            Explore Full Portfolio <FaArrowRight className="text-sm" />
-          </Link>
-        </div>
       </div>
     </section>
   );
