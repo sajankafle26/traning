@@ -331,6 +331,9 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
           <Link href="/services" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-base">
             Services
           </Link>
+          <Link href="/products" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-base">
+            Products
+          </Link>
           <Link href="/portfolio" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-base">
             Portfolio
           </Link>
