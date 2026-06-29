@@ -322,22 +322,22 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
 
         {/* Desktop menu */}
         <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-          <Link href="/" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-sm">
+          <Link href="/" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-base">
             Home
           </Link>
-          <Link href="/courses" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-sm">
+          <Link href="/courses" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-base">
             Courses
           </Link>
-          <Link href="/services" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-sm">
+          <Link href="/services" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-base">
             Services
           </Link>
-          <Link href="/portfolio" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-sm">
+          <Link href="/portfolio" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-base">
             Portfolio
           </Link>
-          <Link href="/about" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-sm">
+          <Link href="/about" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-base">
             About
           </Link>
-          <Link href="/contact" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-sm">
+          <Link href="/contact" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-base">
             Contact
           </Link>
         </div>
