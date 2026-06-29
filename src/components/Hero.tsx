@@ -3,23 +3,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FaArrowRight, FaPlay, FaUsers, FaRocket, FaGraduationCap, FaStar, FaLaptopCode, FaCode, FaMobileScreen, FaChartLine } from 'react-icons/fa6';
 import Link from 'next/link';
 
-const DEFAULT_HERO = {
-  badge: 'Nepal\'s Leading Software Company & IT Training Institute',
-  title: 'Software Company & IT Training Institute',
-  subtitle: 'Building Digital Products & Future-Ready Professionals.',
-  description: 'Sangalo Tech Pvt. Ltd. is a full-service web development company and IT training institute in Lokenthali, Bhaktapur, Nepal. We build world-class digital products and train the next generation of IT professionals.',
-  image: '/about/office.jpg',
-};
-
-const SERVICES_PREVIEW = [
-  { icon: FaLaptopCode, title: 'Web App Development', desc: 'React, Next.js, Node.js' },
-  { icon: FaMobileScreen, title: 'Mobile App Development', desc: 'React Native, Flutter' },
-  { icon: FaChartLine, title: 'SEO & Digital Marketing', desc: 'Google Ads, Social Media' },
-  { icon: FaCode, title: 'Custom Software', desc: 'Enterprise Solutions' },
-];
-
 const Hero = () => {
-  const [hero, setHero] = useState(DEFAULT_HERO);
+  const [hero, setHero] = useState<any>(null);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -27,7 +12,7 @@ const Hero = () => {
     fetch('/api/page-content')
       .then(r => r.json())
       .then(data => {
-        if (data?.hero) setHero({ ...DEFAULT_HERO, ...data.hero });
+        if (data?.hero) setHero(data.hero);
       })
       .catch(() => {});
   }, []);
@@ -39,6 +24,30 @@ const Hero = () => {
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setMousePos({ x, y });
   };
+
+  if (!hero) return (
+    <section className="relative pt-20 pb-24 md:pt-28 md:pb-32 px-6 border-b border-white/10 overflow-hidden">
+      <div className="absolute inset-0 -z-10" style={{ backgroundColor: '#004381' }} />
+      <div className="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 relative items-center animate-pulse">
+        <div className="space-y-8 pt-10 lg:pt-0">
+          <div className="h-8 w-64 bg-white/10 rounded-full" />
+          <div className="space-y-4">
+            <div className="h-12 w-full bg-white/10 rounded-2xl" />
+            <div className="h-12 w-3/4 bg-white/10 rounded-2xl" />
+          </div>
+          <div className="h-6 w-full bg-white/10 rounded-xl" />
+          <div className="h-6 w-2/3 bg-white/10 rounded-xl" />
+          <div className="flex gap-4">
+            <div className="h-14 w-48 bg-white/10 rounded-2xl" />
+            <div className="h-14 w-48 bg-white/10 rounded-2xl" />
+          </div>
+        </div>
+        <div className="hidden lg:block">
+          <div className="w-full h-[520px] bg-white/10 rounded-[2.5rem]" />
+        </div>
+      </div>
+    </section>
+  );
 
   return (
     <section

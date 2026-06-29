@@ -14,24 +14,12 @@ interface GalleryItem {
   category: string;
 }
 
-const DEFAULT_DATA: GalleryItem[] = [
-  { _id: "1", type: "image", src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200", thumb: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=600", title: "Tech Conference 2024", category: "Events" },
-  { _id: "2", type: "image", src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200", thumb: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=600", title: "Team Collaboration", category: "Team" },
-  { _id: "3", type: "image", src: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1200", thumb: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=600", title: "Code Workshop", category: "Training" },
-  { _id: "4", type: "image", src: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&q=80&w=1200", thumb: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&q=80&w=600", title: "Modern Workspace", category: "Office" },
-  { _id: "5", type: "image", src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1200", thumb: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=600", title: "Training Session", category: "Training" },
-  { _id: "6", type: "image", src: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&q=80&w=1200", thumb: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&q=80&w=600", title: "Project Showcase", category: "Events" },
-  { _id: "v1", type: "video", src: "https://www.youtube.com/embed/dQw4w9WgXcQ", thumb: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600", title: "MERN Stack Crash Course", category: "Training" },
-  { _id: "v2", type: "video", src: "https://www.youtube.com/embed/dQw4w9WgXcQ", thumb: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=600", title: "Student Success Stories", category: "Success" },
-  { _id: "v3", type: "video", src: "https://www.youtube.com/embed/dQw4w9WgXcQ", thumb: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600", title: "Web Development Tips", category: "Tips" },
-  { _id: "v4", type: "video", src: "https://www.youtube.com/embed/dQw4w9WgXcQ", thumb: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600", title: "Project Demo Day", category: "Events" },
-];
-
 const Gallery = () => {
   const [filter, setFilter] = useState<"all" | "image" | "video">("all");
   const [lightbox, setLightbox] = useState<GalleryItem | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
-  const [items, setItems] = useState<GalleryItem[]>(DEFAULT_DATA);
+  const [items, setItems] = useState<GalleryItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios.get("/api/gallery").then(res => {
@@ -46,7 +34,7 @@ const Gallery = () => {
           category: item.category,
         })));
       }
-    }).catch(() => {});
+    }).catch(() => {}).finally(() => setLoading(false));
   }, []);
 
   const convertToEmbed = (url: string): string => {
@@ -74,6 +62,8 @@ const Gallery = () => {
       setLightbox(filtered[next]);
     }
   };
+
+  if (!loading && items.length === 0) return null;
 
   return (
     <>
@@ -118,6 +108,13 @@ const Gallery = () => {
           </div>
 
           {/* Grid */}
+          {loading ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="aspect-[4/3] bg-slate-100 rounded-2xl animate-pulse" />
+              ))}
+            </div>
+          ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {filtered.map((item) => (
               <div
@@ -170,6 +167,7 @@ const Gallery = () => {
               </div>
             ))}
           </div>
+          )}
         </div>
       </section>
 

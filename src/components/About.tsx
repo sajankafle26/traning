@@ -57,13 +57,8 @@ const TIMELINE = [
   { year: '2024', title: 'Growing Strong', description: 'Now serving 600+ students with expanded course offerings and enterprise solutions.' },
 ];
 
-const DEFAULT_TEAM = [
-  { name: 'Er Sajan Kafle', role: 'CEO & Founder', image: '/team/sajan-kafle.jpg', bio: 'Founder of Sangalo Tech with a passion for bridging the gap between academics and industry through practical IT training and innovative software solutions.', social: { linkedin: '#', twitter: '#', github: '#' } },
-  { name: 'Archana Dhungana', role: 'Project Manager', image: '/team/archana-dhungana.jpg', bio: 'Experienced project manager overseeing client projects and training programs, ensuring seamless delivery and student success.', social: { linkedin: '#', twitter: '#' } },
-];
-
 const About = () => {
-  const [teamMembers, setTeamMembers] = useState(DEFAULT_TEAM);
+  const [teamMembers, setTeamMembers] = useState<any[]>([]);
 
   useEffect(() => {
     axios.get('/api/team').then(res => {
@@ -129,6 +124,7 @@ const About = () => {
       </section>
 
       {/* Our Team */}
+      {teamMembers.length > 0 && (
       <section className="py-24 px-6 bg-white">
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-16 space-y-4">
@@ -196,6 +192,7 @@ const About = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* About Content */}
       <section className="py-24 px-6 bg-white">

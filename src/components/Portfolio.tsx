@@ -36,29 +36,15 @@ const Portfolio = () => {
               tags: Array.isArray(p.tags) ? p.tags : (p.tags?.split(',') || []),
               industry: p.industry || p.category,
             })));
-          } else {
-            setProjects(DEFAULT_PROJECTS);
           }
-        } else {
-          setProjects(DEFAULT_PROJECTS);
         }
       } catch {
-        setProjects(DEFAULT_PROJECTS);
       } finally {
         setLoading(false);
       }
     };
     fetchProjects();
   }, []);
-
-  const DEFAULT_PROJECTS: PortfolioItem[] = [
-    { _id: '1', title: 'Global Touch India', description: 'A comprehensive educational and visa consultancy website for students aiming to study in Australia.', image: '/portfolio/global-touch-india.png', category: 'Consultancy', tags: ['React', 'Next.js', 'Tailwind'], link: 'https://myglobaltouch.in', industry: 'Education' },
-    { _id: '2', title: 'Ramro Sathi', description: 'Construction and architectural firm website showcasing their services and projects.', image: '/portfolio/ramro-sathi.png', category: 'Construction', tags: ['WordPress', 'UI/UX'], industry: 'Construction' },
-    { _id: '3', title: 'Global Touch Education', description: 'Educational consultancy website focusing on IT study abroad programs.', image: '/portfolio/global-touch-education.png', category: 'Education', tags: ['React', 'Node.js'], link: 'https://myglobaltouch.com.au', industry: 'Education' },
-    { _id: '4', title: 'Micro TV HD', description: 'Dynamic news portal and video streaming website.', image: '/portfolio/micro-tv-hd.png', category: 'News Portal', tags: ['Next.js', 'Video'], industry: 'Media' },
-    { _id: '5', title: 'Mahila Laghubitta', description: 'Microfinance institutional website providing financial services.', image: '/portfolio/mahila-laghubitta.png', category: 'Finance', tags: ['React', 'Laravel'], industry: 'Finance' },
-    { _id: '6', title: 'Rupantaran Post', description: 'Prominent Nepali news and media portal.', image: '/portfolio/rupantaran-post.png', category: 'News Portal', tags: ['WordPress', 'PHP'], industry: 'Media' },
-  ];
 
   const categories = ["all", ...new Set(projects.map(p => p.category).filter(Boolean))];
   const filteredProjects = activeFilter === "all" ? projects : projects.filter(p => p.category === activeFilter);
@@ -86,6 +72,7 @@ const Portfolio = () => {
         </div>
 
         {/* Filters */}
+        {!loading && projects.length > 0 && (
         <div className="flex flex-wrap gap-3">
           {categories.slice(0, 8).map((cat) => (
             <button
@@ -99,6 +86,7 @@ const Portfolio = () => {
             </button>
           ))}
         </div>
+        )}
 
         {/* Grid */}
         {loading ? (
@@ -113,7 +101,7 @@ const Portfolio = () => {
               </div>
             ))}
           </div>
-        ) : (
+        ) : projects.length === 0 ? null : (
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {displayedProjects.map((project, index) => (
               <div key={project._id} className="group bg-white rounded-3xl overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-3">
