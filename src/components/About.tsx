@@ -100,7 +100,7 @@ const About = () => {
             About Sangalo Tech
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[0.9] max-w-5xl mx-auto">
-            Web Development Company
+            Software Company
             <span className="block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-200 to-indigo-200">
               & IT Training Institute
             </span>
@@ -224,7 +224,7 @@ const About = () => {
                     <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Bhaktapur, Nepal</div>
                   </div>
                 </div>
-                <p className="text-xs text-slate-500 leading-relaxed">Web Development & IT Training in Nepal.</p>
+                <p className="text-xs text-slate-500 leading-relaxed">Software Development & IT Training in Nepal.</p>
               </div>
             </div>
 
@@ -236,7 +236,7 @@ const About = () => {
               </div>
 
               <h2 className="text-3xl md:text-4xl font-black text-slate-900 leading-[0.95] tracking-tight">
-                Web Development
+                Software Company
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00548B] to-[#00548B]/60"> & IT Training</span>
               </h2>
 
@@ -248,7 +248,7 @@ const About = () => {
                 {/* Web Development */}
                 <div className="p-6 rounded-2xl bg-[#00548B]/5 border border-[#00548B]/10">
                   <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-                    <FaLaptopCode className="text-[#00548B]" /> Web Development Company
+                    <FaLaptopCode className="text-[#00548B]" /> Software Company
                   </h3>
                   <ul className="space-y-2">
                     {['Modern web design & development', 'Frontend/backend system architecture', 'Custom business software applications', 'E-commerce solutions'].map((item, i) => (

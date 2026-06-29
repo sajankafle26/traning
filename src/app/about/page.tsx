@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'About Us | Sangalo Tech - Web Development & IT Training',
+  title: 'About Us | Sangalo Tech - Software Company & IT Training',
   description: 'Sangalo Tech Pvt. Ltd. - Web development company and IT training institute in Lokenthali, Bhaktapur, Nepal. MERN Stack, React, Laravel, WordPress training with guaranteed hiring.',
 };
 

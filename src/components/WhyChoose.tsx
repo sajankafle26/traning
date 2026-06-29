@@ -8,7 +8,7 @@ import {
 const REASONS = [
   {
     icon: FaLaptopCode,
-    title: "Full-Service Web Development",
+    title: "Full-Service Software Company",
     desc: "From custom web apps to mobile apps, we build scalable digital products with React, Next.js, Node.js, and more.",
     type: "company",
   },
@@ -56,7 +56,7 @@ export default function WhyChoose() {
             Why Choose <span className="text-[#00548B]">Sangalo Tech?</span>
           </h2>
           <p className="text-slate-500 max-w-3xl mx-auto text-lg leading-relaxed">
-            We&apos;re not just a training institute — we&apos;re a <strong>full-service web development company</strong> that also trains the next generation of IT professionals. This dual expertise means you learn from developers who build real products.
+            We&apos;re not just a training institute — we&apos;re a <strong>full-service software company</strong> that also trains the next generation of IT professionals. This dual expertise means you learn from developers who build real products.
           </p>
         </div>
 
@@ -73,7 +73,7 @@ export default function WhyChoose() {
                   item.type === 'training' ? 'bg-emerald-50 text-emerald-600' :
                   'bg-violet-50 text-violet-600'
                 }`}>
-                  {item.type === 'both' ? 'Company + Institute' : item.type === 'company' ? 'Web Dev Company' : 'IT Training'}
+                  {item.type === 'both' ? 'Company + Institute' : item.type === 'company' ? 'Software Company' : 'IT Training'}
                 </span>
               </div>
 

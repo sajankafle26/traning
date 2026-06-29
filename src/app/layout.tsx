@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://sangalotech.com.np"),
   title: {
-    default: "Sangalo Tech | Web Development Company & IT Training Institute in Nepal",
+    default: "Sangalo Tech | Software Company & IT Training Institute in Nepal",
     template: "%s | Sangalo Tech",
   },
   description: "Sangalo Tech Pvt. Ltd. is Nepal's leading web development company and IT training institute. We build custom web apps, mobile apps, and provide SEO services. Also offering MERN Stack, React, Python Django, UI/UX, and Digital Marketing training courses.",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   publisher: "Sangalo Tech Pvt. Ltd.",
   openGraph: {
     title: {
-      default: "Sangalo Tech | Web Development & IT Training in Nepal",
+      default: "Sangalo Tech | Software Company & IT Training in Nepal",
       template: "%s | Sangalo Tech",
     },
     description: "Nepal's leading web development company and IT training institute. Custom web apps, mobile apps, SEO services + professional courses in MERN Stack, React, UI/UX, Digital Marketing.",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Sangalo Tech - Best Web Development Company & IT Training Institute in Nepal",
+        alt: "Sangalo Tech - Best Software Company & IT Training Institute in Nepal",
       },
     ],
     locale: "en_US",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sangalo Tech | Web Development & IT Training in Nepal",
+    title: "Sangalo Tech | Software Company & IT Training in Nepal",
     description: "Nepal's leading web development company and IT training institute. MERN Stack, React, UI/UX courses and professional web services.",
     images: ["/og-image.png"],
   },

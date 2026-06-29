@@ -4,8 +4,8 @@ import { FaArrowRight, FaPlay, FaUsers, FaRocket, FaGraduationCap, FaStar, FaLap
 import Link from 'next/link';
 
 const DEFAULT_HERO = {
-  badge: 'Nepal\'s Leading Web Dev Company & IT Training Institute',
-  title: 'Web Development Company & IT Training Institute',
+  badge: 'Nepal\'s Leading Software Company & IT Training Institute',
+  title: 'Software Company & IT Training Institute',
   subtitle: 'Building Digital Products & Future-Ready Professionals.',
   description: 'Sangalo Tech Pvt. Ltd. is a full-service web development company and IT training institute in Lokenthali, Bhaktapur, Nepal. We build world-class digital products and train the next generation of IT professionals.',
   image: '/about/office.jpg',
@@ -153,7 +153,7 @@ const Hero = () => {
             <div className="relative z-10 rounded-[2.5rem] overflow-hidden border border-white/20 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)]">
               <img
                 src={hero.image}
-                alt="Sangalo Tech - Web Development Company & IT Training Institute in Nepal"
+                alt="Sangalo Tech - Software Company & IT Training Institute in Nepal"
                 className="w-full h-[520px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#004381]/80 via-[#004381]/20 to-transparent" />
@@ -171,7 +171,7 @@ const Hero = () => {
               {/* Top Badges */}
               <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2 shadow-lg">
                 <FaLaptopCode className="text-[#004381] text-sm" />
-                <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest">Web Dev Company</span>
+                <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest">Software Company</span>
               </div>
               <div className="absolute top-6 left-6 bg-green-500/90 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2 shadow-lg">
                 <FaGraduationCap className="text-white text-sm" />

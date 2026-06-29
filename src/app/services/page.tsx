@@ -108,12 +108,12 @@ export default function ServicesPage() {
         <div className="max-w-[1400px] mx-auto relative z-10 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-white px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest border border-white/15 mb-8">
             <FaRocket className="text-xs" />
-            Web Development & IT Solutions
+            Software & IT Solutions
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[0.9] max-w-5xl mx-auto">
             Professional
             <span className="block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-200 to-indigo-200">
-              Web Development Services
+              Software & Development Services
             </span>
           </h1>
           <p className="mt-8 text-white/70 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">

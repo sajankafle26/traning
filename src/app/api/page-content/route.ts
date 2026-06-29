@@ -6,7 +6,7 @@ import { auth } from "@/auth";
 const DEFAULT_CONTENT = {
     hero: {
         badge: 'About Us',
-        title: 'Web Development Company',
+        title: 'Software Company',
         subtitle: 'And IT Training Institute in Nepal.',
         description: 'Sangalo Tech Pvt. Ltd. is a prominent web design, software development, and IT training institute located in Lokenthali, Bhaktapur, Nepal.',
         image: '/about/office.jpg',
@@ -23,7 +23,7 @@ const DEFAULT_CONTENT = {
     },
     about: {
         heroBadge: 'About Sangalo Tech',
-        heroTitle: 'Web Development Company',
+        heroTitle: 'Software Company',
         heroSubtitle: '& IT Training Institute',
         heroDescription: 'Sangalo Tech Pvt. Ltd. — Web design, software development, and IT training in Lokenthali, Bhaktapur, Nepal.',
         stats: [
@@ -38,7 +38,7 @@ const DEFAULT_CONTENT = {
             'Located in Lokenthali, Bhaktapur, we combine a software development company with an IT training institute, giving students hands-on experience with real client projects.',
         ],
         storyImage: '/about/office.jpg',
-        trainingTitle: 'Web Development Company',
+        trainingTitle: 'Software Company',
         trainingDescription: 'We build scalable web and mobile applications for businesses worldwide using modern technologies like MERN Stack, React, Next.js, and Laravel.',
         trainingItems: [
             'Custom Web Application Development',

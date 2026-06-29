@@ -54,7 +54,7 @@ export default function ServicesShowcase() {
           <div className="space-y-6 max-w-2xl">
             <div className="inline-flex items-center gap-3 bg-[#00548B]/10 text-[#00548B] px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] border border-[#00548B]/20">
               <FaLaptopCode className="text-xs" />
-              Web Development Company
+              Software Company
             </div>
             <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-[0.95]">
               Our <span className="text-[#00548B]">Services</span>

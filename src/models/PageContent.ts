@@ -4,7 +4,7 @@ const PageContentSchema = new mongoose.Schema({
     // Hero Section
     hero: {
         badge: { type: String, default: 'About Us' },
-        title: { type: String, default: 'Web Development Company' },
+        title: { type: String, default: 'Software Company' },
         subtitle: { type: String, default: 'And IT Training Institute in Nepal.' },
         description: { type: String, default: 'Sangalo Tech Pvt. Ltd. is a prominent web design, software development, and IT training institute located in Lokenthali, Bhaktapur, Nepal.' },
         image: { type: String, default: '/about/office.jpg' },
@@ -22,7 +22,7 @@ const PageContentSchema = new mongoose.Schema({
     // About Page
     about: {
         heroBadge: { type: String, default: 'About Sangalo Tech' },
-        heroTitle: { type: String, default: 'Web Development Company' },
+        heroTitle: { type: String, default: 'Software Company' },
         heroSubtitle: { type: String, default: '& IT Training Institute' },
         heroDescription: { type: String, default: 'Sangalo Tech Pvt. Ltd. — Web design, software development, and IT training in Lokenthali, Bhaktapur, Nepal.' },
 
@@ -37,7 +37,7 @@ const PageContentSchema = new mongoose.Schema({
         storyParagraphs: [{ type: String }],
         storyImage: { type: String, default: '/about/office.jpg' },
 
-        trainingTitle: { type: String, default: 'Web Development Company' },
+        trainingTitle: { type: String, default: 'Software Company' },
         trainingDescription: { type: String, default: 'We build scalable web and mobile applications for businesses worldwide.' },
         trainingItems: [{ type: String }],
 
