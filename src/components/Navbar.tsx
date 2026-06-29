@@ -194,16 +194,16 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
   /* ---------------------------------- Data ---------------------------------- */
 
   const trainingDev: DropdownItem[] = [
-    { label: 'React & Next.js', href: '/courses/react-and-next-js-training', icon: FaReact },
-    { label: 'MERN Stack', href: '/courses/full-stack-mern-development', icon: FaCubes },
-    { label: 'Laravel', href: '/courses/full-stack-laravel-development', icon: FaServer },
-    { label: 'WordPress', href: '/courses/wordpress-theme-and-plugin-development', icon: FaWordpress },
+    { label: 'React & Next.js', href: '/courses/react-next-js', icon: FaReact },
+    { label: 'MERN Stack', href: '/courses/mern-stack', icon: FaCubes },
+    { label: 'Laravel', href: '/courses/laravel-mastery', icon: FaServer },
+    { label: 'WordPress', href: '/courses/wordpress-theme-dev', icon: FaWordpress },
   ];
 
   const trainingDesign: DropdownItem[] = [
-    { label: 'UI/UX Design', href: '/courses/ui-ux-design-training', icon: FaPenNib },
-    { label: 'Web Design', href: '/courses/web-design-training', icon: FaObjectGroup },
-    { label: 'Digital Marketing', href: '/courses/digital-marketing-mastery', icon: FaBullhorn },
+    { label: 'UI/UX Design', href: '/courses/ui-ux-design', icon: FaPenNib },
+    { label: 'Web Design', href: '/courses/web-design', icon: FaObjectGroup },
+    { label: 'Digital Marketing', href: '/courses/digital-marketing', icon: FaBullhorn },
   ];
 
   const servicesCol1: DropdownItem[] = [

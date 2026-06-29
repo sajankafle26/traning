@@ -92,8 +92,8 @@ const Footer = () => {
           <h3 className="text-xl font-bold border-l-4 border-blue-300/80 pl-3">Company</h3>
           <ul className="space-y-3 text-sm text-blue-100/75">
             <li><Link href="/about" className="hover:text-white transition">About Sangalo Tech</Link></li>
-            <li><Link href="/internships" className="hover:text-white transition">Internship Hub</Link></li>
-            <li><Link href="/video-courses" className="hover:text-white transition">Video Marketplace</Link></li>
+            <li><Link href="/services" className="hover:text-white transition">Our Services</Link></li>
+            <li><Link href="/video-marketplace" className="hover:text-white transition">Video Marketplace</Link></li>
             <li><Link href="/portfolio" className="hover:text-white transition">Our Portfolio</Link></li>
             <li><Link href="/contact" className="hover:text-white transition">Contact Us</Link></li>
           </ul>
@@ -103,11 +103,11 @@ const Footer = () => {
         <div className="space-y-6">
           <h3 className="text-xl font-bold border-l-4 border-blue-300/80 pl-3">Popular Courses</h3>
           <ul className="space-y-3 text-sm text-blue-100/75">
-            <li><Link href="/courses/mern-stack-mastery" className="hover:text-white transition">MERN Stack Mastery</Link></li>
-            <li><Link href="/courses/react-and-nextjs-mastery" className="hover:text-white transition">React & Next.js</Link></li>
+            <li><Link href="/courses/mern-stack" className="hover:text-white transition">MERN Stack Industrial Training</Link></li>
+            <li><Link href="/courses/react-next-js" className="hover:text-white transition">React & Next.js Mastery</Link></li>
             <li><Link href="/courses/web-development-with-python-and-django" className="hover:text-white transition">Python & Django</Link></li>
-            <li><Link href="/courses/ui-ux-design-training" className="hover:text-white transition">UI/UX Design</Link></li>
-            <li><Link href="/courses/digital-marketing-pro" className="hover:text-white transition">Digital Marketing</Link></li>
+            <li><Link href="/courses/ui-ux-design" className="hover:text-white transition">UI/UX Design Specialist</Link></li>
+            <li><Link href="/courses/digital-marketing" className="hover:text-white transition">Digital Marketing Strategy</Link></li>
           </ul>
         </div>
 
