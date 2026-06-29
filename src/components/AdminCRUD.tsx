@@ -11,9 +11,10 @@ interface AdminCRUDProps {
     apiPath: string;
     fields: { name: string; label: string; type: string; options?: string[] }[];
     renderItem: (item: any, onDelete: (id: string) => void, onEdit: (item: any) => void) => React.ReactNode;
+    preprocessData?: (data: any) => any;
 }
 
-const AdminCRUD: React.FC<AdminCRUDProps> = ({ title, apiPath, fields, renderItem }) => {
+const AdminCRUD: React.FC<AdminCRUDProps> = ({ title, apiPath, fields, renderItem, preprocessData }) => {
     const { data: session, status } = useSession();
     const router = useRouter();
     const [items, setItems] = useState([]);
@@ -111,7 +112,7 @@ const AdminCRUD: React.FC<AdminCRUDProps> = ({ title, apiPath, fields, renderIte
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const processedData = { ...formData };
+            let processedData = { ...formData };
             fields.forEach(field => {
                 if (field.type === 'json' && typeof processedData[field.name] === 'string') {
                     try {
@@ -122,6 +123,9 @@ const AdminCRUD: React.FC<AdminCRUDProps> = ({ title, apiPath, fields, renderIte
                     }
                 }
             });
+            if (preprocessData) {
+                processedData = preprocessData(processedData);
+            }
 
             if (editingId) {
                 await axios.put(`${apiPath}/${editingId}`, processedData);

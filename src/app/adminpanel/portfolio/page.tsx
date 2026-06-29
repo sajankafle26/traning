@@ -53,6 +53,10 @@ const PortfolioPage = () => {
             apiPath="/api/portfolio"
             fields={fields}
             renderItem={renderItem}
+            preprocessData={(data: any) => ({
+                ...data,
+                tags: typeof data.tags === 'string' ? data.tags.split(',').map((t: string) => t.trim()).filter(Boolean) : data.tags || [],
+            })}
         />
     );
 };
