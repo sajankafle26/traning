@@ -321,198 +321,36 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
         </Link>
 
         {/* Desktop menu */}
-        <div className="hidden lg:flex items-center gap-8 xl:gap-10">
-          {/* About */}
-          <Link href="/about" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-sm">
-            About Us
+        <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+          <Link href="/" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-sm">
+            Home
           </Link>
-
-          {/* Training */}
-          <div className="relative">
-            <ParentBtn
-              label="Training"
-              icon={FaLaptopCode}
-              open={openDropdown === 'training'}
-              onClick={() => toggleMenu('training')}
-            />
-            <DesktopDropdownShell open={openDropdown === 'training'} widthClass="w-[660px]">
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">
-                    Development
-                  </div>
-                  <ul className="space-y-1.5">
-                    {liveCourses.filter((_, i) => i % 2 === 0).slice(0, 5).map((course) => {
-                      const Icon = getCourseIcon(course.category);
-                      return (
-                        <li key={course.id}>
-                          <Link
-                            role="menuitem"
-                            href={`/courses/${course.slug}`}
-                            className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-[#00548B] no-underline group/item"
-                            onClick={() => handleLinkClick(`/courses/${course.slug}`)}
-                          >
-                            <Icon className="text-[#00548B] group-hover/item:rotate-12 transition-transform" />
-                            <span className="text-sm font-semibold text-slate-700">{course.title}</span>
-                          </Link>
-                        </li>
-                      );
-                    })}
-                    {liveCourses.length === 0 && trainingDev.map((item) => (
-                      <li key={item.href}>
-                        <Link
-                          role="menuitem"
-                          href={item.href}
-                          className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-[#00548B] no-underline"
-                          onClick={() => handleLinkClick(item.href)}
-                        >
-                          <item.icon className="text-[#00548B]" />
-                          <span className="text-sm font-semibold text-slate-700">{item.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">
-                    Design & More
-                  </div>
-                  <ul className="space-y-1.5">
-                    {liveCourses.filter((_, i) => i % 2 === 1).slice(0, 5).map((course) => {
-                      const Icon = getCourseIcon(course.category);
-                      return (
-                        <li key={course.id}>
-                          <Link
-                            role="menuitem"
-                            href={`/courses/${course.slug}`}
-                            className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-[#00548B] no-underline group/item"
-                            onClick={() => handleLinkClick(`/courses/${course.slug}`)}
-                          >
-                            <Icon className="text-[#00548B] group-hover/item:scale-110 transition-transform" />
-                            <span className="text-sm font-semibold text-slate-700">{course.title}</span>
-                          </Link>
-                        </li>
-                      );
-                    })}
-                    {liveCourses.length === 0 && trainingDesign.map((item) => (
-                      <li key={item.href}>
-                        <Link
-                          role="menuitem"
-                          href={item.href}
-                          className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-[#00548B] no-underline"
-                          onClick={() => handleLinkClick(item.href)}
-                        >
-                          <item.icon className="text-[#00548B]" />
-                          <span className="text-sm font-semibold text-slate-700">{item.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="mt-4 pt-4 border-t border-slate-100">
-                <Link
-                  href="/courses"
-                  onClick={() => handleLinkClick('/courses')}
-                  className="flex items-center justify-center gap-2 text-sm font-bold text-[#00548B] hover:underline no-underline"
-                >
-                  View All Courses <FaIcons6.FaArrowUpRightFromSquare className="text-xs" />
-                </Link>
-              </div>
-            </DesktopDropdownShell>
-          </div>
-
-          {/* Services */}
-          <div className="relative">
-            <ParentBtn
-              label="Services"
-              icon={FaScrewdriverWrench}
-              open={openDropdown === 'services'}
-              onClick={() => toggleMenu('services')}
-            />
-            <DesktopDropdownShell open={openDropdown === 'services'} widthClass="w-[560px]">
-              <div className="grid grid-cols-2 gap-6">
-                <ul className="space-y-1.5">
-                  {services.slice(0, Math.ceil(services.length / 2)).map((item) => {
-                    const Icon = getIcon(item.icon, FaScrewdriverWrench);
-                    return (
-                      <li key={item.id}>
-                        <Link
-                          role="menuitem"
-                          href={`/services/${item.slug}`}
-                          className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-[#00548B] no-underline"
-                          onClick={() => handleLinkClick(`/services/${item.slug}`)}
-                        >
-                          <Icon className="text-[#00548B]" />
-                          <span className="font-semibold text-slate-700">{item.title}</span>
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-                <ul className="space-y-1.5">
-                  {services.slice(Math.ceil(services.length / 2)).map((item) => {
-                    const Icon = getIcon(item.icon, FaScrewdriverWrench);
-                    return (
-                      <li key={item.id}>
-                        <Link
-                          role="menuitem"
-                          href={`/services/${item.slug}`}
-                          className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-[#00548B] no-underline"
-                          onClick={() => handleLinkClick(`/services/${item.slug}`)}
-                        >
-                          <Icon className="text-[#00548B]" />
-                          <span className="font-semibold text-slate-700">{item.title}</span>
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            </DesktopDropdownShell>
-          </div>
-
-          {/* Products */}
-          <div className="relative">
-            <ParentBtn
-              label="Products"
-              icon={FaBoxOpen}
-              open={openDropdown === 'products'}
-              onClick={() => toggleMenu('products')}
-            />
-            <DesktopDropdownShell open={openDropdown === 'products'} widthClass="min-w-[330px]">
-              <div className="space-y-1">
-                {products.map((item) => {
-                  const Icon = item.image && item.image.startsWith('fa-') ? getIcon(item.image, FaBoxOpen) : FaBoxOpen;
-                  return (
-                    <Link
-                      key={item.id || (item as any)._id}
-                      role="menuitem"
-                      href={item.link || '#'}
-                      className="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-slate-50 hover:text-[#00548B] no-underline"
-                      onClick={() => handleLinkClick(item.link || '#')}
-                    >
-                      <Icon className="text-[#00548B]" />
-                      <span className="font-semibold text-slate-700">{item.title}</span>
-                    </Link>
-                  );
-                })}
-              </div>
-            </DesktopDropdownShell>
-          </div>
-
-          {/* Upcoming */}
-          <Link href="/upcoming" className="group relative hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-sm flex items-center gap-2">
-            <span>Upcoming Classes</span>
-            <span className="absolute -top-3 -right-6 bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow-lg shadow-red-500/30 animate-pulse">
-              HOT
-            </span>
+          <Link href="/courses" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-sm">
+            Courses
+          </Link>
+          <Link href="/services" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-sm">
+            Services
+          </Link>
+          <Link href="/portfolio" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-sm">
+            Portfolio
+          </Link>
+          <Link href="/about" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-sm">
+            About
+          </Link>
+          <Link href="/contact" className="hover:text-[#00548B] transition font-bold text-slate-600 no-underline text-sm">
+            Contact
           </Link>
         </div>
 
         {/* Right controls */}
         <div className="flex items-center gap-4">
+          {/* Apply Now Button */}
+          <Link
+            href="/courses"
+            className="hidden lg:flex items-center gap-2 bg-[#00548B] text-white px-6 py-2.5 rounded-full font-extrabold text-sm hover:bg-[#004381] hover:shadow-xl hover:-translate-y-0.5 transition-all shadow-lg shadow-blue-900/20 no-underline"
+          >
+            Apply Now
+          </Link>
           {/* Cart Icon */}
           <Link
             href="/cart"
