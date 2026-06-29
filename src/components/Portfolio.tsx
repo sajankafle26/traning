@@ -101,7 +101,12 @@ const Portfolio = () => {
               </div>
             ))}
           </div>
-        ) : projects.length === 0 ? null : (
+        ) : projects.length === 0 ? (
+          <div className="text-center py-20 text-slate-400">
+            <FaCode className="text-4xl mx-auto mb-4 opacity-30" />
+            <p className="font-bold text-lg">Portfolio projects coming soon.</p>
+          </div>
+        ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {displayedProjects.map((project, index) => (
               <div key={project._id} className="group bg-white rounded-3xl overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-3">
