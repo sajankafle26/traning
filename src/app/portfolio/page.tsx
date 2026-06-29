@@ -30,21 +30,6 @@ const CATEGORY_ICONS: Record<string, any> = {
   "Travel": FaMapMarkerAlt,
 };
 
-const DEFAULT_PROJECTS: PortfolioItem[] = [
-  { _id: '1', title: 'Global Touch India', description: 'A comprehensive educational and visa consultancy website for students aiming to study in Australia.', image: '/portfolio/global-touch-india.png', category: 'Consultancy', tags: ['Web Design', 'React', 'Next.js'], link: 'https://myglobaltouch.in' },
-  { _id: '2', title: 'Ramro Sathi', description: 'Construction and architectural firm website showcasing their services and projects.', image: '/portfolio/ramro-sathi.png', category: 'Construction', tags: ['Web Development', 'UI/UX'], link: '#' },
-  { _id: '3', title: 'Global Touch Education', description: 'Educational consultancy website focusing on IT study abroad programs and visa services.', image: '/portfolio/global-touch-education.png', category: 'Education', tags: ['Web Design', 'Consultation'], link: 'https://myglobaltouch.com.au' },
-  { _id: '4', title: 'Micro TV HD', description: 'A dynamic news portal and video streaming website offering latest updates and live TV.', image: '/portfolio/micro-tv-hd.png', category: 'News Portal', tags: ['Media', 'Streaming', 'Web App'], link: '#' },
-  { _id: '5', title: 'Mahila Laghubitta', description: 'A microfinance institutional website providing financial services and reports.', image: '/portfolio/mahila-laghubitta.png', category: 'Finance', tags: ['Institution', 'Web Portal'], link: '#' },
-  { _id: '6', title: 'Rupantaran Post', description: 'A prominent Nepali news and media portal delivering latest updates and features.', image: '/portfolio/rupantaran-post.png', category: 'News Portal', tags: ['News', 'Media', 'Web App'], link: '#' },
-  { _id: '7', title: 'NA Fellowship', description: 'The official website for Nepal Regional Committee of Narcotics Anonymous.', image: '/portfolio/na-fellowship.png', category: 'Organization', tags: ['Non-profit', 'Web Portal'], link: '#' },
-  { _id: '8', title: 'Sports Performance', description: 'A dedicated sports performance website offering athlete development services.', image: '/portfolio/sports-performance.png', category: 'Sports', tags: ['Sports', 'Fitness', 'Web Portal'], link: '#' },
-  { _id: '9', title: 'Banking Khabar', description: 'A comprehensive financial and banking news portal for economy updates.', image: '/portfolio/banking-khabar.png', category: 'News Portal', tags: ['Finance', 'News', 'Media'], link: '#' },
-  { _id: '10', title: 'Emerald Isle Nepal', description: 'A professional recruitment agency website with overseas manpower placement.', image: '/portfolio/emerald-isle.png', category: 'Recruitment', tags: ['HR', 'Recruitment', 'Corporate'], link: '#' },
-  { _id: '11', title: 'Career Point', description: 'A human resource consultancy platform connecting talent with global opportunities.', image: '/portfolio/career-point.png', category: 'Consultancy', tags: ['HR', 'Consultancy', 'Global'], link: '#' },
-  { _id: '12', title: 'Nepal Wanders', description: 'A travel and tourism platform offering treks and travel guides for Nepal.', image: '/portfolio/nepal-wanders.png', category: 'Travel', tags: ['Tourism', 'Travel', 'Web Design'], link: '#' },
-];
-
 export default function PortfolioPage() {
   const [projects, setProjects] = useState<PortfolioItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -61,14 +46,9 @@ export default function PortfolioPage() {
               ...p,
               tags: Array.isArray(p.tags) ? p.tags : (p.tags?.split(',') || [])
             })));
-          } else {
-            setProjects(DEFAULT_PROJECTS);
           }
-        } else {
-          setProjects(DEFAULT_PROJECTS);
         }
       } catch {
-        setProjects(DEFAULT_PROJECTS);
       } finally {
         setLoading(false);
       }

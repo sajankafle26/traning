@@ -63,17 +63,85 @@ const seedPortfolio = [
         category: 'News Portal',
         tags: ['WordPress', 'PHP'],
     },
+    {
+        title: 'NA Fellowship',
+        description: 'The official website for Nepal Regional Committee of Narcotics Anonymous.',
+        image: '/portfolio/na-fellowship.png',
+        category: 'Organization',
+        tags: ['Non-profit', 'Web Portal'],
+    },
+    {
+        title: 'Sports Performance',
+        description: 'A dedicated sports performance website offering athlete development services.',
+        image: '/portfolio/sports-performance.png',
+        category: 'Sports',
+        tags: ['Sports', 'Fitness', 'Web Portal'],
+    },
+    {
+        title: 'Banking Khabar',
+        description: 'A comprehensive financial and banking news portal for economy updates.',
+        image: '/portfolio/banking-khabar.png',
+        category: 'News Portal',
+        tags: ['Finance', 'News', 'Media'],
+    },
+    {
+        title: 'Emerald Isle Nepal',
+        description: 'A professional recruitment agency website with overseas manpower placement.',
+        image: '/portfolio/emerald-isle.png',
+        category: 'Recruitment',
+        tags: ['HR', 'Recruitment', 'Corporate'],
+    },
+    {
+        title: 'Career Point',
+        description: 'A human resource consultancy platform connecting talent with global opportunities.',
+        image: '/portfolio/career-point.png',
+        link: 'https://careerpoint.com.np',
+        category: 'Consultancy',
+        tags: ['HR', 'Consultancy', 'Global'],
+    },
+    {
+        title: 'Nepal Wanders',
+        description: 'A travel and tourism platform offering treks and travel guides for Nepal.',
+        image: '/portfolio/nepal-wanders.png',
+        category: 'Travel',
+        tags: ['Tourism', 'Travel', 'Web Design'],
+    },
+    {
+        title: 'Nepal Honey Hub',
+        description: 'E-commerce platform for organic Nepali honey products.',
+        image: '/portfolio/honeyhub.png',
+        link: 'https://nepalhoneyhub.com',
+        category: 'E-Commerce',
+        tags: ['E-Commerce', 'WordPress', 'WooCommerce'],
+    },
+    {
+        title: 'Avion HR Management',
+        description: 'HR management software for workforce and payroll management.',
+        image: '/portfolio/avionhrm.png',
+        category: 'Software',
+        tags: ['React', 'Node.js', 'HR'],
+    },
+    {
+        title: 'Industry News Nepal',
+        description: 'Industrial and manufacturing news portal for Nepal.',
+        image: '/portfolio/industrynewsnepal.png',
+        category: 'News Portal',
+        tags: ['News', 'Media', 'WordPress'],
+    },
+    {
+        title: 'Media International',
+        description: 'Media production and broadcasting company website.',
+        image: '/portfolio/mediainternational.png',
+        category: 'Media',
+        tags: ['Media', 'Web Design'],
+    },
 ];
 
 async function seed() {
     await dbConnect();
-    const count = await Portfolio.countDocuments();
-    if (count === 0) {
-        await Portfolio.insertMany(seedPortfolio);
-        console.log(`Seeded ${seedPortfolio.length} portfolio items.`);
-    } else {
-        console.log(`Portfolio collection already has ${count} items. Skipping.`);
-    }
+    await Portfolio.deleteMany({});
+    await Portfolio.insertMany(seedPortfolio);
+    console.log(`Seeded ${seedPortfolio.length} portfolio items.`);
     process.exit(0);
 }
 
