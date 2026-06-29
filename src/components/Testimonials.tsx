@@ -167,9 +167,10 @@ const Testimonials = () => {
 
                         {/* Quote */}
                         <div className="relative flex-1 mb-6">
-                          <p className="text-slate-600 text-[15px] leading-[1.8] font-medium">
-                            &ldquo;{t.quote}&rdquo;
-                          </p>
+                          <p
+                            className="text-slate-600 text-[15px] leading-[1.8] font-medium [&_p]:mb-2 [&_p:last-child]:mb-0"
+                            dangerouslySetInnerHTML={{ __html: `&ldquo;${t.quote}&rdquo;` }}
+                          />
                         </div>
 
                         {/* Tags */}
