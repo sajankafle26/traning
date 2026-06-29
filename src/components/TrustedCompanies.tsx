@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode } from 'swiper/modules';
 import 'swiper/css';
@@ -31,31 +31,9 @@ const fallbackCompanies: PortfolioItem[] = [
 ];
 
 const TrustedCompanies = () => {
-  const [companies, setCompanies] = useState<PortfolioItem[]>(fallbackCompanies);
+  const [companies] = useState<PortfolioItem[]>(fallbackCompanies);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const swiperRef = useRef<any>(null);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const res = await fetch('/api/portfolio');
-        if (res.ok) {
-          const data = await res.json();
-          if (data && data.length > 0) {
-            setCompanies(data.slice(0, 15).map((p: any) => ({
-              _id: p._id,
-              title: p.title,
-              image: p.image,
-              category: p.category,
-            })));
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching projects:', error);
-      }
-    };
-    fetchProjects();
-  }, []);
 
   const handleMouseEnter = (index: number) => {
     setHoveredIndex(index);
