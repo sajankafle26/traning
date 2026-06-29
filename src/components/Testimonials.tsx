@@ -169,7 +169,7 @@ const Testimonials = () => {
                         <div className="relative flex-1 mb-6">
                           <p
                             className="text-slate-600 text-[15px] leading-[1.8] font-medium [&_p]:mb-2 [&_p:last-child]:mb-0"
-                            dangerouslySetInnerHTML={{ __html: `&ldquo;${t.quote}&rdquo;` }}
+                            dangerouslySetInnerHTML={{ __html: t.quote || '' }}
                           />
                         </div>
 
