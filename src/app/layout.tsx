@@ -20,10 +20,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://sangalotech.com.np"),
   title: {
-    default: "Sangalo Tech | Best Web Development Company & IT Training Institute in Nepal",
+    default: "Sangalo Tech | Web Development Company & IT Training Institute in Nepal",
     template: "%s | Sangalo Tech",
   },
-  description: "Sangalo Tech Pvt. Ltd. is Nepal's leading web development company and IT training institute. We offer MERN Stack, React, Next.js, Python Django, UI/UX Design, and Digital Marketing courses. Also providing professional web development, mobile apps, SEO, and cloud DevOps services.",
+  description: "Sangalo Tech Pvt. Ltd. is Nepal's leading web development company and IT training institute. We build custom web apps, mobile apps, and provide SEO services. Also offering MERN Stack, React, Python Django, UI/UX, and Digital Marketing training courses.",
   keywords: [
     "IT institute Nepal", "web development company Nepal", "IT training Nepal", "MERN Stack course Nepal",
     "React Next.js training Nepal", "UI UX design course Nepal", "digital marketing course Nepal",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
       default: "Sangalo Tech | Web Development & IT Training in Nepal",
       template: "%s | Sangalo Tech",
     },
-    description: "Nepal's leading web development company and IT training institute. Professional courses in MERN Stack, React, UI/UX, Digital Marketing and web development services.",
+    description: "Nepal's leading web development company and IT training institute. Custom web apps, mobile apps, SEO services + professional courses in MERN Stack, React, UI/UX, Digital Marketing.",
     url: "https://sangalotech.com.np",
     siteName: "Sangalo Tech",
     images: [

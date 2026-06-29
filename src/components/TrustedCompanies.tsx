@@ -154,21 +154,7 @@ const TrustedCompanies = () => {
           </Swiper>
         </div>
 
-        {/* Stats Row */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { value: '100+', label: 'Projects Delivered', icon: '🎯' },
-            { value: '50+', label: 'Happy Clients', icon: '😊' },
-            { value: '15+', label: 'Years Experience', icon: '📅' },
-            { value: '24/7', label: 'Support Available', icon: '🛟' },
-          ].map((stat, i) => (
-            <div key={i} className="text-center p-8 rounded-2xl bg-white border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:shadow-[#00548B]/10 hover:border-[#00548B]/20 hover:-translate-y-1 group transition-all duration-500 cursor-default">
-              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{stat.icon}</div>
-              <div className="text-3xl md:text-4xl font-black text-slate-900 group-hover:text-[#00548B] transition-colors duration-300">{stat.value}</div>
-              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-3 group-hover:text-[#00548B]/60 transition-colors duration-300">{stat.label}</div>
-            </div>
-          ))}
-        </div>
+       
       </div>
     </section>
   );
