@@ -112,6 +112,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preload" href="/logo.png" as="image" />
+        <link rel="preload" href="/about/office.jpg" as="image" />
       </head>
       <body className={`${sourceSans.variable} ${ubuntu.variable} ${geistSans.variable} ${geistMono.variable}`} >
         <JsonLd data={ORGANIZATION_JSONLD} />

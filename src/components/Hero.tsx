@@ -4,8 +4,16 @@ import { FaArrowRight, FaGraduationCap, FaStar, FaLaptopCode, FaUsers } from 're
 import Link from 'next/link';
 import Image from 'next/image';
 
+const DEFAULT_HERO = {
+  badge: 'SOFTWARE COMPANY & IT TRAINING INSTITUTE',
+  title: 'Software Company',
+  subtitle: 'And IT Training Institute In Nepal.',
+  description: 'Sangalo Tech Pvt. Ltd. is a premier web development company and IT training institute, located in Lokenthali, Bhaktapur, Nepal.',
+  image: '/about/office.jpg',
+};
+
 const Hero = () => {
-  const [hero, setHero] = useState<any>(null);
+  const [hero, setHero] = useState<any>(DEFAULT_HERO);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -25,30 +33,6 @@ const Hero = () => {
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setMousePos({ x, y });
   };
-
-  if (!hero) return (
-    <section className="relative pt-20 pb-24 md:pt-28 md:pb-32 px-6 border-b border-white/10 overflow-hidden">
-      <div className="absolute inset-0 -z-10" style={{ backgroundColor: '#004381' }} />
-      <div className="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 relative items-center animate-pulse">
-        <div className="space-y-8 pt-10 lg:pt-0">
-          <div className="h-8 w-64 bg-white/10 rounded-full" />
-          <div className="space-y-4">
-            <div className="h-12 w-full bg-white/10 rounded-2xl" />
-            <div className="h-12 w-3/4 bg-white/10 rounded-2xl" />
-          </div>
-          <div className="h-6 w-full bg-white/10 rounded-xl" />
-          <div className="h-6 w-2/3 bg-white/10 rounded-xl" />
-          <div className="flex gap-4">
-            <div className="h-14 w-48 bg-white/10 rounded-2xl" />
-            <div className="h-14 w-48 bg-white/10 rounded-2xl" />
-          </div>
-        </div>
-        <div className="hidden lg:block">
-          <div className="w-full h-[520px] bg-white/10 rounded-[2.5rem]" />
-        </div>
-      </div>
-    </section>
-  );
 
   return (
     <section

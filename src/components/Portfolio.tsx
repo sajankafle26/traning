@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { FaArrowRight, FaExternalLinkAlt, FaCode } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
@@ -112,11 +113,14 @@ const Portfolio = () => {
               <div key={project._id} className="group bg-white rounded-3xl overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-3">
                 {/* Image */}
                 <div className="relative aspect-[16/10] overflow-hidden">
-                  <img
+                  <Image
                     src={project.image || `https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800&sig=${index}`}
                     alt={`${project.title} - ${project.industry || project.category} project by Sangalo Tech`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    width={800}
+                    height={500}
                     loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

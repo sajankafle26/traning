@@ -56,7 +56,7 @@ const Footer = () => {
         {/* Company Info */}
         <div className="space-y-6">
           <Link href="/" className="inline-block">
-            <img src="/logo.png" alt="Sangalo Tech" className="h-12 w-auto brightness-0 invert" />
+            <img src="/logo.png" alt="Sangalo Tech" className="h-12 w-auto brightness-0 invert" loading="eager" width={180} height={48} />
           </Link>
           <p className="text-blue-100/70 leading-relaxed text-sm">
             Leading the digital revolution in Nepal with high-quality IT training and software solutions since 2022.

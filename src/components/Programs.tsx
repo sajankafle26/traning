@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import {
   FaCode, FaClock, FaUsers,
   FaProjectDiagram, FaCertificate, FaArrowRight, FaGraduationCap,
@@ -105,9 +106,13 @@ const Programs = () => {
                       <div className="bg-white/10 backdrop-blur-md rounded-3xl p-4 border border-white/20 hover:bg-white/15 hover:border-white/30 transition-all duration-500 hover:-translate-y-2 h-full flex flex-col">
                         {/* Image */}
                         <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-5">
-                          <img
+                          <Image
                             src={course.image || "https://images.unsplash.com/photo-1529101091764-c3526daf38fe?auto=format&fit=crop&q=70&w=800"}
                             alt={course.title}
+                            width={800}
+                            height={500}
+                            loading="lazy"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100"
                           />
                           <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-sangalo-900 px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest">

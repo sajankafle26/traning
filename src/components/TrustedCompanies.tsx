@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useRef } from 'react';
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode } from 'swiper/modules';
 import 'swiper/css';
@@ -102,9 +103,12 @@ const TrustedCompanies = () => {
                   {/* Card */}
                   <div className="bg-white rounded-2xl border border-slate-100 shadow-md shadow-slate-200/60 hover:shadow-xl hover:shadow-[#00548B]/10 hover:border-[#00548B]/20 hover:-translate-y-1 transition-all duration-500 p-4">
                     <div className="flex items-center justify-center h-20 bg-slate-50 rounded-xl border border-slate-100/80">
-                      <img
+                      <Image
                         src={company.image}
                         alt={company.title}
+                        width={120}
+                        height={56}
+                        loading="lazy"
                         className="max-h-14 w-auto max-w-[80%] object-contain grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;

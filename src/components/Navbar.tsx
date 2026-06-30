@@ -183,6 +183,9 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
       <img
         src="/logo.png"
         alt="Sangalo Tech"
+        width={56}
+        height={56}
+        loading="eager"
         className={`h-12 md:h-14 w-auto object-contain ${dark ? 'brightness-0 invert' : ''}`}
       />
     </div>

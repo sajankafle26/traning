@@ -12,6 +12,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
+import Image from "next/image";
 import { FaArrowRight, FaCalendarDays, FaBookOpen } from 'react-icons/fa6';
 
 const Blog = () => {
@@ -109,9 +110,13 @@ const Blog = () => {
 
                     <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-[3.5rem] overflow-hidden transition-all duration-700 group-hover:-translate-y-4 shadow-[0_64px_128px_-32px_rgba(0,0,0,0.5)] flex flex-col h-full">
                       <div className="relative aspect-[16/10] overflow-hidden">
-                        <img
+                        <Image
                           src={blog.image}
                           alt={blog.title}
+                          width={800}
+                          height={500}
+                          loading="lazy"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                         />
                         <div className="absolute top-6 left-6">

@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { apiService } from "@/services/apiService";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation, A11y } from "swiper/modules";
@@ -196,9 +197,12 @@ const Testimonials = () => {
                         <div className="pt-5 border-t border-slate-100 flex items-center gap-4">
                           <div className="relative shrink-0">
                             <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#00548B]/10 group-hover:ring-[#00548B]/25 transition-all">
-                              <img
+                              <Image
                                 src={t.image}
                                 alt={t.name}
+                                width={48}
+                                height={48}
+                                loading="lazy"
                                 className="w-full h-full object-cover"
                                 onError={(e) => {
                                   (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(t.name)}&background=00548B&color=fff&bold=true&size=96`;

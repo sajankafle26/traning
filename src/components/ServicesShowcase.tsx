@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { apiService } from "@/services/apiService";
 import { ServiceItem } from "@/types";
 import {
@@ -88,11 +89,14 @@ export default function ServicesShowcase() {
                 <Link key={service.id} href={`/services/${service.slug}`} className="group block">
                   <article className="relative h-full rounded-3xl bg-white border border-slate-100 overflow-hidden hover:shadow-2xl hover:border-[#00548B]/20 transition-all duration-500 hover:-translate-y-2">
                     <div className="relative aspect-[16/10] overflow-hidden">
-                      <img
+                      <Image
                         src={image}
                         alt={`${service.title} - Sangalo Tech Nepal`}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        width={800}
+                        height={500}
                         loading="lazy"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                       <div className="absolute bottom-4 left-4">
