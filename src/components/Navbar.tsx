@@ -6,8 +6,6 @@ import { useSession, signOut } from 'next-auth/react';
 import { useCart } from '@/context/CartContext';
 
 // Icons (Font Awesome 6 via react-icons/fa6)
-import * as FaIcons6 from 'react-icons/fa6';
-
 import {
   FaBars,
   FaXmark,
@@ -37,6 +35,23 @@ import {
   FaStore,
   FaEnvelope,
   FaCircle,
+  FaC,
+  FaDatabase,
+  FaRobot,
+  FaBrain,
+  FaPaintbrush,
+  FaMagnifyingGlass,
+  FaMobile,
+  FaPalette,
+  FaBolt,
+  FaRocket,
+  FaGlobe,
+  FaHandshake,
+  FaChartBar,
+  FaMicrochip,
+  FaFileCode,
+  FaShield,
+  FaLinux,
 } from 'react-icons/fa6';
 import { apiService } from '@/services/apiService';
 import { Course, UpcomingBatch, ServiceItem, Product } from '@/types';
@@ -135,6 +150,19 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
     return () => document.removeEventListener('keydown', onKey);
   }, []);
 
+  const ICON_MAP: Record<string, IconType> = {
+    'FaLaptopCode': FaLaptopCode, 'FaScrewdriverWrench': FaScrewdriverWrench, 'FaBoxOpen': FaBoxOpen,
+    'FaReact': FaReact, 'FaCubes': FaCubes, 'FaServer': FaServer, 'FaWordpress': FaWordpress,
+    'FaPenNib': FaPenNib, 'FaObjectGroup': FaObjectGroup, 'FaBullhorn': FaBullhorn, 'FaCode': FaCode,
+    'FaMobileScreenButton': FaMobileScreenButton, 'FaMobileScreen': FaMobileScreenButton, 'FaCartShopping': FaCartShopping,
+    'FaChartLine': FaChartLine, 'FaCloud': FaCloud, 'FaUsersGear': FaUsersGear, 'FaGraduationCap': FaGraduationCap,
+    'FaStore': FaStore, 'FaEnvelope': FaEnvelope, 'FaCircle': FaCircle, 'FaC': FaC,
+    'FaDatabase': FaDatabase, 'FaRobot': FaRobot, 'FaBrain': FaBrain, 'FaPaintbrush': FaPaintbrush,
+    'FaSearch': FaMagnifyingGlass, 'FaMobile': FaMobile, 'FaPalette': FaPalette, 'FaBolt': FaBolt,
+    'FaRocket': FaRocket, 'FaGlobe': FaGlobe, 'FaHandshake': FaHandshake, 'FaChartBar': FaChartBar,
+    'FaMicrochip': FaMicrochip, 'FaFileCode': FaFileCode, 'FaShield': FaShield, 'FaLinux': FaLinux,
+  };
+
   const getIcon = (iconName: string, fallback: IconType = FaCubes) => {
     if (!iconName) return fallback;
 
@@ -149,7 +177,7 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
         .join('');
 
       const Key = `Fa${iconKey}`;
-      return (FaIcons6 as any)[Key] || fallback;
+      return ICON_MAP[Key] || fallback;
     }
 
     return fallback;
