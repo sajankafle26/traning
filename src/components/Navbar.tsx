@@ -7,6 +7,7 @@ import { useCart } from '@/context/CartContext';
 
 // Icons (Font Awesome 6 via react-icons/fa6)
 import * as FaIcons6 from 'react-icons/fa6';
+
 import {
   FaBars,
   FaXmark,

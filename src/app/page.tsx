@@ -1,16 +1,18 @@
+import dynamic from 'next/dynamic'
 import Hero from '@/components/Hero'
 import TrustedCompanies from '@/components/TrustedCompanies'
-import ServicesShowcase from '@/components/ServicesShowcase'
-import Programs from '@/components/Programs'
 import WhyChoose from '@/components/WhyChoose'
 import TrustStats from '@/components/TrustStats'
-import Testimonials from '@/components/Testimonials'
-import Portfolio from '@/components/Portfolio'
-import Gallery from '@/components/Gallery'
 import FAQSection from '@/components/FAQSection'
-import ContactForm from '@/components/ContactForm'
-import UpcomingBatches from '@/components/UpcomingBatches'
-import Blog from '@/components/Blog'
+
+const ServicesShowcase = dynamic(() => import('@/components/ServicesShowcase'), { loading: () => <div className="h-64 bg-white" /> })
+const Programs = dynamic(() => import('@/components/Programs'), { loading: () => <div className="h-96 bg-slate-50" /> })
+const UpcomingBatches = dynamic(() => import('@/components/UpcomingBatches'), { loading: () => <div className="h-64 bg-white" /> })
+const Portfolio = dynamic(() => import('@/components/Portfolio'), { loading: () => <div className="h-64 bg-slate-50" /> })
+const Gallery = dynamic(() => import('@/components/Gallery'), { loading: () => <div className="h-64 bg-white" /> })
+const Testimonials = dynamic(() => import('@/components/Testimonials'), { loading: () => <div className="h-64 bg-slate-50" /> })
+const Blog = dynamic(() => import('@/components/Blog'), { loading: () => <div className="h-64 bg-[#00548B]" /> })
+const ContactForm = dynamic(() => import('@/components/ContactForm'), { loading: () => <div className="h-64 bg-white" /> })
 
 const HOMEPAGE_FAQS = [
   {

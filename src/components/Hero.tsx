@@ -1,7 +1,8 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
-import { FaArrowRight, FaPlay, FaUsers, FaRocket, FaGraduationCap, FaStar, FaLaptopCode, FaCode, FaMobileScreen, FaChartLine } from 'react-icons/fa6';
+import { FaArrowRight, FaGraduationCap, FaStar, FaLaptopCode, FaUsers } from 'react-icons/fa6';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Hero = () => {
   const [hero, setHero] = useState<any>(null);
@@ -160,10 +161,14 @@ const Hero = () => {
             <div className="absolute inset-6 bg-white/5 rounded-[3rem] -rotate-2 group-hover:-rotate-4 transition-transform duration-700" />
 
             <div className="relative z-10 rounded-[2.5rem] overflow-hidden border border-white/20 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)]">
-              <img
+              <Image
                 src={hero.image}
                 alt="Sangalo Tech - Software Company & IT Training Institute in Nepal"
+                width={600}
+                height={520}
+                priority
                 className="w-full h-[520px] object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#004381]/80 via-[#004381]/20 to-transparent" />
 

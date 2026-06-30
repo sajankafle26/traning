@@ -2,15 +2,6 @@
 User-agent: *
 Allow: /
 
-# Disallow admin & private routes
-Disallow: /adminpanel/
-Disallow: /dashboard/
-Disallow: /student-dashboard/
-Disallow: /studentlogin/
-Disallow: /api/
-Disallow: /checkout
-Disallow: /cart
-
 # Host
 Host: https://sangalotech.com
 
