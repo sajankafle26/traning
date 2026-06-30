@@ -11,7 +11,9 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     return (
         <>
             {!isAdmin && <Navbar />}
-            {children}
+            <main id="main-content" role="main">
+                {children}
+            </main>
             {!isAdmin && <Footer />}
             {!isAdmin && <ScrollToTop />}
         </>

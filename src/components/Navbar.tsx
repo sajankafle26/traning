@@ -319,7 +319,7 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
       </div>
 
       {/* Main Nav */}
-      <nav className="max-w-[1400px] mx-auto px-6 flex items-center justify-between py-3">
+      <nav aria-label="Main navigation" className="max-w-[1400px] mx-auto px-6 flex items-center justify-between py-3">
         <Link href="/" className="no-underline">
           <Logo />
         </Link>

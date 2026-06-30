@@ -32,7 +32,7 @@ const Footer = () => {
   };
 
   return (
-    <footer ref={sectionRef} className="relative bg-[#00548B] text-white pt-24 pb-10 px-4 overflow-hidden">
+    <footer aria-label="Site footer" ref={sectionRef} className="relative bg-[#00548B] text-white pt-24 pb-10 px-4 overflow-hidden">
       <div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.06), rgba(0,0,0,0.06))" }} />
 
       {/* Google Maps */}
