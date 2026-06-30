@@ -19,13 +19,13 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://sangalotech.com.np",
+        item: "https://sangalotech.com",
       },
       ...items.map((item, i) => ({
         "@type": "ListItem",
         position: i + 2,
         name: item.label,
-        ...(item.href ? { item: `https://sangalotech.com.np${item.href}` } : {}),
+        ...(item.href ? { item: `https://sangalotech.com${item.href}` } : {}),
       })),
     ],
   };

@@ -107,7 +107,7 @@ export default function CoursesList() {
     itemListElement: filtered.map((course, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `https://sangalotech.com.np/courses/${course.slug}`,
+      url: `https://sangalotech.com/courses/${course.slug}`,
       name: course.title,
     })),
   };

@@ -12,7 +12,7 @@ Disallow: /checkout
 Disallow: /cart
 
 # Host
-Host: https://sangalotech.com.np
+Host: https://sangalotech.com
 
 # Sitemaps
-Sitemap: https://sangalotech.com.np/sitemap.xml
+Sitemap: https://sangalotech.com/sitemap.xml

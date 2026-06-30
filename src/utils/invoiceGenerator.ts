@@ -61,7 +61,7 @@ export const generateInvoicePDF = (order: any, userName: string) => {
     doc.setFontSize(8);
     doc.setFont("helvetica", "italic");
     doc.text("Thank you for choosing Sangalo Tech for your learning journey.", 105, 280, { align: "center" });
-    doc.text("Kathmandu, Nepal | www.sangalotech.com.np", 105, 285, { align: "center" });
+    doc.text("Kathmandu, Nepal | www.sangalotech.com", 105, 285, { align: "center" });
 
     // Save PDF
     doc.save(`Invoice_${order._id.substring(0, 8)}.pdf`);

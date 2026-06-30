@@ -84,7 +84,7 @@ export default function ServicesPage() {
     itemListElement: services.map((service, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `https://sangalotech.com.np/services/${service.slug}`,
+      url: `https://sangalotech.com/services/${service.slug}`,
       name: service.title,
     })),
   };

@@ -128,13 +128,13 @@ export default function ServiceDetailPage() {
     provider: {
       "@type": "Organization",
       name: "Sangalo Tech Pvt. Ltd.",
-      url: "https://sangalotech.com.np",
+      url: "https://sangalotech.com",
     },
     areaServed: {
       "@type": "Country",
       name: "Nepal",
     },
-    url: `https://sangalotech.com.np/services/${slug}`,
+    url: `https://sangalotech.com/services/${slug}`,
   };
 
   return (

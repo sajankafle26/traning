@@ -14,12 +14,12 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'IT Training Courses in Nepal | Sangalo Tech',
         description: '9+ professional IT training courses — MERN Stack, React, Laravel, Python, UI/UX, Digital Marketing. Join Nepal\'s job-ready programs.',
-        url: 'https://sangalotech.com.np/courses',
+        url: 'https://sangalotech.com/courses',
         siteName: 'Sangalo Tech',
         type: 'website',
     },
     alternates: {
-        canonical: 'https://sangalotech.com.np/courses',
+        canonical: 'https://sangalotech.com/courses',
     },
 };
 

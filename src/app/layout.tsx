@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sangalotech.com.np"),
+  metadataBase: new URL("https://sangalotech.com"),
   title: {
     default: "Sangalo Tech | Software Company & IT Training Institute in Nepal",
     template: "%s | Sangalo Tech",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "SEO services Nepal", "best IT institute Bhaktapur", "coding bootcamp Nepal", "job ready IT programs Nepal",
     "Sangalo Tech", "Sajan Kafle"
   ],
-  authors: [{ name: "Sangalo Tech Pvt. Ltd.", url: "https://sangalotech.com.np" }],
+  authors: [{ name: "Sangalo Tech Pvt. Ltd.", url: "https://sangalotech.com" }],
   creator: "Sangalo Tech Pvt. Ltd.",
   publisher: "Sangalo Tech Pvt. Ltd.",
   openGraph: {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
       template: "%s | Sangalo Tech",
     },
     description: "Nepal's leading web development company and IT training institute. Custom web apps, mobile apps, SEO services + professional courses in MERN Stack, React, UI/UX, Digital Marketing.",
-    url: "https://sangalotech.com.np",
+    url: "https://sangalotech.com",
     siteName: "Sangalo Tech",
     images: [
       {
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://sangalotech.com.np/",
+    canonical: "https://sangalotech.com/",
   },
 };
 

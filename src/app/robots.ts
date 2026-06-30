@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: '/admin/',
         },
-        sitemap: 'https://sangalotech.com.np/sitemap.xml',
+        sitemap: 'https://sangalotech.com/sitemap.xml',
     }
 }

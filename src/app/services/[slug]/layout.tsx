@@ -45,12 +45,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             openGraph: {
                 title: serviceInfo.title,
                 description: serviceInfo.description,
-                url: `https://sangalotech.com.np/services/${slug}`,
+                url: `https://sangalotech.com/services/${slug}`,
                 siteName: 'Sangalo Tech',
                 type: 'website',
             },
             alternates: {
-                canonical: `https://sangalotech.com.np/services/${slug}`,
+                canonical: `https://sangalotech.com/services/${slug}`,
             },
         };
     }
@@ -65,12 +65,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         openGraph: {
             title: `${title} Services Nepal | Sangalo Tech`,
             description: `Professional ${title} services by Sangalo Tech Pvt. Ltd. in Nepal.`,
-            url: `https://sangalotech.com.np/services/${slug}`,
+            url: `https://sangalotech.com/services/${slug}`,
             siteName: 'Sangalo Tech',
             type: 'website',
         },
         alternates: {
-            canonical: `https://sangalotech.com.np/services/${slug}`,
+            canonical: `https://sangalotech.com/services/${slug}`,
         },
     };
 }
