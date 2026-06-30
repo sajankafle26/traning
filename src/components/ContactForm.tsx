@@ -66,7 +66,7 @@ const ContactForm = () => {
                     {item.icon}
                   </div>
                   <div>
-                    <h4 className="font-black text-slate-900 text-[10px] uppercase tracking-[0.25em] mb-2">{item.title}</h4>
+                    <h3 className="font-black text-slate-900 text-[10px] uppercase tracking-[0.25em] mb-2">{item.title}</h3>
                     <p className="text-slate-500 font-bold text-lg">{item.detail}</p>
                   </div>
                 </div>

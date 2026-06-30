@@ -156,8 +156,8 @@ const Gallery = () => {
                 <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h4 className="text-white font-bold text-sm">{item.title}</h4>
-                      <span className="text-white/60 text-[10px] font-bold uppercase tracking-widest">{item.category}</span>
+                      <h3 className="text-white font-bold text-sm">{item.title}</h3>
+                      <span className="text-white/80 text-[10px] font-bold uppercase tracking-widest">{item.category}</span>
                     </div>
                     {item.type === "video" && (
                       <span className="px-2.5 py-1 bg-red-500 text-white text-[9px] font-black rounded-full">VIDEO</span>
@@ -180,6 +180,7 @@ const Gallery = () => {
           {/* Close */}
           <button
             onClick={() => setLightbox(null)}
+            aria-label="Close lightbox"
             className="absolute top-6 right-6 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all z-50"
           >
             <FaTimes className="text-lg" />
@@ -189,6 +190,7 @@ const Gallery = () => {
           {lightboxIndex > 0 && (
             <button
               onClick={(e) => { e.stopPropagation(); navigate(-1); }}
+              aria-label="Previous image"
               className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all z-50"
             >
               <FaChevronLeft />
@@ -199,6 +201,7 @@ const Gallery = () => {
           {lightboxIndex < filtered.length - 1 && (
             <button
               onClick={(e) => { e.stopPropagation(); navigate(1); }}
+              aria-label="Next image"
               className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all z-50"
             >
               <FaChevronRight />

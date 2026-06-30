@@ -135,7 +135,7 @@ const Blog = () => {
                           {blog.title}
                         </h3>
 
-                        <p className="text-white/60 font-medium text-sm leading-relaxed line-clamp-3">
+                        <p className="text-white/80 font-medium text-sm leading-relaxed line-clamp-3">
                           {blog.excerpt}
                         </p>
 

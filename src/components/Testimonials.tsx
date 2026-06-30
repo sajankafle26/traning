@@ -117,6 +117,7 @@ const Testimonials = () => {
             <div className="flex justify-center items-center gap-3 mb-10">
               <button
                 ref={prevRef}
+                aria-label="Previous testimonial"
                 className="h-12 w-12 rounded-full bg-white border border-slate-200 text-slate-400 hover:text-[#00548B] hover:border-[#00548B]/20 hover:shadow-lg transition-all flex items-center justify-center shadow-sm active:scale-90"
               >
                 <FaChevronLeft />
@@ -126,6 +127,7 @@ const Testimonials = () => {
               <div className="h-1 w-1 rounded-full bg-[#00548B]/30" />
               <button
                 ref={nextRef}
+                aria-label="Next testimonial"
                 className="h-12 w-12 rounded-full bg-white border border-slate-200 text-slate-400 hover:text-[#00548B] hover:border-[#00548B]/20 hover:shadow-lg transition-all flex items-center justify-center shadow-sm active:scale-90"
               >
                 <FaChevronRight />
@@ -214,11 +216,11 @@ const Testimonials = () => {
                             </div>
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h4 className="font-bold text-slate-900 text-sm truncate">{t.name}</h4>
+                            <h3 className="font-bold text-slate-900 text-sm truncate">{t.name}</h3>
                             <p className="text-[10px] font-medium text-slate-400 uppercase tracking-wider mt-0.5">Verified Student</p>
                           </div>
                           {t.linkedin && (
-                            <a href={t.linkedin} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-[#0A66C2]/8 flex items-center justify-center text-[#0A66C2] hover:bg-[#0A66C2] hover:text-white transition-all shrink-0">
+                            <a href={t.linkedin} target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full bg-[#0A66C2]/8 flex items-center justify-center text-[#0A66C2] hover:bg-[#0A66C2] hover:text-white transition-all shrink-0">
                               <FaLinkedin className="text-sm" />
                             </a>
                           )}

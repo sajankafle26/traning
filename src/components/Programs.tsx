@@ -67,7 +67,7 @@ const Programs = () => {
               Training Programs
             </span>
           </h2>
-          <p className="text-white/60 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-white/80 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             Job-ready IT courses with internship, live projects, certification, and 100% placement assistance
           </p>
         </div>
@@ -129,9 +129,9 @@ const Programs = () => {
                             <span className="text-[9px] font-black text-cyan-300 uppercase tracking-widest bg-white/10 px-3 py-1 rounded-lg border border-white/20 inline-block">
                               {course.module}
                             </span>
-                            <h4 className="font-black text-white group-hover:text-cyan-300 transition-colors leading-tight text-lg">
+                            <h3 className="font-black text-white group-hover:text-cyan-300 transition-colors leading-tight text-lg">
                               {course.title}
-                            </h4>
+                            </h3>
                           </div>
 
                           {/* Feature Tags */}
@@ -150,7 +150,7 @@ const Programs = () => {
                           </div>
 
                           <div
-                            className="text-sm text-white/60 font-medium line-clamp-2"
+                            className="text-sm text-white/80 font-medium line-clamp-2"
                             dangerouslySetInnerHTML={{ __html: course.description }}
                           />
 

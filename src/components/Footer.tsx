@@ -80,7 +80,7 @@ const Footer = () => {
               { href: siteSettings?.instagram || "#", icon: FaInstagram, label: "Instagram", color: "hover:bg-pink-600" },
               { href: siteSettings?.tiktok || "#", icon: FaTiktok, label: "TikTok", color: "hover:bg-slate-900" },
             ].filter(s => s.href !== "#").map((s, i) => (
-              <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className={`w-10 h-10 bg-white/10 rounded-full flex items-center justify-center ${s.color} transition`} aria-label={s.label}>
+              <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className={`w-11 h-11 bg-white/10 rounded-full flex items-center justify-center ${s.color} transition`} aria-label={s.label}>
                 <s.icon />
               </a>
             ))}
@@ -89,7 +89,7 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div className="space-y-6">
-          <h3 className="text-xl font-bold border-l-4 border-blue-300/80 pl-3">Company</h3>
+          <h2 className="text-xl font-bold border-l-4 border-blue-300/80 pl-3">Company</h2>
           <ul className="space-y-3 text-sm text-blue-100/75">
             <li><Link href="/about" className="hover:text-white transition">About Sangalo Tech</Link></li>
             <li><Link href="/services" className="hover:text-white transition">Our Services</Link></li>
@@ -101,7 +101,7 @@ const Footer = () => {
 
         {/* Popular Courses */}
         <div className="space-y-6">
-          <h3 className="text-xl font-bold border-l-4 border-blue-300/80 pl-3">Popular Courses</h3>
+          <h2 className="text-xl font-bold border-l-4 border-blue-300/80 pl-3">Popular Courses</h2>
           <ul className="space-y-3 text-sm text-blue-100/75">
             <li><Link href="/courses/mern-stack" className="hover:text-white transition">MERN Stack Industrial Training</Link></li>
             <li><Link href="/courses/react-next-js" className="hover:text-white transition">React & Next.js Mastery</Link></li>
@@ -113,7 +113,7 @@ const Footer = () => {
 
         {/* Newsletter + WhatsApp */}
         <div className="space-y-6">
-          <h3 className="text-xl font-bold border-l-4 border-blue-300/80 pl-3">Stay Connected</h3>
+          <h2 className="text-xl font-bold border-l-4 border-blue-300/80 pl-3">Stay Connected</h2>
           {/* Newsletter */}
           <div className="space-y-3">
             <p className="text-sm text-blue-100/70">Get updates on new courses and offers.</p>
@@ -131,7 +131,7 @@ const Footer = () => {
                   className="flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/40"
                   required
                 />
-                <button type="submit" className="bg-white text-[#00548B] px-4 rounded-xl font-bold hover:bg-blue-100 transition shrink-0">
+                <button type="submit" aria-label="Subscribe to newsletter" className="bg-white text-[#00548B] px-4 py-3 rounded-xl font-bold hover:bg-blue-100 transition shrink-0">
                   <FaPaperPlane />
                 </button>
               </form>

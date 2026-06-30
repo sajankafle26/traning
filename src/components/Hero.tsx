@@ -162,7 +162,7 @@ const Hero = () => {
                   <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
                   <span className="text-white/80 text-xs font-bold uppercase tracking-widest">Now Enrolling & Taking Projects</span>
                 </div>
-                <h3 className="text-white text-2xl font-extrabold mb-2">Your Digital Partner & Career Catalyst</h3>
+                <h2 className="text-white text-2xl font-extrabold mb-2">Your Digital Partner & Career Catalyst</h2>
                 <p className="text-white/70 text-sm font-medium">Custom software development + job-ready IT training</p>
               </div>
 

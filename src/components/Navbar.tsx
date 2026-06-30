@@ -304,14 +304,14 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
 
           </div>
 
-          <div className="flex gap-4 items-center">
-            <a href={siteSettings?.facebook || "#"} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition" aria-label="Facebook">
+          <div className="flex items-center">
+            <a href={siteSettings?.facebook || "#"} target="_blank" rel="noopener noreferrer" className="w-11 h-11 flex items-center justify-center hover:scale-110 transition rounded-lg" aria-label="Facebook">
               <FaFacebookF />
             </a>
-            <a href={siteSettings?.linkedin || "#"} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition" aria-label="LinkedIn">
+            <a href={siteSettings?.linkedin || "#"} target="_blank" rel="noopener noreferrer" className="w-11 h-11 flex items-center justify-center hover:scale-110 transition rounded-lg" aria-label="LinkedIn">
               <FaLinkedinIn />
             </a>
-            <a href={siteSettings?.instagram || "#"} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition" aria-label="Instagram">
+            <a href={siteSettings?.instagram || "#"} target="_blank" rel="noopener noreferrer" className="w-11 h-11 flex items-center justify-center hover:scale-110 transition rounded-lg" aria-label="Instagram">
               <FaInstagram />
             </a>
           </div>
