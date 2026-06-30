@@ -42,6 +42,7 @@ const HOMEPAGE_FAQS = [
 function page() {
   return (
     <>
+      <h1 className="sr-only">Sangalo Tech — Software Company & IT Training Institute in Nepal</h1>
       <Hero />
       <TrustedCompanies />
       <ServicesShowcase />
