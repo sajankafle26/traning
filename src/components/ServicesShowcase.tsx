@@ -96,31 +96,26 @@ export default function ServicesShowcase() {
                         height={500}
                         loading="lazy"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                      <div className="absolute bottom-4 left-4">
-                        <div className="w-14 h-14 rounded-2xl bg-[#00548B] flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+                      <div className="absolute top-4 left-4">
+                        <div className="w-10 h-10 rounded-xl bg-[#00548B] flex items-center justify-center shadow-lg">
                           {service.icon?.startsWith('fa') ? (
-                            <i className={`${service.icon} text-xl text-white`} />
+                            <i className={`${service.icon} text-base text-white`} />
                           ) : (
-                            <IconComp className="text-xl text-white" />
+                            <IconComp className="text-base text-white" />
                           )}
                         </div>
                       </div>
                     </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#00548B] transition-colors">
+                    <div className="p-5">
+                      <h3 className="text-lg font-bold text-slate-900 mb-1 group-hover:text-[#00548B] transition-colors">
                         {service.title}
                       </h3>
                       <div
-                        className="text-sm text-slate-500 leading-relaxed mb-4 line-clamp-2 [&_p]:mb-2 [&_p:last-child]:mb-0"
+                        className="text-sm text-slate-500 leading-relaxed line-clamp-2 [&_p]:mb-1 [&_p:last-child]:mb-0"
                         dangerouslySetInnerHTML={{ __html: service.description }}
                       />
-                      <div className="flex items-center gap-2 text-[#00548B] font-bold text-sm group-hover:gap-3 transition-all duration-300">
-                        <span>Learn More</span>
-                        <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
-                      </div>
                     </div>
                   </article>
                 </Link>

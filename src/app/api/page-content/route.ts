@@ -5,10 +5,10 @@ import { auth } from "@/auth";
 
 const DEFAULT_CONTENT = {
     hero: {
-        badge: 'About Us',
-        title: 'Software Company',
-        subtitle: 'And IT Training Institute in Nepal.',
-        description: 'Sangalo Tech Pvt. Ltd. is a prominent web design, software development, and IT training institute located in Lokenthali, Bhaktapur, Nepal.',
+        badge: "NEPAL'S TRUSTED TECH PARTNER",
+        title: 'Build Digital Products.',
+        subtitle: 'Launch IT Careers.',
+        description: 'Custom web apps, mobile apps & digital solutions for businesses — plus job-ready training programs that have placed 600+ students in top IT companies.',
         image: '/about/office.jpg',
         services: [
             { icon: '💻', title: 'Software Development', desc: 'Custom Solutions' },

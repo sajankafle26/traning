@@ -13,6 +13,7 @@ const Gallery = dynamic(() => import('@/components/Gallery'), { loading: () => <
 const Testimonials = dynamic(() => import('@/components/Testimonials'), { loading: () => <div className="h-64 bg-slate-50" /> })
 const Blog = dynamic(() => import('@/components/Blog'), { loading: () => <div className="h-64 bg-[#00548B]" /> })
 const ContactForm = dynamic(() => import('@/components/ContactForm'), { loading: () => <div className="h-64 bg-white" /> })
+const CaseStudies = dynamic(() => import('@/components/CaseStudies'), { loading: () => <div className="h-64 bg-slate-50" /> })
 
 const HOMEPAGE_FAQS = [
   {
@@ -46,14 +47,14 @@ function page() {
     <>
       <h1 className="sr-only">Sangalo Tech — Software Company & IT Training Institute in Nepal</h1>
       <Hero />
+      <TrustStats />
       <TrustedCompanies />
       <ServicesShowcase />
-      <Programs />
       <WhyChoose />
+      <CaseStudies />
+      <Programs />
       <UpcomingBatches />
-      <TrustStats />
       <Portfolio />
-      <Gallery />
       <Testimonials />
       <FAQSection
         title="Frequently Asked Questions"

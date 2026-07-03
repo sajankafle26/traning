@@ -5,10 +5,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const DEFAULT_HERO = {
-  badge: 'SOFTWARE COMPANY & IT TRAINING INSTITUTE',
-  title: 'Software Company',
-  subtitle: 'And IT Training Institute In Nepal.',
-  description: 'Sangalo Tech Pvt. Ltd. is a premier web development company and IT training institute, located in Lokenthali, Bhaktapur, Nepal.',
+  badge: 'NEPAL\'S TRUSTED TECH PARTNER',
+  title: 'Build Digital Products.',
+  subtitle: 'Launch IT Careers.',
+  description: 'Custom web apps, mobile apps & digital solutions for businesses — plus job-ready training programs that have placed 600+ students in top IT companies.',
   image: '/about/office.jpg',
 };
 
