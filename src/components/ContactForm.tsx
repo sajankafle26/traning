@@ -30,7 +30,7 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-32 px-6 relative overflow-hidden bg-white">
+    <section id="contact" className="py-24 px-6 relative overflow-hidden bg-white">
       {/* Premium Architectural Grid Background */}
       <div className="absolute inset-x-0 top-0 h-[800px] pointer-events-none opacity-[0.05] architect-grid" />
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#f8fbff] via-white to-white" />

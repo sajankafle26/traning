@@ -36,7 +36,7 @@ export default function FAQSection({ title, subtitle, faqs }: FAQSectionProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <section className="py-20 px-6 bg-gradient-to-b from-slate-50 to-white">
+      <section className="py-24 px-6 bg-gradient-to-b from-slate-50 to-white">
         <div className="max-w-4xl mx-auto">
           {(title || subtitle) && (
             <div className="text-center mb-12 space-y-3">

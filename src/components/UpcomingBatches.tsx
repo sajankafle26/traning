@@ -133,7 +133,7 @@ const UpcomingBatches = () => {
   }, []);
 
   return (
-    <section id="upcoming-batches" className="py-16 px-6 relative overflow-hidden bg-gradient-to-b from-[#f8fbff] via-gray-50 to-white">
+    <section id="upcoming-batches" className="py-24 px-6 relative overflow-hidden bg-gradient-to-b from-[#f8fbff] via-gray-50 to-white">
       <div className="max-w-[1400px] mx-auto relative z-10">
         {/* Header */}
         <div className="mb-10 text-center space-y-3">
