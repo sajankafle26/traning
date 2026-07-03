@@ -421,20 +421,20 @@ const CourseDetails = ({ course, onBack }: CourseDetailsProps) => {
   return (
     <div className="min-h-screen bg-white">
       {/* ===================== Hero ===================== */}
-      <header className="relative bg-slate-50 border-b border-slate-100">
-        <div className="max-w-[1200px] mx-auto px-6 py-12 md:py-16">
+      <header className="bg-slate-50 border-b border-slate-100">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-8 md:py-16">
           {/* Back button */}
           <button
             onClick={onBack}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-slate-600 transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-slate-600 transition-colors mb-6 md:mb-8"
           >
             <FaArrowLeftLong className="text-xs" />
             Back to Courses
           </button>
 
-          <div className="grid lg:grid-cols-5 gap-10 items-start">
+          <div className="grid lg:grid-cols-5 gap-8 md:gap-10 items-start">
             {/* Left: Course Info */}
-            <div className="lg:col-span-3 space-y-6">
+            <div className="lg:col-span-3 space-y-5">
               <div className="flex flex-wrap items-center gap-2">
                 {course.category && (
                   <span className="text-[10px] font-bold uppercase tracking-wider text-[#00548B] bg-[#00548B]/10 px-3 py-1.5 rounded-md">
@@ -451,25 +451,25 @@ const CourseDetails = ({ course, onBack }: CourseDetailsProps) => {
                 </span>
               </div>
 
-              <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+              <h1 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
                 {course.title}
               </h1>
 
               <div
-                className="text-slate-400 text-sm leading-relaxed max-w-2xl"
+                className="text-slate-400 text-sm leading-relaxed max-w-2xl hidden md:block"
                 dangerouslySetInnerHTML={{ __html: course.description }}
               />
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pt-2">
                 {[
                   { icon: FaBolt, label: "Intensity", value: "Industrial" },
                   { icon: FaMicrochip, label: "Lab Time", value: toHoursLabel(course.duration) },
                   { icon: FaUsers, label: "Mentorship", value: "1:8 Ratio" },
                   { icon: FaBriefcase, label: "Placement", value: "Direct Hire" },
                 ].map((stat, i) => (
-                  <div key={i} className="bg-white border border-slate-100 rounded-lg p-4 text-center">
-                    <stat.icon className="text-[#00548B] text-sm mx-auto mb-2" />
+                  <div key={i} className="bg-white border border-slate-100 rounded-lg p-3 md:p-4 text-center">
+                    <stat.icon className="text-[#00548B] text-sm mx-auto mb-1.5" />
                     <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">{stat.label}</div>
                     <div className="text-sm font-bold text-slate-900 mt-0.5">{stat.value}</div>
                   </div>
@@ -478,7 +478,7 @@ const CourseDetails = ({ course, onBack }: CourseDetailsProps) => {
             </div>
 
             {/* Right: Image */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 order-first lg:order-last">
               <div className="rounded-xl overflow-hidden border border-slate-100 shadow-sm">
                 <Image
                   src={heroImageSrc}
@@ -486,7 +486,7 @@ const CourseDetails = ({ course, onBack }: CourseDetailsProps) => {
                   width={600}
                   height={400}
                   priority
-                  className="w-full h-[280px] md:h-[320px] object-cover"
+                  className="w-full h-[200px] md:h-[320px] object-cover"
                   sizes="(max-width: 1024px) 100vw, 33vw"
                 />
               </div>
@@ -496,7 +496,7 @@ const CourseDetails = ({ course, onBack }: CourseDetailsProps) => {
       </header>
 
       {/* ===================== Content ===================== */}
-      <div className="max-w-[1200px] mx-auto px-6 py-16 grid lg:grid-cols-12 gap-12">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-12 md:py-16 grid lg:grid-cols-12 gap-10 md:gap-12">
         {/* Left Column */}
         <div className="lg:col-span-8 space-y-16">
           {/* Overview */}
