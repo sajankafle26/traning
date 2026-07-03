@@ -6,7 +6,7 @@ import { apiService } from "@/services/apiService";
 import { ServiceItem } from "@/types";
 import {
   FaArrowRight, FaLaptopCode, FaMobileAlt, FaChartLine,
-  FaPenNib, FaShoppingCart, FaCloud, FaCode, FaSearch, FaCog
+  FaPenNib, FaShoppingCart, FaCloud
 } from "react-icons/fa";
 
 const iconComponents: Record<string, any> = {
@@ -48,28 +48,25 @@ export default function ServicesShowcase() {
   if (services.length === 0 && !loading) return null;
 
   return (
-    <section className="py-32 px-6 bg-white">
-      <div className="max-w-[1400px] mx-auto">
+    <section className="py-24 px-6 bg-white">
+      <div className="max-w-[1200px] mx-auto">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 mb-16">
-          <div className="space-y-6 max-w-2xl">
-            <div className="inline-flex items-center gap-3 bg-[#00548B]/10 text-[#00548B] px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] border border-[#00548B]/20">
-              <FaLaptopCode className="text-xs" />
-              Software Company
-            </div>
-            <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-[0.95]">
-              Our <span className="text-[#00548B]">Services</span>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-14">
+          <div className="space-y-3">
+            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#00548B]">Software Company</span>
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
+              Our Services
             </h2>
-            <p className="text-slate-500 font-medium text-lg md:text-xl leading-relaxed">
-              From concept to deployment — we build scalable web apps, mobile apps, and digital solutions for businesses in Nepal and beyond.
+            <p className="text-slate-500 text-lg max-w-lg">
+              End-to-end digital solutions for businesses in Nepal and beyond
             </p>
           </div>
           <Link
             href="/services"
-            className="inline-flex items-center gap-3 bg-[#00548B] text-white px-8 py-4 rounded-2xl font-black text-[11px] uppercase tracking-widest hover:bg-[#004381] transition-all shadow-xl shadow-[#00548B]/20 no-underline"
+            className="inline-flex items-center gap-2 text-sm font-bold text-[#00548B] hover:gap-3 transition-all group shrink-0"
           >
             View All Services
-            <FaArrowRight className="text-sm" />
+            <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
@@ -77,7 +74,11 @@ export default function ServicesShowcase() {
         {loading ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="h-80 bg-slate-50 rounded-3xl border border-slate-100 animate-pulse" />
+              <div key={i} className="animate-pulse">
+                <div className="aspect-[16/10] bg-slate-100 rounded-xl mb-4" />
+                <div className="h-5 bg-slate-100 rounded-lg w-3/4 mb-2" />
+                <div className="h-4 bg-slate-100 rounded-lg w-full" />
+              </div>
             ))}
           </div>
         ) : (
@@ -87,36 +88,34 @@ export default function ServicesShowcase() {
               const image = service.image || SERVICE_IMAGES[service.slug] || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800';
               return (
                 <Link key={service.id} href={`/services/${service.slug}`} className="group block">
-                  <article className="relative h-full rounded-3xl bg-white border border-slate-100 overflow-hidden hover:shadow-2xl hover:border-[#00548B]/20 transition-all duration-500 hover:-translate-y-2">
-                    <div className="relative aspect-[16/10] overflow-hidden">
+                  <article className="h-full">
+                    <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 mb-4">
                       <Image
                         src={image}
-                        alt={`${service.title} - Sangalo Tech Nepal`}
+                        alt={service.title}
                         width={800}
                         height={500}
                         loading="lazy"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute top-4 left-4">
-                        <div className="w-10 h-10 rounded-xl bg-[#00548B] flex items-center justify-center shadow-lg">
+                      <div className="absolute top-3 left-3">
+                        <div className="w-9 h-9 rounded-lg bg-[#00548B] flex items-center justify-center shadow-md">
                           {service.icon?.startsWith('fa') ? (
-                            <i className={`${service.icon} text-base text-white`} />
+                            <i className={`${service.icon} text-sm text-white`} />
                           ) : (
-                            <IconComp className="text-base text-white" />
+                            <IconComp className="text-sm text-white" />
                           )}
                         </div>
                       </div>
                     </div>
-                    <div className="p-5">
-                      <h3 className="text-lg font-bold text-slate-900 mb-1 group-hover:text-[#00548B] transition-colors">
-                        {service.title}
-                      </h3>
-                      <div
-                        className="text-sm text-slate-500 leading-relaxed line-clamp-2 [&_p]:mb-1 [&_p:last-child]:mb-0"
-                        dangerouslySetInnerHTML={{ __html: service.description }}
-                      />
-                    </div>
+                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#00548B] transition-colors mb-1">
+                      {service.title}
+                    </h3>
+                    <div
+                      className="text-sm text-slate-400 leading-relaxed line-clamp-2 [&_p]:mb-1 [&_p:last-child]:mb-0"
+                      dangerouslySetInnerHTML={{ __html: service.description }}
+                    />
                   </article>
                 </Link>
               );
@@ -124,17 +123,19 @@ export default function ServicesShowcase() {
           </div>
         )}
 
-        {/* Tech Stack Bar */}
-        <div className="mt-16 text-center">
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Technologies We Work With</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {['React', 'Next.js', 'Node.js', 'TypeScript', 'MongoDB', 'React Native', 'Flutter', 'Python', 'Laravel', 'WordPress', 'AWS', 'Docker'].map((tech) => (
-              <span key={tech} className="px-4 py-2 rounded-xl bg-slate-50 border border-slate-100 text-xs font-bold text-slate-600 hover:border-[#00548B]/30 hover:text-[#00548B] transition-all cursor-default">
-                {tech}
-              </span>
-            ))}
+        {/* Tech Stack */}
+        {!loading && services.length > 0 && (
+          <div className="mt-16 pt-12 border-t border-slate-100">
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] text-center mb-5">Technologies We Work With</p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {['React', 'Next.js', 'Node.js', 'TypeScript', 'MongoDB', 'React Native', 'Flutter', 'Python', 'Laravel', 'WordPress', 'AWS', 'Docker'].map((tech) => (
+                <span key={tech} className="px-4 py-2 rounded-lg bg-slate-50 border border-slate-100 text-xs font-semibold text-slate-500 hover:border-[#00548B]/30 hover:text-[#00548B] transition-all">
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

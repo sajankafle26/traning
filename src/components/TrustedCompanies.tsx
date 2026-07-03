@@ -6,14 +6,14 @@ import { Autoplay, FreeMode } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
-interface PortfolioItem {
+interface Company {
   _id: string;
   title: string;
   image: string;
   category?: string;
 }
 
-const fallbackCompanies: PortfolioItem[] = [
+const COMPANIES: Company[] = [
   { _id: '1', title: 'Banking Khabar', image: '/trusted/banking-logo.jpg', category: 'News Portal' },
   { _id: '2', title: 'BG Khabar', image: '/trusted/bgkhabar.png', category: 'News Portal' },
   { _id: '3', title: 'Business Sansar', image: '/trusted/businesssasakor.png', category: 'News' },
@@ -32,111 +32,70 @@ const fallbackCompanies: PortfolioItem[] = [
 ];
 
 const TrustedCompanies = () => {
-  const [companies] = useState<PortfolioItem[]>(fallbackCompanies);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const swiperRef = useRef<any>(null);
 
-  const handleMouseEnter = (index: number) => {
-    setHoveredIndex(index);
-    if (swiperRef.current?.autoplay) {
-      swiperRef.current.autoplay.stop();
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredIndex(null);
-    if (swiperRef.current?.autoplay) {
-      swiperRef.current.autoplay.start();
-    }
-  };
-
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-[#f8fbff] via-white to-white">
-      <div className="max-w-[1400px] mx-auto px-6">
+    <section className="py-20 px-6 bg-white border-b border-slate-100">
+      <div className="max-w-[1200px] mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-[#00548B]/10 text-[#00548B] px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-[#00548B]/20 mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00548B] shadow-[0_0_8px_#00548B]" />
-            Our Partners
-          </div>
-          <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-[0.95]">
-            Trusted by <span className="text-[#00548B]">Top-Rated Companies</span>
+        <div className="text-center mb-12">
+          <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#00548B] mb-3 block">Our Partners</span>
+          <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
+            Trusted by Leading Companies
           </h2>
-          <p className="mt-5 text-slate-500 font-medium text-lg max-w-xl mx-auto leading-relaxed">
-            We collaborate with industry leaders to deliver world-class IT solutions and training
+          <p className="mt-3 text-slate-400 text-sm max-w-md mx-auto">
+            We deliver technology solutions to businesses across Nepal
           </p>
         </div>
 
         {/* Logo Slider */}
         <div className="relative">
-          {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-r from-[#f8fbff] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-l from-[#f8fbff] to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
           <Swiper
             modules={[Autoplay, FreeMode]}
             freeMode={true}
             onSwiper={(swiper) => { swiperRef.current = swiper; }}
-            autoplay={{
-              delay: 0,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: false,
-            }}
+            autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false }}
             speed={3000}
             loop={true}
-            slidesPerView={2}
-            spaceBetween={20}
+            slidesPerView={3}
+            spaceBetween={16}
             breakpoints={{
-              640: { slidesPerView: 3, spaceBetween: 24 },
-              768: { slidesPerView: 4, spaceBetween: 28 },
-              1024: { slidesPerView: 5, spaceBetween: 32 },
+              640: { slidesPerView: 4, spaceBetween: 20 },
+              768: { slidesPerView: 5, spaceBetween: 24 },
+              1024: { slidesPerView: 6, spaceBetween: 28 },
             }}
-            className="trustedSwiper pb-4"
           >
-            {[...companies, ...companies].map((company, i) => (
+            {[...COMPANIES, ...COMPANIES].map((company, i) => (
               <SwiperSlide key={i}>
-                <div
-                  className="relative cursor-pointer group"
-                  onMouseEnter={() => handleMouseEnter(i)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  {/* Card */}
-                  <div className="bg-white rounded-2xl border border-slate-100 shadow-md shadow-slate-200/60 hover:shadow-xl hover:shadow-[#00548B]/10 hover:border-[#00548B]/20 hover:-translate-y-1 transition-all duration-500 p-4">
-                    <div className="flex items-center justify-center h-20 bg-slate-50 rounded-xl border border-slate-100/80">
-                      <Image
-                        src={company.image}
-                        alt={company.title}
-                        width={120}
-                        height={56}
-                        loading="lazy"
-                        className="max-h-14 w-auto max-w-[80%] object-contain grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.onerror = null;
-                          target.style.display = 'none';
-                          const parent = target.parentElement;
-                          if (parent && !parent.querySelector('.fallback-text')) {
-                            const span = document.createElement('span');
-                            span.className = 'fallback-text text-sm font-black text-slate-300 group-hover:text-[#00548B] transition-colors duration-300 text-center leading-tight';
-                            span.textContent = company.title;
-                            parent.appendChild(span);
-                          }
-                        }}
-                      />
-                    </div>
-
-                    {/* Company Name Below */}
-                    <div className="mt-3 text-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
-                      <span className="text-[10px] font-bold text-[#00548B] uppercase tracking-widest">{company.title}</span>
-                    </div>
-                  </div>
+                <div className="flex items-center justify-center h-16 bg-slate-50 rounded-lg border border-slate-100 hover:border-slate-200 hover:bg-white transition-all duration-200 px-4">
+                  <Image
+                    src={company.image}
+                    alt={company.title}
+                    width={120}
+                    height={48}
+                    loading="lazy"
+                    className="max-h-10 w-auto max-w-full object-contain grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-200"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.onerror = null;
+                      target.style.display = 'none';
+                      const parent = target.parentElement;
+                      if (parent && !parent.querySelector('.fallback-text')) {
+                        const span = document.createElement('span');
+                        span.className = 'fallback-text text-[10px] font-bold text-slate-300 text-center leading-tight';
+                        span.textContent = company.title;
+                        parent.appendChild(span);
+                      }
+                    }}
+                  />
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
-
-       
       </div>
     </section>
   );

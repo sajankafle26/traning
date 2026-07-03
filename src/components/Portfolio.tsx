@@ -3,11 +3,6 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaArrowRight, FaExternalLinkAlt, FaCode } from "react-icons/fa";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 
 interface PortfolioItem {
   _id: string;
@@ -20,10 +15,18 @@ interface PortfolioItem {
   industry?: string;
 }
 
+const PLACEHOLDER_BG = [
+  "from-[#004381] to-[#00548B]",
+  "from-slate-800 to-slate-900",
+  "from-[#00548B] to-[#006fa0]",
+  "from-indigo-800 to-indigo-900",
+];
+
 const Portfolio = () => {
   const [projects, setProjects] = useState<PortfolioItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState("all");
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -49,150 +52,140 @@ const Portfolio = () => {
 
   const categories = ["all", ...new Set(projects.map(p => p.category).filter(Boolean))];
   const filteredProjects = activeFilter === "all" ? projects : projects.filter(p => p.category === activeFilter);
-  const displayedProjects = filteredProjects;
 
   return (
-    <section id="portfolio" className="py-32 px-6 relative overflow-hidden bg-gradient-to-b from-[#f8fbff] via-white to-white">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-sangalo-900/5 rounded-full blur-[150px] pointer-events-none" />
-
-      <div className="max-w-[1400px] mx-auto relative z-10 space-y-16">
+    <section id="portfolio" className="py-24 px-6 bg-white">
+      <div className="max-w-[1400px] mx-auto">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12">
-          <div className="space-y-6 max-w-2xl">
-            <div className="inline-flex items-center gap-3 bg-sangalo-50 text-sangalo-900 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] border border-sangalo-100">
-              <span className="w-1.5 h-1.5 rounded-full bg-sangalo-900" />
-              Our Portfolio
-            </div>
-            <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-[0.95]">
-              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-sangalo-900 to-sangalo-600">Portfolio</span>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+          <div className="space-y-3">
+            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#00548B]">Our Work</span>
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
+              Selected Projects
             </h2>
-            <p className="text-slate-500 font-medium text-lg md:text-xl leading-relaxed">
-              Explore our latest digital transformations and high-impact solutions for global clients
+            <p className="text-slate-500 text-lg max-w-lg">
+              Digital solutions we've built for businesses across Nepal and beyond
             </p>
           </div>
+          {!loading && projects.length > 0 && (
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#00548B] hover:gap-3 transition-all group"
+            >
+              View All Projects
+              <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
+            </Link>
+          )}
         </div>
 
         {/* Filters */}
         {!loading && projects.length > 0 && (
-        <div className="flex flex-wrap gap-3">
-          {categories.slice(0, 8).map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveFilter(cat || "")}
-              className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all duration-300 ${
-                activeFilter === cat ? "bg-sangalo-900 text-white shadow-lg shadow-sangalo-900/20" : "bg-white text-slate-500 border border-slate-200 hover:border-sangalo-200 hover:text-sangalo-900"
-              }`}
-            >
-              {cat === "all" ? "All Projects" : cat}
-            </button>
-          ))}
-        </div>
+          <div className="flex items-center gap-2 mb-10 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide">
+            {categories.slice(0, 7).map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveFilter(cat || "")}
+                className={`shrink-0 px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-200 ${
+                  activeFilter === cat
+                    ? "bg-[#00548B] text-white shadow-md shadow-[#00548B]/20"
+                    : "bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-700"
+                }`}
+              >
+                {cat === "all" ? "All Projects" : cat}
+              </button>
+            ))}
+          </div>
         )}
 
         {/* Grid */}
         {loading ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="bg-white rounded-3xl overflow-hidden border border-slate-100 animate-pulse">
-                <div className="aspect-[16/10] bg-slate-100" />
-                <div className="p-6 space-y-4">
-                  <div className="h-6 bg-slate-100 rounded-xl w-3/4" />
-                  <div className="h-4 bg-slate-100 rounded-xl w-full" />
-                </div>
+              <div key={i} className="animate-pulse">
+                <div className="aspect-[4/3] bg-slate-100 rounded-2xl mb-4" />
+                <div className="h-5 bg-slate-100 rounded-lg w-3/4 mb-2" />
+                <div className="h-4 bg-slate-100 rounded-lg w-1/2" />
               </div>
             ))}
           </div>
         ) : projects.length === 0 ? (
-          <div className="text-center py-20 text-slate-400">
-            <FaCode className="text-4xl mx-auto mb-4 opacity-30" />
-            <p className="font-bold text-lg">Portfolio projects coming soon.</p>
+          <div className="text-center py-24">
+            <div className="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center mx-auto mb-4">
+              <FaCode className="text-2xl text-slate-300" />
+            </div>
+            <p className="font-bold text-slate-400">Portfolio projects coming soon.</p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {displayedProjects.map((project, index) => (
-              <div key={project._id} className="group bg-white rounded-3xl overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-3">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((project, index) => (
+              <Link
+                key={project._id}
+                href={project.link && project.link !== '#' ? project.link : `/portfolio#${project._id}`}
+                target={project.link && project.link !== '#' ? "_blank" : undefined}
+                rel={project.link && project.link !== '#' ? "noopener noreferrer" : undefined}
+                className="group block"
+                onMouseEnter={() => setHoveredId(project._id)}
+                onMouseLeave={() => setHoveredId(null)}
+              >
                 {/* Image */}
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <Image
-                    src={project.image || `https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800&sig=${index}`}
-                    alt={`${project.title} - ${project.industry || project.category} project by Sangalo Tech`}
-                    width={800}
-                    height={500}
-                    loading="lazy"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  {/* Hover Actions */}
-                  <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.tags?.slice(0, 3).map((tag, i) => (
-                        <span key={i} className="px-2.5 py-1 bg-white/90 backdrop-blur-sm rounded-full text-[8px] font-bold text-sangalo-900 uppercase tracking-wider flex items-center gap-1">
-                          <FaCode className="text-[6px]" /> {tag}
-                        </span>
-                      ))}
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 mb-4">
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={800}
+                      height={600}
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className={`w-full h-full bg-gradient-to-br ${PLACEHOLDER_BG[index % PLACEHOLDER_BG.length]} flex items-center justify-center`}>
+                      <span className="text-4xl font-black text-white/10">{project.title?.charAt(0)}</span>
                     </div>
+                  )}
+
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-[#00548B]/0 group-hover:bg-[#00548B]/80 transition-all duration-300 flex items-center justify-center">
                     {project.link && project.link !== '#' && (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-sangalo-900 hover:bg-sangalo-900 hover:text-white transition-all shadow-lg shrink-0"
-                      >
-                        <FaExternalLinkAlt className="text-sm" />
-                      </a>
+                      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-300 delay-75">
+                        <FaExternalLinkAlt className="text-[#00548B] text-sm" />
+                      </div>
                     )}
                   </div>
 
-                  {/* Category Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className="px-4 py-2 bg-sangalo-900/90 backdrop-blur-sm text-white text-[9px] font-black uppercase tracking-widest rounded-full">
-                      {project.category}
-                    </span>
-                  </div>
-
-                  {/* Industry Tag */}
-                  {project.industry && (
-                    <div className="absolute top-4 right-4">
-                      <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-slate-700 text-[8px] font-bold uppercase tracking-widest rounded-full">
-                        {project.industry}
+                  {/* Category */}
+                  {project.category && (
+                    <div className="absolute bottom-3 left-3">
+                      <span className="px-3 py-1.5 bg-white/95 backdrop-blur-sm text-[10px] font-bold text-slate-700 rounded-full shadow-sm">
+                        {project.category}
                       </span>
                     </div>
                   )}
                 </div>
 
                 {/* Content */}
-                <div className="p-6 space-y-3">
-                  <h3 className="text-lg font-black text-slate-900 group-hover:text-sangalo-900 transition-colors leading-tight">
+                <div className="space-y-1.5">
+                  <h3 className="text-base font-bold text-slate-900 group-hover:text-[#00548B] transition-colors leading-snug">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-slate-500 font-medium leading-relaxed line-clamp-2">
+                  <p className="text-sm text-slate-400 font-medium line-clamp-1">
                     {project.description}
                   </p>
-                  <div className="flex items-center justify-between pt-2">
-                    <div className="flex items-center gap-2 text-sangalo-900 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <span className="text-[10px] font-black uppercase tracking-widest">View Project</span>
-                      <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
+                  {project.tags && project.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {project.tags.slice(0, 3).map((tag, i) => (
+                        <span key={i} className="text-[10px] font-semibold text-slate-400 bg-slate-50 px-2 py-0.5 rounded">
+                          {tag}
+                        </span>
+                      ))}
                     </div>
-                    {project.link && project.link !== '#' && (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[9px] font-bold text-[#00548B] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1"
-                      >
-                        Live Site <FaExternalLinkAlt className="text-[7px]" />
-                      </a>
-                    )}
-                  </div>
+                  )}
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
-
       </div>
     </section>
   );
