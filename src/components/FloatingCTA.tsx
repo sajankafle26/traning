@@ -54,7 +54,7 @@ export default function FloatingCTA() {
       {/* FAB Button */}
       <button
         onClick={() => setOpen(!open)}
-        className="w-14 h-14 rounded-full bg-[#00548B] text-white flex items-center justify-center shadow-lg shadow-[#00548B]/30 hover:bg-[#004381] hover:shadow-xl transition-all"
+        className="w-14 h-14 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-lg shadow-amber-500/30 hover:bg-amber-600 hover:shadow-xl transition-all"
         aria-label="Book consultation"
       >
         {open ? <FaXmark className="text-lg" /> : <FaComments className="text-lg" />}

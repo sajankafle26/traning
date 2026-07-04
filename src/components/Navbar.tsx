@@ -456,12 +456,25 @@ const Navbar = () => {
       {/* =================== MEGA: ABOUT =================== */}
       {activeMega === 'about' && (
         <MegaPanel>
-          <div className="max-w-2xl">
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 px-3">Company</h4>
-            <div className="space-y-0.5">
-              {aboutLinks.map((item) => (
-                <MegaItem key={item.href} {...item} />
-              ))}
+          <div className="grid grid-cols-2 gap-8">
+            <div>
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 px-3">Company</h4>
+              <div className="space-y-0.5">
+                {aboutLinks.map((item) => (
+                  <MegaItem key={item.href} {...item} />
+                ))}
+              </div>
+            </div>
+            <div className="p-6 rounded-xl bg-slate-50 border border-slate-100">
+              <h4 className="text-sm font-bold text-slate-900 mb-2">Sangalo Tech Pvt. Ltd.</h4>
+              <p className="text-xs text-slate-500 leading-relaxed mb-4">
+                Nepal&apos;s trusted software company and IT training institute since 2018. We build custom web apps and train job-ready developers.
+              </p>
+              <div className="flex items-center gap-4 text-xs text-slate-400">
+                <span><strong className="text-slate-700">1500+</strong> Students</span>
+                <span><strong className="text-slate-700">100+</strong> Projects</span>
+                <span><strong className="text-slate-700">95%</strong> Placement</span>
+              </div>
             </div>
           </div>
         </MegaPanel>
