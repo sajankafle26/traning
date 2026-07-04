@@ -92,7 +92,7 @@ export default function ServicesShowcase() {
               return (
                 <Link key={service.id} href={`/services/${service.slug}`} className="group block">
                   <article className="h-full">
-                    <div className="relative rounded-xl overflow-hidden bg-slate-100 mb-4 h-64 md:h-72 lg:h-80">
+                    <div className="relative w-full rounded-xl overflow-hidden bg-slate-100 mb-4 h-64 md:h-72 lg:h-80">
                       <Image
                         src={image}
                         alt={service.title}
