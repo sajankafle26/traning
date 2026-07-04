@@ -27,6 +27,7 @@ const SERVICE_IMAGES: Record<string, string> = {
   'e-commerce-development': 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800',
   'cloud-and-devops-services': 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
   'brand-strategy': 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
+  'brand-strategy-nepal': 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
 };
 
 export default function ServicesShowcase() {
@@ -76,8 +77,8 @@ export default function ServicesShowcase() {
         {loading ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="animate-pulse">
-                <div className="aspect-[16/10] bg-slate-100 rounded-xl mb-4" />
+                <div key={i} className="animate-pulse">
+                <div className="aspect-[4/3] bg-slate-100 rounded-xl mb-4" />
                 <div className="h-5 bg-slate-100 rounded-lg w-3/4 mb-2" />
                 <div className="h-4 bg-slate-100 rounded-lg w-full" />
               </div>
@@ -91,12 +92,12 @@ export default function ServicesShowcase() {
               return (
                 <Link key={service.id} href={`/services/${service.slug}`} className="group block">
                   <article className="h-full">
-                    <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 mb-4">
+                    <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 mb-4">
                       <Image
                         src={image}
                         alt={service.title}
                         width={800}
-                        height={500}
+                        height={600}
                         loading="lazy"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
