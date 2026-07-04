@@ -8,17 +8,22 @@ import FAQSection from '@/components/FAQSection';
 import {
   FaArrowLeft, FaEnvelope, FaPhone, FaRocket, FaCheckCircle,
   FaLaptopCode, FaMobileAlt, FaChartLine, FaPenNib, FaShoppingCart, FaCloud,
-  FaCog, FaCode, FaSearch, FaHandshake, FaHome, FaChevronRight
+  FaCog, FaCode, FaSearch, FaHandshake, FaHome, FaChevronRight, FaBullseye, FaPaintBrush, FaServer
 } from 'react-icons/fa';
 import Link from 'next/link';
 
 const iconComponents: Record<string, any> = {
   'fa-solid fa-laptop-code': FaLaptopCode,
   'fa-solid fa-mobile-screen-button': FaMobileAlt,
+  'fa-solid fa-mobile-alt': FaMobileAlt,
   'fa-solid fa-chart-line': FaChartLine,
   'fa-solid fa-pen-nib': FaPenNib,
   'fa-solid fa-shopping-cart': FaShoppingCart,
   'fa-solid fa-cloud': FaCloud,
+  'fa-solid fa-bullseye': FaBullseye,
+  'fa-solid fa-search': FaSearch,
+  'fa-solid fa-paint-brush': FaPaintBrush,
+  'fa-solid fa-server': FaServer,
 };
 
 const SERVICE_IMAGES: Record<string, string> = {
@@ -28,6 +33,8 @@ const SERVICE_IMAGES: Record<string, string> = {
   'ui-ux-design-and-prototyping': 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=1200',
   'e-commerce-development': 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=1200',
   'cloud-and-devops-services': 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200',
+  'brand-strategy': 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200',
+  'brand-strategy-nepal': 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200',
 };
 
 const SERVICE_FAQS: Record<string, Array<{ question: string; answer: string }>> = {
@@ -197,11 +204,7 @@ export default function ServiceDetailPage() {
 
             <div className="hidden lg:flex justify-end">
               <div className="w-64 h-64 rounded-[3rem] bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center">
-                {service.icon?.startsWith('fa') ? (
-                  <i className={`${service.icon} text-8xl text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]`} />
-                ) : (
-                  <Icon className="text-8xl text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]" />
-                )}
+                <Icon className="text-8xl text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]" />
               </div>
             </div>
           </div>
