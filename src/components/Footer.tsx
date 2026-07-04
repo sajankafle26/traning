@@ -74,7 +74,7 @@ const Footer = () => {
               <span className="text-blue-100/70">Pan No: 602345817</span>
             </p>
           </div>
-          <div className="flex gap-2.5 pt-1">
+          <div className="flex gap-2.5 pt-1 flex-wrap">
             {[
               { href: siteSettings?.facebook || "#", icon: FaFacebookF, label: "Facebook", color: "hover:bg-blue-600" },
               { href: siteSettings?.youtube || "#", icon: FaYoutube, label: "YouTube", color: "hover:bg-red-600" },
@@ -82,9 +82,17 @@ const Footer = () => {
               { href: siteSettings?.instagram || "#", icon: FaInstagram, label: "Instagram", color: "hover:bg-pink-600" },
               { href: "https://x.com/sangalotech", icon: FaXTwitter, label: "X", color: "hover:bg-slate-900" },
               { href: siteSettings?.tiktok || "#", icon: FaTiktok, label: "TikTok", color: "hover:bg-slate-900" },
+              { href: siteSettings?.upwork || "#", label: "Upwork", color: "hover:bg-green-500", custom: "upwork" },
+              { href: siteSettings?.codecanyon || "#", label: "CodeCanyon", color: "hover:bg-green-600", custom: "codecanyon" },
             ].filter(s => s.href !== "#").map((s, i) => (
               <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className={`w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center ${s.color} transition`} aria-label={s.label}>
-                <s.icon />
+                {s.custom === "upwork" ? (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.5 1.5H5.5C3.3 1.5 1.5 3.3 1.5 5.5v13c0 2.2 1.8 4 4 4h13c2.2 0 4-1.8 4-4v-13c0-2.2-1.8-4-4-4zm-5.3 14.2c-1.5 1.1-3.6 1.7-5.5 1.7-2.8 0-5.3-1.1-7.1-3l1.4-1.4c1.4 1.5 3.4 2.4 5.7 2.4 1.4 0 2.8-.3 4-.9v-4.8h-4.5V8.4h6.3v7.7c-.2.1-.4.1-.6.2v-.1zm4.3-7.7h-3.5v-2h3.5v2z"/></svg>
+                ) : s.custom === "codecanyon" ? (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.8 14.4c-1.9 0-3.4-1.3-3.8-3.1h2.2c.3.8 1 1.3 1.8 1.3 1 0 1.8-.7 1.8-1.7 0-1-.7-1.5-2.1-2-2.1-.7-3.2-1.5-3.2-3.2 0-2 1.7-3.4 3.8-3.4 1.7 0 3.1 1 3.6 2.5h-2.1c-.3-.7-.9-1.1-1.6-1.1-.8 0-1.5.6-1.5 1.4 0 .9.6 1.3 1.9 1.7 2.3.7 3.3 1.6 3.3 3.3 0 2.1-1.6 3.5-4.3 3.5z"/></svg>
+                ) : (
+                  <s.icon />
+                )}
               </a>
             ))}
           </div>

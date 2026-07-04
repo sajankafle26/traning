@@ -11,6 +11,8 @@ const SiteSettingSchema = new mongoose.Schema({
     linkedin: { type: String, default: '#' },
     youtube: { type: String, default: '#' },
     tiktok: { type: String, default: '#' },
+    upwork: { type: String, default: '#' },
+    codecanyon: { type: String, default: '#' },
 }, { timestamps: true });
 
 export default mongoose.models.SiteSetting || mongoose.model('SiteSetting', SiteSettingSchema);
