@@ -51,6 +51,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
         {
             label: "Management",
             items: [
+                { label: "Students", href: "/adminpanel/students", icon: FaUserGraduate },
                 { label: "Finance", href: "/adminpanel/finance", icon: FaMoneyBillWave },
                 { label: "Orders", href: "/adminpanel/orders", icon: FaFileInvoiceDollar },
                 { label: "Enrollments", href: "/adminpanel/enrollments", icon: FaGraduationCap },
