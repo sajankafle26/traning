@@ -7,7 +7,7 @@ import { ServiceItem } from "@/types";
 import {
   FaArrowRight, FaLaptopCode, FaMobileScreenButton, FaChartLine,
   FaPenNib, FaShoppingCart, FaCloud, FaBullseye, FaSearch,
-  FaPaintBrush, FaServer
+  FaPalette, FaServer
 } from "react-icons/fa6";
 
 const iconComponents: Record<string, any> = {
@@ -20,7 +20,7 @@ const iconComponents: Record<string, any> = {
   'fa-solid fa-cloud': FaCloud,
   'fa-solid fa-bullseye': FaBullseye,
   'fa-solid fa-search': FaSearch,
-  'fa-solid fa-paint-brush': FaPaintBrush,
+  'fa-solid fa-paint-brush': FaPalette,
   'fa-solid fa-server': FaServer,
 };
 
