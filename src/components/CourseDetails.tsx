@@ -500,7 +500,7 @@ const CourseDetails = ({ course, onBack }: CourseDetailsProps) => {
         {/* Left Column */}
         <div className="lg:col-span-8 space-y-16">
           {/* Overview */}
-          <section className="space-y-6">
+          <section className="space-y-6 hidden md:block">
             <div className="space-y-2">
               <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#00548B] block">
                 Overview
