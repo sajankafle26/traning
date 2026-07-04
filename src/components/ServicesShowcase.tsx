@@ -8,7 +8,7 @@ import {
   FaArrowRight, FaLaptopCode, FaMobileAlt, FaChartLine,
   FaPenNib, FaShoppingCart, FaCloud, FaBullseye, FaSearch,
   FaPaintBrush, FaServer
-} from "react-icons/fa";
+} from "react-icons/fa6";
 
 const iconComponents: Record<string, any> = {
   'fa-solid fa-laptop-code': FaLaptopCode,

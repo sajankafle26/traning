@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaArrowRight, FaGraduationCap, FaLaptopCode, FaUsers, FaStar } from 'react-icons/fa6';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -45,15 +45,13 @@ const Hero = () => {
           {/* Headline */}
           <div className="space-y-2">
             <h1 className="text-4xl md:text-4xl lg:text-[3.0rem] font-black text-white leading-[1.1] tracking-tight">
-              {hero.title}
-            </h1>
-            <h1 className="text-4xl md:text-4xl lg:text-[3.0rem] font-black text-cyan-300 leading-[1.1] tracking-tight">
-              {hero.subtitle}
+              {hero.title}{' '}
+              <span className="text-cyan-300">{hero.subtitle}</span>
             </h1>
           </div>
 
           {/* Description */}
-          <p className="text-white/70 text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+          <p className="text-white/80 text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
             {hero.description}
           </p>
 

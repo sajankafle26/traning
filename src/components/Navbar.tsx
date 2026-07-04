@@ -266,9 +266,9 @@ const Navbar = () => {
             </a>
           </div>
           <div className="flex items-center">
-            <a href={siteSettings?.facebook || "#"} target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center hover:bg-white/10 rounded-lg transition" aria-label="Facebook"><FaFacebookF /></a>
-            <a href={siteSettings?.linkedin || "#"} target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center hover:bg-white/10 rounded-lg transition" aria-label="LinkedIn"><FaLinkedinIn /></a>
-            <a href={siteSettings?.instagram || "#"} target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center hover:bg-white/10 rounded-lg transition" aria-label="Instagram"><FaInstagram /></a>
+            <a href={siteSettings?.facebook || "#"} target="_blank" rel="noopener noreferrer" className="w-11 h-11 flex items-center justify-center hover:bg-white/10 rounded-lg transition" aria-label="Facebook"><FaFacebookF /></a>
+            <a href={siteSettings?.linkedin || "#"} target="_blank" rel="noopener noreferrer" className="w-11 h-11 flex items-center justify-center hover:bg-white/10 rounded-lg transition" aria-label="LinkedIn"><FaLinkedinIn /></a>
+            <a href={siteSettings?.instagram || "#"} target="_blank" rel="noopener noreferrer" className="w-11 h-11 flex items-center justify-center hover:bg-white/10 rounded-lg transition" aria-label="Instagram"><FaInstagram /></a>
           </div>
         </div>
       </div>
@@ -355,7 +355,7 @@ const Navbar = () => {
           <Link href="/courses" className="hidden lg:flex items-center gap-2 bg-[#00548B] text-white px-6 py-2.5 rounded-lg font-bold text-sm hover:bg-[#004381] transition-all no-underline">
             Apply Now
           </Link>
-          <Link href="/cart" className="relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 transition no-underline" aria-label="View Cart">
+          <Link href="/cart" className="relative w-11 h-11 flex items-center justify-center rounded-lg hover:bg-slate-100 transition no-underline" aria-label="View Cart">
             <FaCartShopping className="text-lg text-slate-600" />
             {itemCount > 0 && (
               <span className="absolute -top-0.5 -right-0.5 bg-red-500 text-white text-[9px] font-black w-4.5 h-4.5 flex items-center justify-center rounded-full border-2 border-white">{itemCount}</span>
@@ -488,8 +488,8 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div className={`lg:hidden fixed top-0 right-0 h-full w-[85vw] max-w-[360px] bg-white z-50 shadow-2xl transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100">
-          <img src="/logo.png" alt="Sangalo Tech" className="h-9 w-auto object-contain" />
-          <button onClick={() => setIsMobileMenuOpen(false)} className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 transition" aria-label="Close menu">
+          <img src="/logo.png" alt="Sangalo Tech" width={44} height={44} className="h-9 w-auto object-contain" />
+          <button onClick={() => setIsMobileMenuOpen(false)} className="w-11 h-11 flex items-center justify-center rounded-lg hover:bg-slate-100 transition" aria-label="Close menu">
             <FaXmark className="text-lg text-slate-600" />
           </button>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { Course, UpcomingBatch, SyllabusModule, VideoCourse } from "@/types";
 import { apiService } from "@/services/apiService";
 import { useCart } from "@/context/CartContext";
@@ -238,13 +238,13 @@ const CurriculumAccordion = ({
                   >
                     {i + 1}
                   </div>
-                  <h4
+                  <h3
                     className={`text-base font-bold tracking-tight transition-colors ${
                       isOpen ? "text-slate-900" : "text-slate-600"
                     }`}
                   >
                     {name}
-                  </h4>
+                    </h3>
                 </div>
                 <FaChevronDown
                   className={`text-xs text-slate-400 transition-transform duration-200 ${
@@ -382,7 +382,7 @@ const CourseDetails = ({ course, onBack }: CourseDetailsProps) => {
       });
       setSuccess(true);
     } catch (err) {
-      alert("Failed to submit enrollment. Please try again.");
+      alert("Submission failed. Please try again or contact us directly.");
     } finally {
       setLoading(false);
     }
@@ -598,6 +598,8 @@ const CourseDetails = ({ course, onBack }: CourseDetailsProps) => {
               <img
                 src={instructorAvatar}
                 alt={instructorName}
+                width={64}
+                height={64}
                 className="w-16 h-16 rounded-xl object-cover border border-slate-200"
               />
               <div>
@@ -607,17 +609,17 @@ const CourseDetails = ({ course, onBack }: CourseDetailsProps) => {
                 {(instructor?.links?.linkedin || instructor?.links?.portfolio) && (
                   <div className="flex gap-3 mt-3">
                     {instructor?.links?.linkedin && (
-                      <a href={instructor.links.linkedin} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-[#00548B] transition-colors">
+                      <a href={instructor.links.linkedin} target="_blank" rel="noreferrer" className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-[#00548B] transition-colors" aria-label="LinkedIn profile">
                         <FaLinkedinIn className="text-sm" />
                       </a>
                     )}
                     {instructor?.links?.portfolio && (
-                      <a href={instructor.links.portfolio} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-[#00548B] transition-colors">
+                      <a href={instructor.links.portfolio} target="_blank" rel="noreferrer" className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-[#00548B] transition-colors" aria-label="Portfolio website">
                         <FaGlobe className="text-sm" />
                       </a>
                     )}
                     {instructor?.links?.github && (
-                      <a href={instructor.links.github} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-[#00548B] transition-colors">
+                      <a href={instructor.links.github} target="_blank" rel="noreferrer" className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-[#00548B] transition-colors" aria-label="GitHub profile">
                         <FaGithub className="text-sm" />
                       </a>
                     )}
@@ -654,6 +656,8 @@ const CourseDetails = ({ course, onBack }: CourseDetailsProps) => {
                     <img
                       src={`https://img.youtube.com/vi/${item.videoId}/hqdefault.jpg`}
                       alt={`${item.name} - Sangalo Tech testimonial`}
+                      width={320}
+                      height={180}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />
