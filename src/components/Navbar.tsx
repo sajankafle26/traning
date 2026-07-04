@@ -251,7 +251,7 @@ const Navbar = () => {
   return (
     <header
       ref={navRef}
-      className={`sticky top-0 z-50 transition-all duration-300 bg-white ${isScrolled ? 'backdrop-blur-md shadow-sm' : ''} py-3`}
+      className={`sticky top-0 z-50 transition-all duration-300 bg-white ${isScrolled ? 'backdrop-blur-md shadow-sm' : ''}`}
     >
       {/* Top Bar */}
       <div className={`bg-[#00548B] text-white text-[11px] font-medium transition-all duration-300 overflow-hidden ${isScrolled ? 'h-0' : 'h-10'}`}>
