@@ -251,7 +251,7 @@ const Navbar = () => {
   return (
     <header
       ref={navRef}
-      className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-2' : 'bg-white py-3'}`}
+      className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-2' : 'bg-white py-3'} lg:bg-white`}
     >
       {/* Top Bar */}
       <div className={`bg-[#00548B] text-white text-[11px] font-medium transition-all duration-300 overflow-hidden ${isScrolled ? 'h-0' : 'h-10'}`}>
@@ -273,9 +273,9 @@ const Navbar = () => {
       </div>
 
       {/* Main Nav */}
-      <nav aria-label="Main navigation" className="max-w-[1400px] mx-auto px-4 md:px-6 flex items-center justify-between">
+      <nav aria-label="Main navigation" className="max-w-[1400px] mx-auto px-5 md:px-6 flex items-center justify-between h-14 md:h-auto">
         <Link href="/" className="no-underline shrink-0">
-          <img src="/logo.png" alt="Sangalo Tech" width={56} height={56} loading="eager" className="h-11 md:h-14 w-auto object-contain" />
+          <img src="/logo.png" alt="Sangalo Tech" width={56} height={56} loading="eager" className="h-10 md:h-14 w-auto object-contain" />
         </Link>
 
         {/* Desktop mega menu triggers */}
@@ -350,11 +350,11 @@ const Navbar = () => {
         </div>
 
         {/* Right controls */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3">
           <Link href="/courses" className="hidden lg:flex items-center gap-2 bg-[#00548B] text-white px-6 py-2.5 rounded-lg font-bold text-sm hover:bg-[#004381] transition-all no-underline">
             Apply Now
           </Link>
-          <Link href="/cart" className="relative p-2.5 rounded-lg hover:bg-slate-100 transition no-underline" aria-label="View Cart">
+          <Link href="/cart" className="relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 transition no-underline" aria-label="View Cart">
             <FaCartShopping className="text-lg text-slate-600" />
             {itemCount > 0 && (
               <span className="absolute -top-0.5 -right-0.5 bg-red-500 text-white text-[9px] font-black w-4.5 h-4.5 flex items-center justify-center rounded-full border-2 border-white">{itemCount}</span>
@@ -473,9 +473,9 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div className={`lg:hidden fixed top-0 right-0 h-full w-[85vw] max-w-[360px] bg-white z-50 shadow-2xl transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
-          <img src="/logo.png" alt="Sangalo Tech" className="h-10 w-auto object-contain" />
-          <button onClick={() => setIsMobileMenuOpen(false)} className="w-11 h-11 flex items-center justify-center rounded-lg hover:bg-slate-100 transition" aria-label="Close menu">
+        <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100">
+          <img src="/logo.png" alt="Sangalo Tech" className="h-9 w-auto object-contain" />
+          <button onClick={() => setIsMobileMenuOpen(false)} className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 transition" aria-label="Close menu">
             <FaXmark className="text-lg text-slate-600" />
           </button>
         </div>
