@@ -226,6 +226,9 @@ const VideoCoursePlayer = ({ course, onBack }: { course: any, onBack: () => void
                                         key={videoSrc}
                                         src={videoSrc}
                                         controls
+                                        controlsList="nodownload noplaybackrate"
+                                        disablePictureInPicture
+                                        onContextMenu={(e) => e.preventDefault()}
                                         className="w-full h-full"
                                         autoPlay
                                     />

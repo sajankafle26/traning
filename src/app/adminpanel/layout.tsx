@@ -30,6 +30,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
             label: "Content",
             items: [
                 { label: "Video Courses", href: "/adminpanel/video-courses", icon: FaVideo },
+                { label: "Video Manager", href: "/adminpanel/video-manager", icon: FaVideo },
                 { label: "Live Trainings", href: "/adminpanel/live-courses", icon: FaGraduationCap },
                 { label: "Upcoming Batches", href: "/adminpanel/batches", icon: FaCalendarAlt },
                 { label: "Blogs", href: "/adminpanel/blogs", icon: FaRss },
