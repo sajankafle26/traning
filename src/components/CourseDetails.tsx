@@ -38,6 +38,7 @@ import {
   FaCartPlus,
   FaBasketShopping,
   FaPlay,
+  FaYoutube,
 } from "react-icons/fa6";
 import Image from "next/image";
 import StickyEnroll from "@/components/StickyEnroll";
@@ -623,6 +624,57 @@ const CourseDetails = ({ course, onBack }: CourseDetailsProps) => {
                   </div>
                 )}
               </div>
+            </div>
+          </section>
+
+          {/* Student Video Testimonials */}
+          <section className="space-y-6">
+            <div className="space-y-2">
+              <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#00548B] block">
+                Student Stories
+              </span>
+              <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+                What Our Students Say
+              </h2>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                { videoId: "cZW9ylyCnpY", name: "Student Feedback", course: "IT Training" },
+                { videoId: "KdIT_8j7wIQ", name: "Student Feedback", course: "IT Training" },
+                { videoId: "vb-KIlaARdo", name: "Student Feedback", course: "IT Training" },
+              ].map((item) => (
+                <a
+                  key={item.videoId}
+                  href={`https://www.youtube.com/watch?v=${item.videoId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block"
+                >
+                  <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-100 mb-3">
+                    <img
+                      src={`https://img.youtube.com/vi/${item.videoId}/hqdefault.jpg`}
+                      alt={`${item.name} - Sangalo Tech testimonial`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                        <FaPlay className="text-white text-sm ml-0.5" />
+                      </div>
+                    </div>
+                    <div className="absolute top-2 right-2">
+                      <div className="flex items-center gap-1 bg-red-600 text-white px-2 py-0.5 rounded text-[9px] font-bold">
+                        <FaYoutube className="text-xs" />
+                        YouTube
+                      </div>
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-slate-900 text-sm group-hover:text-[#00548B] transition-colors">
+                    {item.name}
+                  </h3>
+                  <p className="text-xs text-slate-400">{item.course}</p>
+                </a>
+              ))}
             </div>
           </section>
         </div>
