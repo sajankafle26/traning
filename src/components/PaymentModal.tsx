@@ -72,7 +72,7 @@ const PaymentModal = ({ course, isOpen, onClose }: { course: any, isOpen: boolea
     return (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-slate-950/90 backdrop-blur-xl">
             <div className="bg-slate-900 w-full max-w-md rounded-[2.5rem] p-10 border border-slate-800 relative">
-                <button onClick={onClose} className="absolute top-6 right-6 text-slate-400 hover:text-white">
+                <button onClick={onClose} className="absolute top-6 right-6 text-slate-400 hover:text-white" aria-label="Close">
                     <i className="fa-solid fa-xmark text-xl"></i>
                 </button>
 

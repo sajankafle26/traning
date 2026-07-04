@@ -50,7 +50,7 @@ const StudentDashboard = ({ user, onLogout, onNavigate }: StudentDashboardProps)
       {/* Sidebar */}
       <aside className="w-72 bg-slate-950 border-r border-slate-800 flex flex-col">
         <div className="p-8 flex items-center gap-4">
-          <img src="/logo.png" alt="Sangalo Tech" className="h-10 w-auto object-contain brightness-0 invert" />
+          <img src="/logo.png" alt="Sangalo Tech" className="h-10 w-auto object-contain brightness-0 invert" width="40" height="40" />
           <span className="text-white font-black uppercase text-sm tracking-widest">Student Hub</span>
         </div>
         
@@ -62,7 +62,7 @@ const StudentDashboard = ({ user, onLogout, onNavigate }: StudentDashboardProps)
 
         <div className="p-6 border-t border-slate-800">
           <div className="flex items-center gap-3 mb-6 p-4 bg-white/5 rounded-2xl">
-            <img src={user.avatar || `https://i.pravatar.cc/100?u=${user.email}`} className="w-10 h-10 rounded-full border border-white/10" alt="Avatar" />
+            <img src={user.avatar || `https://i.pravatar.cc/100?u=${user.email}`} className="w-10 h-10 rounded-full border border-white/10" alt="User avatar" width="40" height="40" />
             <div className="overflow-hidden">
               <p className="font-bold text-sm truncate">{user.name}</p>
               <p className="text-[10px] text-slate-500 uppercase font-black">Free Plan</p>
@@ -127,7 +127,7 @@ const StudentDashboard = ({ user, onLogout, onNavigate }: StudentDashboardProps)
                   <div className="grid md:grid-cols-2 gap-8">
                     {purchasedVideos.map(video => (
                       <div key={video.id} className="bg-slate-950/50 rounded-[2.5rem] border border-slate-800 overflow-hidden group hover:border-indigo-500/30 transition-all flex">
-                        <img src={video.thumbnail} className="w-48 object-cover" alt="" />
+                        <img src={video.thumbnail} className="w-48 object-cover" alt={video.title} width="192" height="128" />
                         <div className="p-8 flex flex-col justify-between flex-grow">
                           <div>
                             <h4 className="font-bold text-xl group-hover:text-indigo-400 transition-colors line-clamp-1">{video.title}</h4>
@@ -199,7 +199,7 @@ const StudentDashboard = ({ user, onLogout, onNavigate }: StudentDashboardProps)
                       {purchasedVideos.map(video => (
                         <div key={video.id} className="bg-slate-950/50 border border-slate-800 rounded-[2.5rem] overflow-hidden group hover:border-indigo-500/30 transition-all flex flex-col">
                            <div className="relative aspect-video overflow-hidden">
-                              <img src={video.thumbnail} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="" />
+                              <img src={video.thumbnail} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={video.title} width="320" height="180" />
                               <button onClick={() => setWatchingVideo(video)} className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                                  <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-black text-xl">
                                     <i className="fa-solid fa-play ml-1"></i>

@@ -28,7 +28,7 @@ const CartToast: React.FC<CartToastProps> = ({ course, onClose }) => {
         <div className={`fixed top-24 right-6 z-[200] transition-all duration-500 transform ${visible ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'}`}>
             <div className="bg-slate-900/80 backdrop-blur-2xl border border-white/10 p-5 rounded-3xl shadow-2xl flex items-center gap-5 min-w-[320px]">
                 <div className="w-14 h-14 rounded-2xl overflow-hidden border border-white/10 shrink-0 shadow-lg">
-                    <img src={course?.thumbnail} className="w-full h-full object-cover" alt="" />
+                    <img src={course?.thumbnail} className="w-full h-full object-cover" alt="Course thumbnail" width="40" height="40" />
                 </div>
                 <div className="flex-grow">
                     <div className="flex items-center gap-2 text-emerald-400 font-black text-[10px] uppercase tracking-widest mb-0.5">
@@ -38,6 +38,7 @@ const CartToast: React.FC<CartToastProps> = ({ course, onClose }) => {
                 </div>
                 <button
                     onClick={() => { setVisible(false); setTimeout(onClose, 300); }}
+                    aria-label="Close"
                     className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-slate-400 flex items-center justify-center transition-colors border border-white/5"
                 >
                     <FaXmark className="text-xs" />

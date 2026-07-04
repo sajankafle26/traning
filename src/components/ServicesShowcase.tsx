@@ -5,22 +5,22 @@ import Image from "next/image";
 import { apiService } from "@/services/apiService";
 import { ServiceItem } from "@/types";
 import {
-  FaArrowRight, FaLaptopCode, FaMobileScreenButton, FaChartLine,
+  FaArrowRight, FaLaptopCode, FaMobileAlt, FaChartLine,
   FaPenNib, FaShoppingCart, FaCloud, FaBullseye, FaSearch,
-  FaPalette, FaServer
-} from "react-icons/fa6";
+  FaPaintBrush, FaServer
+} from "react-icons/fa";
 
 const iconComponents: Record<string, any> = {
   'fa-solid fa-laptop-code': FaLaptopCode,
-  'fa-solid fa-mobile-screen-button': FaMobileScreenButton,
-  'fa-solid fa-mobile-alt': FaMobileScreenButton,
+  'fa-solid fa-mobile-screen-button': FaMobileAlt,
+  'fa-solid fa-mobile-alt': FaMobileAlt,
   'fa-solid fa-chart-line': FaChartLine,
   'fa-solid fa-pen-nib': FaPenNib,
   'fa-solid fa-shopping-cart': FaShoppingCart,
   'fa-solid fa-cloud': FaCloud,
   'fa-solid fa-bullseye': FaBullseye,
   'fa-solid fa-search': FaSearch,
-  'fa-solid fa-paint-brush': FaPalette,
+  'fa-solid fa-paint-brush': FaPaintBrush,
   'fa-solid fa-server': FaServer,
 };
 

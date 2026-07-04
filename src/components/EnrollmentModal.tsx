@@ -51,6 +51,7 @@ const EnrollmentModal: React.FC<EnrollmentModalProps> = ({ isOpen, onClose, batc
             <div className="bg-white rounded-[2.5rem] w-full max-w-md overflow-hidden relative shadow-2xl animate-in fade-in zoom-in duration-300">
                 <button
                     onClick={onClose}
+                    aria-label="Close"
                     className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 transition-colors z-10"
                 >
                     <FaTimes className="text-xl" />

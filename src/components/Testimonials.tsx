@@ -220,7 +220,7 @@ const Testimonials = () => {
                             <p className="text-[10px] font-medium text-slate-400 uppercase tracking-wider mt-0.5">Verified Student</p>
                           </div>
                           {t.linkedin && (
-                            <a href={t.linkedin} target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full bg-[#0A66C2]/8 flex items-center justify-center text-[#0A66C2] hover:bg-[#0A66C2] hover:text-white transition-all shrink-0">
+                            <a href={t.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" className="w-11 h-11 rounded-full bg-[#0A66C2]/8 flex items-center justify-center text-[#0A66C2] hover:bg-[#0A66C2] hover:text-white transition-all shrink-0">
                               <FaLinkedin className="text-sm" />
                             </a>
                           )}

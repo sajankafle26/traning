@@ -26,6 +26,7 @@ export default function FloatingCTA() {
           <div className="p-5 space-y-3">
             <a
               href="tel:+9779851228383"
+              aria-label="Call us"
               className="flex items-center gap-3 w-full bg-[#00548B] text-white px-4 py-3 rounded-lg font-bold text-sm hover:bg-[#004381] transition no-underline"
             >
               <FaPhone className="text-sm" />
@@ -35,6 +36,7 @@ export default function FloatingCTA() {
               href="https://wa.me/9779851228383"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Chat on WhatsApp"
               className="flex items-center gap-3 w-full bg-green-500 text-white px-4 py-3 rounded-lg font-bold text-sm hover:bg-green-600 transition no-underline"
             >
               <FaComments className="text-sm" />
@@ -42,6 +44,7 @@ export default function FloatingCTA() {
             </a>
             <a
               href="/contact"
+              aria-label="Send message"
               className="flex items-center gap-3 w-full border border-slate-200 text-slate-700 px-4 py-3 rounded-lg font-bold text-sm hover:bg-slate-50 transition no-underline"
             >
               <FaPaperPlane className="text-sm" />
@@ -55,7 +58,7 @@ export default function FloatingCTA() {
       <button
         onClick={() => setOpen(!open)}
         className="w-14 h-14 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-lg shadow-amber-500/30 hover:bg-amber-600 hover:shadow-xl transition-all"
-        aria-label="Book consultation"
+        aria-label={open ? "Close contact options" : "Open contact options"}
       >
         {open ? <FaXmark className="text-lg" /> : <FaComments className="text-lg" />}
       </button>

@@ -216,7 +216,7 @@ const CheckoutPage = () => {
                             <div className="max-h-[300px] overflow-y-auto mb-10 pr-2 space-y-4 custom-scrollbar">
                                 {cartItems.map((item) => (
                                     <div key={item.id} className="flex gap-4 p-4 bg-slate-50/50 rounded-2xl border border-slate-100">
-                                        <img src={item.thumbnail} className="w-16 h-12 rounded object-cover shadow-sm" alt="" />
+                                        <img src={item.thumbnail} className="w-16 h-12 rounded object-cover shadow-sm" alt="Course thumbnail" width="80" height="60" />
                                         <div className="flex-grow">
                                             <div className="text-slate-900 font-black text-xs line-clamp-1">{item.title}</div>
                                             <div className="text-[#00548B] font-bold text-[10px]">Rs. {item.price.toLocaleString()}</div>

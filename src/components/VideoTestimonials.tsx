@@ -165,7 +165,7 @@ export default function VideoTestimonials() {
             <button
               onClick={() => setActiveVideo(null)}
               className="absolute -top-12 right-0 text-white text-2xl font-bold hover:text-slate-300 transition"
-              aria-label="Close video"
+              aria-label="Close video modal"
             >
               &times;
             </button>

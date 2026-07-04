@@ -171,17 +171,17 @@ const About = () => {
                   {/* Social Links */}
                   <div className="flex justify-center gap-3">
                     {member.social?.linkedin && (
-                      <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-[#00548B] hover:text-white hover:border-[#00548B] transition-all">
+                      <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-[#00548B] hover:text-white hover:border-[#00548B] transition-all">
                         <FaLinkedin className="text-sm" />
                       </a>
                     )}
                     {member.social?.twitter && (
-                      <a href={member.social.twitter} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-[#00548B] hover:text-white hover:border-[#00548B] transition-all">
+                      <a href={member.social.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter profile" className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-[#00548B] hover:text-white hover:border-[#00548B] transition-all">
                         <FaTwitter className="text-sm" />
                       </a>
                     )}
                     {member.social?.github && (
-                      <a href={member.social.github} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-[#00548B] hover:text-white hover:border-[#00548B] transition-all">
+                      <a href={member.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-[#00548B] hover:text-white hover:border-[#00548B] transition-all">
                         <FaGithub className="text-sm" />
                       </a>
                     )}

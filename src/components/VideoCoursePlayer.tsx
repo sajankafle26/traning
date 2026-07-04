@@ -135,6 +135,7 @@ const VideoCoursePlayer = ({ course, onBack }: { course: any, onBack: () => void
                     <button 
                         onClick={onBack}
                         className="w-12 h-12 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition-all active:scale-95 group"
+                        aria-label="Close sidebar"
                     >
                         <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
                     </button>

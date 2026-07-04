@@ -104,7 +104,7 @@ const Footer = () => {
               { href: "/upcoming", label: "Upcoming Batches" },
             ].map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="block py-2.5 text-sm text-blue-100/60 hover:text-white transition no-underline">
+                <Link href={link.href} className="block py-2 text-sm text-blue-100/60 hover:text-white transition no-underline">
                   {link.label}
                 </Link>
               </li>
@@ -125,7 +125,7 @@ const Footer = () => {
               { href: "/courses", label: "View All Courses" },
             ].map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="block py-2.5 text-sm text-blue-100/60 hover:text-white transition no-underline">
+                <Link href={link.href} className="block py-2 text-sm text-blue-100/60 hover:text-white transition no-underline">
                   {link.label}
                 </Link>
               </li>
@@ -146,7 +146,7 @@ const Footer = () => {
               { href: "/sitemap.xml", label: "Sitemap" },
             ].map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="block py-2.5 text-sm text-blue-100/60 hover:text-white transition no-underline">
+                <Link href={link.href} className="block py-2 text-sm text-blue-100/60 hover:text-white transition no-underline">
                   {link.label}
                 </Link>
               </li>
@@ -230,8 +230,8 @@ const Footer = () => {
       <div className="relative z-10 max-w-[1200px] mx-auto pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-blue-100/50">
         <p>&copy; {new Date().getFullYear()} Sangalo Tech Pvt. Ltd. All rights reserved.</p>
         <div className="flex gap-5">
-          <Link href="/terms" className="py-1 hover:text-white transition-colors">Terms & Conditions</Link>
-          <Link href="/privacy" className="py-1 hover:text-white transition-colors">Privacy Policy</Link>
+          <Link href="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link>
+          <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
         </div>
       </div>
 
