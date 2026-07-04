@@ -152,52 +152,81 @@ const Navbar = () => {
     megaTimeoutRef.current = setTimeout(() => setActiveMega(null), 150);
   }, []);
 
-  /* ====================== STATIC DATA ====================== */
+  /* ====================== DYNAMIC MEGA DATA ====================== */
 
-  const courseCategories = [
-    {
-      title: 'Web Development',
-      items: [
-        { label: 'MERN Stack', href: '/courses/mern-stack', icon: FaCubes, desc: 'MongoDB, Express, React, Node.js' },
-        { label: 'React & Next.js', href: '/courses/react-next-js', icon: FaReact, desc: 'Full-stack React framework' },
-        { label: 'Laravel', href: '/courses/laravel-mastery', icon: FaServer, desc: 'PHP MVC framework' },
-        { label: 'WordPress', href: '/courses/wordpress-theme-dev', icon: FaWordpress, desc: 'CMS & theme development' },
-      ],
-    },
-    {
-      title: 'Design & Marketing',
-      items: [
-        { label: 'UI/UX Design', href: '/courses/ui-ux-design', icon: FaPenNib, desc: 'Figma, prototypes, user research' },
-        { label: 'Web Design', href: '/courses/web-design', icon: FaObjectGroup, desc: 'HTML, CSS, responsive design' },
-        { label: 'Digital Marketing', href: '/courses/digital-marketing', icon: FaBullhorn, desc: 'SEO, ads, social media' },
-      ],
-    },
-  ];
+  const courseCategories = (() => {
+    const devCourses = liveCourses.filter(c => ['frontend', 'backend', 'js', 'wp'].includes(c.category?.toLowerCase()));
+    const designCourses = liveCourses.filter(c => ['design', 'dm'].includes(c.category?.toLowerCase()));
+    const fallbackDev = [
+      { label: 'MERN Stack', href: '/courses/mern-stack', icon: FaCubes, desc: 'MongoDB, Express, React, Node.js' },
+      { label: 'React & Next.js', href: '/courses/react-next-js', icon: FaReact, desc: 'Full-stack React framework' },
+      { label: 'Laravel', href: '/courses/laravel-mastery', icon: FaServer, desc: 'PHP MVC framework' },
+      { label: 'WordPress', href: '/courses/wordpress-theme-dev', icon: FaWordpress, desc: 'CMS & theme development' },
+    ];
+    const fallbackDesign = [
+      { label: 'UI/UX Design', href: '/courses/ui-ux-design', icon: FaPenNib, desc: 'Figma, prototypes, user research' },
+      { label: 'Web Design', href: '/courses/web-design', icon: FaObjectGroup, desc: 'HTML, CSS, responsive design' },
+      { label: 'Digital Marketing', href: '/courses/digital-marketing', icon: FaBullhorn, desc: 'SEO, ads, social media' },
+    ];
+    return [
+      {
+        title: 'Web Development',
+        items: devCourses.length > 0
+          ? devCourses.map(c => ({ label: c.title, href: `/courses/${c.slug}`, icon: getCourseIcon(c.category), desc: c.description?.replace(/<[^>]*>/g, '').slice(0, 60) || '' }))
+          : fallbackDev,
+      },
+      {
+        title: 'Design & Marketing',
+        items: designCourses.length > 0
+          ? designCourses.map(c => ({ label: c.title, href: `/courses/${c.slug}`, icon: getCourseIcon(c.category), desc: c.description?.replace(/<[^>]*>/g, '').slice(0, 60) || '' }))
+          : fallbackDesign,
+      },
+    ];
+  })();
 
-  const serviceCategories = [
-    {
-      title: 'Development',
-      items: [
-        { label: 'Web App Development', href: '/services/web-app-development', icon: FaCode, desc: 'Custom web applications' },
-        { label: 'Mobile Apps', href: '/services/mobile-app-development', icon: FaMobileScreenButton, desc: 'iOS & Android apps' },
-        { label: 'E-Commerce', href: '/services/e-commerce-development', icon: FaCartShopping, desc: 'Online stores & payment' },
-      ],
-    },
-    {
-      title: 'Growth',
-      items: [
-        { label: 'UI/UX & Prototyping', href: '/services/ui-ux-design-and-prototyping', icon: FaObjectGroup, desc: 'User-centered design' },
-        { label: 'SEO & Performance', href: '/services/seo-and-performance-optimization', icon: FaChartLine, desc: 'Search engine optimization' },
-        { label: 'Cloud & DevOps', href: '/services/cloud-and-devops-services', icon: FaCloud, desc: 'AWS, Docker, CI/CD' },
-      ],
-    },
-  ];
+  const serviceCategories = (() => {
+    const devServices = services.filter(s => ['web-app-development', 'mobile-app-development', 'e-commerce-development', 'ui-ux-design-and-prototyping'].includes(s.slug));
+    const growthServices = services.filter(s => ['seo-and-performance-optimization', 'cloud-and-devops-services'].includes(s.slug));
+    const fallbackDev = [
+      { label: 'Web App Development', href: '/services/web-app-development', icon: FaCode, desc: 'Custom web applications' },
+      { label: 'Mobile Apps', href: '/services/mobile-app-development', icon: FaMobileScreenButton, desc: 'iOS & Android apps' },
+      { label: 'E-Commerce', href: '/services/e-commerce-development', icon: FaCartShopping, desc: 'Online stores & payment' },
+    ];
+    const fallbackGrowth = [
+      { label: 'UI/UX & Prototyping', href: '/services/ui-ux-design-and-prototyping', icon: FaObjectGroup, desc: 'User-centered design' },
+      { label: 'SEO & Performance', href: '/services/seo-and-performance-optimization', icon: FaChartLine, desc: 'Search engine optimization' },
+      { label: 'Cloud & DevOps', href: '/services/cloud-and-devops-services', icon: FaCloud, desc: 'AWS, Docker, CI/CD' },
+    ];
+    return [
+      {
+        title: 'Development',
+        items: devServices.length > 0
+          ? devServices.map(s => ({ label: s.title, href: `/services/${s.slug}`, icon: getIcon(s.icon, FaCode), desc: s.description?.replace(/<[^>]*>/g, '').slice(0, 60) || '' }))
+          : fallbackDev,
+      },
+      {
+        title: 'Growth',
+        items: growthServices.length > 0
+          ? growthServices.map(s => ({ label: s.title, href: `/services/${s.slug}`, icon: getIcon(s.icon, FaChartLine), desc: s.description?.replace(/<[^>]*>/g, '').slice(0, 60) || '' }))
+          : fallbackGrowth,
+      },
+    ];
+  })();
 
-  const productItems = [
-    { label: 'School Management System', href: '/products/', icon: FaGraduationCap, desc: 'Complete school admin platform' },
-    { label: 'News Portal with Mobile App', href: '/products/', icon: FaUsersGear, desc: 'Content management & delivery' },
-    { label: 'Clinic Management System', href: '/products/', icon: FaStore, desc: 'Healthcare practice management' },
-  ];
+  const productItems = (() => {
+    const fallback = [
+      { label: 'School Management System', href: '/products/', icon: FaGraduationCap, desc: 'Complete school admin platform' },
+      { label: 'News Portal with Mobile App', href: '/products/', icon: FaUsersGear, desc: 'Content management & delivery' },
+      { label: 'Clinic Management System', href: '/products/', icon: FaStore, desc: 'Healthcare practice management' },
+    ];
+    if (products.length === 0) return fallback;
+    return products.map(p => ({
+      label: p.title,
+      href: p.link || '/products/',
+      icon: FaBoxOpen,
+      desc: p.description?.replace(/<[^>]*>/g, '').slice(0, 60) || '',
+    }));
+  })();
 
   const aboutLinks = [
     { label: 'About Sangalo Tech', href: '/about', icon: FaGlobe, desc: 'Our story, mission & team' },
