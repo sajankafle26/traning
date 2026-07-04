@@ -422,7 +422,7 @@ const CourseDetails = ({ course, onBack }: CourseDetailsProps) => {
     <div className="min-h-screen bg-white">
       {/* ===================== Hero ===================== */}
       <header className="bg-slate-50 border-b border-slate-100">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-8 md:py-16">
+        <div className="max-w-[1400px] px-4 mx-auto py-8 md:py-16">
           {/* Back button */}
           <button
             onClick={onBack}
@@ -496,7 +496,7 @@ const CourseDetails = ({ course, onBack }: CourseDetailsProps) => {
       </header>
 
       {/* ===================== Content ===================== */}
-      <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-12 md:py-16 grid lg:grid-cols-12 gap-10 md:gap-12">
+      <div className="max-w-[1400px] px-4 mx-auto py-12 md:py-16 grid lg:grid-cols-12 gap-10 md:gap-12">
         {/* Left Column */}
         <div className="lg:col-span-8 space-y-16">
           {/* Overview */}

@@ -41,7 +41,7 @@ const REASONS = [
 export default function WhyChoose() {
   return (
     <section className="py-24 px-6 bg-white">
-      <div className="max-w-[1200px] mx-auto">
+      <div className="max-w-[1400px] px-4 mx-auto">
         {/* Header */}
         <div className="text-center mb-14 space-y-3">
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#00548B] block">

@@ -49,7 +49,7 @@ export default function ServicesShowcase() {
 
   return (
     <section className="py-24 px-6 bg-white">
-      <div className="max-w-[1200px] mx-auto">
+      <div className="max-w-[1400px] px-4 mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-14">
           <div className="space-y-3">

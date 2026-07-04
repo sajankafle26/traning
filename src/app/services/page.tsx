@@ -105,7 +105,7 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.15)_1px,transparent_1px)] bg-[size:24px_24px]" />
         </div>
 
-        <div className="max-w-[1400px] mx-auto relative z-10 text-center">
+        <div className="max-w-[1400px] px-4 mx-auto relative z-10 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-white px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest border border-white/15 mb-8">
             <FaRocket className="text-xs" />
             Software & IT Solutions

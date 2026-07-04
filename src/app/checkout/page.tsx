@@ -98,7 +98,7 @@ const CheckoutPage = () => {
         <div className="min-h-screen bg-[#f8fbff] pt-40 pb-32 px-6 relative overflow-hidden">
             <div className="absolute inset-x-0 top-0 h-[800px] pointer-events-none opacity-[0.05] architect-grid" />
 
-            <div className="max-w-[1200px] mx-auto relative z-10">
+            <div className="max-w-[1400px] px-4 mx-auto relative z-10">
                 <div className="grid lg:grid-cols-2 gap-20">
                     {/* Left: Shipping & Payment Details */}
                     <div className="space-y-12">

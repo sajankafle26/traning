@@ -31,7 +31,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.3)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.3)_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
 
-      <div className="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-16 lg:gap-20 relative items-center">
+      <div className="max-w-[1400px] px-4 mx-auto grid lg:grid-cols-2 gap-16 lg:gap-20 relative items-center">
         {/* LEFT */}
         <div className="space-y-8 text-center lg:text-left pt-8 lg:pt-0">
           {/* Badge */}
@@ -44,10 +44,10 @@ const Hero = () => {
 
           {/* Headline */}
           <div className="space-y-2">
-            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-black text-white leading-[1.1] tracking-tight">
+            <h1 className="text-4xl md:text-4xl lg:text-[3.0rem] font-black text-white leading-[1.1] tracking-tight">
               {hero.title}
             </h1>
-            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-black text-cyan-300 leading-[1.1] tracking-tight">
+            <h1 className="text-4xl md:text-4xl lg:text-[3.0rem] font-black text-cyan-300 leading-[1.1] tracking-tight">
               {hero.subtitle}
             </h1>
           </div>
