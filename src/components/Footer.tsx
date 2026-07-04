@@ -6,7 +6,7 @@ import {
   FaFacebookF, FaYoutube, FaLinkedinIn, FaInstagram, FaLocationDot,
   FaFileInvoice, FaCertificate, FaPhoneVolume, FaWhatsapp, FaEnvelope,
   FaBuildingColumns, FaTiktok, FaGraduationCap, FaScrewdriverWrench,
-  FaBoxOpen, FaPaperPlane
+  FaBoxOpen, FaPaperPlane, FaXTwitter
 } from "react-icons/fa6";
 
 const Footer = () => {
@@ -80,6 +80,7 @@ const Footer = () => {
               { href: siteSettings?.youtube || "#", icon: FaYoutube, label: "YouTube", color: "hover:bg-red-600" },
               { href: siteSettings?.linkedin || "#", icon: FaLinkedinIn, label: "LinkedIn", color: "hover:bg-blue-400" },
               { href: siteSettings?.instagram || "#", icon: FaInstagram, label: "Instagram", color: "hover:bg-pink-600" },
+              { href: "https://x.com/sangalotech", icon: FaXTwitter, label: "X", color: "hover:bg-slate-900" },
               { href: siteSettings?.tiktok || "#", icon: FaTiktok, label: "TikTok", color: "hover:bg-slate-900" },
             ].filter(s => s.href !== "#").map((s, i) => (
               <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className={`w-11 h-11 bg-white/10 rounded-lg flex items-center justify-center ${s.color} transition`} aria-label={s.label}>
@@ -98,6 +99,7 @@ const Footer = () => {
               { href: "/services", label: "Our Services" },
               { href: "/portfolio", label: "Our Portfolio" },
               { href: "/products", label: "Products" },
+              { href: "/blog", label: "Blog" },
               { href: "/contact", label: "Contact Us" },
               { href: "/upcoming", label: "Upcoming Batches" },
             ].map((link) => (

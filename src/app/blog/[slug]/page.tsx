@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import JsonLd from '@/components/JsonLd';
+import dbConnect from '@/lib/dbConnect';
+import { Blog } from '@/models/BlogProduct';
 
 interface BlogPost {
   _id: string;
@@ -353,13 +355,23 @@ const FALLBACK_POSTS: Record<string, any> = {
 
 async function getBlog(slug: string): Promise<BlogPost | null> {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/blogs`, {
-      next: { revalidate: 3600 },
-    });
-    if (!res.ok) return null;
-    const data = await res.json();
-    const blogs = Array.isArray(data) ? data : [];
-    return blogs.find((b: BlogPost) => b.slug === slug && b.published !== false) || null;
+    await dbConnect();
+    const blog = await Blog.findOne({ slug, published: { $ne: false } }).lean();
+    if (!blog) return null;
+    return {
+      _id: blog._id.toString(),
+      title: blog.title,
+      slug: blog.slug,
+      date: blog.date || '',
+      excerpt: blog.excerpt || '',
+      content: blog.content || '',
+      image: blog.image || '',
+      tags: blog.tags || [],
+      category: blog.category || 'general',
+      metaTitle: blog.metaTitle || '',
+      metaDescription: blog.metaDescription || '',
+      published: blog.published !== false,
+    };
   } catch {
     return null;
   }

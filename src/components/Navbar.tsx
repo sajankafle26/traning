@@ -10,6 +10,7 @@ import {
   FaChevronDown, FaLaptopCode, FaScrewdriverWrench, FaBoxOpen, FaReact, FaCubes,
   FaServer, FaWordpress, FaPenNib, FaObjectGroup, FaBullhorn, FaCode,
   FaMobileScreenButton, FaCartShopping, FaChartLine, FaCloud, FaUsersGear,
+  FaXTwitter,
   FaGraduationCap, FaStore, FaEnvelope, FaRobot, FaBrain, FaPaintbrush,
   FaMagnifyingGlass, FaMobile, FaBolt, FaRocket, FaGlobe, FaHandshake,
   FaChartBar, FaMicrochip, FaShield,

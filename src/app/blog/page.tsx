@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import dbConnect from '@/lib/dbConnect';
+import { Blog } from '@/models/BlogProduct';
 
 export const metadata: Metadata = {
   title: 'Blog - IT Training & Web Development Tips Nepal',
@@ -40,12 +42,20 @@ interface BlogPost {
 
 async function getBlogs(): Promise<BlogPost[]> {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/blogs`, {
-      next: { revalidate: 3600 },
-    });
-    if (!res.ok) return [];
-    const data = await res.json();
-    return Array.isArray(data) ? data.filter((b: BlogPost) => b.published !== false) : [];
+    await dbConnect();
+    const blogs = await Blog.find({ published: { $ne: false } }).sort({ createdAt: -1 }).lean();
+    return blogs.map((b: any) => ({
+      _id: b._id.toString(),
+      title: b.title,
+      slug: b.slug,
+      date: b.date || '',
+      excerpt: b.excerpt || '',
+      content: b.content || '',
+      image: b.image || '',
+      tags: b.tags || [],
+      category: b.category || 'general',
+      published: b.published !== false,
+    }));
   } catch {
     return [];
   }
@@ -53,6 +63,7 @@ async function getBlogs(): Promise<BlogPost[]> {
 
 const FALLBACK_POSTS = [
   {
+    _id: 'f1',
     slug: 'mern-stack-training-nepal-complete-guide',
     title: 'MERN Stack Training in Nepal: A Practical Roadmap for 2026',
     date: '2026-06-15',
@@ -62,6 +73,7 @@ const FALLBACK_POSTS = [
     category: 'training',
   },
   {
+    _id: 'f2',
     slug: 'wordpress-training-nepal-2026',
     title: 'WordPress Training in Nepal: Why the Platform Still Dominates',
     date: '2026-06-10',
@@ -71,6 +83,7 @@ const FALLBACK_POSTS = [
     category: 'training',
   },
   {
+    _id: 'f3',
     slug: 'web-design-training-nepal-ui-ux',
     title: 'Web Design Training in Nepal: Building Skills Clients Pay For',
     date: '2026-06-05',
@@ -80,15 +93,17 @@ const FALLBACK_POSTS = [
     category: 'design',
   },
   {
+    _id: 'f4',
     slug: 'website-development-training-nepal',
     title: 'Website Development Training in Nepal: Zero to Deployed',
     date: '2026-05-28',
-    excerpt: 'The fastest way to learn website development is to build real things. Here is what the journey looks like.',
+    excerpt: 'The fastest way to learn website development is to build real things.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600',
     tags: ['Web Development', 'Full Stack', 'Nepal'],
     category: 'training',
   },
   {
+    _id: 'f5',
     slug: 'php-laravel-training-nepal-2026',
     title: 'PHP with Laravel Training in Nepal: Enterprise Applications',
     date: '2026-05-20',
@@ -98,33 +113,37 @@ const FALLBACK_POSTS = [
     category: 'training',
   },
   {
+    _id: 'f6',
     slug: 'digital-marketing-training-nepal',
     title: 'Digital Marketing Training in Nepal: Beyond Vanity Metrics',
     date: '2026-05-15',
-    excerpt: 'Getting 10,000 followers means nothing if none of them buy. Real training teaches revenue, not engagement.',
+    excerpt: 'Getting 10,000 followers means nothing if none of them buy.',
     image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=600',
     tags: ['Digital Marketing', 'SEO', 'Nepal'],
     category: 'marketing',
   },
   {
+    _id: 'f7',
     slug: 'best-training-institute-nepal-why-sangalo',
     title: 'Best Training Institute in Nepal: What Actually Matters',
     date: '2026-05-10',
-    excerpt: 'Every institute claims to be the best. Here is how to cut through the marketing and find the right one.',
+    excerpt: 'Every institute claims to be the best. Here is how to cut through the marketing.',
     image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=600',
     tags: ['Training Institute', 'Nepal', 'Career'],
     category: 'general',
   },
   {
+    _id: 'f8',
     slug: 'web-design-nepal-modern-trends',
     title: 'Web Design in Nepal: The Business Case for Professional Design',
     date: '2026-05-05',
-    excerpt: 'Professional web design is not a luxury — it is a business investment with measurable returns.',
+    excerpt: 'Professional web design is not a luxury — it is a business investment.',
     image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80&w=600',
     tags: ['Web Design', 'Business', 'Nepal'],
     category: 'design',
   },
   {
+    _id: 'f9',
     slug: 'website-development-nepal-business',
     title: 'Website Development in Nepal: Why Every Business Needs One',
     date: '2026-04-28',
@@ -134,6 +153,7 @@ const FALLBACK_POSTS = [
     category: 'business',
   },
   {
+    _id: 'f10',
     slug: 'react-nextjs-training-nepal',
     title: 'React and Next.js Training in Nepal: The Modern Web Stack',
     date: '2026-04-20',

@@ -42,6 +42,7 @@ export const ORGANIZATION_JSONLD = {
     "https://www.facebook.com/sangalotech",
     "https://www.instagram.com/sangalotech",
     "https://www.linkedin.com/company/sangalotech",
+    "https://x.com/sangalotech",
   ],
 };
 
