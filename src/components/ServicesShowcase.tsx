@@ -78,7 +78,7 @@ export default function ServicesShowcase() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div key={i} className="animate-pulse">
-                <div className="h-64 md:h-72 lg:h-80 bg-slate-100 rounded-xl mb-4" />
+                <div className="h-72 md:h-80 lg:h-96 bg-slate-100 rounded-xl mb-4" />
                 <div className="h-5 bg-slate-100 rounded-lg w-3/4 mb-2" />
                 <div className="h-4 bg-slate-100 rounded-lg w-full" />
               </div>
@@ -92,7 +92,7 @@ export default function ServicesShowcase() {
               return (
                 <Link key={service.id} href={`/services/${service.slug}`} className="group block">
                   <article className="h-full">
-                    <div className="relative w-full rounded-xl overflow-hidden bg-slate-100 mb-4 h-64 md:h-72 lg:h-80">
+                    <div className="relative w-full rounded-xl overflow-hidden bg-slate-100 mb-4 h-72 md:h-80 lg:h-96">
                       <Image
                         src={image}
                         alt={service.title}
@@ -102,24 +102,26 @@ export default function ServicesShowcase() {
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute top-3 left-3">
-                        <div className="w-9 h-9 rounded-lg bg-[#00548B] flex items-center justify-center shadow-md">
-                          {service.icon?.startsWith('fa') ? (
-                            <i className={`${service.icon} text-sm text-white`} />
-                          ) : (
-                            <IconComp className="text-sm text-white" />
-                          )}
-                        </div>
+                    </div>
+                    <div className="flex items-start gap-3 mb-2">
+                      <div className="w-10 h-10 rounded-lg bg-[#00548B]/10 flex items-center justify-center shrink-0 mt-0.5">
+                        {service.icon?.startsWith('fa') ? (
+                          <i className={`${service.icon} text-base text-[#00548B]`} />
+                        ) : (
+                          <IconComp className="text-base text-[#00548B]" />
+                        )}
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#00548B] transition-colors">
+                          {service.title}
+                        </h3>
+                        <div
+                          className="text-sm text-slate-400 leading-relaxed line-clamp-2 [&_p]:mb-1 [&_p:last-child]:mb-0"
+                          dangerouslySetInnerHTML={{ __html: service.description }}
+                        />
                       </div>
                     </div>
-                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#00548B] transition-colors mb-1">
-                      {service.title}
-                    </h3>
-                    <div
-                      className="text-sm text-slate-400 leading-relaxed line-clamp-2 [&_p]:mb-1 [&_p:last-child]:mb-0 mb-4"
-                      dangerouslySetInnerHTML={{ __html: service.description }}
-                    />
-                    <div className="flex items-center gap-2 text-sm font-bold text-[#00548B] group-hover:gap-3 transition-all">
+                    <div className="flex items-center gap-2 text-sm font-bold text-[#00548B] group-hover:gap-3 transition-all ml-[52px]">
                       Get Free Quote
                       <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
                     </div>
