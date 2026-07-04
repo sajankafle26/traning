@@ -38,7 +38,7 @@ const Footer = () => {
       </div>
 
       {/* Google Maps */}
-      <div className="relative z-10 max-w-[1400px] px-4 mx-auto mb-12 md:mb-16">
+      <div className="relative z-10 max-w-[1200px] px-4 mx-auto mb-12 md:mb-16">
         <div className="rounded-xl overflow-hidden border border-white/10">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3539.2!2d85.3667338!3d27.6798088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1bbe687777ed%3A0x1594f891af9bd6ae!2sSangalo%20Tech%20Pvt%20Ltd!5e0!3m2!1sen!2snp!4v1"
@@ -55,7 +55,7 @@ const Footer = () => {
       </div>
 
       {/* Main Footer Grid */}
-      <div className="relative z-10 max-w-[1400px] px-4 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 md:gap-12 border-b border-white/10 pb-12 md:pb-16">
+      <div className="relative z-10 max-w-[1200px] px-4 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 md:gap-12 border-b border-white/10 pb-12 md:pb-16">
         {/* Company Info */}
         <div className="space-y-5">
           <Link href="/" className="inline-block">
@@ -216,13 +216,19 @@ const Footer = () => {
           </div>
           <div className="flex flex-wrap justify-center items-center gap-2.5">
             {[
-              { name: "eSewa", color: "#60bb46" },
-              { name: "Khalti", color: "#5c2d91" },
-              { name: "fonepay", color: "#e31e24" },
+              { name: "eSewa", color: "#60bb46", logo: "esewa" },
+              { name: "Khalti", color: "#5c2d91", logo: "khalti" },
+              { name: "Fonepay", color: "#e31e24", logo: "fonepay" },
               { name: "Bank Transfer", icon: FaBuildingColumns, color: "#ffffff" },
             ].map((p, i) => (
-              <div key={i} className="bg-white px-4 py-2 rounded-lg flex items-center gap-2">
-                {p.icon ? (
+              <div key={i} className="bg-white px-4 py-2.5 rounded-lg flex items-center gap-2.5">
+                {p.logo === "esewa" ? (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#60bb46"/><text x="12" y="16" textAnchor="middle" fill="white" fontSize="10" fontWeight="900" fontFamily="Arial">eS</text></svg>
+                ) : p.logo === "khalti" ? (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#5c2d91"/><text x="12" y="16" textAnchor="middle" fill="white" fontSize="10" fontWeight="900" fontFamily="Arial">Kh</text></svg>
+                ) : p.logo === "fonepay" ? (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#e31e24"/><text x="12" y="16" textAnchor="middle" fill="white" fontSize="10" fontWeight="900" fontFamily="Arial">Fp</text></svg>
+                ) : p.icon ? (
                   <p.icon className="text-[#5c2d91] text-sm" />
                 ) : (
                   <div className="w-4 h-4 rounded-full" style={{ backgroundColor: p.color }} />

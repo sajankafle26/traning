@@ -83,7 +83,7 @@ const ContactForm = () => {
             <div className="p-5 rounded-xl border border-[#00548B]/20 bg-[#00548B]/5">
               <FaClock className="text-[#00548B] text-lg mb-2" />
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Business Hours</p>
-              <p className="text-slate-700 font-bold text-sm">Sun-Fri: 9AM - 5PM</p>
+              <p className="text-slate-700 font-bold text-sm">Sun-Fri: 7AM - 8PM</p>
               <p className="text-slate-400 text-xs">Saturday: Closed</p>
             </div>
             <div className="p-5 rounded-xl border border-emerald-200 bg-emerald-50">

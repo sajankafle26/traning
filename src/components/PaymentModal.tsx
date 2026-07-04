@@ -134,7 +134,9 @@ const PaymentModal = ({ course, isOpen, onClose }: { course: any, isOpen: boolea
                         className="w-full flex items-center justify-between bg-white/5 hover:bg-white/10 border border-white/10 p-5 rounded-2xl transition-all group"
                     >
                         <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-[#60bb46] rounded-xl flex items-center justify-center font-black text-white italic">eSewa</div>
+                            <div className="w-12 h-12 bg-[#60bb46] rounded-xl flex items-center justify-center">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#60bb46"/><text x="12" y="16" textAnchor="middle" fill="white" fontSize="10" fontWeight="900" fontFamily="Arial">eS</text></svg>
+                            </div>
                             <span className="text-white font-bold">Pay with eSewa</span>
                         </div>
                         <i className="fa-solid fa-chevron-right text-slate-600 group-hover:text-white transition-colors"></i>
@@ -146,7 +148,9 @@ const PaymentModal = ({ course, isOpen, onClose }: { course: any, isOpen: boolea
                         className="w-full flex items-center justify-between bg-white/5 hover:bg-white/10 border border-white/10 p-5 rounded-2xl transition-all group"
                     >
                         <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-[#5c2d91] rounded-xl flex items-center justify-center font-black text-white italic text-xs">Khalti</div>
+                            <div className="w-12 h-12 bg-[#5c2d91] rounded-xl flex items-center justify-center">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#5c2d91"/><text x="12" y="16" textAnchor="middle" fill="white" fontSize="10" fontWeight="900" fontFamily="Arial">Kh</text></svg>
+                            </div>
                             <span className="text-white font-bold">Pay with Khalti</span>
                         </div>
                         <i className="fa-solid fa-chevron-right text-slate-600 group-hover:text-white transition-colors"></i>
