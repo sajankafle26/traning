@@ -5,15 +5,15 @@ import Image from "next/image";
 import { apiService } from "@/services/apiService";
 import { ServiceItem } from "@/types";
 import {
-  FaArrowRight, FaLaptopCode, FaMobileAlt, FaChartLine,
+  FaArrowRight, FaLaptopCode, FaMobileScreenButton, FaChartLine,
   FaPenNib, FaShoppingCart, FaCloud, FaBullseye, FaSearch,
   FaPaintBrush, FaServer
 } from "react-icons/fa6";
 
 const iconComponents: Record<string, any> = {
   'fa-solid fa-laptop-code': FaLaptopCode,
-  'fa-solid fa-mobile-screen-button': FaMobileAlt,
-  'fa-solid fa-mobile-alt': FaMobileAlt,
+  'fa-solid fa-mobile-screen-button': FaMobileScreenButton,
+  'fa-solid fa-mobile-alt': FaMobileScreenButton,
   'fa-solid fa-chart-line': FaChartLine,
   'fa-solid fa-pen-nib': FaPenNib,
   'fa-solid fa-shopping-cart': FaShoppingCart,
