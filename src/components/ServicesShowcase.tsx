@@ -78,7 +78,7 @@ export default function ServicesShowcase() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div key={i} className="animate-pulse">
-                <div className="aspect-[4/3] bg-slate-100 rounded-xl mb-4" />
+                <div className="h-64 md:h-72 lg:h-80 bg-slate-100 rounded-xl mb-4" />
                 <div className="h-5 bg-slate-100 rounded-lg w-3/4 mb-2" />
                 <div className="h-4 bg-slate-100 rounded-lg w-full" />
               </div>
@@ -92,7 +92,7 @@ export default function ServicesShowcase() {
               return (
                 <Link key={service.id} href={`/services/${service.slug}`} className="group block">
                   <article className="h-full">
-                    <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 mb-4">
+                    <div className="relative rounded-xl overflow-hidden bg-slate-100 mb-4 h-64 md:h-72 lg:h-80">
                       <Image
                         src={image}
                         alt={service.title}
