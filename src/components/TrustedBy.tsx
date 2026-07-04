@@ -43,7 +43,7 @@ const TrustedBy = () => {
   if (loading || partners.length === 0) return null;
 
   return (
-    <section className="py-24 bg-white overflow-hidden border-t border-slate-100 relative">
+    <section className="py-16 bg-white overflow-hidden border-t border-slate-100 relative">
       {/* Premium Architectural Grid Background */}
       <div className="absolute inset-x-0 top-0 h-full pointer-events-none opacity-[0.03] architect-grid" />
 

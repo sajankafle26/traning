@@ -224,6 +224,14 @@ export const SERVICES: ServiceItem[] = [
     description: 'Streamline your development lifecycle with automated deployments and reliable cloud infrastructure.',
     icon: 'fa-solid fa-cloud',
     image: '/services/cloud-devops.jpg'
+  },
+  {
+    id: 's7',
+    title: 'Brand Strategy',
+    slug: 'brand-strategy',
+    description: 'Build a powerful brand identity that resonates with your audience. From logo design and brand guidelines to positioning strategy and visual identity systems — we craft brands that stand out in the Nepali and global market.',
+    icon: 'fa-solid fa-bullseye',
+    image: ''
   }
 ];
 
@@ -2376,35 +2384,49 @@ export const PRODUCTS: Product[] = [
 
 
 export const BLOGS = [
-
   {
-    id: "mern-observability",
-    title: "Observability for MERN: Logs, Metrics, and Traces that Matter",
-    image:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1600&auto=format&fit=crop",
+    id: "mern-stack-training",
+    title: "MERN Stack Training in Nepal: Complete Guide for 2026",
+    slug: "mern-stack-training-nepal-complete-guide",
+    image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&q=80&w=800",
     date: "Jun 15, 2026",
-    excerpt:
-      "Going beyond console logs—discover how Node.js apps benefit from structured logging, OpenTelemetry traces, MongoDB performance insights, and user-centric Real User Monitoring (RUM).",
-    "link": "https://blog.devgenius.io/observability-for-mern-logs-metrics-and-traces-that-matter-1234567890ab"
+    excerpt: "Learn why MERN Stack is the most in-demand skill in Nepal and how our training helps you become job-ready in 3-6 months.",
+    content: "",
+    link: "/blog/mern-stack-training-nepal-complete-guide",
+    tags: ["MERN Stack", "Nepal"],
+    category: "training",
+    metaTitle: "",
+    metaDescription: "",
+    published: true,
   },
   {
-    id: "a11y-inclusive-ux",
-    title: "Inclusive Web Design: Practical A11y Wins for Real Users",
-    image:
-      "https://images.unsplash.com/photo-1498050108023-3f4f38b88c1f?q=80&w=1600&auto=format&fit=crop",
-    date: "May 22, 2026",
-    excerpt:
-      "Color contrast, focus states, and semantic landmarks aren't optional. Here's a practical checklist that improves accessibility scores and, more importantly, real human experience.",
-    "link": "https://blog.devgenius.io/inclusive-web-design-practical-a11y-wins-for-real-users-abcdef123456"
+    id: "wordpress-training",
+    title: "WordPress Training in Nepal: Why It Still Matters in 2026",
+    slug: "wordpress-training-nepal-2026",
+    image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&q=80&w=800",
+    date: "Jun 10, 2026",
+    excerpt: "WordPress powers 43% of the web. Find out why WordPress training in Nepal is a smart career move.",
+    content: "",
+    link: "/blog/wordpress-training-nepal-2026",
+    tags: ["WordPress", "Nepal"],
+    category: "training",
+    metaTitle: "",
+    metaDescription: "",
+    published: true,
   },
   {
-    id: "mern-data-layer",
-    title: "Choosing a Data Layer on MERN: REST, GraphQL, or tRPC?",
-    image:
-      "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop",
-    date: "Apr 10, 2026",
-    excerpt:
-      "The right API layer depends on your product shape. Compare REST simplicity, GraphQL flexibility, and end-to-end type safety with tRPC for fast-moving teams and large codebases.",
-    "link": "https://blog.devgenius.io/choosing-a-data-layer-on-mern-rest-graphql-or-trpc-7890abcdef12"
+    id: "digital-marketing-training",
+    title: "Digital Marketing Training in Nepal: Master SEO, Ads & Social",
+    slug: "digital-marketing-training-nepal",
+    image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=800",
+    date: "May 15, 2026",
+    excerpt: "Digital marketing is booming in Nepal. Learn SEO, Google Ads, social media marketing, and analytics.",
+    content: "",
+    link: "/blog/digital-marketing-training-nepal",
+    tags: ["Digital Marketing", "Nepal"],
+    category: "marketing",
+    metaTitle: "",
+    metaDescription: "",
+    published: true,
   },
 ];

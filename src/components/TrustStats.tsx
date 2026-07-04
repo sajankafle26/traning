@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { FaGraduationCap, FaProjectDiagram, FaUserCheck, FaHandshake } from "react-icons/fa";
+import { FaGraduationCap, FaDiagramProject, FaUserCheck, FaHandshake, FaStar, FaShield, FaBuilding } from "react-icons/fa6";
 
 interface CounterProps {
   end: number;
@@ -43,45 +43,54 @@ function Counter({ end, suffix = "", duration = 2000 }: CounterProps) {
 }
 
 const STATS = [
-  { icon: FaGraduationCap, number: 1500, suffix: "+", label: "Students Trained", color: "bg-blue-500" },
-  { icon: FaProjectDiagram, number: 500, suffix: "+", label: "Projects Completed", color: "bg-emerald-500" },
-  { icon: FaUserCheck, number: 95, suffix: "%", label: "Student Satisfaction", color: "bg-violet-500" },
-  { icon: FaHandshake, number: 100, suffix: "+", label: "Hiring Partners", color: "bg-amber-500" },
+  { icon: FaGraduationCap, number: 1500, suffix: "+", label: "Students Trained" },
+  { icon: FaDiagramProject, number: 500, suffix: "+", label: "Projects Delivered" },
+  { icon: FaUserCheck, number: 95, suffix: "%", label: "Placement Rate" },
+  { icon: FaHandshake, number: 100, suffix: "+", label: "Hiring Partners" },
+];
+
+const TRUST_BADGES = [
+  { icon: FaShield, label: "PAN: 602345817" },
+  { icon: FaBuilding, label: "Registered Company" },
+  { icon: FaStar, label: "4.8 Google Rating" },
 ];
 
 export default function TrustStats() {
   return (
-    <section className="py-24 px-6 bg-white">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="text-center mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 bg-[#00548B]/10 text-[#00548B] px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-[#00548B]/20">
-            Our Track Record
-          </div>
-          <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
-            Numbers That <span className="text-[#00548B]">Speak</span>
-          </h2>
-          <p className="text-slate-500 max-w-xl mx-auto text-lg">
-            Trusted by hundreds of students and businesses across Nepal
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+    <section className="py-16 px-6 bg-white border-b border-slate-50">
+      <div className="max-w-[1200px] mx-auto">
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {STATS.map((stat, i) => (
             <div
               key={i}
-              className="group text-center p-8 md:p-10 rounded-3xl bg-gradient-to-b from-slate-50 to-white border border-slate-100 hover:shadow-2xl hover:shadow-[#00548B]/10 hover:border-[#00548B]/20 hover:-translate-y-2 transition-all duration-500 cursor-default"
+              className="text-center p-6 md:p-8 rounded-xl bg-slate-50 border border-slate-100 hover:border-[#00548B]/20 hover:bg-white transition-all"
             >
-              <div className={`w-16 h-16 ${stat.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                <stat.icon className="text-2xl text-white" />
-              </div>
-              <div className="text-4xl md:text-5xl font-black text-slate-900 group-hover:text-[#00548B] transition-colors mb-2">
+              <stat.icon className="text-xl text-[#00548B] mx-auto mb-3" />
+              <div className="text-3xl md:text-4xl font-black text-slate-900 mb-1">
                 <Counter end={stat.number} suffix={stat.suffix} />
               </div>
-              <div className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">
                 {stat.label}
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Trust Badges */}
+        <div className="flex flex-wrap items-center justify-center gap-6 mt-10 pt-8 border-t border-slate-100">
+          {TRUST_BADGES.map((badge, i) => (
+            <div key={i} className="flex items-center gap-2 text-sm text-slate-500">
+              <badge.icon className="text-[#00548B]" />
+              <span className="font-semibold">{badge.label}</span>
+            </div>
+          ))}
+          <div className="flex items-center gap-1">
+            {[1, 2, 3, 4, 5].map((s) => (
+              <FaStar key={s} className="text-amber-400 text-sm" />
+            ))}
+            <span className="text-sm font-semibold text-slate-500 ml-1">4.8/5</span>
+          </div>
         </div>
       </div>
     </section>

@@ -39,7 +39,7 @@ const InternshipHub = () => {
   }, []);
 
   return (
-    <section id="internships" className="py-32 px-6 relative overflow-hidden bg-white">
+    <section id="internships" className="py-20 px-6 relative overflow-hidden bg-white">
       {/* High-Fidelity Architectural Grid */}
       <div className="absolute inset-x-0 bottom-0 h-[600px] pointer-events-none opacity-[0.05] architect-grid" />
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#f8fbff] to-white pointer-events-none" />

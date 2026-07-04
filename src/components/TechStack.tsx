@@ -510,7 +510,7 @@ const TechStack: React.FC = () => {
   }, [open]);
 
   return (
-    <section className="py-32 bg-[#050b14] text-white px-6 relative overflow-hidden">
+    <section className="py-20 bg-[#050b14] text-white px-6 relative overflow-hidden">
       {/* Background Pattern & Glows */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:40px_40px]" />

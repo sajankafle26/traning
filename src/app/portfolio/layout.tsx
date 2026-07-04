@@ -1,10 +1,23 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Our Portfolio | Sangalo Tech',
-    description: 'Explore our latest digital transformations and high-impact web solutions for global clients.',
+  title: 'Portfolio',
+  description: 'View our portfolio of web design, website development, and software projects. See our work in React, Next.js, PHP Laravel, and WordPress.',
+  keywords: [
+    'web design portfolio Nepal',
+    'website development portfolio',
+    'software projects Nepal',
+  ],
+  openGraph: {
+    title: 'Portfolio | Sangalo Tech',
+    description: 'View our web design, website development, and software projects.',
+    url: 'https://sangalotech.com/portfolio',
+    siteName: 'Sangalo Tech',
+    type: 'website',
+  },
+  alternates: { canonical: 'https://sangalotech.com/portfolio' },
 };
 
 export default function PortfolioLayout({ children }: { children: React.ReactNode }) {
-    return <>{children}</>;
+  return <>{children}</>;
 }

@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { apiService } from '@/services/apiService';
-import { FaEnvelopeOpenText, FaLocationDot, FaPaperPlane, FaHeadset } from 'react-icons/fa6';
+import { FaEnvelope, FaLocationDot, FaPaperPlane, FaPhone, FaClock, FaBolt } from 'react-icons/fa6';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -21,7 +21,7 @@ const ContactForm = () => {
     setStatus({ type: 'loading' });
     const response = await apiService.submitContact(formData);
     if (response) {
-      setStatus({ type: 'success', message: 'Thank you! We have received your message.' });
+      setStatus({ type: 'success', message: 'Thank you! We will get back to you within 24 hours.' });
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setStatus({ type: 'idle' }), 5000);
     } else {
@@ -30,114 +30,123 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 relative overflow-hidden bg-white">
-      {/* Premium Architectural Grid Background */}
-      <div className="absolute inset-x-0 top-0 h-[800px] pointer-events-none opacity-[0.05] architect-grid" />
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#f8fbff] via-white to-white" />
-
-      {/* Atmospheric Cinematic Accents */}
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-[#00548B]/5 blur-[120px] rounded-full" />
-
-      <div className="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-24 relative z-10">
-        <div className="space-y-12">
-          <div className="space-y-8">
-            <div className="inline-flex items-center gap-3 bg-white text-slate-500 px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] border border-slate-100 shadow-sm">
-              <FaHeadset className="text-[#00548B] shadow-[0_0_8px_#00548B]" /> Architecture Support
+    <section id="contact" className="py-16 px-6 bg-white">
+      <div className="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-16">
+        {/* Left - Info */}
+        <div className="space-y-10">
+          <div className="space-y-4">
+            <div className="inline-flex items-center gap-2 bg-[#00548B]/10 text-[#00548B] px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-[#00548B]/20">
+              <FaPhone className="text-xs" />
+              Get In Touch
             </div>
-            <h2 className="text-3xl md:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-[0.85]">
-              Architecting Your
-              <span className="text-[#00548B]">Future</span> Scale.
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+              Let&apos;s Start a <span className="text-[#00548B]">Conversation</span>
             </h2>
-            <p className="text-slate-500 font-medium text-xl md:text-2xl max-w-lg leading-relaxed">
-              Whether you're seeking elite certification or technical infrastructure solutions, our architects are ready to <span className="text-slate-900 font-black">engineer</span> your path.
+            <p className="text-slate-500 text-lg max-w-lg">
+              Have a project in mind or want to learn about our courses? Reach out and our team will respond within 24 hours.
             </p>
           </div>
 
-          <div className="grid gap-8">
-            {[
-              { icon: <FaEnvelopeOpenText />, title: "Intelligence HQ", detail: siteSettings?.email || "support@sangalotech.com" },
-              { icon: <FaLocationDot />, title: "Technical Lab", detail: siteSettings?.address || "Lokenthali, Bhaktapur, Nepal" }
-            ].map((item, idx) => (
-              <div key={idx} className="group relative">
-                {/* Visual Stack Layers */}
-                <div className="absolute inset-0 bg-slate-50 rounded-[2.5rem] rotate-1 translate-y-2 scale-[0.98] transition-all duration-700 group-hover:rotate-2" />
-                <div className="relative flex items-center gap-8 p-8 bg-white border border-slate-100 rounded-[2.5rem] shadow-[0_32px_64px_-32px_rgba(0,0,0,0.04)] transition-all duration-700 group-hover:-translate-y-2">
-                  <div className="w-16 h-16 bg-slate-50 text-[#00548B] rounded-2xl flex items-center justify-center text-2xl shadow-inner group-hover:bg-slate-900 group-hover:text-white transition-all duration-500">
-                    {item.icon}
-                  </div>
-                  <div>
-                    <h3 className="font-black text-slate-900 text-[10px] uppercase tracking-[0.25em] mb-2">{item.title}</h3>
-                    <p className="text-slate-500 font-bold text-lg">{item.detail}</p>
-                  </div>
-                </div>
+          {/* Contact Details */}
+          <div className="space-y-4">
+            <div className="flex items-start gap-4 p-5 rounded-xl bg-slate-50 border border-slate-100">
+              <div className="w-10 h-10 rounded-lg bg-[#00548B]/10 flex items-center justify-center shrink-0">
+                <FaEnvelope className="text-[#00548B] text-sm" />
               </div>
-            ))}
+              <div>
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Email</p>
+                <p className="text-slate-700 font-semibold text-sm">{siteSettings?.email || "support@sangalotech.com"}</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 p-5 rounded-xl bg-slate-50 border border-slate-100">
+              <div className="w-10 h-10 rounded-lg bg-[#00548B]/10 flex items-center justify-center shrink-0">
+                <FaPhone className="text-[#00548B] text-sm" />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Phone</p>
+                <p className="text-slate-700 font-semibold text-sm">{siteSettings?.phone || "+977-9851228383"}</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 p-5 rounded-xl bg-slate-50 border border-slate-100">
+              <div className="w-10 h-10 rounded-lg bg-[#00548B]/10 flex items-center justify-center shrink-0">
+                <FaLocationDot className="text-[#00548B] text-sm" />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Office</p>
+                <p className="text-slate-700 font-semibold text-sm">{siteSettings?.address || "Lokenthali, Bhaktapur, Nepal"}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Business Hours + Response Time */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="p-5 rounded-xl border border-[#00548B]/20 bg-[#00548B]/5">
+              <FaClock className="text-[#00548B] text-lg mb-2" />
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Business Hours</p>
+              <p className="text-slate-700 font-bold text-sm">Sun-Fri: 9AM - 5PM</p>
+              <p className="text-slate-400 text-xs">Saturday: Closed</p>
+            </div>
+            <div className="p-5 rounded-xl border border-emerald-200 bg-emerald-50">
+              <FaBolt className="text-emerald-600 text-lg mb-2" />
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Response Time</p>
+              <p className="text-slate-700 font-bold text-sm">Within 24 Hours</p>
+              <p className="text-slate-400 text-xs">Monday - Friday</p>
+            </div>
           </div>
         </div>
 
-        <div className="relative group">
-          {/* Visual Stack Layers for Form */}
-          <div className="absolute inset-8 bg-slate-50 rounded-[4rem] rotate-2 scale-[1.02] transition-all duration-700 group-hover:rotate-6 shadow-inner" />
-
-          <div className="relative bg-white p-10 md:p-16 rounded-[4rem] border border-slate-100 shadow-[0_96px_128px_-48px_rgba(0,84,139,0.12)]">
-            <form onSubmit={handleSubmit} className="space-y-10">
-              <div className="grid md:grid-cols-2 gap-10">
-                <div className="space-y-4">
-                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.25em] flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00548B] shadow-[0_0_8px_#00548B]"></span> Engineer Identity
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-8 py-6 outline-none focus:bg-white focus:ring-4 focus:ring-[#00548B]/5 transition-all font-bold text-slate-900 placeholder:text-slate-300"
-                    placeholder="Full Name"
-                  />
-                </div>
-                <div className="space-y-4">
-                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.25em] flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00548B] shadow-[0_0_8px_#00548B]"></span> Communication Port
-                  </label>
-                  <input
-                    required
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-8 py-6 outline-none focus:bg-white focus:ring-4 focus:ring-[#00548B]/5 transition-all font-bold text-slate-900 placeholder:text-slate-300"
-                    placeholder="Email Address"
-                  />
-                </div>
-              </div>
-              <div className="space-y-4">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.25em] flex items-center gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00548B] shadow-[0_0_8px_#00548B]"></span> Specification Brief
-                </label>
-                <textarea
-                  required
-                  rows={4}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-8 py-6 outline-none focus:bg-white focus:ring-4 focus:ring-[#00548B]/5 transition-all font-bold text-slate-900 placeholder:text-slate-300 resize-none"
-                  placeholder="Describe your technical inquiry..."
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                disabled={status.type === 'loading'}
-                className="w-full bg-slate-950 text-white font-black py-7 rounded-[2rem] hover:bg-[#00548B] transition-all shadow-[0_32px_64px_-16px_rgba(0,84,139,0.4)] active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-4 text-[10px] uppercase tracking-[0.3em]"
-              >
-                {status.type === 'loading' ? 'Transmitting Data...' : (
-                  <>Establish Connection <FaPaperPlane className="text-xs" /></>
-                )}
-              </button>
-              {status.type === 'success' && (
-                <div className="text-center p-6 bg-emerald-50 text-emerald-600 rounded-2xl font-black text-xs uppercase tracking-widest border border-emerald-100 animate-in fade-in slide-in-from-bottom-4">
-                  {status.message}
-                </div>
+        {/* Right - Form */}
+        <div className="bg-slate-50 rounded-2xl border border-slate-100 p-8 md:p-10">
+          <h3 className="text-xl font-bold text-slate-900 mb-6">Send Us a Message</h3>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="space-y-2">
+              <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Full Name</label>
+              <input
+                required
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full bg-white border border-slate-200 rounded-lg px-5 py-4 outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B] transition text-sm text-slate-900 placeholder:text-slate-300"
+                placeholder="Your full name"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Email Address</label>
+              <input
+                required
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full bg-white border border-slate-200 rounded-lg px-5 py-4 outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B] transition text-sm text-slate-900 placeholder:text-slate-300"
+                placeholder="you@example.com"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Your Message</label>
+              <textarea
+                required
+                rows={5}
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                className="w-full bg-white border border-slate-200 rounded-lg px-5 py-4 outline-none focus:ring-2 focus:ring-[#00548B]/20 focus:border-[#00548B] transition text-sm text-slate-900 placeholder:text-slate-300 resize-none"
+                placeholder="Tell us about your project or question..."
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              disabled={status.type === 'loading'}
+              className="w-full bg-[#00548B] text-white font-bold py-4 rounded-lg hover:bg-[#004381] transition-all shadow-lg shadow-[#00548B]/20 active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-3 text-sm"
+            >
+              {status.type === 'loading' ? 'Sending...' : (
+                <>Send Message <FaPaperPlane className="text-xs" /></>
               )}
-            </form>
-          </div>
+            </button>
+            {status.type === 'success' && (
+              <div className="text-center p-4 bg-emerald-50 text-emerald-600 rounded-lg font-bold text-sm border border-emerald-100">
+                {status.message}
+              </div>
+            )}
+          </form>
         </div>
       </div>
     </section>

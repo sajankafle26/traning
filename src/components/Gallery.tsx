@@ -67,7 +67,7 @@ const Gallery = () => {
 
   return (
     <>
-      <section className="py-24 px-6 bg-gradient-to-b from-[#f8fbff] via-white to-white relative overflow-hidden">
+      <section className="py-16 px-6 bg-gradient-to-b from-[#f8fbff] via-white to-white relative overflow-hidden">
         {/* Background */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#00548B]/5 rounded-full blur-[150px] pointer-events-none" />
 

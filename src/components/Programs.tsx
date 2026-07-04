@@ -42,7 +42,7 @@ const Programs = () => {
   }, []);
 
   return (
-    <section id="programs" className="py-24 px-6 relative overflow-hidden">
+    <section id="programs" className="py-16 px-6 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute inset-0" style={{ backgroundColor: "#004381" }} />
@@ -70,6 +70,14 @@ const Programs = () => {
           <p className="text-white/80 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             Job-ready IT courses with internship, live projects, certification, and 100% placement assistance
           </p>
+          <Link
+            href="/courses"
+            className="inline-flex items-center gap-3 bg-white text-sangalo-900 px-8 py-4 rounded-xl font-bold text-sm hover:bg-slate-50 transition-all shadow-lg"
+          >
+            <FaGraduationCap className="text-sm" />
+            Explore All Courses
+            <FaArrowRight className="text-xs" />
+          </Link>
         </div>
 
         {/* Courses Slider */}
@@ -174,15 +182,6 @@ const Programs = () => {
                 ))}
               </Swiper>
             )}
-            <div className="text-center">
-              <Link
-                href="/courses"
-                className="inline-flex items-center gap-3 bg-sangalo-900 text-white px-8 py-4 rounded-2xl font-black text-[11px] uppercase tracking-widest hover:bg-sangalo-800 transition-all shadow-xl"
-              >
-                View All Courses
-                <FaArrowRight className="text-sm" />
-              </Link>
-            </div>
           </div>
         </div>
       </div>

@@ -54,7 +54,7 @@ const Portfolio = () => {
   const filteredProjects = activeFilter === "all" ? projects : projects.filter(p => p.category === activeFilter);
 
   return (
-    <section id="portfolio" className="py-24 px-6 bg-white">
+    <section id="portfolio" className="py-16 px-6 bg-white">
       <div className="max-w-[1400px] mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">

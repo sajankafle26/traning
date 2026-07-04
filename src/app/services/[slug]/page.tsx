@@ -44,6 +44,12 @@ const SERVICE_FAQS: Record<string, Array<{ question: string; answer: string }>> 
     { question: "How long does SEO take to show results?", answer: "SEO is a long-term strategy. You can expect initial improvements in 2-3 months, with significant results in 6-12 months. We focus on sustainable, white-hat techniques." },
     { question: "Do you manage Google Ads and social media?", answer: "Yes, we manage Google Ads (PPC), Facebook/Instagram ads, and social media marketing campaigns. We create data-driven strategies to maximize your ROI." },
   ],
+  'brand-strategy': [
+    { question: "What is brand strategy and why does my business need it?", answer: "Brand strategy is a long-term plan for developing a successful brand to achieve specific goals. It includes your brand's purpose, values, messaging, visual identity, and positioning. A strong brand strategy helps you stand out from competitors, build trust with customers, and command premium pricing." },
+    { question: "What services are included in brand strategy?", answer: "Our brand strategy service covers brand research, competitive analysis, brand positioning, logo design, brand guidelines, color palette, typography, brand voice and messaging, visual identity system, and brand collateral design." },
+    { question: "How long does brand strategy take?", answer: "A complete brand strategy project typically takes 2-4 weeks. This includes research, strategy development, creative concepts, design, and final brand guidelines delivery." },
+    { question: "Do you work with startups in Nepal?", answer: "Yes! We work with startups, small businesses, and established companies across Nepal. Our brand strategy is tailored to your budget and goals, whether you're launching a new brand or refreshing an existing one." },
+  ],
 };
 
 const ALL_SERVICE_FAQS = [

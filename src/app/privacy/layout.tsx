@@ -2,7 +2,8 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Read the privacy policy of Sangalo Tech to understand how we protect your information.',
+  description: 'Privacy policy of Sangalo Tech Pvt. Ltd. - IT training institute and software company in Nepal.',
+  alternates: { canonical: 'https://sangalotech.com/privacy' },
 };
 
 export default function PrivacyLayout({ children }: { children: React.ReactNode }) {

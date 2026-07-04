@@ -1,13 +1,32 @@
+import { Metadata } from 'next';
 import Programs from '@/components/Programs'
-import React from 'react'
 
-function page() {
-  return (
-    
-     
-      <Programs/>
-    
-  )
+export const metadata: Metadata = {
+  title: 'IT Training Programs in Nepal',
+  description: 'Join Nepal job-ready IT training programs at Sangalo Tech. MERN Stack, React, Next.js, PHP Laravel, Python Django, UI/UX Design, Digital Marketing courses with internship and placement support.',
+  keywords: [
+    'IT training programs Nepal',
+    'MERN Stack training Nepal',
+    'React training Nepal',
+    'PHP Laravel training Nepal',
+    'Python Django training Nepal',
+    'UI UX design course Nepal',
+    'digital marketing training Nepal',
+    'best IT training institute Nepal',
+    'coding bootcamp Nepal',
+  ],
+  openGraph: {
+    title: 'IT Training Programs in Nepal | Sangalo Tech',
+    description: 'Nepal job-ready IT training programs — MERN Stack, React, Laravel, Python Django, UI/UX, Digital Marketing. Internship + placement support.',
+    url: 'https://sangalotech.com/training',
+    siteName: 'Sangalo Tech',
+    type: 'website',
+  },
+  alternates: { canonical: 'https://sangalotech.com/training' },
+};
+
+function TrainingPage() {
+  return <Programs />;
 }
 
-export default page
+export default TrainingPage;

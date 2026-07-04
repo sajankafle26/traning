@@ -4,10 +4,16 @@ import React from 'react';
 
 export const metadata: Metadata = {
   title: 'About Us',
-  description: 'Sangalo Tech Pvt. Ltd. - Web development company and IT training institute in Lokenthali, Bhaktapur, Nepal. MERN Stack, React, Laravel, WordPress training with guaranteed hiring.',
+  description: 'About Sangalo Tech Pvt. Ltd. - Best IT training institute and software company in Lokenthali, Bhaktapur, Nepal. Founded by Sajan Kafle. MERN Stack, WordPress, PHP Laravel, Digital Marketing training with 95% placement rate.',
+  keywords: [
+    'about Sangalo Tech',
+    'best IT institute Nepal',
+    'software company Bhaktapur',
+    'IT training institute Bhaktapur',
+  ],
   openGraph: {
     title: 'About Us | Sangalo Tech',
-    description: 'Sangalo Tech Pvt. Ltd. - Web development company and IT training institute in Nepal.',
+    description: 'Sangalo Tech Pvt. Ltd. - Best IT training institute and software company in Nepal.',
     url: 'https://sangalotech.com/about',
     siteName: 'Sangalo Tech',
     type: 'website',

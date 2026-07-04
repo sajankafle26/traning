@@ -77,7 +77,7 @@ const VideoMarketplace = () => {
   };
 
   return (
-    <section id="videos" className="py-32 px-6 relative overflow-hidden bg-slate-950">
+    <section id="videos" className="py-20 px-6 relative overflow-hidden bg-slate-950">
       {/* Dynamic Deep Architecture Grid */}
       <div className="absolute inset-x-0 top-0 h-[800px] pointer-events-none opacity-[0.05] architect-grid" />
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-slate-950 via-[#00548B]/20 to-slate-950" />

@@ -36,13 +36,18 @@ export async function generateMetadata({ params }: { params: { slug: string } | 
   }
 
   return {
-    title: course.title,
-    description: course.description,
+    title: `${course.title} in Nepal | Sangalo Tech`,
+    description: `${course.title} training in Nepal at Sangalo Tech. Join job-ready course with internship, live projects, certification, and placement assistance.`,
+    keywords: [course.title, `${course.title} Nepal`, 'IT training Nepal', 'Sangalo Tech'],
     openGraph: {
-      title: course.title,
-      description: course.description,
-      images: [`/courses/${course.image || 'default.png'}`],
+      title: `${course.title} in Nepal | Sangalo Tech`,
+      description: `${course.title} training in Nepal. Job-ready program with internship and placement assistance.`,
+      url: `https://sangalotech.com/courses/${course.slug || slug}`,
+      siteName: 'Sangalo Tech',
+      type: 'website',
+      images: course.image ? [{ url: course.image, width: 1200, height: 630, alt: course.title }] : [],
     },
+    alternates: { canonical: `https://sangalotech.com/courses/${course.slug || slug}` },
   };
 }
 

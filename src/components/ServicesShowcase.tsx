@@ -16,6 +16,7 @@ const iconComponents: Record<string, any> = {
   'fa-solid fa-pen-nib': FaPenNib,
   'fa-solid fa-shopping-cart': FaShoppingCart,
   'fa-solid fa-cloud': FaCloud,
+  'fa-solid fa-bullseye': FaLaptopCode,
 };
 
 const SERVICE_IMAGES: Record<string, string> = {
@@ -25,6 +26,7 @@ const SERVICE_IMAGES: Record<string, string> = {
   'ui-ux-design-and-prototyping': 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800',
   'e-commerce-development': 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800',
   'cloud-and-devops-services': 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
+  'brand-strategy': 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
 };
 
 export default function ServicesShowcase() {
@@ -48,7 +50,7 @@ export default function ServicesShowcase() {
   if (services.length === 0 && !loading) return null;
 
   return (
-    <section className="py-24 px-6 bg-white">
+    <section className="py-16 px-6 bg-white">
       <div className="max-w-[1400px] px-4 mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-14">
@@ -62,11 +64,11 @@ export default function ServicesShowcase() {
             </p>
           </div>
           <Link
-            href="/services"
-            className="inline-flex items-center gap-2 text-sm font-bold text-[#00548B] hover:gap-3 transition-all group shrink-0"
+            href="/contact"
+            className="inline-flex items-center gap-2 bg-[#00548B] text-white px-6 py-3 rounded-lg text-sm font-bold hover:bg-[#004381] transition-all shrink-0"
           >
-            View All Services
-            <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
+            Book Free Consultation
+            <FaArrowRight className="text-xs" />
           </Link>
         </div>
 
@@ -113,9 +115,13 @@ export default function ServicesShowcase() {
                       {service.title}
                     </h3>
                     <div
-                      className="text-sm text-slate-400 leading-relaxed line-clamp-2 [&_p]:mb-1 [&_p:last-child]:mb-0"
+                      className="text-sm text-slate-400 leading-relaxed line-clamp-2 [&_p]:mb-1 [&_p:last-child]:mb-0 mb-4"
                       dangerouslySetInnerHTML={{ __html: service.description }}
                     />
+                    <div className="flex items-center gap-2 text-sm font-bold text-[#00548B] group-hover:gap-3 transition-all">
+                      Get Free Quote
+                      <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </article>
                 </Link>
               );

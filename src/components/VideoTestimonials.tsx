@@ -47,7 +47,7 @@ export default function VideoTestimonials() {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   return (
-    <section className="py-24 px-6 bg-white">
+    <section className="py-16 px-6 bg-white">
       <div className="max-w-[1200px] mx-auto">
         {/* Header */}
         <div className="text-center mb-14 space-y-3">

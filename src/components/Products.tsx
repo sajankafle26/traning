@@ -65,7 +65,7 @@ const Products = () => {
 
   if (loading || products.length === 0) {
     return (
-      <section id="products" className="py-32 bg-[#eef3f7] px-6">
+      <section id="products" className="py-20 bg-[#eef3f7] px-6">
         <div className="max-w-[1400px] mx-auto h-[400px] flex items-center justify-center">
           <div className="animate-pulse flex flex-col items-center gap-4">
             <div className="w-12 h-12 bg-blue-100 rounded-2xl" />
@@ -77,7 +77,7 @@ const Products = () => {
   }
 
   return (
-    <section id="products" className="py-32 px-6 relative overflow-hidden bg-white">
+    <section id="products" className="py-20 px-6 relative overflow-hidden bg-white">
       {/* Premium Architectural Grid Background */}
       <div className="absolute inset-x-0 top-0 h-[800px] pointer-events-none opacity-[0.05] architect-grid" />
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#f8fbff] via-white to-white" />

@@ -40,7 +40,7 @@ const REASONS = [
 
 export default function WhyChoose() {
   return (
-    <section className="py-24 px-6 bg-white">
+    <section className="py-16 px-6 bg-white">
       <div className="max-w-[1400px] px-4 mx-auto">
         {/* Header */}
         <div className="text-center mb-14 space-y-3">

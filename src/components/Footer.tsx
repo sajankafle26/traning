@@ -55,7 +55,7 @@ const Footer = () => {
       </div>
 
       {/* Main Footer Grid */}
-      <div className="relative z-10 max-w-[1400px] px-4 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 border-b border-white/10 pb-12 md:pb-16">
+      <div className="relative z-10 max-w-[1400px] px-4 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 md:gap-12 border-b border-white/10 pb-12 md:pb-16">
         {/* Company Info */}
         <div className="space-y-5">
           <Link href="/" className="inline-block">
@@ -96,9 +96,10 @@ const Footer = () => {
             {[
               { href: "/about", label: "About Sangalo Tech" },
               { href: "/services", label: "Our Services" },
-              { href: "/video-marketplace", label: "Video Marketplace" },
               { href: "/portfolio", label: "Our Portfolio" },
+              { href: "/products", label: "Products" },
               { href: "/contact", label: "Contact Us" },
+              { href: "/upcoming", label: "Upcoming Batches" },
             ].map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="block py-2 text-sm text-blue-100/60 hover:text-white transition no-underline">
@@ -111,7 +112,7 @@ const Footer = () => {
 
         {/* Popular Courses */}
         <div className="space-y-5">
-          <h3 className="text-base font-bold border-l-4 border-white/30 pl-3">Popular Courses</h3>
+          <h3 className="text-base font-bold border-l-4 border-white/30 pl-3">Courses</h3>
           <ul className="space-y-1">
             {[
               { href: "/courses/mern-stack", label: "MERN Stack" },
@@ -119,6 +120,28 @@ const Footer = () => {
               { href: "/courses/web-development-with-python-and-django", label: "Python & Django" },
               { href: "/courses/ui-ux-design", label: "UI/UX Design" },
               { href: "/courses/digital-marketing", label: "Digital Marketing" },
+              { href: "/courses", label: "View All Courses" },
+            ].map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="block py-2 text-sm text-blue-100/60 hover:text-white transition no-underline">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Resources */}
+        <div className="space-y-5">
+          <h3 className="text-base font-bold border-l-4 border-white/30 pl-3">Resources</h3>
+          <ul className="space-y-1">
+            {[
+              { href: "/about", label: "About Us" },
+              { href: "/portfolio", label: "Portfolio" },
+              { href: "/upcoming", label: "Upcoming Batches" },
+              { href: "/privacy", label: "Privacy Policy" },
+              { href: "/terms", label: "Terms & Conditions" },
+              { href: "/sitemap.xml", label: "Sitemap" },
             ].map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="block py-2 text-sm text-blue-100/60 hover:text-white transition no-underline">

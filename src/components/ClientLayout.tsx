@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import BackToTop from "@/components/BackToTop";
+import FloatingCTA from "@/components/FloatingCTA";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -18,6 +19,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
             {!isAdmin && <Footer />}
             {!isAdmin && <ScrollToTop />}
             {!isAdmin && <BackToTop />}
+            {!isAdmin && <FloatingCTA />}
         </>
     );
 }

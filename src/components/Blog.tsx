@@ -28,16 +28,37 @@ const Blog = () => {
         const data = await apiService.getBlogs();
         const source = data && data.length > 0 ? data : STATIC_BLOGS;
         const normalized: BlogType[] = source.map((blog: any) => ({
-          id: blog.id,
+          id: blog.id || blog._id,
           title: blog.title,
+          slug: blog.slug || blog.id || '',
           image: blog.image,
           date: blog.date,
           excerpt: blog.excerpt,
+          content: blog.content || '',
           link: blog.link ?? (blog.slug ? `/blog/${blog.slug}` : `/blog/${blog.id}`),
+          tags: blog.tags || [],
+          category: blog.category || 'general',
+          metaTitle: blog.metaTitle || '',
+          metaDescription: blog.metaDescription || '',
+          published: blog.published !== false,
         }));
         setBlogs(normalized);
       } catch (err) {
-        setBlogs(STATIC_BLOGS.map((blog: any) => ({ ...blog, link: `/blog/${blog.id}` })));
+        setBlogs(STATIC_BLOGS.map((blog: any) => ({
+          id: blog.id,
+          title: blog.title,
+          slug: blog.id,
+          image: blog.image,
+          date: blog.date,
+          excerpt: blog.excerpt,
+          content: '',
+          link: blog.link ?? `/blog/${blog.id}`,
+          tags: [],
+          category: 'general',
+          metaTitle: '',
+          metaDescription: '',
+          published: true,
+        })));
         setError(true);
       } finally {
         setLoading(false);
@@ -47,7 +68,7 @@ const Blog = () => {
   }, []);
 
   return (
-    <section id="blog" className="py-24 px-6 relative overflow-hidden bg-[#00548B]">
+    <section id="blog" className="py-16 px-6 relative overflow-hidden bg-[#00548B]">
       {/* Dynamic Deep Architecture Grid */}
       <div className="absolute inset-x-0 bottom-0 h-[800px] pointer-events-none opacity-[0.05] architect-grid" />
       <div className="absolute inset-0 pointer-events-none bg-[#00548B]" />

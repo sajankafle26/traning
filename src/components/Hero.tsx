@@ -6,9 +6,9 @@ import Image from 'next/image';
 
 const DEFAULT_HERO = {
   badge: "NEPAL'S TRUSTED TECH PARTNER",
-  title: 'Web Development Company.',
-  subtitle: 'And IT Training Institute in Nepal.',
-  description: 'Sangalo Tech Pvt. Ltd. is a prominent web design, software development, and IT training institute located in Lokenthali, Bhaktapur, Nepal.',
+  title: 'Build Digital Products.',
+  subtitle: 'Launch IT Careers.',
+  description: "Nepal's trusted software company helping businesses grow with custom web apps and students become job-ready developers. 600+ placed, 100+ projects delivered.",
   image: '/about/office.jpg',
 };
 
@@ -31,7 +31,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.3)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.3)_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
 
-      <div className="max-w-[1400px] px-4 mx-auto grid lg:grid-cols-2 gap-16 lg:gap-20 relative items-center">
+      <div className="max-w-[1400px] px-4 mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 relative items-center">
         {/* LEFT */}
         <div className="space-y-8 text-center lg:text-left pt-8 lg:pt-0">
           {/* Badge */}
@@ -64,7 +64,7 @@ const Hero = () => {
               className="inline-flex items-center gap-3 bg-white text-[#004381] px-8 py-4 rounded-lg font-bold text-sm hover:bg-slate-50 transition-all"
             >
               <FaLaptopCode className="text-sm" />
-              Our Services
+              Get Free Quote
               <FaArrowRight className="text-xs" />
             </Link>
             <Link
@@ -72,29 +72,14 @@ const Hero = () => {
               className="inline-flex items-center gap-3 text-white px-8 py-4 rounded-lg font-bold text-sm border border-white/25 hover:bg-white/10 transition-all"
             >
               <FaGraduationCap className="text-sm" />
-              Explore Courses
+              Start Learning Today
             </Link>
             <Link
               href="/contact"
               className="inline-flex items-center gap-3 bg-[#f59e0b] text-white px-8 py-4 rounded-lg font-bold text-sm hover:bg-[#d97706] transition-all"
             >
-              Get Free Consultation
+              Book Free Consultation
             </Link>
-          </div>
-
-          {/* Trust Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 border-t border-white/10">
-            {[
-              { number: '600+', label: 'Students Trained' },
-              { number: '100+', label: 'Projects Delivered' },
-              { number: '50+', label: 'Hiring Partners' },
-              { number: '95%', label: 'Satisfaction Rate' },
-            ].map((stat, i) => (
-              <div key={i} className="text-center lg:text-left">
-                <div className="text-2xl font-black text-white">{stat.number}</div>
-                <div className="text-[11px] font-medium text-white/50 uppercase tracking-wider mt-1">{stat.label}</div>
-              </div>
-            ))}
           </div>
         </div>
 
@@ -104,10 +89,10 @@ const Hero = () => {
             <Image
               src={hero.image}
               alt="Sangalo Tech — Software Company & IT Training Institute in Nepal"
-              width={600}
-              height={520}
+              width={560}
+              height={480}
               priority
-              className="w-full h-[520px] object-cover"
+              className="w-full h-[480px] object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#004381]/60 via-transparent to-transparent" />

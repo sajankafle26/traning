@@ -210,10 +210,17 @@ export interface Product {
 export interface Blog {
   id: string;
   title: string;
-  date: string;                       // ISO date
+  slug: string;
+  date: string;
   excerpt: string;
+  content: string;
   image: string;
   link: string;
+  tags: string[];
+  category: string;
+  metaTitle: string;
+  metaDescription: string;
+  published: boolean;
 }
 
 export interface Testimonial {
