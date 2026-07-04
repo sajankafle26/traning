@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import {
   FaVideo, FaUpload, FaTrash, FaPlus, FaSpinner, FaCheck,
-  FaLock, FaEye, FaSearch, FaEdit, FaCloudArrowUp, FaFileVideo
+  FaLock, FaEye, FaSearch, FaPenToSquare, FaCloudArrowUp, FaFileVideo
 } from "react-icons/fa6";
 
 interface Course {

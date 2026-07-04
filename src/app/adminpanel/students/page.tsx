@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   FaUserGraduate, FaPlus, FaPenToSquare, FaTrash, FaSearch, FaTimes,
-  FaVideo, FaSave, FaKey, FaEye, FaEyeSlash
+  FaVideo, FaFloppyDisk, FaKey, FaEye, FaEyeSlash
 } from "react-icons/fa6";
 
 interface Student {
@@ -285,7 +285,7 @@ const StudentsManager = () => {
                   disabled={saving}
                   className="bg-[#00548B] text-white px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 hover:bg-[#004381] transition-all disabled:opacity-50"
                 >
-                  <FaSave /> {saving ? "Saving..." : editId ? "Update" : "Create Student"}
+                  <FaFloppyDisk /> {saving ? "Saving..." : editId ? "Update" : "Create Student"}
                 </button>
               </div>
             </form>
