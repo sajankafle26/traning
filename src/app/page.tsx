@@ -11,6 +11,7 @@ const UpcomingBatches = dynamic(() => import('@/components/UpcomingBatches'), { 
 const Portfolio = dynamic(() => import('@/components/Portfolio'), { loading: () => <div className="h-64 bg-slate-50" /> })
 const Gallery = dynamic(() => import('@/components/Gallery'), { loading: () => <div className="h-64 bg-white" /> })
 const Testimonials = dynamic(() => import('@/components/Testimonials'), { loading: () => <div className="h-64 bg-slate-50" /> })
+const VideoTestimonials = dynamic(() => import('@/components/VideoTestimonials'), { loading: () => <div className="h-64 bg-white" /> })
 const Blog = dynamic(() => import('@/components/Blog'), { loading: () => <div className="h-64 bg-[#00548B]" /> })
 const ContactForm = dynamic(() => import('@/components/ContactForm'), { loading: () => <div className="h-64 bg-white" /> })
 const CaseStudies = dynamic(() => import('@/components/CaseStudies'), { loading: () => <div className="h-64 bg-slate-50" /> })
@@ -56,6 +57,7 @@ function page() {
       <UpcomingBatches />
       <Portfolio />
       <Testimonials />
+      <VideoTestimonials />
       <FAQSection
         title="Frequently Asked Questions"
         subtitle="Get answers about our web development services and IT training programs"
