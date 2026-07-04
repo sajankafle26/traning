@@ -3,7 +3,7 @@ import CoursesList from './CoursesList';
 import JsonLd, { ORGANIZATION_JSONLD } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-    title: 'IT Training Courses in Nepal | MERN Stack, React, UI/UX, Digital Marketing',
+    title: 'IT Training Courses in Nepal',
     description: 'Sangalo Tech offers 9+ professional IT training courses in Nepal — MERN Stack, React & Next.js, Laravel, Python Django, UI/UX Design, Digital Marketing, WordPress, and Data Science. 100% job-ready programs with placement support.',
     keywords: [
         'IT training Nepal', 'web development course Nepal', 'MERN Stack course Nepal', 'React Next.js training Nepal',

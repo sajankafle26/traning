@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: "Sangalo Tech",
     images: [
       {
-        url: "/og-image.png",
+        url: "https://sangalotech.com/og-image.png",
         width: 1200,
         height: 630,
         alt: "Sangalo Tech - Best Software Company & IT Training Institute in Nepal",
@@ -57,7 +57,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sangalo Tech | Software Company & IT Training in Nepal",
     description: "Nepal's leading web development company and IT training institute. MERN Stack, React, UI/UX courses and professional web services.",
-    images: ["/og-image.png"],
+    images: [
+      {
+        url: "https://sangalotech.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Sangalo Tech - Best Software Company & IT Training Institute in Nepal",
+      },
+    ],
   },
   robots: {
     index: true,
