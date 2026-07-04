@@ -75,11 +75,11 @@ export default function ServicesShowcase() {
 
         {/* Services Grid */}
         {loading ? (
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="animate-pulse bg-white rounded-2xl overflow-hidden flex flex-col md:flex-row">
-                <div className="w-full md:w-2/5 h-48 md:h-auto bg-slate-100" />
-                <div className="w-full md:w-3/5 p-6 space-y-3">
+              <div key={i} className="animate-pulse bg-white rounded-2xl overflow-hidden">
+                <div className="w-full h-56 bg-slate-100" />
+                <div className="p-6 space-y-3">
                   <div className="h-5 bg-slate-100 rounded-lg w-3/4" />
                   <div className="h-4 bg-slate-100 rounded-lg w-full" />
                   <div className="h-4 bg-slate-100 rounded-lg w-1/2" />
@@ -88,46 +88,43 @@ export default function ServicesShowcase() {
             ))}
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service) => {
               const IconComp = iconComponents[service.icon || ''] || FaLaptopCode;
               const image = service.image || SERVICE_IMAGES[service.slug] || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800';
               return (
                 <Link key={service.id} href={`/services/${service.slug}`} className="group block">
-                  <article className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col md:flex-row h-full">
-                    {/* Image */}
-                    <div className="relative w-full md:w-2/5 h-56 md:h-auto min-h-[220px] overflow-hidden">
+                  <article className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                    {/* Full Width Image */}
+                    <div className="relative w-full h-56 overflow-hidden">
                       <Image
                         src={image}
                         alt={service.title}
-                        width={600}
-                        height={450}
-                        loading="lazy"
-                        sizes="(max-width: 768px) 100vw, 40vw"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/5 md:block hidden" />
                     </div>
 
                     {/* Content */}
-                    <div className="w-full md:w-3/5 p-6 md:p-8 flex flex-col justify-center">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-11 h-11 rounded-xl bg-[#00548B]/10 flex items-center justify-center shrink-0">
+                    <div className="p-6 flex flex-col flex-1">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 rounded-xl bg-[#00548B]/10 flex items-center justify-center shrink-0">
                           {service.icon?.startsWith('fa') ? (
-                            <i className={`${service.icon} text-lg text-[#00548B]`} />
+                            <i className={`${service.icon} text-base text-[#00548B]`} />
                           ) : (
-                            <IconComp className="text-lg text-[#00548B]" />
+                            <IconComp className="text-base text-[#00548B]" />
                           )}
                         </div>
-                        <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#00548B] transition-colors">
+                        <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#00548B] transition-colors">
                           {service.title}
                         </h3>
                       </div>
                       <div
-                        className="text-sm text-slate-500 leading-relaxed line-clamp-3 mb-6 [&_p]:mb-1 [&_p:last-child]:mb-0"
+                        className="text-sm text-slate-500 leading-relaxed line-clamp-2 mb-4 flex-1 [&_p]:mb-1 [&_p:last-child]:mb-0"
                         dangerouslySetInnerHTML={{ __html: service.description }}
                       />
-                      <div className="flex items-center gap-2 text-sm font-bold text-[#00548B] group-hover:gap-3 transition-all mt-auto">
+                      <div className="flex items-center gap-2 text-sm font-bold text-[#00548B] group-hover:gap-3 transition-all">
                         Get Free Quote
                         <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
                       </div>
