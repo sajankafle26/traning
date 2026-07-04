@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FaPlay, FaCheckCircle, FaLock, FaTrophy, FaArrowLeft, FaQuestionCircle, FaPlus, FaRegCommentDots } from "react-icons/fa6";
+import { FaPlay, FaCircleCheck, FaLock, FaTrophy, FaArrowLeft, FaCircleQuestion, FaPlus, FaCommentDots } from "react-icons/fa6";
 import CertificateTemplate from "./CertificateTemplate";
 
 const VideoCoursePlayer = ({ course, onBack }: { course: any, onBack: () => void }) => {
@@ -249,7 +249,7 @@ const VideoCoursePlayer = ({ course, onBack }: { course: any, onBack: () => void
                             <div className="space-y-3">
                                 <h2 className="text-3xl md:text-4xl font-black text-white tracking-tighter">{currentLesson?.title || "Welcome to the Course"}</h2>
                                 <div className="flex items-center gap-4 text-xs font-black uppercase tracking-widest text-slate-500">
-                                    <span className="flex items-center gap-1.5"><FaCheckCircle className={completedLessons.includes(currentLesson?._id) ? "text-emerald-500" : "text-slate-700"} /> Module {course.lessons?.indexOf(currentLesson) + 1}</span>
+                                    <span className="flex items-center gap-1.5"><FaCircleCheck className={completedLessons.includes(currentLesson?._id) ? "text-emerald-500" : "text-slate-700"} /> Module {course.lessons?.indexOf(currentLesson) + 1}</span>
                                     <span className="w-1.5 h-1.5 rounded-full bg-slate-800" />
                                     <span>{currentLesson?.duration || "Intro"} Total Time</span>
                                 </div>
@@ -274,7 +274,7 @@ const VideoCoursePlayer = ({ course, onBack }: { course: any, onBack: () => void
                             <div className="grid md:grid-cols-2 gap-8">
                                 <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-[2rem] space-y-4">
                                     <h3 className="text-white font-black text-sm uppercase tracking-widest flex items-center gap-3">
-                                        <FaQuestionCircle className="text-indigo-500" /> Lesson Support
+                                        <FaCircleQuestion className="text-indigo-500" /> Lesson Support
                                     </h3>
                                     <p className="text-slate-500 text-xs font-medium leading-relaxed">
                                         Stuck on a concept? Post a ticket in the support tab and our mentors will respond within 24 hours.
@@ -346,7 +346,7 @@ const VideoCoursePlayer = ({ course, onBack }: { course: any, onBack: () => void
                                                 ? "bg-emerald-500/10 text-emerald-400" 
                                                 : "bg-slate-800 text-slate-500 group-hover:bg-slate-700"
                                         }`}>
-                                            {isCompleted && !isActive ? <FaCheckCircle className="text-sm" /> : <span className="text-[10px] font-black">{index + 1}</span>}
+                                            {isCompleted && !isActive ? <FaCircleCheck className="text-sm" /> : <span className="text-[10px] font-black">{index + 1}</span>}
                                         </div>
                                         <div className="flex-1 pr-2">
                                             <p className={`font-black text-xs leading-tight mb-1 transition-colors ${isActive ? "text-white" : "text-slate-300 group-hover:text-indigo-400"}`}>
@@ -413,7 +413,7 @@ const VideoCoursePlayer = ({ course, onBack }: { course: any, onBack: () => void
                             <div className="space-y-3">
                                 {tickets.length === 0 ? (
                                     <div className="py-10 text-center">
-                                        <FaQuestionCircle className="text-slate-800 text-4xl mx-auto mb-4" />
+                                        <FaCircleQuestion className="text-slate-800 text-4xl mx-auto mb-4" />
                                         <p className="text-slate-500 text-xs font-bold">No support tickets for this course yet.</p>
                                     </div>
                                 ) : (
@@ -424,7 +424,7 @@ const VideoCoursePlayer = ({ course, onBack }: { course: any, onBack: () => void
                                         >
                                             <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs ${ticket.status === 'Resolved' ? 'bg-green-500/10 text-green-400' : 'bg-orange-500/10 text-orange-400'
                                                 }`}>
-                                                <FaRegCommentDots />
+                                                <FaCommentDots />
                                             </div>
                                             <div className="flex-1">
                                                 <p className="text-white text-sm font-bold leading-tight mb-1 group-hover:text-indigo-400 transition-colors">{ticket.subject}</p>
