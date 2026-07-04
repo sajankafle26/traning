@@ -260,8 +260,8 @@ const Navbar = () => {
             <a href={`tel:${siteSettings?.phone?.split('/')[0]?.trim() || '9851228383'}`} className="flex items-center text-[14px] gap-1.5 hover:text-blue-200 transition no-underline">
               <FaPhone /> {siteSettings?.phone?.split('/')[0]?.trim() || '9851228383'}
             </a>
-            <a href={`mailto:${siteSettings?.email || 'info@sangalotech.com'}`} className="hidden sm:flex items-center gap-1.5 text-[14px] hover:text-blue-200 transition no-underline">
-              <FaEnvelope /> {siteSettings?.email || 'info@sangalotech.com'}
+            <a href={`mailto:${siteSettings?.email || 'sangalotech@gmail.com'}`} className="hidden sm:flex items-center gap-1.5 text-[14px] hover:text-blue-200 transition no-underline">
+              <FaEnvelope /> {siteSettings?.email || 'sangalotech@gmail.com'}
             </a>
           </div>
           <div className="flex items-center">
