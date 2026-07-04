@@ -6,17 +6,22 @@ import { apiService } from "@/services/apiService";
 import { ServiceItem } from "@/types";
 import {
   FaArrowRight, FaLaptopCode, FaMobileAlt, FaChartLine,
-  FaPenNib, FaShoppingCart, FaCloud
+  FaPenNib, FaShoppingCart, FaCloud, FaBullseye, FaSearch,
+  FaPaintBrush, FaServer
 } from "react-icons/fa";
 
 const iconComponents: Record<string, any> = {
   'fa-solid fa-laptop-code': FaLaptopCode,
   'fa-solid fa-mobile-screen-button': FaMobileAlt,
+  'fa-solid fa-mobile-alt': FaMobileAlt,
   'fa-solid fa-chart-line': FaChartLine,
   'fa-solid fa-pen-nib': FaPenNib,
   'fa-solid fa-shopping-cart': FaShoppingCart,
   'fa-solid fa-cloud': FaCloud,
-  'fa-solid fa-bullseye': FaLaptopCode,
+  'fa-solid fa-bullseye': FaBullseye,
+  'fa-solid fa-search': FaSearch,
+  'fa-solid fa-paint-brush': FaPaintBrush,
+  'fa-solid fa-server': FaServer,
 };
 
 const SERVICE_IMAGES: Record<string, string> = {
@@ -110,11 +115,7 @@ export default function ServicesShowcase() {
                     <div className="p-6 flex flex-col flex-1">
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-10 h-10 rounded-xl bg-[#00548B]/10 flex items-center justify-center shrink-0">
-                          {service.icon?.startsWith('fa') ? (
-                            <i className={`${service.icon} text-base text-[#00548B]`} />
-                          ) : (
-                            <IconComp className="text-base text-[#00548B]" />
-                          )}
+                          <IconComp className="text-base text-[#00548B]" />
                         </div>
                         <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#00548B] transition-colors">
                           {service.title}
