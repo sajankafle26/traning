@@ -16,7 +16,9 @@ export const metadata: Metadata = {
     url: 'https://sangalotech.com/contact',
     siteName: 'Sangalo Tech',
     type: 'website',
+    images: [{ url: 'https://sangalotech.com/og-image.png', width: 1200, height: 630, alt: 'Contact Sangalo Tech Nepal' }],
   },
+  twitter: { card: 'summary_large_image', title: 'Contact Us | Sangalo Tech', description: 'Get in touch with Sangalo Tech - IT training institute and software company in Nepal.', images: ['https://sangalotech.com/og-image.png'] },
   alternates: { canonical: 'https://sangalotech.com/contact' },
 };
 

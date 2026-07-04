@@ -14,7 +14,9 @@ export const metadata: Metadata = {
     url: 'https://sangalotech.com/portfolio',
     siteName: 'Sangalo Tech',
     type: 'website',
+    images: [{ url: 'https://sangalotech.com/og-image.png', width: 1200, height: 630, alt: 'Sangalo Tech Portfolio' }],
   },
+  twitter: { card: 'summary_large_image', title: 'Portfolio | Sangalo Tech', description: 'View our web design, website development, and software projects.', images: ['https://sangalotech.com/og-image.png'] },
   alternates: { canonical: 'https://sangalotech.com/portfolio' },
 };
 

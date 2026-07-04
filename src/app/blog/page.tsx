@@ -23,7 +23,9 @@ export const metadata: Metadata = {
     url: 'https://sangalotech.com/blog',
     siteName: 'Sangalo Tech',
     type: 'website',
+    images: [{ url: 'https://sangalotech.com/og-image.png', width: 1200, height: 630, alt: 'Sangalo Tech Blog - IT Training & Web Development' }],
   },
+  twitter: { card: 'summary_large_image', title: 'Blog | Sangalo Tech', description: 'Latest articles on IT training and web development.', images: ['https://sangalotech.com/og-image.png'] },
   alternates: { canonical: 'https://sangalotech.com/blog' },
 };
 

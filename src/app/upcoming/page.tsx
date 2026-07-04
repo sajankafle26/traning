@@ -17,7 +17,9 @@ export const metadata: Metadata = {
     url: 'https://sangalotech.com/upcoming',
     siteName: 'Sangalo Tech',
     type: 'website',
+    images: [{ url: 'https://sangalotech.com/og-image.png', width: 1200, height: 630, alt: 'Upcoming IT Training Batches at Sangalo Tech Nepal' }],
   },
+  twitter: { card: 'summary_large_image', title: 'Upcoming IT Training Batches | Sangalo Tech', description: 'Check upcoming batch schedules for IT training courses.', images: ['https://sangalotech.com/og-image.png'] },
   alternates: { canonical: 'https://sangalotech.com/upcoming' },
 };
 

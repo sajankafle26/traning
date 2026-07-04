@@ -12,7 +12,9 @@ export const metadata: Metadata = {
     url: 'https://sangalotech.com/products',
     siteName: 'Sangalo Tech',
     type: 'website',
+    images: [{ url: 'https://sangalotech.com/og-image.png', width: 1200, height: 630, alt: 'Sangalo Tech Products' }],
   },
+  twitter: { card: 'summary_large_image', title: 'Our Products | Sangalo Tech', description: 'Explore high-quality digital products and software curated by Sangalo Tech.', images: ['https://sangalotech.com/og-image.png'] },
   alternates: { canonical: 'https://sangalotech.com/products' },
 };
 
