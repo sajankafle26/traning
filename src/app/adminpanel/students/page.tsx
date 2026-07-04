@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
-  FaUserGraduate, FaPlus, FaEdit, FaTrash, FaSearch, FaTimes,
+  FaUserGraduate, FaPlus, FaPenToSquare, FaTrash, FaSearch, FaTimes,
   FaVideo, FaSave, FaKey, FaEye, FaEyeSlash
 } from "react-icons/fa6";
 
@@ -357,7 +357,7 @@ const StudentsManager = () => {
                           className="p-2 rounded-lg text-slate-400 hover:text-[#00548B] hover:bg-[#00548B]/10 transition-all"
                           title="Edit & Assign Courses"
                         >
-                          <FaEdit className="text-sm" />
+                          <FaPenToSquare className="text-sm" />
                         </button>
                         <button
                           onClick={() => handleDelete(student._id)}
