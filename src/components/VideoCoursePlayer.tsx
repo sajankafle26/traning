@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FaPlay, FaCheckCircle, FaLock, FaTrophy, FaArrowLeft, FaQuestionCircle, FaPlus, FaRegCommentDots } from "react-icons/fa";
+import { FaPlay, FaCheckCircle, FaLock, FaTrophy, FaArrowLeft, FaQuestionCircle, FaPlus, FaRegCommentDots } from "react-icons/fa6";
 import CertificateTemplate from "./CertificateTemplate";
 
 const VideoCoursePlayer = ({ course, onBack }: { course: any, onBack: () => void }) => {
@@ -16,10 +16,48 @@ const VideoCoursePlayer = ({ course, onBack }: { course: any, onBack: () => void
     const [showNewTicketForm, setShowNewTicketForm] = useState(false);
     const [newTicketSubject, setNewTicketSubject] = useState("");
     const [isSubmittingTicket, setIsSubmittingTicket] = useState(false);
+    const [videoSrc, setVideoSrc] = useState<string>("");
+    const [videoLoading, setVideoLoading] = useState(false);
 
     useEffect(() => {
         fetchProgress();
     }, [course._id]);
+
+    // Fetch signed URL when lesson changes
+    useEffect(() => {
+        if (currentLesson) {
+            fetchSignedUrl(currentLesson);
+        }
+    }, [currentLesson]);
+
+    const fetchSignedUrl = async (lesson: any) => {
+        // If it's a YouTube/external URL, use directly
+        if (lesson.videoUrl?.includes('youtube.com') || lesson.videoUrl?.includes('youtu.be') || lesson.videoUrl?.includes('vimeo.com')) {
+            setVideoSrc(lesson.videoUrl);
+            return;
+        }
+
+        // If it's a regular HTTP URL (not Supabase), use directly
+        if (lesson.videoUrl?.startsWith('http') && !lesson.videoUrl?.includes('supabase')) {
+            setVideoSrc(lesson.videoUrl);
+            return;
+        }
+
+        // Otherwise, fetch signed URL from our API
+        setVideoLoading(true);
+        try {
+            const res = await axios.post('/api/video/stream', {
+                courseId: course._id,
+                lessonId: lesson._id,
+            });
+            setVideoSrc(res.data.signedUrl);
+        } catch (err: any) {
+            console.error('Failed to get signed URL:', err);
+            setVideoSrc("");
+        } finally {
+            setVideoLoading(false);
+        }
+    };
 
     const fetchProgress = async () => {
         try {
@@ -171,12 +209,33 @@ const VideoCoursePlayer = ({ course, onBack }: { course: any, onBack: () => void
                 <div className="flex-1 bg-black flex flex-col overflow-y-auto custom-scrollbar">
                     <div className="aspect-video w-full bg-slate-950 shadow-2xl relative">
                         {currentLesson ? (
-                            <iframe
-                                src={currentLesson.videoUrl}
-                                className="w-full h-full"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                            />
+                            videoLoading ? (
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <div className="w-12 h-12 border-4 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin" />
+                                </div>
+                            ) : videoSrc ? (
+                                videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be') || videoSrc.includes('vimeo.com') ? (
+                                    <iframe
+                                        src={videoSrc}
+                                        className="w-full h-full"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    />
+                                ) : (
+                                    <video
+                                        key={videoSrc}
+                                        src={videoSrc}
+                                        controls
+                                        className="w-full h-full"
+                                        autoPlay
+                                    />
+                                )
+                            ) : (
+                                <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4">
+                                    <FaLock className="text-4xl text-slate-700" />
+                                    <p className="text-slate-500 font-bold text-sm">Complete payment to access this lesson</p>
+                                </div>
+                            )
                         ) : (
                             <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4">
                                 <FaPlay className="text-6xl text-slate-800 animate-pulse" />
