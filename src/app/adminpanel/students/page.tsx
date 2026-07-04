@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
-  FaUserGraduate, FaPlus, FaPenToSquare, FaTrash, FaSearch, FaTimes,
+  FaUserGraduate, FaPlus, FaPenToSquare, FaTrash, FaMagnifyingGlass, FaTimes,
   FaVideo, FaFloppyDisk, FaKey, FaEye, FaEyeSlash
 } from "react-icons/fa6";
 
@@ -147,7 +147,7 @@ const StudentsManager = () => {
 
       {/* Search */}
       <div className="relative max-w-md">
-        <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm" />
+        <FaMagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm" />
         <input
           type="text"
           placeholder="Search by name or email..."

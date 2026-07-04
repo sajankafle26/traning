@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import {
   FaVideo, FaUpload, FaTrash, FaPlus, FaSpinner, FaCheck,
-  FaLock, FaEye, FaSearch, FaPenToSquare, FaCloudArrowUp, FaFileVideo
+  FaLock, FaEye, FaMagnifyingGlass, FaPenToSquare, FaCloudArrowUp, FaFileVideo
 } from "react-icons/fa6";
 
 interface Course {
@@ -299,7 +299,7 @@ const VideoManager = () => {
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-black text-slate-900">Courses & Lessons</h2>
           <div className="relative max-w-xs">
-            <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm" />
+            <FaMagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm" />
             <input
               type="text"
               placeholder="Search courses..."
