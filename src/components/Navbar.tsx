@@ -160,7 +160,7 @@ const Navbar = () => {
     const half = Math.ceil(liveCourses.length / 2);
     return [
       {
-        title: 'Development',
+        title: '',
         items: liveCourses.slice(0, half).map(c => ({
           label: c.title,
           href: `/courses/${c.slug}`,
@@ -169,7 +169,7 @@ const Navbar = () => {
         })),
       },
       {
-        title: 'Design & Marketing',
+        title: '',
         items: liveCourses.slice(half).map(c => ({
           label: c.title,
           href: `/courses/${c.slug}`,
@@ -185,7 +185,7 @@ const Navbar = () => {
     const half = Math.ceil(services.length / 2);
     return [
       {
-        title: 'Development',
+        title: '',
         items: services.slice(0, half).map(s => ({
           label: s.title,
           href: `/services/${s.slug}`,
@@ -389,9 +389,9 @@ const Navbar = () => {
       {activeMega === 'courses' && (
         <MegaPanel>
           <div className="grid grid-cols-2 gap-8">
-            {courseCategories.map((cat) => (
-              <div key={cat.title}>
-                <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 px-3">{cat.title}</h4>
+            {courseCategories.map((cat, idx) => (
+              <div key={idx}>
+                {cat.title && <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 px-3">{cat.title}</h4>}
                 <div className="space-y-0.5">
                   {cat.items.map((item) => (
                     <MegaItem key={item.href} {...item} />
@@ -415,9 +415,9 @@ const Navbar = () => {
       {activeMega === 'services' && (
         <MegaPanel>
           <div className="grid grid-cols-2 gap-8">
-            {serviceCategories.map((cat) => (
-              <div key={cat.title}>
-                <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 px-3">{cat.title}</h4>
+            {serviceCategories.map((cat, idx) => (
+              <div key={idx}>
+                {cat.title && <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 px-3">{cat.title}</h4>}
                 <div className="space-y-0.5">
                   {cat.items.map((item) => (
                     <MegaItem key={item.href} {...item} />
