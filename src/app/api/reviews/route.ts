@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { cachedApiGet, buildCacheKey } from "@/lib/cache";
 
 // Google Reviews via Places API (Legacy)
 async function fetchGoogleReviews() {
@@ -77,23 +78,25 @@ async function fetchFacebookReviews() {
 
 export async function GET(request: NextRequest) {
   try {
-    const [google, facebook] = await Promise.all([
-      fetchGoogleReviews(),
-      fetchFacebookReviews(),
-    ]);
+    return cachedApiGet(buildCacheKey("api", "reviews", "list"), async () => {
+      const [google, facebook] = await Promise.all([
+        fetchGoogleReviews(),
+        fetchFacebookReviews(),
+      ]);
 
-    const allReviews = [...google.reviews, ...facebook.reviews]
-      .sort((a, b) => (b.time || 0) - (a.time || 0))
-      .slice(0, 20);
+      const allReviews = [...google.reviews, ...facebook.reviews]
+        .sort((a, b) => (b.time || 0) - (a.time || 0))
+        .slice(0, 20);
 
-    return NextResponse.json({
-      reviews: allReviews,
-      stats: {
-        google: { count: google.reviews.length, configured: google.configured, working: google.working, totalRatings: google.totalRatings || 0 },
-        facebook: { count: facebook.reviews.length, configured: facebook.configured, working: facebook.working },
-        totalReviews: (google.totalRatings || 0) + (facebook.reviews.length || 0),
-      },
-    });
+      return {
+        reviews: allReviews,
+        stats: {
+          google: { count: google.reviews.length, configured: google.configured, working: google.working, totalRatings: google.totalRatings || 0 },
+          facebook: { count: facebook.reviews.length, configured: facebook.configured, working: facebook.working },
+          totalReviews: (google.totalRatings || 0) + (facebook.reviews.length || 0),
+        },
+      };
+    }, 600);
   } catch (error) {
     console.error('Reviews API error:', error);
     return NextResponse.json(

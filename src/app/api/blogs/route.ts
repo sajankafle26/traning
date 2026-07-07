@@ -4,6 +4,7 @@ import { Blog } from "@/models/BlogProduct";
 import { auth } from "@/auth";
 import { postToGoogleBusinessProfile } from "@/services/googleBusiness";
 import { blogHandlers } from "@/lib/apiHandlers";
+import { invalidateModelCache } from "@/lib/cache";
 
 const customPOST = async (req: Request) => {
   try {
@@ -27,6 +28,7 @@ const customPOST = async (req: Request) => {
       });
     }
 
+    invalidateModelCache("blogs");
     return NextResponse.json(data, { status: 201 });
   } catch (error: any) {
     return NextResponse.json({ message: error.message }, { status: 500 });

@@ -3,15 +3,21 @@ import dbConnect from "@/lib/dbConnect";
 import Order from "@/models/Order";
 import User from "@/models/User";
 import { auth } from "@/auth";
+import { cachedApiGet, buildCacheKey, invalidateModelCache } from "@/lib/cache";
 
 export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
-        await dbConnect();
         const { id } = await params;
-        const order = await Order.findById(id);
-        if (!order) return NextResponse.json({ message: "Order not found" }, { status: 404 });
-        return NextResponse.json(order);
+        return cachedApiGet(buildCacheKey("api", "orders", id), async () => {
+            await dbConnect();
+            const order = await Order.findById(id);
+            if (!order) throw new Error("NOT_FOUND");
+            return order;
+        }, 120);
     } catch (error: any) {
+        if (error.message === "NOT_FOUND") {
+            return NextResponse.json({ message: "Order not found" }, { status: 404 });
+        }
         return NextResponse.json({ message: error.message }, { status: 500 });
     }
 }
@@ -47,6 +53,7 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
             }
         }
 
+        invalidateModelCache("orders");
         return NextResponse.json(updatedOrder);
     } catch (error: any) {
         console.error("Order Update Error:", error);
@@ -63,6 +70,7 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
         const { id } = await params;
         await dbConnect();
         await Order.findByIdAndDelete(id);
+        invalidateModelCache("orders");
         return NextResponse.json({ message: "Deleted successfully" });
     } catch (error: any) {
         return NextResponse.json({ message: error.message }, { status: 500 });

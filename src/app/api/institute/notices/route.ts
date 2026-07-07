@@ -4,12 +4,14 @@ import Notice from "@/models/Notice";
 import InstituteStudent from "@/models/InstituteStudent";
 import { sendNoticeAlert } from "@/lib/mail";
 import { auth } from "@/auth";
+import { cachedApiGet, buildCacheKey, invalidateModelCache } from "@/lib/cache";
 
 export const GET = async () => {
-    await dbConnect();
     try {
-        const data = await Notice.find({}).sort({ date: -1 });
-        return NextResponse.json(data);
+        return cachedApiGet(buildCacheKey("api", "institute", "notices", "list"), async () => {
+            await dbConnect();
+            return await Notice.find({}).sort({ date: -1 });
+        }, 120);
     } catch (error: any) {
         return NextResponse.json({ message: error.message }, { status: 500 });
     }
@@ -42,6 +44,7 @@ export const POST = async (req: Request) => {
             }
         }
 
+        invalidateModelCache("notices");
         return NextResponse.json(data, { status: 201 });
     } catch (error: any) {
         return NextResponse.json({ message: error.message }, { status: 500 });

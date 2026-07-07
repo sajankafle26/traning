@@ -3,6 +3,7 @@ import dbConnect from '@/lib/dbConnect';
 import User from '@/models/User';
 import { auth } from '@/auth';
 import bcrypt from 'bcryptjs';
+import { cachedApiGet, buildCacheKey, invalidateModelCache } from "@/lib/cache";
 
 // GET - List all students (admin only)
 export async function GET(req: Request) {
@@ -12,28 +13,29 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    await dbConnect();
     const { searchParams } = new URL(req.url);
-    const search = searchParams.get('search') || '';
-    const courseId = searchParams.get('courseId');
 
-    const query: any = { role: 'student' };
-    if (search) {
-      query.$or = [
-        { name: { $regex: search, $options: 'i' } },
-        { email: { $regex: search, $options: 'i' } },
-      ];
-    }
-    if (courseId) {
-      query.enrolledCourses = courseId;
-    }
+    return cachedApiGet(buildCacheKey("api", "admin", "students", searchParams.toString() || "all"), async () => {
+      await dbConnect();
+      const search = searchParams.get('search') || '';
+      const courseId = searchParams.get('courseId');
 
-    const students = await User.find(query)
-      .select('-password')
-      .populate('enrolledCourses', 'title thumbnail')
-      .sort({ createdAt: -1 });
+      const query: any = { role: 'student' };
+      if (search) {
+        query.$or = [
+          { name: { $regex: search, $options: 'i' } },
+          { email: { $regex: search, $options: 'i' } },
+        ];
+      }
+      if (courseId) {
+        query.enrolledCourses = courseId;
+      }
 
-    return NextResponse.json(students);
+      return await User.find(query)
+        .select('-password')
+        .populate('enrolledCourses', 'title thumbnail')
+        .sort({ createdAt: -1 });
+    }, 120);
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
@@ -72,6 +74,7 @@ export async function POST(req: Request) {
       enrolledCourses: enrolledCourses || [],
     });
 
+    invalidateModelCache("students");
     return NextResponse.json({
       _id: student._id,
       name: student.name,
@@ -108,6 +111,7 @@ export async function PUT(req: Request) {
       .select('-password')
       .populate('enrolledCourses', 'title thumbnail');
 
+    invalidateModelCache("students");
     return NextResponse.json(student);
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
@@ -130,6 +134,7 @@ export async function DELETE(req: Request) {
 
     await dbConnect();
     await User.findByIdAndDelete(id);
+    invalidateModelCache("students");
 
     return NextResponse.json({ message: 'Student deleted' });
   } catch (error: any) {

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import PageContent from "@/models/PageContent";
 import { auth } from "@/auth";
+import { cachedApiGet, buildCacheKey, invalidateModelCache } from "@/lib/cache";
 
 const DEFAULT_CONTENT = {
     hero: {
@@ -111,12 +112,14 @@ const DEFAULT_CONTENT = {
 
 export async function GET() {
     try {
-        await dbConnect();
-        let content = await PageContent.findOne();
-        if (!content) {
-            content = await PageContent.create(DEFAULT_CONTENT);
-        }
-        return NextResponse.json(content);
+        return cachedApiGet(buildCacheKey("api", "page-content", "all"), async () => {
+            await dbConnect();
+            let content = await PageContent.findOne();
+            if (!content) {
+                content = await PageContent.create(DEFAULT_CONTENT);
+            }
+            return content;
+        }, 600);
     } catch (error: any) {
         return NextResponse.json(DEFAULT_CONTENT);
     }
@@ -133,6 +136,7 @@ export async function POST(req: Request) {
         await dbConnect();
 
         const content = await PageContent.findOneAndUpdate({}, data, { upsert: true, new: true });
+        invalidateModelCache("page-content");
         return NextResponse.json(content);
     } catch (error: any) {
         return NextResponse.json({ message: error.message }, { status: 500 });

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import Order from "@/models/Order";
 import { auth } from "@/auth";
+import { cachedApiGet, buildCacheKey } from "@/lib/cache";
 
 export async function GET() {
     try {
@@ -10,10 +11,12 @@ export async function GET() {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }
 
-        await dbConnect();
+        const email = (session.user as any).email || (session.user as any).id || "unknown";
 
-        const orders = await Order.find({ user: (session.user as any).id }).sort({ createdAt: -1 });
-        return NextResponse.json(orders);
+        return cachedApiGet(buildCacheKey("api", "user", email, "payments"), async () => {
+            await dbConnect();
+            return await Order.find({ user: (session.user as any).id }).sort({ createdAt: -1 });
+        }, 60);
     } catch (error: any) {
         return NextResponse.json({ message: error.message }, { status: 500 });
     }

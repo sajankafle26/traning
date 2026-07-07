@@ -1,4 +1,5 @@
 import { getRedisClient } from "@/lib/redis";
+import { NextResponse } from "next/server";
 
 export function buildCacheKey(...parts: string[]): string {
   return `sangalo:${parts.join(":")}`;
@@ -27,7 +28,7 @@ export async function setCache(key: string, data: unknown, ttl = 300): Promise<v
       await client.set(key, serialized);
     }
   } catch {
-    // Redis unavailable — silently skip
+    // silently skip
   }
 }
 
@@ -74,4 +75,20 @@ export async function getOrSetCache<T>(
   const fresh = await fetchFn();
   await setCache(key, fresh, ttl);
   return fresh;
+}
+
+export async function cachedApiGet<T>(
+  cacheKey: string,
+  fetchFn: () => Promise<T>,
+  ttl = 300
+): Promise<NextResponse> {
+  const cached = await getCache<T>(cacheKey);
+  if (cached) return NextResponse.json(cached);
+  const data = await fetchFn();
+  await setCache(cacheKey, data, ttl);
+  return NextResponse.json(data);
+}
+
+export async function invalidateModelCache(modelName: string): Promise<void> {
+  await invalidateCache(`api:${modelName}:*`);
 }

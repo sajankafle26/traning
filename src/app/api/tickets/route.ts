@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import dbConnect from "@/lib/dbConnect";
 import Ticket from "@/models/Ticket";
+import { cachedApiGet, buildCacheKey } from "@/lib/cache";
 
 export async function GET(req: Request) {
     try {
@@ -10,29 +11,29 @@ export async function GET(req: Request) {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }
 
-        await dbConnect();
+        return cachedApiGet(buildCacheKey("api", "tickets", "list"), async () => {
+            await dbConnect();
 
-        // @ts-ignore
-        const role = session.user.role;
-        // @ts-ignore
-        const userId = session.user.id;
+            // @ts-ignore
+            const role = session.user.role;
+            // @ts-ignore
+            const userId = session.user.id;
 
-        let filter: any = {};
-        if (role !== "admin") {
-            filter.studentId = userId;
-        }
+            let filter: any = {};
+            if (role !== "admin") {
+                filter.studentId = userId;
+            }
 
-        const url = new URL(req.url);
-        const courseId = url.searchParams.get("courseId");
-        if (courseId) {
-            filter.courseId = courseId;
-        }
+            const url = new URL(req.url);
+            const courseId = url.searchParams.get("courseId");
+            if (courseId) {
+                filter.courseId = courseId;
+            }
 
-        const tickets = await Ticket.find(filter)
-            .populate("studentId", "name email avatar")
-            .sort({ createdAt: -1 });
-
-        return NextResponse.json(tickets);
+            return await Ticket.find(filter)
+                .populate("studentId", "name email avatar")
+                .sort({ createdAt: -1 });
+        }, 120);
     } catch (err) {
         console.error(err);
         return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });

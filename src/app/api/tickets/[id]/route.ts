@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import dbConnect from "@/lib/dbConnect";
 import Ticket from "@/models/Ticket";
+import { cachedApiGet, buildCacheKey } from "@/lib/cache";
 
 export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
@@ -10,29 +11,37 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }
 
-        await dbConnect();
-
         const { id } = await params;
 
-        // @ts-ignore
-        const role = session.user.role;
-        // @ts-ignore
-        const userId = session.user.id;
+        return cachedApiGet(buildCacheKey("api", "tickets", id), async () => {
+            await dbConnect();
 
-        const ticket = await Ticket.findById(id).populate("studentId", "name email avatar");
+            // @ts-ignore
+            const role = session.user.role;
+            // @ts-ignore
+            const userId = session.user.id;
 
-        if (!ticket) {
+            const ticket = await Ticket.findById(id).populate("studentId", "name email avatar");
+
+            if (!ticket) {
+                throw new Error("NOT_FOUND");
+            }
+
+            // Access control: only admin or the ticket owner can view
+            if (role !== "admin" && ticket.studentId._id.toString() !== userId) {
+                throw new Error("FORBIDDEN");
+            }
+
+            return ticket;
+        }, 120);
+    } catch (err: any) {
+        console.error(err);
+        if (err.message === "NOT_FOUND") {
             return NextResponse.json({ message: "Ticket not found" }, { status: 404 });
         }
-
-        // Access control: only admin or the ticket owner can view
-        if (role !== "admin" && ticket.studentId._id.toString() !== userId) {
+        if (err.message === "FORBIDDEN") {
             return NextResponse.json({ message: "Forbidden" }, { status: 403 });
         }
-
-        return NextResponse.json(ticket);
-    } catch (err) {
-        console.error(err);
         return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
     }
 }
