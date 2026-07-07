@@ -2,11 +2,19 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import VideoCourse from "@/models/VideoCourse";
 import { auth } from "@/auth";
+import { getOrSetCache, setCache, buildCacheKey, getCache } from "@/lib/cache";
+
+const CACHE_TTL = 300; // 5 minutes
 
 export async function GET() {
-    await dbConnect();
     try {
+        const cacheKey = buildCacheKey("api", "courses", "list");
+        const cached = await getCache<any[]>(cacheKey);
+        if (cached) return NextResponse.json(cached);
+
+        await dbConnect();
         const courses = await VideoCourse.find({});
+        await setCache(cacheKey, courses, CACHE_TTL);
         return NextResponse.json(courses);
     } catch (error: any) {
         return NextResponse.json({ message: error.message }, { status: 500 });
@@ -25,6 +33,8 @@ export async function POST(req: Request) {
         await dbConnect();
 
         const course = await VideoCourse.create(body);
+        // Invalidate courses list cache
+        await setCache(buildCacheKey("api", "courses", "list"), null, 1);
         return NextResponse.json(course, { status: 201 });
     } catch (error: any) {
         return NextResponse.json({ message: error.message }, { status: 500 });

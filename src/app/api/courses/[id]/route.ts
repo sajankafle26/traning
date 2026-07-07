@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import VideoCourse from "@/models/VideoCourse";
 import { auth } from "@/auth";
+import { setCache, buildCacheKey } from "@/lib/cache";
 
 export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
@@ -12,6 +13,8 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
         const { id } = await params;
         await dbConnect();
         await VideoCourse.findByIdAndDelete(id);
+        // Invalidate courses list cache
+        await setCache(buildCacheKey("api", "courses", "list"), null, 1);
         return NextResponse.json({ message: "Deleted successfully" });
     } catch (error: any) {
         return NextResponse.json({ message: error.message }, { status: 500 });
@@ -28,6 +31,8 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
         const body = await req.json();
         await dbConnect();
         const course = await VideoCourse.findByIdAndUpdate(id, body, { new: true });
+        // Invalidate courses list cache
+        await setCache(buildCacheKey("api", "courses", "list"), null, 1);
         return NextResponse.json(course);
     } catch (error: any) {
         return NextResponse.json({ message: error.message }, { status: 500 });

@@ -4,12 +4,19 @@ import dbConnect from '@/lib/dbConnect';
 import VideoCourse from '@/models/VideoCourse';
 import User from '@/models/User';
 import { auth } from '@/auth';
+import { getCache, setCache, buildCacheKey } from '@/lib/cache';
+import { rateLimitMiddleware } from '@/lib/rate-limit';
 
 const BUCKET_NAME = 'course-videos';
 const SIGNED_URL_EXPIRY = 3600; // 1 hour
+const CACHE_TTL = SIGNED_URL_EXPIRY - 60; // cache for 59 minutes (renew before expiry)
 
 export async function POST(req: Request) {
   try {
+    // Rate limit: 20 requests per minute per user
+    const rateLimitResponse = await rateLimitMiddleware(req, "video-stream");
+    if (rateLimitResponse) return rateLimitResponse;
+
     const session = await auth();
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -18,6 +25,13 @@ export async function POST(req: Request) {
     const { courseId, lessonId } = await req.json();
     if (!courseId || !lessonId) {
       return NextResponse.json({ error: 'courseId and lessonId required' }, { status: 400 });
+    }
+
+    // Check Redis for cached signed URL
+    const cacheKey = buildCacheKey("signed-url", courseId, lessonId);
+    const cached = await getCache<{ signedUrl: string; expiresIn: number }>(cacheKey);
+    if (cached) {
+      return NextResponse.json(cached);
     }
 
     await dbConnect();
@@ -85,10 +99,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Failed to generate video URL' }, { status: 500 });
     }
 
-    return NextResponse.json({
-      signedUrl: data.signedUrl,
-      expiresIn: SIGNED_URL_EXPIRY,
-    });
+    // Cache the signed URL so we don't regenerate during its validity window
+    const result = { signedUrl: data.signedUrl, expiresIn: SIGNED_URL_EXPIRY };
+    await setCache(cacheKey, result, CACHE_TTL);
+
+    return NextResponse.json(result);
   } catch (error: any) {
     console.error('Video stream error:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });

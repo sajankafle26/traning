@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Contact from '@/models/Contact';
 import dbConnect from '@/lib/dbConnect';
+import { rateLimitMiddleware } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
     try {
+        // Rate limit: 5 submissions per minute per IP
+        const rateLimitResponse = await rateLimitMiddleware(request, "contact-form", 5, 60);
+        if (rateLimitResponse) return rateLimitResponse;
+
         await dbConnect();
         const body = await request.json();
         const { name, email, message } = body;

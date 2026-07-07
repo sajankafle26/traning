@@ -21,19 +21,34 @@ import FeeRecord from "@/models/FeeRecord";
 import Material from "@/models/Material";
 import Expense from "@/models/Expense";
 import InstituteGroup from "@/models/InstituteGroup";
+import { getCache, setCache, buildCacheKey, invalidateCache } from "@/lib/cache";
+
+const CACHE_TTL = 300; // 5 minutes
+
+function getModelName(Model: any): string {
+  return Model?.modelName || "unknown";
+}
 
 // Helper to create handler
 export const createHandler = (Model: any) => {
+    const modelName = getModelName(Model);
     return {
         GET: async (req: Request) => {
-            await dbConnect();
             try {
                 const { searchParams } = new URL(req.url);
+                const queryStr = searchParams.toString();
+                const cacheKey = buildCacheKey("api", modelName, queryStr || "all");
+
+                const cached = await getCache<any[]>(cacheKey);
+                if (cached) return NextResponse.json(cached);
+
+                await dbConnect();
                 const query: any = {};
                 searchParams.forEach((value, key) => {
                     query[key] = value;
                 });
                 const data = await Model.find(query);
+                await setCache(cacheKey, data, CACHE_TTL);
                 return NextResponse.json(data);
             } catch (error: any) {
                 return NextResponse.json({ message: error.message }, { status: 500 });
@@ -47,13 +62,15 @@ export const createHandler = (Model: any) => {
                     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
                 }
                 const body = await req.json();
-                console.log(`POST ${Model.modelName}:`, JSON.stringify(body, null, 2));
+                console.log(`POST ${modelName}:`, JSON.stringify(body, null, 2));
                 await dbConnect();
                 const data = await Model.create(body);
-                console.log(`POST ${Model.modelName}: Successfully created`, data._id);
+                console.log(`POST ${modelName}: Successfully created`, data._id);
+                // Invalidate cache for this model
+                await invalidateCache(`api:${modelName}:*`);
                 return NextResponse.json(data, { status: 201 });
             } catch (error: any) {
-                console.error(`POST ${Model?.modelName || 'Unknown'} Error:`, error);
+                console.error(`POST ${modelName} Error:`, error);
                 return NextResponse.json({ message: error.message }, { status: 500 });
             }
         },
@@ -66,6 +83,8 @@ export const createHandler = (Model: any) => {
                 const { id } = await params;
                 await dbConnect();
                 await Model.findByIdAndDelete(id);
+                // Invalidate cache for this model
+                await invalidateCache(`api:${modelName}:*`);
                 return NextResponse.json({ message: "Deleted successfully" });
             } catch (error: any) {
                 return NextResponse.json({ message: error.message }, { status: 500 });
@@ -80,13 +99,15 @@ export const createHandler = (Model: any) => {
                 }
                 const { id } = await params;
                 const body = await req.json();
-                console.log(`PUT ${Model.modelName} (${id}):`, JSON.stringify(body, null, 2));
+                console.log(`PUT ${modelName} (${id}):`, JSON.stringify(body, null, 2));
                 await dbConnect();
                 const data = await Model.findByIdAndUpdate(id, body, { new: true });
-                console.log(`PUT ${Model.modelName}: Successfully updated`);
+                console.log(`PUT ${modelName}: Successfully updated`);
+                // Invalidate cache for this model
+                await invalidateCache(`api:${modelName}:*`);
                 return NextResponse.json(data);
             } catch (error: any) {
-                console.error(`PUT ${Model?.modelName || 'Unknown'} Error:`, error);
+                console.error(`PUT ${modelName} Error:`, error);
                 return NextResponse.json({ message: error.message }, { status: 500 });
             }
         }
