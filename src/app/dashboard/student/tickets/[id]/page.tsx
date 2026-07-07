@@ -143,7 +143,7 @@ const TicketDetail = () => {
                                                 <div className="mt-4 grid grid-cols-2 gap-3">
                                                     {msg.attachments.map((url: string, i: number) => (
                                                         <a key={i} href={url} target="_blank" rel="noreferrer" className="block rounded-xl overflow-hidden border border-white/10 hover:border-white/30 transition-all">
-                                                            <img src={url} className="w-full h-auto object-cover max-h-40" />
+                                                            <img src={url} alt="Attached image" className="w-full h-auto object-cover max-h-40" />
                                                         </a>
                                                     ))}
                                                 </div>
@@ -166,7 +166,7 @@ const TicketDetail = () => {
                                 <div className="flex flex-wrap gap-2 pb-2">
                                     {attachments.map((url, i) => (
                                         <div key={i} className="relative w-16 h-16 rounded-xl overflow-hidden border border-indigo-500/30 group">
-                                            <img src={url} className="w-full h-full object-cover" />
+                                            <img src={url} alt="Attached image" className="w-full h-full object-cover" />
                                             <button
                                                 type="button"
                                                 onClick={() => setAttachments(attachments.filter((_, idx) => idx !== i))}

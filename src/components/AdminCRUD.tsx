@@ -288,7 +288,7 @@ const AdminCRUD: React.FC<AdminCRUDProps> = ({ title, apiPath, fields, renderIte
                                                 {field.type === "video" ? (
                                                     <video src={formData[field.name]} controls className="w-full h-full object-cover" />
                                                 ) : (
-                                                    <img src={formData[field.name]} alt="Preview" className="w-full h-full object-cover" />
+                                                    <img src={formData[field.name]} alt={formData?.title || formData?.name || "Preview image"} className="w-full h-full object-cover" />
                                                 )}
                                             </div>
                                         )}

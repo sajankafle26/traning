@@ -91,7 +91,7 @@ export default function ChatInterface({ ticketId, currentUserId }: ChatInterface
                         <div key={msg._id} className={`flex gap-3 ${isMe ? "flex-row-reverse" : "flex-row"}`}>
                             {/* Avatar */}
                             <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${isAdmin ? "bg-indigo-600 text-white" : "bg-slate-300 text-slate-600"}`}>
-                                {sender.avatar ? <img src={sender.avatar} className="w-full h-full rounded-full object-cover" /> : (
+                                {sender.avatar ? <img src={sender.avatar} alt={sender.name || "User avatar"} className="w-full h-full rounded-full object-cover" /> : (
                                     isAdmin ? <FaUserShield className="text-xs" /> : <FaUser className="text-xs" />
                                 )}
                             </div>

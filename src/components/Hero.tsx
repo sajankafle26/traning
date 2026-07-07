@@ -47,9 +47,9 @@ const Hero = () => {
             <h1 className="text-4xl md:text-4xl lg:text-[3.0rem] font-black text-white leading-[1.1] tracking-tight">
               {hero.title}
             </h1>
-            <h1 className="text-4xl md:text-4xl lg:text-[3.0rem] font-black text-cyan-300 leading-[1.1] tracking-tight">
+            <h2 className="text-4xl md:text-4xl lg:text-[3.0rem] font-black text-cyan-300 leading-[1.1] tracking-tight">
               {hero.subtitle}
-            </h1>
+            </h2>
           </div>
 
           {/* Description */}

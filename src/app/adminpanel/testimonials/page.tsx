@@ -24,7 +24,7 @@ const TestimonialsAdmin = () => {
                         <button onClick={() => onDelete(item._id)} className="text-red-600 font-bold text-xs bg-red-50 px-3 py-1 rounded-lg hover:bg-red-100 transition">Delete</button>
                     </div>
                     <div className="flex items-center gap-4 mb-4">
-                        <img src={item.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}&background=00548B&color=fff&bold=true`} className="w-12 h-12 rounded-full object-cover" />
+                        <img src={item.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}&background=00548B&color=fff&bold=true`} alt={item.name || "Testimonial"} className="w-12 h-12 rounded-full object-cover" />
                         <div>
                             <h3 className="text-slate-900 font-bold">{item.name}</h3>
                             <p className="text-slate-400 text-xs">{item.course}</p>

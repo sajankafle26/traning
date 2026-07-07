@@ -488,7 +488,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div className={`lg:hidden fixed top-0 right-0 h-full w-[85vw] max-w-[360px] bg-white z-50 shadow-2xl transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100">
-          <img src="/logo.png" alt="Sangalo Tech" className="h-9 w-auto object-contain" />
+          <img src="/logo.png" alt="Sangalo Tech" width={36} height={36} className="h-9 w-auto object-contain" />
           <button onClick={() => setIsMobileMenuOpen(false)} className="w-12 h-12 flex items-center justify-center rounded-lg hover:bg-slate-100 transition" aria-label="Close menu">
             <FaXmark className="text-lg text-slate-600" />
           </button>

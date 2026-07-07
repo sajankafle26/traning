@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -12,12 +12,46 @@ import {
 } from "react-icons/fa";
 import { signOut } from "next-auth/react";
 
+const PAGE_TITLES: Record<string, string> = {
+  "/adminpanel": "Dashboard",
+  "/adminpanel/students": "Students",
+  "/adminpanel/courses": "Video Courses",
+  "/adminpanel/live-courses": "Live Courses",
+  "/adminpanel/batches": "Upcoming Batches",
+  "/adminpanel/blogs": "Blogs",
+  "/adminpanel/services": "Services",
+  "/adminpanel/portfolio": "Portfolio",
+  "/adminpanel/products": "Products",
+  "/adminpanel/team": "Team",
+  "/adminpanel/testimonials": "Testimonials",
+  "/adminpanel/success-stories": "Success Stories",
+  "/adminpanel/internships": "Internships",
+  "/adminpanel/gallery": "Gallery",
+  "/adminpanel/tech-stack": "Tech Stack",
+  "/adminpanel/coupons": "Coupons",
+  "/adminpanel/orders": "Orders",
+  "/adminpanel/enrollments": "Enrollments",
+  "/adminpanel/tickets": "Tickets",
+  "/adminpanel/certificates": "Certificates",
+  "/adminpanel/video-manager": "Video Manager",
+  "/adminpanel/finance": "Finance",
+  "/adminpanel/site-settings": "Site Settings",
+  "/adminpanel/page-content": "Page Content",
+};
+
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
     const pathname = usePathname();
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [instituteExpanded, setInstituteExpanded] = useState(
         pathname?.startsWith("/adminpanel/institute") ?? false
     );
+
+    useEffect(() => {
+      const base = Object.entries(PAGE_TITLES).find(([path]) =>
+        pathname?.startsWith(path)
+      );
+      document.title = base ? `${base[1]} | Admin | Sangalo Tech` : "Admin | Sangalo Tech";
+    }, [pathname]);
 
     const navGroups = [
         {

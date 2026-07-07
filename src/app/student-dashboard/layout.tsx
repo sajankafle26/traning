@@ -1,15 +1,31 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaTachometerAlt, FaCalendarCheck, FaMoneyBillWave, FaBullhorn, FaBookOpen, FaSignOutAlt, FaUserGraduate, FaFileInvoiceDollar } from "react-icons/fa";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
+const PAGE_TITLES: Record<string, string> = {
+  "/student-dashboard": "Dashboard",
+  "/student-dashboard/courses": "My Courses",
+  "/student-dashboard/certificates": "Certificates",
+  "/student-dashboard/payments": "Payments",
+  "/student-dashboard/tickets": "Tickets",
+  "/student-dashboard/settings": "Settings",
+};
+
 const StudentLayout = ({ children }: { children: React.ReactNode }) => {
     const { data: session, status } = useSession();
     const router = useRouter();
     const pathname = usePathname();
+
+    useEffect(() => {
+      const base = Object.entries(PAGE_TITLES).find(([path]) =>
+        pathname?.startsWith(path)
+      );
+      document.title = base ? `${base[1]} | Dashboard | Sangalo Tech` : "Dashboard | Sangalo Tech";
+    }, [pathname]);
 
     React.useEffect(() => {
         if (status === "unauthenticated") {

@@ -136,7 +136,7 @@ const NewTicket = () => {
                             <div className="flex flex-wrap gap-4">
                                 {attachments.map((url, i) => (
                                     <div key={i} className="relative w-24 h-24 rounded-2xl overflow-hidden border-2 border-indigo-500/30 group">
-                                        <img src={url} className="w-full h-full object-cover" />
+                                        <img src={url} alt="Preview" className="w-full h-full object-cover" />
                                         <button
                                             type="button"
                                             onClick={() => removeAttachment(i)}

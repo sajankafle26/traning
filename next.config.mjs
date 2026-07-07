@@ -11,8 +11,23 @@ const nextConfig = {
       { protocol: "https", hostname: "ui-avatars.com" },
       { protocol: "https", hostname: "img.youtube.com" },
       { protocol: "https", hostname: "sangalotech.com" },
+      { protocol: "https", hostname: "phwyqhfesmtrzxtqkuzf.supabase.co" },
+      { protocol: "https", hostname: "placehold.co" },
+      { protocol: "https", hostname: "via.placeholder.com" },
       { protocol: "http", hostname: "localhost" },
     ],
+  },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+        ],
+      },
+    ];
   },
   devIndicators: false,
 };
