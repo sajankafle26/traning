@@ -89,8 +89,13 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Video path not configured for this lesson' }, { status: 404 });
     }
 
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      return NextResponse.json({ error: 'Storage not configured' }, { status: 500 });
+    }
+
     // Generate signed URL
-    const { data, error } = await getSupabaseAdmin().storage
+    const { data, error } = await supabase.storage
       .from(BUCKET_NAME)
       .createSignedUrl(filePath, SIGNED_URL_EXPIRY);
 

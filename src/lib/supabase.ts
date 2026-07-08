@@ -1,28 +1,37 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-let _supabaseAdmin: ReturnType<typeof createClient> | null = null;
-let _supabase: ReturnType<typeof createClient> | null = null;
+type ClientState = SupabaseClient | null | undefined;
+let _admin: ClientState = undefined;
+let _public: ClientState = undefined;
 
-export function getSupabaseAdmin() {
-  if (!_supabaseAdmin) {
+function initAdmin(): SupabaseClient | null {
+  try {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    if (!url || !key) {
-      throw new Error('Supabase env vars (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) must be set');
-    }
-    _supabaseAdmin = createClient(url, key);
+    if (!url || !key) return null;
+    return createClient(url, key);
+  } catch {
+    return null;
   }
-  return _supabaseAdmin;
 }
 
-export function getSupabase() {
-  if (!_supabase) {
+function initPublic(): SupabaseClient | null {
+  try {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    if (!url || !key) {
-      throw new Error('Supabase env vars (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) must be set');
-    }
-    _supabase = createClient(url, key);
+    if (!url || !key) return null;
+    return createClient(url, key);
+  } catch {
+    return null;
   }
-  return _supabase;
+}
+
+export function getSupabaseAdmin(): SupabaseClient | null {
+  if (_admin === undefined) _admin = initAdmin();
+  return _admin;
+}
+
+export function getSupabase(): SupabaseClient | null {
+  if (_public === undefined) _public = initPublic();
+  return _public;
 }

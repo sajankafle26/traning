@@ -38,7 +38,12 @@ export async function POST(req: Request) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    const { error } = await getSupabaseAdmin().storage
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      return NextResponse.json({ error: 'Storage not configured' }, { status: 500 });
+    }
+
+    const { error } = await supabase.storage
       .from(BUCKET_NAME)
       .upload(filePath, buffer, {
         contentType: file.type || 'video/mp4',

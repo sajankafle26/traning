@@ -28,8 +28,13 @@ export async function POST(req: Request) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      return NextResponse.json({ error: 'Storage not configured' }, { status: 500 });
+    }
+
     // Upload to Supabase Storage
-    const { data, error } = await getSupabaseAdmin().storage
+    const { data, error } = await supabase.storage
       .from(BUCKET_NAME)
       .upload(path, buffer, {
         contentType: file.type || 'video/mp4',
@@ -42,7 +47,7 @@ export async function POST(req: Request) {
     }
 
     // Get the public URL (for reference, actual streaming uses signed URLs)
-    const { data: urlData } = getSupabaseAdmin().storage
+    const { data: urlData } = supabase.storage
       .from(BUCKET_NAME)
       .getPublicUrl(path);
 
@@ -71,7 +76,12 @@ export async function DELETE(req: Request) {
       return NextResponse.json({ error: 'path required' }, { status: 400 });
     }
 
-    const { error } = await getSupabaseAdmin().storage
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      return NextResponse.json({ error: 'Storage not configured' }, { status: 500 });
+    }
+
+    const { error } = await supabase.storage
       .from(BUCKET_NAME)
       .remove([path]);
 
