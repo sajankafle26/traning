@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "seed": "npx tsx src/scripts/seed-navbar.ts",
     "postbuild": "next-sitemap"
   },
   "dependencies": {
