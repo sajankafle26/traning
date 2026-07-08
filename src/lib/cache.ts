@@ -9,9 +9,7 @@ export async function getCache<T>(key: string): Promise<T | null> {
   try {
     const client = await getRedisClient();
     if (!client) return null;
-    const data = await client.get(key);
-    if (!data) return null;
-    return JSON.parse(data) as T;
+    return await client.get<T>(key);
   } catch {
     return null;
   }
@@ -21,11 +19,10 @@ export async function setCache(key: string, data: unknown, ttl = 300): Promise<v
   try {
     const client = await getRedisClient();
     if (!client) return;
-    const serialized = JSON.stringify(data);
     if (ttl > 0) {
-      await client.setex(key, ttl, serialized);
+      await client.set(key, data, { ex: ttl });
     } else {
-      await client.set(key, serialized);
+      await client.set(key, data);
     }
   } catch {
     // silently skip
@@ -48,13 +45,10 @@ export async function invalidateCache(pattern: string): Promise<void> {
     if (!client) return;
     let cursor = "0";
     do {
-      const [nextCursor, keys] = await client.scan(
-        cursor,
-        "MATCH",
-        `sangalo:${pattern}`,
-        "COUNT",
-        50
-      );
+      const [nextCursor, keys] = await client.scan(cursor, {
+        match: `sangalo:${pattern}`,
+        count: 50,
+      });
       cursor = nextCursor;
       if (keys.length > 0) {
         await client.del(...keys);
