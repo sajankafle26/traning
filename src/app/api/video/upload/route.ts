@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import { auth } from '@/auth';
 
 const BUCKET_NAME = 'course-videos';
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     const buffer = Buffer.from(arrayBuffer);
 
     // Upload to Supabase Storage
-    const { data, error } = await supabaseAdmin.storage
+    const { data, error } = await getSupabaseAdmin().storage
       .from(BUCKET_NAME)
       .upload(path, buffer, {
         contentType: file.type || 'video/mp4',
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
     }
 
     // Get the public URL (for reference, actual streaming uses signed URLs)
-    const { data: urlData } = supabaseAdmin.storage
+    const { data: urlData } = getSupabaseAdmin().storage
       .from(BUCKET_NAME)
       .getPublicUrl(path);
 
@@ -71,7 +71,7 @@ export async function DELETE(req: Request) {
       return NextResponse.json({ error: 'path required' }, { status: 400 });
     }
 
-    const { error } = await supabaseAdmin.storage
+    const { error } = await getSupabaseAdmin().storage
       .from(BUCKET_NAME)
       .remove([path]);
 

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import dbConnect from '@/lib/dbConnect';
 import VideoCourse from '@/models/VideoCourse';
 import User from '@/models/User';
@@ -90,7 +90,7 @@ export async function POST(req: Request) {
     }
 
     // Generate signed URL
-    const { data, error } = await supabaseAdmin.storage
+    const { data, error } = await getSupabaseAdmin().storage
       .from(BUCKET_NAME)
       .createSignedUrl(filePath, SIGNED_URL_EXPIRY);
 

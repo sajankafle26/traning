@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import dbConnect from '@/lib/dbConnect';
 import VideoCourse from '@/models/VideoCourse';
 import { auth } from '@/auth';
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    const { error } = await supabaseAdmin.storage
+    const { error } = await getSupabaseAdmin().storage
       .from(BUCKET_NAME)
       .upload(filePath, buffer, {
         contentType: file.type || 'video/mp4',
