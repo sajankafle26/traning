@@ -5,15 +5,15 @@ import {
   FaGraduationCap, FaUsers, FaBriefcase, FaBuilding, FaLightbulb, FaHandshake,
   FaRocket, FaShieldAlt, FaCode, FaChalkboardTeacher, FaLaptopCode, FaStar,
   FaArrowRight, FaCheckCircle, FaGlobeAsia, FaHeart, FaPenNib, FaChartLine,
-  FaLinkedin, FaTwitter, FaGithub
+  FaLinkedin, FaTwitter, FaGithub, FaQuoteLeft, FaMapMarkerAlt, FaEnvelope
 } from 'react-icons/fa';
 import axios from 'axios';
 
 const STATS = [
-  { icon: FaLaptopCode, value: '200+', label: 'Projects Delivered', color: 'bg-blue-500' },
-  { icon: FaGraduationCap, value: '600+', label: 'Students Trained', color: 'bg-emerald-500' },
-  { icon: FaBriefcase, value: '500+', label: 'Placed in Jobs', color: 'bg-violet-500' },
-  { icon: FaStar, value: '4.9', label: 'Google Rating', color: 'bg-amber-500' },
+  { icon: FaGraduationCap, value: '1500+', label: 'Students Trained', color: 'bg-emerald-500' },
+  { icon: FaLaptopCode, value: '500+', label: 'Projects Delivered', color: 'bg-blue-500' },
+  { icon: FaBriefcase, value: '95%', label: 'Placement Rate', color: 'bg-violet-500' },
+  { icon: FaBuilding, value: '100+', label: 'Hiring Partners', color: 'bg-amber-500' },
 ];
 
 const VALUES = [
@@ -54,13 +54,19 @@ const TIMELINE = [
   { year: '2019', title: 'First Batch', description: 'Launched our first MERN Stack training batch with 15 students in Lokenthali, Bhaktapur.' },
   { year: '2021', title: 'Expanded Services', description: 'Added software development services, digital marketing, and UI/UX design training.' },
   { year: '2023', title: '500+ Placements', description: 'Crossed 500 successful job placements with partner companies across Nepal.' },
-  { year: '2024', title: 'Growing Strong', description: 'Now serving 600+ students with expanded course offerings and enterprise solutions.' },
+  { year: '2024', title: 'Growing Strong', description: 'Now serving 1500+ students with expanded course offerings and enterprise solutions.' },
 ];
 
 const About = () => {
   const [teamMembers, setTeamMembers] = useState<any[]>([]);
+  const [programs, setPrograms] = useState<any[]>([]);
 
   useEffect(() => {
+    axios.get('/api/live-courses').then(res => {
+      if (res.data && res.data.length > 0) {
+        setPrograms(res.data.slice(0, 6));
+      }
+    }).catch(() => {});
     axios.get('/api/team').then(res => {
       const data = res.data;
       if (data && data.length > 0) {
@@ -125,66 +131,75 @@ const About = () => {
 
       {/* Our Team */}
       {teamMembers.length > 0 && (
-      <section className="py-24 px-6 bg-white">
+      <section className="py-24 px-6 bg-gradient-to-b from-[#f8fbff] via-white to-white">
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-16 space-y-4">
             <div className="inline-flex items-center gap-2 bg-[#00548B]/10 text-[#00548B] px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border border-[#00548B]/20">
               <FaUsers className="text-xs" /> Our Team
             </div>
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
-              Meet the <span className="text-[#00548B]">Leaders</span>
+              Meet the <span className="text-[#00548B]">People Behind</span> Sangalo Tech
             </h2>
             <p className="text-slate-500 max-w-2xl mx-auto">
-              The passionate people driving innovation at Sangalo Tech.
+              A team of passionate technologists, educators, and creators dedicated to transforming IT education in Nepal.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {teamMembers.map((member, i) => (
-              <div key={i} className="group relative p-8 rounded-[2.5rem] bg-white border border-slate-100 hover:border-[#00548B]/20 shadow-xl shadow-slate-100/50 hover:shadow-2xl transition-all duration-500 text-center">
-                {/* Background decoration */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#00548B]/5 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700" />
+              <div key={i} className="group relative">
+                {/* Card */}
+                <div className="relative bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden">
+                  {/* Top accent bar */}
+                  <div className="h-1.5 bg-gradient-to-r from-[#00548B] to-[#00548B]/40" />
 
-                <div className="relative z-10">
-                  {/* Avatar */}
-                  <div className="relative w-32 h-32 mx-auto mb-6">
-                    <div className="absolute inset-0 bg-[#00548B]/10 rounded-full scale-110 group-hover:scale-125 transition-transform duration-500" />
-                    <img
-                      src={member.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=00548B&color=fff&size=256&bold=true`}
-                      alt={member.name}
-                      className="relative w-32 h-32 rounded-full object-cover border-4 border-white shadow-xl group-hover:shadow-2xl transition-all"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=00548B&color=fff&size=256&bold=true`;
-                      }}
-                    />
+                  {/* Image section */}
+                  <div className="relative px-6 pt-8 pb-0">
+                    <div className="relative mx-auto w-28 h-28 -mb-14">
+                      <div className="absolute inset-0 bg-[#00548B]/5 rounded-full scale-110 group-hover:scale-125 transition-transform duration-500" />
+                      <img
+                        src={member.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=00548B&color=fff&size=256&bold=true`}
+                        alt={member.name}
+                        className="relative w-28 h-28 rounded-full object-cover border-4 border-white shadow-lg group-hover:shadow-xl transition-all mx-auto"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=00548B&color=fff&size=256&bold=true`;
+                        }}
+                      />
+                      {/* Status dot */}
+                      <div className="absolute bottom-1 right-1 w-4 h-4 bg-emerald-400 border-2 border-white rounded-full" />
+                    </div>
                   </div>
 
-                  {/* Info */}
-                  <h3 className="text-xl font-black text-slate-900 mb-1">{member.name}</h3>
-                  <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#00548B] bg-[#00548B]/10 px-4 py-1.5 rounded-full mb-4">
-                    {member.role}
-                  </span>
-                  {member.bio && (
-                    <p className="text-sm text-slate-500 leading-relaxed mb-6 max-w-sm mx-auto">{member.bio}</p>
-                  )}
+                  {/* Content */}
+                  <div className="px-6 pt-16 pb-6 text-center">
+                    <h3 className="text-lg font-black text-slate-900 mb-0.5">{member.name}</h3>
+                    <span className="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-[#00548B] bg-[#00548B]/8 px-3 py-1 rounded-full mb-4">
+                      {member.role}
+                    </span>
+                    {member.bio && (
+                      <p className="text-sm text-slate-500 leading-relaxed mb-6 line-clamp-2 group-hover:line-clamp-none transition-all duration-500">{member.bio}</p>
+                    )}
 
-                  {/* Social Links */}
-                  <div className="flex justify-center gap-3">
-                    {member.social?.linkedin && (
-                      <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-[#00548B] hover:text-white hover:border-[#00548B] transition-all">
-                        <FaLinkedin className="text-sm" />
-                      </a>
-                    )}
-                    {member.social?.twitter && (
-                      <a href={member.social.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter profile" className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-[#00548B] hover:text-white hover:border-[#00548B] transition-all">
-                        <FaTwitter className="text-sm" />
-                      </a>
-                    )}
-                    {member.social?.github && (
-                      <a href={member.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-[#00548B] hover:text-white hover:border-[#00548B] transition-all">
-                        <FaGithub className="text-sm" />
-                      </a>
-                    )}
+                    {/* Divider */}
+                    <div className="border-t border-slate-100 pt-4">
+                      <div className="flex justify-center gap-2">
+                        {member.social?.linkedin && (
+                          <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${member.name} LinkedIn`} className="w-10 h-10 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-[#00548B] hover:text-white hover:border-[#00548B] transition-all">
+                            <FaLinkedin className="text-sm" />
+                          </a>
+                        )}
+                        {member.social?.twitter && (
+                          <a href={member.social.twitter} target="_blank" rel="noopener noreferrer" aria-label={`${member.name} Twitter`} className="w-10 h-10 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-[#00548B] hover:text-white hover:border-[#00548B] transition-all">
+                            <FaTwitter className="text-sm" />
+                          </a>
+                        )}
+                        {member.social?.github && (
+                          <a href={member.social.github} target="_blank" rel="noopener noreferrer" aria-label={`${member.name} GitHub`} className="w-10 h-10 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-[#00548B] hover:text-white hover:border-[#00548B] transition-all">
+                            <FaGithub className="text-sm" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -300,10 +315,14 @@ const About = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {VALUES.map((value, i) => (
+            {(programs.length > 0 ? programs : VALUES).map((value: any, i: number) => (
               <div key={i} className="group p-8 rounded-2xl bg-white border border-slate-100 hover:border-[#00548B]/20 hover:shadow-xl transition-all duration-300">
-                <div className="w-14 h-14 bg-[#00548B]/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#00548B] group-hover:text-white transition-all duration-300">
-                  <value.icon className="text-xl text-[#00548B] group-hover:text-white transition-colors" />
+                <div className={`w-14 h-14 bg-[#00548B]/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#00548B] group-hover:text-white transition-all duration-300`}>
+                  {value.icon ? (
+                    <value.icon className="text-xl text-[#00548B] group-hover:text-white transition-colors" />
+                  ) : (
+                    <FaLaptopCode className="text-xl text-[#00548B] group-hover:text-white transition-colors" />
+                  )}
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-3">{value.title}</h3>
                 <p className="text-sm text-slate-500 leading-relaxed">{value.description}</p>
@@ -387,7 +406,7 @@ const About = () => {
             Ready to Start Your<br />Tech Journey?
           </h2>
           <p className="text-white/70 text-lg max-w-xl mx-auto mb-10">
-            Join 600+ students who have transformed their careers with Sangalo Tech.
+            Join 1500+ students who have transformed their careers with Sangalo Tech.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/courses" className="inline-flex items-center gap-3 bg-white text-[#00548B] px-10 py-5 rounded-2xl font-bold text-sm hover:shadow-2xl hover:-translate-y-1 transition-all no-underline">
