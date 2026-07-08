@@ -325,7 +325,7 @@ const About = () => {
                   )}
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-3">{value.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{value.description}</p>
+                <p className="text-sm text-slate-500 leading-relaxed">{value.description?.replace(/<[^>]*>/g, '').slice(0, 120) || ''}</p>
               </div>
             ))}
           </div>
